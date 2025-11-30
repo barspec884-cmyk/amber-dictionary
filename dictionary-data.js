@@ -919,15 +919,12 @@ const DICTIONARY_DATA = [
     category:"distribution",
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
     tags:["irish","maturation","blending"] }
+, // ← 前のデータとのつなぎ目のカンマ（忘れずに！）
 
-];
-// ← 前のデータとのつなぎ目のカンマ（忘れずに！）
-
-/* -----------------------
+  /* -----------------------
       追加：その他 (Others)
   ----------------------- */
   { id:"cheers", term_en:"Slàinte Mhath", term_jp:"スランジバー（乾杯）",
     category:"others",
     description:"スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。「スランジバー」と発音する。",
-    tags:["culture","gaelic"] }, 
-	]; 	
+    tags:["culture","gaelic"] }
