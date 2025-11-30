@@ -916,5 +916,9 @@ const DICTIONARY_DATA = [
     category:"distribution",
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
     tags:["irish","maturation","blending"] }
+	{ id:"cheers", term_en:"Cheers", term_jp:"乾杯（スランジバー）",
+    category:"others", // ★ここで「その他」に分類されます
+    description:"スコットランド・ゲール語で「Slàinte Mhath（健康を！）」と言って乾杯する。",
+    tags:["culture"] },
 
 ];
