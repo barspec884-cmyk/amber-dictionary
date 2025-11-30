@@ -1374,23 +1374,7 @@ const DICTIONARY_DATA = [
   tags:["milling","grist"]
 },
 
-// --- Distillation (Stills & Cut) ---
-{
-  id:"wash_still",
-  term_en:"Wash Still",
-  term_jp:"ウォッシュスチル",
-  category:"distillation",
-  description:"ポットスチルの一つで、発酵液（ウォッシュ）を蒸留しローワインを得るための初留釜。",
-  tags:["equipment","distillation"]
-},
-{
-  id:"spirit_still",
-  term_en:"Spirit Still",
-  term_jp:"スピリットスチル",
-  category:"distillation",
-  description:"ポットスチルの一つで、ローワインを再蒸留し、最終的なニューポットを採取するための再留釜。",
-  tags:["equipment","distillation"]
-},
+// --- Distillation (Cut) ---
 {
   id:"head",
   term_en:"Head (Foreshots)",
@@ -1406,14 +1390,7 @@ const DICTIONARY_DATA = [
   category:"distillation",
   description:"再留工程の最後に出てくる、重く油分の多い部分。原酒としては使われず、再利用される。",
   tags:["cut","distillation"]
-},
-{
-  id:"middle_cut",
-  term_en:"Middle Cut (Heart)",
-  term_jp:"ミドルカット（ハート）",
-  category:"distillation",
-  description:"再留工程で、ヘッドとテールを除いた中央の最も質の高い部分。ウイスキーの原酒となる。",
-  tags:["cut","distillation"]
 }
+
+// 最後のオブジェクトにはカンマは不要
 ];
-// ここにカンマは不要です。ファイルの最後の要素となります。
