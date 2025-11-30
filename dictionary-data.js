@@ -918,7 +918,7 @@ const DICTIONARY_DATA = [
   { id:"bonder", term_en:"Bonder", term_jp:"ボンダー",
     category:"distribution",
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
-    tags:["irish","maturation","blending"] }, // ← 修正1: cheersの前にカンマあり
+    tags:["irish","maturation","blending"] }, // OK: cheersの前にカンマあり
 
   /* -----------------------
       追加：その他 (Others)
@@ -926,7 +926,7 @@ const DICTIONARY_DATA = [
   { id:"cheers", term_en:"Slàinte Mhath", term_jp:"スランジバー（乾杯）",
     category:"others",
     description:"スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。「スランジバー」と発音する。",
-    tags:["culture","gaelic"] }, // ← 修正2: age_statementの前にカンマを追加
+    tags:["culture","gaelic"] }, // OK: age_statementの前にカンマあり
 
   { id:"age_statement",
     term_en:"Age Statement",
@@ -1046,7 +1046,7 @@ const DICTIONARY_DATA = [
     category:"tasting",
     description:"スコットランドで使われるウイスキー1杯の呼称。明確な量の定義はないが、wee dram 約25ml、large dram 約35mlと言われる。",
     tags:["tasting","measure"]
-  }, // ← 修正3: flightの前にカンマを追加
+  }, // OK: flightの前にカンマあり
 
   { id:"flight",
     term_en:"Flight",
@@ -1229,7 +1229,8 @@ const DICTIONARY_DATA = [
     term_jp:"ウォッシュバック",
     category:"mash",
     description:"発酵槽。麦汁に酵母を加え、ウォッシュを生成する。",
-    tags:["equipment","fermentation"] }, // ← 修正4: distillationの前にカンマを追加 (実際は2つ目の修正点としてカウント)
+    tags:["equipment","fermentation"]
+  }, // OK: distillationの前にカンマあり
 
   { id:"distillation",
     term_en:"Distillation",
@@ -1340,12 +1341,11 @@ const DICTIONARY_DATA = [
     term_jp:"インディペンデント・ボトラーズ",
     category:"style",
     description:"蒸溜所から樽ごと原酒を購入して瓶詰め・販売する業者。オフィシャルとは異なる熟成・フィニッシュによる多様な味わいが特徴。",
-    tags:["bottlers","style"],
-  }
-	
+    tags:["bottlers","style"]
+  }, // <--- ここにカンマを追加しました（最後のカンマ）
 
 /* ============================================================
-   追加用語 (Milling & Distillation Detail)
+   新規追加用語 (Milling & Distillation Detail)
 ============================================================ */
 
 // --- Milling (Milling / Grist) ---
@@ -1392,5 +1392,4 @@ const DICTIONARY_DATA = [
   tags:["cut","distillation"]
 }
 
-// 最後のオブジェクトにはカンマは不要
-];
+]; // <--- DICTIONARY_DATA配列の最終的な閉じ
