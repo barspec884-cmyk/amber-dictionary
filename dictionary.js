@@ -6,7 +6,7 @@ const suggestBox = document.getElementById('suggest');
 const listView = document.getElementById('list-view');
 const resultBox = document.getElementById('result');
 
-const categoryContainer = document.getElementById('category-container'); // 追加
+const categoryContainer = document.getElementById('category-container');
 const indexContainer = document.getElementById('index-container');
 const tagContainer = document.getElementById('tag-container');
 const closeResultBtn = document.getElementById('closeResult');
@@ -17,8 +17,7 @@ const rCategory = document.getElementById('r-category');
 const rDesc = document.getElementById('r-desc');
 const rTags = document.getElementById('r-tags');
 
-// === カテゴリー定義（日本語表示名と、データの category ID の対応表） ===
-// === カテゴリー定義 ===
+// === カテゴリー定義（絵文字付き） ===
 const CATEGORIES = [
   { id: 'all', label: '🌐 すべて' },
   { id: 'raw', label: '🌾 原料・製麦' },
@@ -34,18 +33,17 @@ const CATEGORIES = [
 // === 初期化処理 ===
 
 // 1. カテゴリーボタンを作る
+categoryContainer.innerHTML = ''; // 念のためクリア
 CATEGORIES.forEach(cat => {
   const btn = document.createElement('div');
   btn.className = 'btn-chip';
   btn.textContent = cat.label;
-  // "すべて"ボタンだけ色を変えるなどしても良いが今回は統一
-  if (cat.id === 'all') btn.style.fontWeight = 'bold';
-
   btn.addEventListener('click', () => filterByCategory(cat.id, cat.label));
   categoryContainer.appendChild(btn);
 });
 
 // 2. A-Zボタンを作る
+indexContainer.innerHTML = '';
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 alphabet.forEach(char => {
   const btn = document.createElement('div');
@@ -56,6 +54,7 @@ alphabet.forEach(char => {
 });
 
 // 3. タグボタンを作る
+tagContainer.innerHTML = '';
 const allTags = new Set();
 DICTIONARY_DATA.forEach(item => {
   if(item.tags) item.tags.forEach(t => allTags.add(t));
@@ -76,10 +75,8 @@ function filterByCategory(catId, label) {
   let matches = [];
   
   if (catId === 'all') {
-    // 「すべて」なら全データ
     matches = DICTIONARY_DATA;
   } else {
-    // IDが一致するものだけ（例：category が "raw" のもの）
     matches = DICTIONARY_DATA.filter(item => item.category === catId);
   }
   
@@ -121,7 +118,7 @@ searchInput.addEventListener('input', function(e) {
 });
 
 
-// === 描画関連（共通） ===
+// === 描画関連 ===
 
 function renderListView(matches, title) {
   listView.innerHTML = '';
@@ -130,11 +127,11 @@ function renderListView(matches, title) {
 
   // 何も見つからない場合
   if(matches.length === 0) {
-    listView.innerHTML = '<div style="padding:10px; color:#888;">該当する用語はありません</div>';
+    listView.innerHTML = '<div style="padding:16px; color:#888; text-align:center;">該当する用語はありません</div>';
     return;
   }
 
-  // どんな条件で表示しているかタイトルを出す（任意）
+  // タイトル表示
   const header = document.createElement('div');
   header.textContent = title; 
   header.style.cssText = "font-size:0.8rem; color:var(--accent); margin-bottom:8px; border-bottom:1px solid var(--border); padding-bottom:4px;";
@@ -149,7 +146,10 @@ function renderListView(matches, title) {
     `;
     div.addEventListener('click', () => {
       showResult(item);
-      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // 結果位置までスクロール（少し余裕を持たせる）
+      const yOffset = -20; 
+      const y = resultBox.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({top: y, behavior: 'smooth'});
     });
     listView.appendChild(div);
   });
@@ -179,7 +179,7 @@ function showResult(item) {
   rTermEn.textContent = item.term_en;
   rTermJp.textContent = item.term_jp;
   
-  // カテゴリー名を日本語に変換して表示する小技
+  // カテゴリー名を日本語(絵文字付き)に変換して表示
   const catObj = CATEGORIES.find(c => c.id === item.category);
   rCategory.textContent = catObj ? catObj.label : item.category.toUpperCase();
 
@@ -193,6 +193,8 @@ function showResult(item) {
       span.addEventListener('click', (e) => {
         e.stopPropagation();
         filterByTag(tag);
+        // タグ一覧を開く処理を入れるとおしゃれだが、今回はシンプルに検索実行のみ
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
       rTags.appendChild(span);
     });
@@ -204,6 +206,7 @@ function clearResult() {
 }
 closeResultBtn.addEventListener('click', clearResult);
 
+// 画面クリック時の挙動（サジェストを閉じる）
 document.addEventListener('click', function(e) {
   if (!searchInput.contains(e.target) && !suggestBox.contains(e.target)) {
     suggestBox.style.display = 'none';

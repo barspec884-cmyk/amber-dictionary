@@ -132,20 +132,19 @@
     }
 
 /* カテゴリーボタンのレイアウト調整 */
+/* カテゴリーボタンのレイアウト */
     #category-container .btn-chip {
-      /* 基本は2列（隙間を考慮して48%くらいに設定） */
-      flex: 1 1 48%; 
+      flex: 1 1 45%; 
       text-align: center;
       padding: 12px 4px;
     }
-
-    /* ▼ 「すべて」ボタン（＝最初のボタン）だけ特別扱いする設定 */
+    /* 最初のボタン（＝すべて）だけ横幅いっぱい */
     #category-container .btn-chip:first-child {
-      flex: 1 1 100%; /* 横幅いっぱい */
-      background: var(--accent); /* 色を変えて目立たせる */
-      color: #0f0e0d; /* 文字色を黒っぽくして読みやすく */
+      flex: 1 1 100%;
+      background: var(--accent);
+      color: #0f0e0d;
       font-weight: bold;
-      margin-bottom: 4px; /* 下のボタンとの間隔を少し空ける */
+      margin-bottom: 6px;
     }
 
     /* A-Zボタン */
