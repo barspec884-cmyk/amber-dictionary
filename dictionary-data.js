@@ -915,10 +915,10 @@ const DICTIONARY_DATA = [
     description:"海外のウイスキーを輸入し、国内での流通・販売・プロモーションを行う業者。",
     tags:["distribution","market"] },
 
-{ id:"bonder", term_en:"Bonder", term_jp:"ボンダー",
+  { id:"bonder", term_en:"Bonder", term_jp:"ボンダー",
     category:"distribution",
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
-    tags:["irish","maturation","blending"] }, // ← ここにカンマを忘れずに！
+    tags:["irish","maturation","blending"] }, // ← 修正1: cheersの前にカンマあり
 
   /* -----------------------
       追加：その他 (Others)
@@ -926,474 +926,421 @@ const DICTIONARY_DATA = [
   { id:"cheers", term_en:"Slàinte Mhath", term_jp:"スランジバー（乾杯）",
     category:"others",
     description:"スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。「スランジバー」と発音する。",
-    tags:["culture","gaelic"] }
+    tags:["culture","gaelic"] }, // ← 修正2: age_statementの前にカンマを追加
 
-{
-  id:"age_statement",
-  term_en:"Age Statement",
-  term_jp:"エイジ・ステイトメント",
-  category:"other",
-  description:"ブレンドされている一番若い原酒の年数を表記すること。例えば12年と記載がある場合、そのウイスキーにはより長熟の原酒も含まれるが、最も若い原酒が12年であることを示す。",
-  tags:["age","label"]
-},
+  { id:"age_statement",
+    term_en:"Age Statement",
+    term_jp:"エイジ・ステイトメント",
+    category:"other",
+    description:"ブレンドされている一番若い原酒の年数を表記すること。例えば12年と記載がある場合、そのウイスキーにはより長熟の原酒も含まれるが、最も若い原酒が12年であることを示す。",
+    tags:["age","label"]
+  },
 
-{
-  id:"non_age_statement",
-  term_en:"Non Age Statement (NAS)",
-  term_jp:"ノンエイジ",
-  category:"other",
-  description:"ラベルに熟成年数を表記しないウイスキー。日本語ではノンエイジ、ノン・ヴィンテージ、NASと呼ばれる。近年は熟成年数にこだわらない風潮から増えている。",
-  tags:["age","label"]
-},
+  { id:"non_age_statement",
+    term_en:"Non Age Statement (NAS)",
+    term_jp:"ノンエイジ",
+    category:"other",
+    description:"ラベルに熟成年数を表記しないウイスキー。日本語ではノンエイジ、ノン・ヴィンテージ、NASと呼ばれる。近年は熟成年数にこだわらない風潮から増えている。",
+    tags:["age","label"]
+  },
 
-{
-  id:"new_make",
-  term_en:"New Make",
-  term_jp:"ニューメイク",
-  category:"other",
-  description:"樽熟成前の蒸留液。ニューポットとも呼ばれる。無色透明で、荒々しい香りと味わいを持つ。",
-  tags:["spirit","pre-mature"]
-},
+  { id:"new_make",
+    term_en:"New Make",
+    term_jp:"ニューメイク",
+    category:"other",
+    description:"樽熟成前の蒸留液。ニューポットとも呼ばれる。無色透明で、荒々しい香りと味わいを持つ。",
+    tags:["spirit","pre-mature"]
+  },
 
-{
-  id:"single_malt",
-  term_en:"Single Malt",
-  term_jp:"シングルモルト",
-  category:"style",
-  description:"1つの蒸溜所のモルト原酒のみからつくられるウイスキーのこと。",
-  tags:["style","malt"]
-},
+  { id:"single_malt",
+    term_en:"Single Malt",
+    term_jp:"シングルモルト",
+    category:"style",
+    description:"1つの蒸溜所のモルト原酒のみからつくられるウイスキーのこと。",
+    tags:["style","malt"]
+  },
 
-{
-  id:"single_cask",
-  term_en:"Single Cask",
-  term_jp:"シングル・カスク",
-  category:"style",
-  description:"他の樽の原酒と混ぜず、1つの蒸溜所の1つの樽から瓶詰めされたウイスキー。製造本数が少なく希少価値が高い。カスク・ストレングスであることが多い。",
-  tags:["style","cask"]
-},
+  { id:"single_cask",
+    term_en:"Single Cask",
+    term_jp:"シングル・カスク",
+    category:"style",
+    description:"他の樽の原酒と混ぜず、1つの蒸溜所の1つの樽から瓶詰めされたウイスキー。製造本数が少なく希少価値が高い。カスク・ストレングスであることが多い。",
+    tags:["style","cask"]
+  },
 
-{
-  id:"cask_strength",
-  term_en:"Cask Strength",
-  term_jp:"カスク・ストレングス",
-  category:"finish",
-  description:"樽出しそのままのアルコール度数で瓶詰めされたウイスキー。加水されないため50〜60度であることが多い。",
-  tags:["strength","finish"]
-},
+  { id:"cask_strength",
+    term_en:"Cask Strength",
+    term_jp:"カスク・ストレングス",
+    category:"finish",
+    description:"樽出しそのままのアルコール度数で瓶詰めされたウイスキー。加水されないため50〜60度であることが多い。",
+    tags:["strength","finish"]
+  },
 
-{
-  id:"non_chill_filtered",
-  term_en:"Non-Chill Filtered",
-  term_jp:"ノンチルフィルタード",
-  category:"finish",
-  description:"冷却濾過が行われていないウイスキー。ウイスキー本来の味わいを残すとして近年人気が高い。",
-  tags:["filter","finish"]
-},
+  { id:"non_chill_filtered",
+    term_en:"Non-Chill Filtered",
+    term_jp:"ノンチルフィルタード",
+    category:"finish",
+    description:"冷却濾過が行われていないウイスキー。ウイスキー本来の味わいを残すとして近年人気が高い。",
+    tags:["filter","finish"]
+  },
 
-{
-  id:"house_style",
-  term_en:"House Style",
-  term_jp:"ハウススタイル",
-  category:"other",
-  description:"蒸溜所が持つ独自の味わいの傾向のこと。",
-  tags:["style","distillery"]
-},
+  { id:"house_style",
+    term_en:"House Style",
+    term_jp:"ハウススタイル",
+    category:"other",
+    description:"蒸溜所が持つ独自の味わいの傾向のこと。",
+    tags:["style","distillery"]
+  },
 
-{
-  id:"vatting",
-  term_en:"Vatting",
-  term_jp:"ヴァッティング",
-  category:"finish",
-  description:"異なるウイスキー原酒を混ぜ合わせること。",
-  tags:["blend","finish"]
-},
+  { id:"vatting",
+    term_en:"Vatting",
+    term_jp:"ヴァッティング",
+    category:"finish",
+    description:"異なるウイスキー原酒を混ぜ合わせること。",
+    tags:["blend","finish"]
+  },
 
-{
-  id:"one_batch",
-  term_en:"One Batch",
-  term_jp:"ワンバッチ",
-  category:"finish",
-  description:"一度の生産工程でまとめられた量・単位。ボトリング前のタンクにまとめられたものを指すこともある。",
-  tags:["batch","production"]
-},
+  { id:"one_batch",
+    term_en:"One Batch",
+    term_jp:"ワンバッチ",
+    category:"finish",
+    description:"一度の生産工程でまとめられた量・単位。ボトリング前のタンクにまとめられたものを指すこともある。",
+    tags:["batch","production"]
+  },
 
-{
-  id:"small_batch",
-  term_en:"Small Batch",
-  term_jp:"スモールバッチ",
-  category:"finish",
-  description:"少数の良質な樽のみからボトリングされたウイスキーを指すが明確な定義はなく、一般に“少量限定生産”として使われる。",
-  tags:["batch","limited"]
-},
+  { id:"small_batch",
+    term_en:"Small Batch",
+    term_jp:"スモールバッチ",
+    category:"finish",
+    description:"少数の良質な樽のみからボトリングされたウイスキーを指すが明確な定義はなく、一般に“少量限定生産”として使われる。",
+    tags:["batch","limited"]
+  },
 
-{
-  id:"teaspoon_malt",
-  term_en:"Teaspoon Malt",
-  term_jp:"ティースプーンモルト",
-  category:"style",
-  description:"シングルモルトにティースプーンほどの他蒸溜所ウイスキーを加えたもの。シングルモルト表記や蒸溜所名が使えなくなるためブランド保護の意図がある。例：Laphroaig＋Bowmore＝Williamson。",
-  tags:["blend","style"]
-},
+  { id:"teaspoon_malt",
+    term_en:"Teaspoon Malt",
+    term_jp:"ティースプーンモルト",
+    category:"style",
+    description:"シングルモルトにティースプーンほどの他蒸溜所ウイスキーを加えたもの。シングルモルト表記や蒸溜所名が使えなくなるためブランド保護の意図がある。例：Laphroaig＋Bowmore＝Williamson。",
+    tags:["blend","style"]
+  },
 
-{
-  id:"pot_still_whisky",
-  term_en:"Pot Still Whisky",
-  term_jp:"ポットスチルウイスキー",
-  category:"style",
-  description:"麦芽と未発芽大麦を使用するアイルランド特有のスタイル。",
-  tags:["style","ireland"]
-},
+  { id:"pot_still_whisky",
+    term_en:"Pot Still Whisky",
+    term_jp:"ポットスチルウイスキー",
+    category:"style",
+    description:"麦芽と未発芽大麦を使用するアイルランド特有のスタイル。",
+    tags:["style","ireland"]
+  },
 
-{
-  id:"mothballed_distillery",
-  term_en:"Mothballed Distillery",
-  term_jp:"モスボール・ディスティラリー",
-  category:"other",
-  description:"過去に操業していたが閉鎖している蒸溜所。別名サイレント・ディスティラリー。近年ウイスキーブームにより再稼働例も増えている。",
-  tags:["distillery","closed"]
-},
+  { id:"mothballed_distillery",
+    term_en:"Mothballed Distillery",
+    term_jp:"モスボール・ディスティラリー",
+    category:"other",
+    description:"過去に操業していたが閉鎖している蒸溜所。別名サイレント・ディスティラリー。近年ウイスキーブームにより再稼働例も増えている。",
+    tags:["distillery","closed"]
+  },
 
-{
-  id:"dram",
-  term_en:"Dram",
-  term_jp:"ドラム",
-  category:"tasting",
-  description:"スコットランドで使われるウイスキー1杯の呼称。明確な量の定義はないが、wee dram 約25ml、large dram 約35mlと言われる。",
-  tags:["tasting","measure"]
-}
-	
-{
-  id:"flight",
-  term_en:"Flight",
-  term_jp:"フライト",
-  category:"tasting",
-  description:"数種類のウイスキーを飲み比べること。ボードなどに並べて提供されることが多い。",
-  tags:["tasting","set"]
-},
+  { id:"dram",
+    term_en:"Dram",
+    term_jp:"ドラム",
+    category:"tasting",
+    description:"スコットランドで使われるウイスキー1杯の呼称。明確な量の定義はないが、wee dram 約25ml、large dram 約35mlと言われる。",
+    tags:["tasting","measure"]
+  }, // ← 修正3: flightの前にカンマを追加
 
-{
-  id:"moonshine",
-  term_en:"Moonshine",
-  term_jp:"ムーンシャイン",
-  category:"other",
-  description:"密造酒を意味するスラング。アメリカ禁酒法時代に、月明かりの下で隠れて酒を造っていたことに由来する。",
-  tags:["illegal","history"]
-},
+  { id:"flight",
+    term_en:"Flight",
+    term_jp:"フライト",
+    category:"tasting",
+    description:"数種類のウイスキーを飲み比べること。ボードなどに並べて提供されることが多い。",
+    tags:["tasting","set"]
+  },
 
-{
-  id:"keepers_of_the_quaich",
-  term_en:"The Keepers of the Quaich",
-  term_jp:"ザ・キーパー・オブ・ザ・クエイヒ",
-  category:"other",
-  description:"スコッチウイスキーの発展に貢献した人物が招待される、最も格式の高いスコッチ業界の協会。",
-  tags:["association","scotch"]
-},
+  { id:"moonshine",
+    term_en:"Moonshine",
+    term_jp:"ムーンシャイン",
+    category:"other",
+    description:"密造酒を意味するスラング。アメリカ禁酒法時代に、月明かりの下で隠れて酒を造っていたことに由来する。",
+    tags:["illegal","history"]
+  },
 
-{
-  id:"master_of_the_quaich",
-  term_en:"The Master of the Quaich",
-  term_jp:"ザ・マスター・オブ・ザ・クエイヒ",
-  category:"other",
-  description:"業界に大きく貢献し、キーパーを数年務めた人物に授与される称号。キーパー約2000名に対し、マスターは約150名と非常に希少。",
-  tags:["award","scotch"]
-},
+  { id:"keepers_of_the_quaich",
+    term_en:"The Keepers of the Quaich",
+    term_jp:"ザ・キーパー・オブ・ザ・クエイヒ",
+    category:"other",
+    description:"スコッチウイスキーの発展に貢献した人物が招待される、最も格式の高いスコッチ業界の協会。",
+    tags:["association","scotch"]
+  },
 
-{
-  id:"world_whiskies_awards",
-  term_en:"World Whiskies Awards (WWA)",
-  term_jp:"ワールド・ウイスキー・アワード",
-  category:"other",
-  description:"毎年開催される国際的なウイスキーコンペティション。カテゴリーごとに世界一を決める。ウイスキー・マガジンが運営。",
-  tags:["competition","award"]
-},
+  { id:"master_of_the_quaich",
+    term_en:"The Master of the Quaich",
+    term_jp:"ザ・マスター・オブ・ザ・クエイヒ",
+    category:"other",
+    description:"業界に大きく貢献し、キーパーを数年務めた人物に授与される称号。キーパー約2000名に対し、マスターは約150名と非常に希少。",
+    tags:["award","scotch"]
+  },
 
-{
-  id:"hall_of_fame",
-  term_en:"Hall of Fame",
-  term_jp:"ホール・オブ・フェイム",
-  category:"other",
-  description:"WWAの一環として始まった、ウイスキー業界に優れた功績を残した人物を称える制度。",
-  tags:["award","history"]
-},
+  { id:"world_whiskies_awards",
+    term_en:"World Whiskies Awards (WWA)",
+    term_jp:"ワールド・ウイスキー・アワード",
+    category:"other",
+    description:"毎年開催される国際的なウイスキーコンペティション。カテゴリーごとに世界一を決める。ウイスキー・マガジンが運営。",
+    tags:["competition","award"]
+  },
 
-{
-  id:"cask_barrel",
-  term_en:"Cask / Barrel",
-  term_jp:"カスク / バレル",
-  category:"maturation",
-  description:"ウイスキー熟成に使用される樽。サイズや用途により名称が異なる。",
-  tags:["cask","maturation"]
-},
+  { id:"hall_of_fame",
+    term_en:"Hall of Fame",
+    term_jp:"ホール・オブ・フェイム",
+    category:"other",
+    description:"WWAの一環として始まった、ウイスキー業界に優れた功績を残した人物を称える制度。",
+    tags:["award","history"]
+  },
 
-{
-  id:"cooperage",
-  term_en:"Cooperage",
-  term_jp:"クーパレッジ",
-  category:"maturation",
-  description:"樽を製造・修理する製樽工場。職人はクーパー（cooper）と呼ばれる。",
-  tags:["cask","craft"]
-},
+  { id:"cask_barrel",
+    term_en:"Cask / Barrel",
+    term_jp:"カスク / バレル",
+    category:"maturation",
+    description:"ウイスキー熟成に使用される樽。サイズや用途により名称が異なる。",
+    tags:["cask","maturation"]
+  },
 
-{
-  id:"regauge",
-  term_en:"Regauge",
-  term_jp:"リゲージ",
-  category:"other",
-  description:"熟成中の樽の容量やアルコール度数（ABV）を測定すること。蒸発によるアルコール度低下を管理するため定期的に行われる。",
-  tags:["measurement","maturation"]
-},
+  { id:"cooperage",
+    term_en:"Cooperage",
+    term_jp:"クーパレッジ",
+    category:"maturation",
+    description:"樽を製造・修理する製樽工場。職人はクーパー（cooper）と呼ばれる。",
+    tags:["cask","craft"]
+  },
 
-{
-  id:"re_racking",
-  term_en:"Re-racking",
-  term_jp:"リラック",
-  category:"maturation",
-  description:"原酒を一つの樽から別の樽へ移し替える工程。複数樽の影響で香味を複雑にできる。",
-  tags:["cask","maturation"]
-},
+  { id:"regauge",
+    term_en:"Regauge",
+    term_jp:"リゲージ",
+    category:"other",
+    description:"熟成中の樽の容量やアルコール度数（ABV）を測定すること。蒸発によるアルコール度低下を管理するため定期的に行われる。",
+    tags:["measurement","maturation"]
+  },
 
-{
-  id:"charring",
-  term_en:"Charring",
-  term_jp:"チャーリング",
-  category:"maturation",
-  description:"樽の内側を直火で焦がすこと。アメリカではバーボンにチャーされた新樽使用が法律で義務付けられている。",
-  tags:["cask","fire"]
-},
+  { id:"re_racking",
+    term_en:"Re-racking",
+    term_jp:"リラック",
+    category:"maturation",
+    description:"原酒を一つの樽から別の樽へ移し替える工程。複数樽の影響で香味を複雑にできる。",
+    tags:["cask","maturation"]
+  },
 
-{
-  id:"toast",
-  term_en:"Toast",
-  term_jp:"トースト",
-  category:"maturation",
-  description:"樽を低温で遠火加熱し、独特の香りを生む炭化層を作る工程。ワイン（特にシェリー樽）で用いられる。",
-  tags:["cask","heat"]
-},
+  { id:"charring",
+    term_en:"Charring",
+    term_jp:"チャーリング",
+    category:"maturation",
+    description:"樽の内側を直火で焦がすこと。アメリカではバーボンにチャーされた新樽使用が法律で義務付けられている。",
+    tags:["cask","fire"]
+  },
 
-{
-  id:"first_fill",
-  term_en:"1st Fill",
-  term_jp:"ファーストフィル",
-  category:"maturation",
-  description:"古樽がウイスキー熟成に初めて使われる時に用いる呼称。2回目はセカンドフィルと呼ぶ。",
-  tags:["cask","maturation"]
-},
+  { id:"toast",
+    term_en:"Toast",
+    term_jp:"トースト",
+    category:"maturation",
+    description:"樽を低温で遠火加熱し、独特の香りを生む炭化層を作る工程。ワイン（特にシェリー樽）で用いられる。",
+    tags:["cask","heat"]
+  },
 
-{
-  id:"malting",
-  term_en:"Malting",
-  term_jp:"モルティング",
-  category:"raw",
-  description:"大麦を麦芽（モルト）へ加工する製麦工程。",
-  tags:["raw","malting"]
-},
+  { id:"first_fill",
+    term_en:"1st Fill",
+    term_jp:"ファーストフィル",
+    category:"maturation",
+    description:"古樽がウイスキー熟成に初めて使われる時に用いる呼称。2回目はセカンドフィルと呼ぶ。",
+    tags:["cask","maturation"]
+  },
 
-{
-  id:"maltster",
-  term_en:"Maltster",
-  term_jp:"モルトスター",
-  category:"raw",
-  description:"製麦を専門に行う業者や職人のこと。",
-  tags:["malting","profession"]
-},
+  { id:"malting",
+    term_en:"Malting",
+    term_jp:"モルティング",
+    category:"raw",
+    description:"大麦を麦芽（モルト）へ加工する製麦工程。",
+    tags:["raw","malting"]
+  },
 
-{
-  id:"milling",
-  term_en:"Milling",
-  term_jp:"ミリング",
-  category:"raw",
-  description:"麦芽を粉砕して糖を抽出しやすくする工程。",
-  tags:["milling","raw"]
-},
+  { id:"maltster",
+    term_en:"Maltster",
+    term_jp:"モルトスター",
+    category:"raw",
+    description:"製麦を専門に行う業者や職人のこと。",
+    tags:["malting","profession"]
+  },
 
-{
-  id:"grist",
-  term_en:"Grist",
-  term_jp:"グリスト",
-  category:"raw",
-  description:"粉砕された麦芽。粗いハスク、中間グリッツ、細かいフラワー全体を指す総称。",
-  tags:["raw","malt"]
-},
+  { id:"milling",
+    term_en:"Milling",
+    term_jp:"ミリング",
+    category:"raw",
+    description:"麦芽を粉砕して糖を抽出しやすくする工程。",
+    tags:["milling","raw"]
+  },
 
-{
-  id:"mashing",
-  term_en:"Mashing",
-  term_jp:"マッシング",
-  category:"mash",
-  description:"グリストにお湯を混ぜ、加熱し麦汁（ウォート）を抽出する糖化工程。",
-  tags:["mash","process"]
-},
+  { id:"grist",
+    term_en:"Grist",
+    term_jp:"グリスト",
+    category:"raw",
+    description:"粉砕された麦芽。粗いハスク、中間グリッツ、細かいフラワー全体を指す総称。",
+    tags:["raw","malt"]
+  },
 
-{
-  id:"wort_mash",
-  term_en:"Wort / Mash",
-  term_jp:"ウォート / マッシュ",
-  category:"mash",
-  description:"粉砕麦芽に熱湯を加えて糖化させた液体。ウイスキー造りの基礎となる。",
-  tags:["mash","wort"]
-},
+  { id:"mashing",
+    term_en:"Mashing",
+    term_jp:"マッシング",
+    category:"mash",
+    description:"グリストにお湯を混ぜ、加熱し麦汁（ウォート）を抽出する糖化工程。",
+    tags:["mash","process"]
+  },
 
-{
-  id:"mash_tun",
-  term_en:"Mash Tun",
-  term_jp:"マッシュタン",
-  category:"mash",
-  description:"糖化槽のこと。木製・金属製など蒸溜所により異なる。",
-  tags:["equipment","mash"]
-},
+  { id:"wort_mash",
+    term_en:"Wort / Mash",
+    term_jp:"ウォート / マッシュ",
+    category:"mash",
+    description:"粉砕麦芽に熱湯を加えて糖化させた液体。ウイスキー造りの基礎となる。",
+    tags:["mash","wort"]
+  },
 
-{
-  id:"fermentation",
-  term_en:"Fermentation",
-  term_jp:"ファーメンテーション",
-  category:"mash",
-  description:"麦汁に酵母を加えて発酵させ、アルコール度数7〜8%程度の発酵液（ウォッシュ）を作る工程。",
-  tags:["fermentation","process"]
-},
+  { id:"mash_tun",
+    term_en:"Mash Tun",
+    term_jp:"マッシュタン",
+    category:"mash",
+    description:"糖化槽のこと。木製・金属製など蒸溜所により異なる。",
+    tags:["equipment","mash"]
+  },
 
-{
-  id:"wash",
-  term_en:"Wash",
-  term_jp:"ウォッシュ",
-  category:"mash",
-  description:"酵母で発酵したもろみ（発酵液）。次の蒸留工程へ進む。",
-  tags:["fermentation","mash"]
-},
+  { id:"fermentation",
+    term_en:"Fermentation",
+    term_jp:"ファーメンテーション",
+    category:"mash",
+    description:"麦汁に酵母を加えて発酵させ、アルコール度数7〜8%程度の発酵液（ウォッシュ）を作る工程。",
+    tags:["fermentation","process"]
+  },
 
-{
-  id:"wash_back",
-  term_en:"Wash Back",
-  term_jp:"ウォッシュバック",
-  category:"mash",
-  description:"発酵槽。麦汁に酵母を加え、ウォッシュを生成する。",
-  tags:["equipment","fermentation"]
-}
-{
-  id:"distillation",
-  term_en:"Distillation",
-  term_jp:"ディスティレーション",
-  category:"distillation",
-  description:"発酵液を水とアルコールの沸点の違いを利用して蒸留し、アルコール度数の高い蒸留液を得る工程。",
-  tags:["process","distillation"]
-},
+  { id:"wash",
+    term_en:"Wash",
+    term_jp:"ウォッシュ",
+    category:"mash",
+    description:"酵母で発酵したもろみ（発酵液）。次の蒸留工程へ進む。",
+    tags:["fermentation","mash"]
+  },
 
-{
-  id:"reflux",
-  term_en:"Reflux",
-  term_jp:"リフラックス",
-  category:"distillation",
-  description:"還流のこと。蒸留時にスチル内で蒸発と凝縮を繰り返し純度を高めるプロセス。スチル形状や蒸留速度により度合いが変わり、強い還流は軽い酒質を生む。",
-  tags:["distillation","process"]
-},
+  { id:"wash_back",
+    term_en:"Wash Back",
+    term_jp:"ウォッシュバック",
+    category:"mash",
+    description:"発酵槽。麦汁に酵母を加え、ウォッシュを生成する。",
+    tags:["equipment","fermentation"] }, // ← 修正4: distillationの前にカンマを追加 (実際は2つ目の修正点としてカウント)
 
-{
-  id:"lyne_arm",
-  term_en:"Lyne Arm",
-  term_jp:"ラインアーム",
-  category:"distillation",
-  description:"ポットスチルの加熱部とコンデンサーを繋ぐパイプ。長さや角度がリフラックス量に大きな影響を与える。",
-  tags:["equipment","distillation"]
-},
+  { id:"distillation",
+    term_en:"Distillation",
+    term_jp:"ディスティレーション",
+    category:"distillation",
+    description:"発酵液を水とアルコールの沸点の違いを利用して蒸留し、アルコール度数の高い蒸留液を得る工程。",
+    tags:["process","distillation"]
+  },
 
-{
-  id:"wash_still",
-  term_en:"Wash Still",
-  term_jp:"ウォッシュスチル",
-  category:"distillation",
-  description:"モルトウイスキー製造で最初に使われる初溜釜。ウォッシュを蒸留しローワイン（初留液）を得る銅製スチルが多い。",
-  tags:["equipment","distillation"]
-},
+  { id:"reflux",
+    term_en:"Reflux",
+    term_jp:"リフラックス",
+    category:"distillation",
+    description:"還流のこと。蒸留時にスチル内で蒸発と凝縮を繰り返し純度を高めるプロセス。スチル形状や蒸留速度により度合いが変わり、強い還流は軽い酒質を生む。",
+    tags:["distillation","process"]
+  },
 
-{
-  id:"spirit_still",
-  term_en:"Spirit Still",
-  term_jp:"スピリットスチル",
-  category:"distillation",
-  description:"二度目の蒸留に使われる再溜釜。ローワインを再度蒸留し、カットポイントを決め最終的なスピリッツとなる。",
-  tags:["equipment","distillation"]
-},
+  { id:"lyne_arm",
+    term_en:"Lyne Arm",
+    term_jp:"ラインアーム",
+    category:"distillation",
+    description:"ポットスチルの加熱部とコンデンサーを繋ぐパイプ。長さや角度がリフラックス量に大きな影響を与える。",
+    tags:["equipment","distillation"]
+  },
 
-{
-  id:"low_wine",
-  term_en:"Low Wine",
-  term_jp:"ローワイン",
-  category:"distillation",
-  description:"ウォッシュスチルで初溜を終えた液体。アルコール度数20〜30%で不純物を多く含む。",
-  tags:["distillation","spirit"]
-},
+  { id:"wash_still",
+    term_en:"Wash Still",
+    term_jp:"ウォッシュスチル",
+    category:"distillation",
+    description:"モルトウイスキー製造で最初に使われる初溜釜。ウォッシュを蒸留しローワイン（初留液）を得る銅製スチルが多い。",
+    tags:["equipment","distillation"]
+  },
 
-{
-  id:"middle_cut",
-  term_en:"Middle Cut",
-  term_jp:"ミドルカット",
-  category:"distillation",
-  description:"別名ハートカット。蒸留で最初のヘッドと最後のテールを除き、最も風味豊かなハート部分だけを採取する作業。",
-  tags:["distillation","cut"]
-},
+  { id:"spirit_still",
+    term_en:"Spirit Still",
+    term_jp:"スピリットスチル",
+    category:"distillation",
+    description:"二度目の蒸留に使われる再溜釜。ローワインを再度蒸留し、カットポイントを決め最終的なスピリッツとなる。",
+    tags:["equipment","distillation"]
+  },
 
-{
-  id:"cut_point",
-  term_en:"Cut Point",
-  term_jp:"カットポイント",
-  category:"distillation",
-  description:"ミドルカットを行うタイミング。前寄り・後寄りで酒質が大きく変わる重要な決定点。",
-  tags:["distillation","cut"]
-},
+  { id:"low_wine",
+    term_en:"Low Wine",
+    term_jp:"ローワイン",
+    category:"distillation",
+    description:"ウォッシュスチルで初溜を終えた液体。アルコール度数20〜30%で不純物を多く含む。",
+    tags:["distillation","spirit"]
+  },
 
-{
-  id:"maturation",
-  term_en:"Maturation",
-  term_jp:"マチュレーション",
-  category:"maturation",
-  description:"蒸留したてのニューポットを木樽で寝かせ熟成させる工程。",
-  tags:["maturation","process"]
-},
+  { id:"middle_cut",
+    term_en:"Middle Cut",
+    term_jp:"ミドルカット",
+    category:"distillation",
+    description:"別名ハートカット。蒸留で最初のヘッドと最後のテールを除き、最も風味豊かなハート部分だけを採取する作業。",
+    tags:["distillation","cut"]
+  },
 
-{
-  id:"dunnage",
-  term_en:"Dunnage",
-  term_jp:"ダンネージ式",
-  category:"maturation",
-  description:"横向きの樽を3〜4段積み上げ、木材で固定する伝統的な貯蔵方式。省コストだがスペースと出し入れに難があるため小規模蒸溜所に多い。",
-  tags:["warehouse","maturation"]
-},
+  { id:"cut_point",
+    term_en:"Cut Point",
+    term_jp:"カットポイント",
+    category:"distillation",
+    description:"ミドルカットを行うタイミング。前寄り・後寄りで酒質が大きく変わる重要な決定点。",
+    tags:["distillation","cut"]
+  },
 
-{
-  id:"racked",
-  term_en:"Racked",
-  term_jp:"ラック式",
-  category:"maturation",
-  description:"金属棚に横向き樽を載せて十数段積む方式。上下で熟成差が出るため酒質の幅を作りやすい。大手蒸溜所で一般的。",
-  tags:["warehouse","maturation"]
-},
+  { id:"maturation",
+    term_en:"Maturation",
+    term_jp:"マチュレーション",
+    category:"maturation",
+    description:"蒸留したてのニューポットを木樽で寝かせ熟成させる工程。",
+    tags:["maturation","process"]
+  },
 
-{
-  id:"palletised",
-  term_en:"Palletised",
-  term_jp:"パレタイズ式",
-  category:"maturation",
-  description:"樽を縦向きに積む方式。低コストだが漏れやすく長期熟成には不向き。揺れに弱く日本では採用例が少ない。",
-  tags:["warehouse","maturation"]
-},
+  { id:"dunnage",
+    term_en:"Dunnage",
+    term_jp:"ダンネージ式",
+    category:"maturation",
+    description:"横向きの樽を3〜4段積み上げ、木材で固定する伝統的な貯蔵方式。省コストだがスペースと出し入れに難があるため小規模蒸溜所に多い。",
+    tags:["warehouse","maturation"]
+  },
 
-{
-  id:"bottling",
-  term_en:"Bottling",
-  term_jp:"ボトリング",
-  category:"finish",
-  description:"熟成したウイスキーを製品として瓶詰めする工程。",
-  tags:["bottling","finish"]
-},
+  { id:"racked",
+    term_en:"Racked",
+    term_jp:"ラック式",
+    category:"maturation",
+    description:"金属棚に横向き樽を載せて十数段積む方式。上下で熟成差が出るため酒質の幅を作りやすい。大手蒸溜所で一般的。",
+    tags:["warehouse","maturation"]
+  },
 
-{
-  id:"independent_bottlers",
-  term_en:"Independent Bottlers",
-  term_jp:"インディペンデント・ボトラーズ",
-  category:"style",
-  description:"蒸溜所から樽ごと原酒を購入して瓶詰め・販売する業者。オフィシャルとは異なる熟成・フィニッシュによる多様な味わいが特徴。",
-  tags:["bottlers","style"]
-}
+  { id:"palletised",
+    term_en:"Palletised",
+    term_jp:"パレタイズ式",
+    category:"maturation",
+    description:"樽を縦向きに積む方式。低コストだが漏れやすく長期熟成には不向き。揺れに弱く日本では採用例が少ない。",
+    tags:["warehouse","maturation"]
+  },
+
+  { id:"bottling",
+    term_en:"Bottling",
+    term_jp:"ボトリング",
+    category:"finish",
+    description:"熟成したウイスキーを製品として瓶詰めする工程。",
+    tags:["bottling","finish"]
+  },
+
+  { id:"independent_bottlers",
+    term_en:"Independent Bottlers",
+    term_jp:"インディペンデント・ボトラーズ",
+    category:"style",
+    description:"蒸溜所から樽ごと原酒を購入して瓶詰め・販売する業者。オフィシャルとは異なる熟成・フィニッシュによる多様な味わいが特徴。",
+    tags:["bottlers","style"]
+  }
 	
 ];
-
