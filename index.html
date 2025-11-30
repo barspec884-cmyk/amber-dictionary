@@ -91,8 +91,19 @@
       font-size:.9rem;
       opacity:.7;
     }
+    /* 追加したタグ表示用のスタイル */
+    #r-tags span {
+      display: inline-block;
+      background: var(--chip);
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-right: 6px;
+      border: 1px solid var(--border);
+    }
     .desc{
-      margin-top:8px;
+      margin-top:12px;
       font-size:1rem;
     }
   </style>
@@ -102,24 +113,24 @@
 
   <h1>Whisky Dictionary — ウィスキー辞典</h1>
 
-  <!-- 検索ボックス -->
   <div class="search-box">
     <input id="searchInput" type="search" placeholder="単語を検索（例：peat, シェリー...）" autocomplete="off" />
     <div id="suggest"></div>
   </div>
 
-  <!-- 結果表示 -->
   <div id="result" class="result">
     <div class="term" id="r-term-en"></div>
     <div class="term-jp" id="r-term-jp"></div>
+    
     <div class="category" id="r-category"></div>
+
+    <div id="r-tags" style="margin:8px 0;"></div>
+
     <div class="desc" id="r-desc"></div>
   </div>
 
-  <!-- ▼ 辞書データ（外部ファイル） -->
   <script src="dictionary-data.js"></script>
 
-  <!-- ▼ 辞書ロジック（検索・サジェスト） -->
   <script src="dictionary.js"></script>
 
 </body>
