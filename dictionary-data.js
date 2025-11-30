@@ -916,3 +916,4 @@ const DICTIONARY_DATA = [
     category:"distribution",
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
     tags:["irish","maturation","blending"] }
+

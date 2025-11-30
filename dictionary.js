@@ -5,6 +5,8 @@ const searchInput = document.getElementById('searchInput');
 const suggestBox = document.getElementById('suggest');
 const listView = document.getElementById('list-view');
 const resultBox = document.getElementById('result');
+
+const categoryContainer = document.getElementById('category-container'); // 追加
 const indexContainer = document.getElementById('index-container');
 const tagContainer = document.getElementById('tag-container');
 const closeResultBtn = document.getElementById('closeResult');
@@ -15,8 +17,33 @@ const rCategory = document.getElementById('r-category');
 const rDesc = document.getElementById('r-desc');
 const rTags = document.getElementById('r-tags');
 
+// === カテゴリー定義（日本語表示名と、データの category ID の対応表） ===
+const CATEGORIES = [
+  { id: 'all', label: 'すべて' },
+  { id: 'raw', label: '原料・製麦' },
+  { id: 'fermentation', label: '仕込み・発酵' },
+  { id: 'distillation', label: '蒸留' },
+  { id: 'maturation', label: '熟成' },
+  { id: 'finishing', label: '仕上げ・ボトリング' },
+  { id: 'tasting', label: 'テイスティング' },
+  { id: 'distribution', label: 'スタイル・分類' } // ボトラーズなどをここに入れます
+];
+
 // === 初期化処理 ===
-// 1. A-Zボタンを作る
+
+// 1. カテゴリーボタンを作る
+CATEGORIES.forEach(cat => {
+  const btn = document.createElement('div');
+  btn.className = 'btn-chip';
+  btn.textContent = cat.label;
+  // "すべて"ボタンだけ色を変えるなどしても良いが今回は統一
+  if (cat.id === 'all') btn.style.fontWeight = 'bold';
+
+  btn.addEventListener('click', () => filterByCategory(cat.id, cat.label));
+  categoryContainer.appendChild(btn);
+});
+
+// 2. A-Zボタンを作る
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 alphabet.forEach(char => {
   const btn = document.createElement('div');
@@ -26,12 +53,11 @@ alphabet.forEach(char => {
   indexContainer.appendChild(btn);
 });
 
-// 2. タグボタンを作る（データからタグを収集して重複を除去）
+// 3. タグボタンを作る
 const allTags = new Set();
 DICTIONARY_DATA.forEach(item => {
   if(item.tags) item.tags.forEach(t => allTags.add(t));
 });
-// アルファベット順にソートしてボタン化
 Array.from(allTags).sort().forEach(tag => {
   const btn = document.createElement('div');
   btn.className = 'btn-chip';
@@ -41,38 +67,34 @@ Array.from(allTags).sort().forEach(tag => {
 });
 
 
-// === 検索・フィルタリングロジック ===
+// === フィルタリングロジック ===
 
-// 検索ボックス入力時
-searchInput.addEventListener('input', function(e) {
-  const val = e.target.value.toLowerCase().trim();
+// カテゴリー検索
+function filterByCategory(catId, label) {
+  let matches = [];
   
-  // 入力中はリストビューや結果を一旦消しても良いが、今回はサジェストを優先
-  if (val === '') {
-    suggestBox.style.display = 'none';
-    return;
+  if (catId === 'all') {
+    // 「すべて」なら全データ
+    matches = DICTIONARY_DATA;
+  } else {
+    // IDが一致するものだけ（例：category が "raw" のもの）
+    matches = DICTIONARY_DATA.filter(item => item.category === catId);
   }
+  
+  renderListView(matches, `CATEGORY: ${label}`);
+  clearResult();
+}
 
-  const matches = DICTIONARY_DATA.filter(item => {
-    return item.term_en.toLowerCase().includes(val) ||
-           item.term_jp.includes(val) ||
-           item.tags.some(tag => tag.includes(val));
-  });
-
-  renderSuggestions(matches);
-});
-
-// インデックス (A-Z) でフィルターしてリスト表示
+// インデックス (A-Z) 検索
 function filterByIndex(char) {
-  // その文字で始まるデータを探す
   const matches = DICTIONARY_DATA.filter(item => 
     item.term_en.toUpperCase().startsWith(char)
   );
   renderListView(matches, `INDEX: ${char}`);
-  clearResult(); // 詳細表示は閉じる
+  clearResult();
 }
 
-// タグでフィルターしてリスト表示
+// タグ検索
 function filterByTag(tag) {
   const matches = DICTIONARY_DATA.filter(item => 
     item.tags && item.tags.includes(tag)
@@ -81,16 +103,62 @@ function filterByTag(tag) {
   clearResult();
 }
 
-// === 描画関連 ===
+// キーワード入力検索
+searchInput.addEventListener('input', function(e) {
+  const val = e.target.value.toLowerCase().trim();
+  if (val === '') {
+    suggestBox.style.display = 'none';
+    return;
+  }
+  const matches = DICTIONARY_DATA.filter(item => {
+    return item.term_en.toLowerCase().includes(val) ||
+           item.term_jp.includes(val) ||
+           item.tags.some(tag => tag.includes(val));
+  });
+  renderSuggestions(matches);
+});
 
-// サジェスト（検索窓の下に出るやつ）
+
+// === 描画関連（共通） ===
+
+function renderListView(matches, title) {
+  listView.innerHTML = '';
+  suggestBox.style.display = 'none';
+  listView.style.display = 'block';
+
+  // 何も見つからない場合
+  if(matches.length === 0) {
+    listView.innerHTML = '<div style="padding:10px; color:#888;">該当する用語はありません</div>';
+    return;
+  }
+
+  // どんな条件で表示しているかタイトルを出す（任意）
+  const header = document.createElement('div');
+  header.textContent = title; 
+  header.style.cssText = "font-size:0.8rem; color:var(--accent); margin-bottom:8px; border-bottom:1px solid var(--border); padding-bottom:4px;";
+  listView.appendChild(header);
+
+  matches.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'list-item';
+    div.innerHTML = `
+      <span style="font-weight:bold; color:var(--accent);">${item.term_en}</span>
+      <span style="font-size:0.9rem;">${item.term_jp}</span>
+    `;
+    div.addEventListener('click', () => {
+      showResult(item);
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    listView.appendChild(div);
+  });
+}
+
 function renderSuggestions(matches) {
   suggestBox.innerHTML = '';
   if (matches.length === 0) {
     suggestBox.style.display = 'none';
     return;
   }
-
   matches.forEach(item => {
     const div = document.createElement('div');
     div.textContent = `${item.term_en} (${item.term_jp})`;
@@ -104,75 +172,36 @@ function renderSuggestions(matches) {
   suggestBox.style.display = 'block';
 }
 
-// リストビュー（ボタンを押したときに出る一覧）
-function renderListView(matches, title) {
-  listView.innerHTML = ''; // クリア
-  suggestBox.style.display = 'none'; // サジェストは消す
-
-  if(matches.length === 0) {
-    listView.style.display = 'none';
-    return;
-  }
-  
-  // タイトル表示（任意）
-  /*
-  const header = document.createElement('div');
-  header.textContent = `${title} (${matches.length})`;
-  header.style.marginBottom = '10px';
-  header.style.color = 'var(--accent)';
-  listView.appendChild(header);
-  */
-
-  matches.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'list-item';
-    div.innerHTML = `
-      <span style="font-weight:bold; color:var(--accent);">${item.term_en}</span>
-      <span style="font-size:0.9rem;">${item.term_jp}</span>
-    `;
-    div.addEventListener('click', () => {
-      showResult(item);
-      // スマホで見やすいよう、少しスクロール
-      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    listView.appendChild(div);
-  });
-
-  listView.style.display = 'block';
-}
-
-
-// 詳細表示
 function showResult(item) {
   resultBox.style.display = 'block';
-  
   rTermEn.textContent = item.term_en;
   rTermJp.textContent = item.term_jp;
-  rCategory.textContent = item.category;
+  
+  // カテゴリー名を日本語に変換して表示する小技
+  const catObj = CATEGORIES.find(c => c.id === item.category);
+  rCategory.textContent = catObj ? catObj.label : item.category.toUpperCase();
+
   rDesc.textContent = item.description;
 
-  // タグ生成（クリックで再検索対応）
   rTags.innerHTML = '';
   if (item.tags) {
     item.tags.forEach(tag => {
       const span = document.createElement('span');
       span.textContent = "#" + tag;
       span.addEventListener('click', (e) => {
-        e.stopPropagation(); // 親要素への伝播を防ぐ
-        filterByTag(tag); // タグ検索を実行
+        e.stopPropagation();
+        filterByTag(tag);
       });
       rTags.appendChild(span);
     });
   }
 }
 
-// 詳細を閉じる
 function clearResult() {
   resultBox.style.display = 'none';
 }
 closeResultBtn.addEventListener('click', clearResult);
 
-// 画面クリック時の挙動（サジェストを閉じる）
 document.addEventListener('click', function(e) {
   if (!searchInput.contains(e.target) && !suggestBox.contains(e.target)) {
     suggestBox.style.display = 'none';
