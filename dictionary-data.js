@@ -915,11 +915,10 @@ const DICTIONARY_DATA = [
     description:"海外のウイスキーを輸入し、国内での流通・販売・プロモーションを行う業者。",
     tags:["distribution","market"] },
 
-  { id:"bonder", term_en:"Bonder", term_jp:"ボンダー",
+{ id:"bonder", term_en:"Bonder", term_jp:"ボンダー",
     category:"distribution",
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
-    tags:["irish","maturation","blending"] }
-, // ← 前のデータとのつなぎ目のカンマ（忘れずに！）
+    tags:["irish","maturation","blending"] }, // ← ここにカンマを忘れずに！
 
   /* -----------------------
       追加：その他 (Others)
@@ -928,3 +927,5 @@ const DICTIONARY_DATA = [
     category:"others",
     description:"スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。「スランジバー」と発音する。",
     tags:["culture","gaelic"] }
+
+];
