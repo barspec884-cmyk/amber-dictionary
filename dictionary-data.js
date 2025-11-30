@@ -1,6 +1,5 @@
-﻿// J/* ============================================================
+﻿/* ============================================================
    Amber Palette — Whisky Dictionary Data (Complete Version)
-   ※ 重複なし / 構造エラーなし / 配列一括管理
 ============================================================ */
 
 const DICTIONARY_DATA = [
@@ -795,4 +794,3 @@ const DICTIONARY_DATA = [
     tags:["harmony"] }
 
 ];
-avaScript Document
