@@ -923,20 +923,22 @@ const DICTIONARY_DATA = [
 ];
 , // ← 前のデータとのつなぎ目のカンマ（忘れずに！）
 
-  /* -----------------------
+/* -----------------------
       追加：その他 (Others)
   ----------------------- */
   { id:"cheers", term_en:"Slàinte Mhath", term_jp:"スランジバー（乾杯）",
     category:"others",
     description:"スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。「スランジバー」と発音する。",
-    tags:["culture","gaelic"] }
+    tags:["culture","gaelic"] }, // ← ここにカンマを打っておく
 
-, // ← 前のデータとのつなぎ目（重要！）
-
+  /* ▼ 今後データを追加するときは、この下をコピーして使ってください（今は隠してあります）
   { id:"ここにID（英語小文字）", 
     term_en:"ここに英語名", 
     term_jp:"ここに日本語名",
-    category:"カテゴリーID", // raw, fermentation, distillation, maturation, finishing, tasting, distribution, others から選ぶ
+    category:"カテゴリーID",
     description:"ここに説明文を書く。",
     tags:["タグ1","タグ2"] }
+  */
+
+]; // ← ファイルの最後
 
