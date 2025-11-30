@@ -921,7 +921,7 @@ const DICTIONARY_DATA = [
     tags:["irish","maturation","blending"] }
 
 ];
-, // ← 前のデータとのつなぎ目のカンマ（忘れずに！）
+// ← 前のデータとのつなぎ目のカンマ（忘れずに！）
 
 /* -----------------------
       追加：その他 (Others)
