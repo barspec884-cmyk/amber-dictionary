@@ -18,15 +18,17 @@ const rDesc = document.getElementById('r-desc');
 const rTags = document.getElementById('r-tags');
 
 // === カテゴリー定義（日本語表示名と、データの category ID の対応表） ===
+// === カテゴリー定義 ===
 const CATEGORIES = [
-  { id: 'all', label: 'すべて' },
+  { id: 'all', label: 'すべて' }, // これが自動的に1列・別色になります
   { id: 'raw', label: '原料・製麦' },
   { id: 'fermentation', label: '仕込み・発酵' },
   { id: 'distillation', label: '蒸留' },
   { id: 'maturation', label: '熟成' },
   { id: 'finishing', label: '仕上げ・ボトリング' },
   { id: 'tasting', label: 'テイスティング' },
-  { id: 'distribution', label: 'スタイル・分類' } // ボトラーズなどをここに入れます
+  { id: 'distribution', label: 'スタイル・分類' },
+  { id: 'others', label: 'その他' } // ★追加しました
 ];
 
 // === 初期化処理 ===
