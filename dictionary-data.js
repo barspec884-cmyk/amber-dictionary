@@ -791,10 +791,9 @@ const DICTIONARY_DATA = [
   { id:"balanced", term_en:"Balanced", term_jp:"バランスが良い",
     category:"tasting",
     description:"複数の要素が調和した味わい。",
-    tags:["harmony"] }
+    tags:["harmony"] },
 
-];
-/* -----------------------
+  /* -----------------------
       追加：テイスティング表現（印象・余韻）
   ----------------------- */
   { id:"delicate", term_en:"Delicate", term_jp:"繊細な",
@@ -835,9 +834,9 @@ const DICTIONARY_DATA = [
   { id:"warm_finish", term_en:"Warm Finish", term_jp:"温かみのある余韻",
     category:"tasting",
     description:"アルコールの温かさがじんわりと胸に残る心地よい感覚。",
-    tags:["finish","impression"] }
+    tags:["finish","impression"] },
 
-/* -----------------------
+  /* -----------------------
       追加：表現を広げるテイスティング用語
   ----------------------- */
   { id:"sugary", term_en:"Sugary", term_jp:"砂糖のような",
@@ -893,8 +892,9 @@ const DICTIONARY_DATA = [
   { id:"lingering", term_en:"Lingering", term_jp:"長く続く余韻",
     category:"tasting",
     description:"飲み込んだ後も、香りや味わいが口の中に心地よく残り続けること。",
-    tags:["finish","impression"] }
-/* -----------------------
+    tags:["finish","impression"] },
+
+  /* -----------------------
       追加：流通・ボトラーズ (Distribution & Bottlers)
   ----------------------- */
   { id:"official_bottler", term_en:"Official Bottlers", term_jp:"オフィシャルボトラーズ",
@@ -917,3 +917,4 @@ const DICTIONARY_DATA = [
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
     tags:["irish","maturation","blending"] }
 
+];
