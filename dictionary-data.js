@@ -1340,7 +1340,7 @@ const DICTIONARY_DATA = [
     term_jp:"インディペンデント・ボトラーズ",
     category:"style",
     description:"蒸溜所から樽ごと原酒を購入して瓶詰め・販売する業者。オフィシャルとは異なる熟成・フィニッシュによる多様な味わいが特徴。",
-    tags:["bottlers","style"]
+    tags:["bottlers","style"],
   }
 	
 
