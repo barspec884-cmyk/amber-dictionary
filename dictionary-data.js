@@ -1344,3 +1344,75 @@ const DICTIONARY_DATA = [
   }
 	
 ];
+/* ============================================================
+   追加用語 (Milling & Distillation Detail)
+============================================================ */
+
+// --- Milling (Milling / Grist) ---
+{
+  id:"husk",
+  term_en:"Husk",
+  term_jp:"ハスク",
+  category:"raw",
+  description:"粉砕された麦芽のうち、最も粒度の粗い外皮部分。糖化槽で自然な濾過層の役割を担う。",
+  tags:["milling","grist"]
+},
+{
+  id:"grits",
+  term_en:"Grits",
+  term_jp:"グリッツ",
+  category:"raw",
+  description:"粉砕された麦芽のうち、中間サイズの粒。デンプンが多く、糖化の中心となる。",
+  tags:["milling","grist"]
+},
+{
+  id:"flour",
+  term_en:"Flour",
+  term_jp:"フラワー",
+  category:"raw",
+  description:"粉砕された麦芽のうち、最も粒度の細かい粉末。多すぎると濾過を妨げるが、糖化を助ける。",
+  tags:["milling","grist"]
+},
+
+// --- Distillation (Stills & Cut) ---
+{
+  id:"wash_still",
+  term_en:"Wash Still",
+  term_jp:"ウォッシュスチル",
+  category:"distillation",
+  description:"ポットスチルの一つで、発酵液（ウォッシュ）を蒸留しローワインを得るための初留釜。",
+  tags:["equipment","distillation"]
+},
+{
+  id:"spirit_still",
+  term_en:"Spirit Still",
+  term_jp:"スピリットスチル",
+  category:"distillation",
+  description:"ポットスチルの一つで、ローワインを再蒸留し、最終的なニューポットを採取するための再留釜。",
+  tags:["equipment","distillation"]
+},
+{
+  id:"head",
+  term_en:"Head (Foreshots)",
+  term_jp:"ヘッド（フォアショッツ）",
+  category:"distillation",
+  description:"再留工程の最初に出てくる、不純物や刺激臭が強い部分。原酒としては使われず、再利用される。",
+  tags:["cut","distillation"]
+},
+{
+  id:"tail",
+  term_en:"Tail (Feints)",
+  term_jp:"テール（フェインツ）",
+  category:"distillation",
+  description:"再留工程の最後に出てくる、重く油分の多い部分。原酒としては使われず、再利用される。",
+  tags:["cut","distillation"]
+},
+{
+  id:"middle_cut",
+  term_en:"Middle Cut (Heart)",
+  term_jp:"ミドルカット（ハート）",
+  category:"distillation",
+  description:"再留工程で、ヘッドとテールを除いた中央の最も質の高い部分。ウイスキーの原酒となる。",
+  tags:["cut","distillation"]
+}
+// ここにカンマは不要です。ファイルの最後の要素となります。
