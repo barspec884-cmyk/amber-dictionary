@@ -13,8 +13,8 @@
       --muted:#b9b2a6;
       --accent:#c7a97a;
       --chip:#262320;
+      --chip-hover:#3a3632;
       --border:#35302a;
-      --danger:#b35f5f;
     }
     *{box-sizing:border-box;}
     html,body{
@@ -30,13 +30,18 @@
       text-align:center;
       font-size:1.8rem;
       letter-spacing:1px;
-      margin:20px 0 10px;
+      margin:20px 0 20px;
       color:var(--accent);
     }
+    
+    /* 検索ボックス周り */
+    .search-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
     .search-box{
-      margin:0 auto 20px;
-      max-width:600px;
       position:relative;
+      margin-bottom: 20px;
     }
     #searchInput{
       width:100%;
@@ -57,7 +62,7 @@
       border-top:none;
       z-index:99;
       display:none;
-      max-height:200px;
+      max-height:300px;
       overflow-y:auto;
     }
     #suggest div{
@@ -65,72 +70,148 @@
       cursor:pointer;
       border-bottom:1px solid var(--border);
     }
-    #suggest div:hover{
-      background:#272522;
+    #suggest div:hover{ background:#272522; }
+
+    /* ▼▼▼ 追加：ブラウズ（索引・タグ）エリア ▼▼▼ */
+    .browse-section {
+      margin-bottom: 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .browse-title {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+    }
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .btn-chip {
+      background: var(--chip);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .btn-chip:hover, .btn-chip.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+    /* A-Zボタンは少し小さく */
+    .btn-index {
+      width: 32px;
+      text-align: center;
+      padding: 4px 0;
     }
 
+    /* ▼▼▼ 追加：一覧リスト表示エリア ▼▼▼ */
+    #list-view {
+      display: none; /* 最初は隠す */
+      margin-bottom: 20px;
+    }
+    .list-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .list-item:hover {
+      border-color: var(--accent);
+    }
+    .list-item small { color: var(--muted); }
+
+    /* 結果詳細エリア */
     .result{
       margin-top:24px;
-      padding:16px;
+      padding:24px;
       border:1px solid var(--border);
       background:var(--panel);
       border-radius:8px;
       display:none;
+      position: relative;
     }
-    .term{
-      font-size:1.5rem;
-      margin-bottom:6px;
-      color:var(--accent);
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--muted);
     }
-    .term-jp{
-      font-size:1.2rem;
-      opacity:.85;
-    }
-    .category{
-      margin:10px 0 8px;
-      font-size:.9rem;
-      opacity:.7;
-    }
-    /* 追加したタグ表示用のスタイル */
+    .term{ font-size:1.8rem; margin-bottom:4px; color:var(--accent); }
+    .term-jp{ font-size:1.2rem; opacity:.85; margin-bottom: 10px; }
+    .category{ margin:10px 0; font-size:.9rem; opacity:.7; text-transform: uppercase; letter-spacing: 1px; }
+    
     #r-tags span {
       display: inline-block;
       background: var(--chip);
       color: var(--muted);
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
       font-size: 0.8rem;
       margin-right: 6px;
+      margin-bottom: 6px;
       border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
     }
-    .desc{
-      margin-top:12px;
-      font-size:1rem;
-    }
+    #r-tags span:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+    .desc{ margin-top:16px; font-size:1.05rem; line-height: 1.8; }
+
   </style>
 </head>
 
 <body>
 
-  <h1>Whisky Dictionary — ウィスキー辞典</h1>
+  <h1>Whisky Dictionary</h1>
 
-  <div class="search-box">
-    <input id="searchInput" type="search" placeholder="単語を検索（例：peat, シェリー...）" autocomplete="off" />
-    <div id="suggest"></div>
-  </div>
-
-  <div id="result" class="result">
-    <div class="term" id="r-term-en"></div>
-    <div class="term-jp" id="r-term-jp"></div>
+  <div class="search-container">
     
-    <div class="category" id="r-category"></div>
+    <div class="search-box">
+      <input id="searchInput" type="search" placeholder="キーワード検索（例：Peat, シェリー...）" autocomplete="off" />
+      <div id="suggest"></div>
+    </div>
 
-    <div id="r-tags" style="margin:8px 0;"></div>
+    <div class="browse-section">
+      <div class="browse-title">INDEX (A-Z)</div>
+      <div id="index-container" class="button-group"></div>
 
-    <div class="desc" id="r-desc"></div>
+      <div class="browse-title">TAGS</div>
+      <div id="tag-container" class="button-group"></div>
+    </div>
+
+    <div id="list-view"></div>
+
+    <div id="result" class="result">
+      <div class="close-btn" id="closeResult">×</div>
+      <div class="term" id="r-term-en"></div>
+      <div class="term-jp" id="r-term-jp"></div>
+      <div class="category" id="r-category"></div>
+      <div id="r-tags"></div>
+      <div class="desc" id="r-desc"></div>
+    </div>
+
   </div>
 
   <script src="dictionary-data.js"></script>
-
   <script src="dictionary.js"></script>
 
 </body>

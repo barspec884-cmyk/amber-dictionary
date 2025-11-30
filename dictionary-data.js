@@ -794,3 +794,125 @@ const DICTIONARY_DATA = [
     tags:["harmony"] }
 
 ];
+/* -----------------------
+      追加：テイスティング表現（印象・余韻）
+  ----------------------- */
+  { id:"delicate", term_en:"Delicate", term_jp:"繊細な",
+    category:"tasting",
+    description:"主張しすぎず、ほのかで上品な味わい。",
+    tags:["light","impression"] },
+
+  { id:"clean", term_en:"Clean", term_jp:"クリーン",
+    category:"tasting",
+    description:"雑味がなく、透き通るようなきれいな味わい。",
+    tags:["light","impression"] },
+
+  { id:"fresh", term_en:"Fresh", term_jp:"フレッシュ",
+    category:"tasting",
+    description:"若々しく、生き生きとした爽やかな風味。",
+    tags:["light","lively"] },
+
+  { id:"mellow", term_en:"Mellow", term_jp:"メロウ（まろやか）",
+    category:"tasting",
+    description:"熟成を経て角が取れた、円熟味のある柔らかさ。",
+    tags:["smooth","impression"] },
+
+  { id:"long_finish", term_en:"Long Finish", term_jp:"長い余韻",
+    category:"tasting",
+    description:"飲み込んだ後も香味が長く口内に留まること。熟成が長い酒によくある。",
+    tags:["finish","impression"] },
+
+  { id:"short_finish", term_en:"Short Finish", term_jp:"短い余韻",
+    category:"tasting",
+    description:"味がスッと消えるキレの良さ。ライトなウイスキーに多い。",
+    tags:["finish","impression"] },
+
+  { id:"dry_finish", term_en:"Dry Finish", term_jp:"ドライな余韻",
+    category:"tasting",
+    description:"口の中が乾くような、甘さの残らない引き締まった後味。",
+    tags:["finish","impression"] },
+
+  { id:"warm_finish", term_en:"Warm Finish", term_jp:"温かみのある余韻",
+    category:"tasting",
+    description:"アルコールの温かさがじんわりと胸に残る心地よい感覚。",
+    tags:["finish","impression"] }
+
+/* -----------------------
+      追加：表現を広げるテイスティング用語
+  ----------------------- */
+  { id:"sugary", term_en:"Sugary", term_jp:"砂糖のような",
+    category:"tasting",
+    description:"精製された砂糖のような、ストレートで癖のない甘さ。",
+    tags:["sweet","simple"] },
+
+  { id:"maple", term_en:"Maple-like", term_jp:"メープル風",
+    category:"tasting",
+    description:"樹液を煮詰めたような、香ばしさとコクのある甘味。",
+    tags:["sweet","wood"] },
+
+  { id:"jammy", term_en:"Jammy", term_jp:"ジャムのような",
+    category:"tasting",
+    description:"果実を煮詰めたような、濃厚で凝縮感のある甘酸っぱさ。",
+    tags:["fruit","sweet","rich"] },
+
+  { id:"cereal", term_en:"Cereal-like", term_jp:"穀物のような",
+    category:"tasting",
+    description:"朝食のシリアルやオートミールを思わせる、素朴な穀物の香り。",
+    tags:["grain","malty"] },
+
+  { id:"fragrant", term_en:"Fragrant", term_jp:"フレグラント（香り高い）",
+    category:"tasting",
+    description:"香水のように華やかで、香りの立ち方が強いこと。",
+    tags:["floral","intense"] },
+
+  { id:"lavender", term_en:"Lavender", term_jp:"ラベンダー",
+    category:"tasting",
+    description:"フローラルかつ清涼感のある、特徴的な紫色の花の香り。",
+    tags:["floral","herbal"] },
+
+  { id:"chamomile", term_en:"Chamomile", term_jp:"カモミール",
+    category:"tasting",
+    description:"リンゴのような甘い香りを伴う、優しいハーブ香。",
+    tags:["herbal","gentle"] },
+
+  { id:"grassy", term_en:"Grassy", term_jp:"グラッシー（青草）",
+    category:"tasting",
+    description:"刈り取ったばかりの芝生のような、青々としたフレッシュな香り。",
+    tags:["herbal","fresh","green"] },
+
+  { id:"tar", term_en:"Tar-like", term_jp:"タールのような",
+    category:"tasting",
+    description:"道路舗装のタールや、ねっとりとした黒い煙の香り。重厚なピート香。",
+    tags:["peat","smoke","heavy"] },
+
+  { id:"nutmeg", term_en:"Nutmeg", term_jp:"ナツメグ",
+    category:"tasting",
+    description:"甘く刺激的で、少しウッディなスパイス香。",
+    tags:["spice","warm"] },
+
+  { id:"lingering", term_en:"Lingering", term_jp:"長く続く余韻",
+    category:"tasting",
+    description:"飲み込んだ後も、香りや味わいが口の中に心地よく残り続けること。",
+    tags:["finish","impression"] }
+/* -----------------------
+      追加：流通・ボトラーズ (Distribution & Bottlers)
+  ----------------------- */
+  { id:"official_bottler", term_en:"Official Bottlers", term_jp:"オフィシャルボトラーズ",
+    category:"distribution",
+    description:"蒸留所（またはその所有企業）が自社ブランドとして公式に瓶詰・販売するもの。味の安定性やハウススタイルを重視する。",
+    tags:["distillery","brand","standard"] },
+
+  { id:"independent_bottler", term_en:"Independent Bottlers", term_jp:"インディペンデントボトラーズ",
+    category:"distribution",
+    description:"蒸留所以外の独立業者が樽ごと原酒を購入し、独自に熟成・瓶詰・販売する業者（IB）。",
+    tags:["independent","ib","single cask"] },
+
+  { id:"importer", term_en:"Importer", term_jp:"インポーター",
+    category:"distribution",
+    description:"海外のウイスキーを輸入し、国内での流通・販売・プロモーションを行う業者。",
+    tags:["distribution","market"] },
+
+  { id:"bonder", term_en:"Bonder", term_jp:"ボンダー",
+    category:"distribution",
+    description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
+    tags:["irish","maturation","blending"] }
