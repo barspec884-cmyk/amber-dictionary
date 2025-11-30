@@ -920,5 +920,4 @@ const DICTIONARY_DATA = [
     category:"others", // ★ここで「その他」に分類されます
     description:"スコットランド・ゲール語で「Slàinte Mhath（健康を！）」と言って乾杯する。",
     tags:["culture"] },
-
 ];
