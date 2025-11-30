@@ -793,6 +793,7 @@ const DICTIONARY_DATA = [
     description:"複数の要素が調和した味わい。",
     tags:["harmony"] },
 
+
   /* -----------------------
       追加：テイスティング表現（印象・余韻）
   ----------------------- */
@@ -835,6 +836,7 @@ const DICTIONARY_DATA = [
     category:"tasting",
     description:"アルコールの温かさがじんわりと胸に残る心地よい感覚。",
     tags:["finish","impression"] },
+
 
   /* -----------------------
       追加：表現を広げるテイスティング用語
@@ -894,6 +896,7 @@ const DICTIONARY_DATA = [
     description:"飲み込んだ後も、香りや味わいが口の中に心地よく残り続けること。",
     tags:["finish","impression"] },
 
+
   /* -----------------------
       追加：流通・ボトラーズ (Distribution & Bottlers)
   ----------------------- */
@@ -916,8 +919,5 @@ const DICTIONARY_DATA = [
     category:"distribution",
     description:"蒸留所から原酒を樽で購入し、自社倉庫で熟成・ブレンド・瓶詰を行う業者。アイルランド（アイリッシュウイスキー）で伝統的に見られる形態。",
     tags:["irish","maturation","blending"] }
-	{ id:"cheers", term_en:"Cheers", term_jp:"乾杯（スランジバー）",
-    category:"others", // ★ここで「その他」に分類されます
-    description:"スコットランド・ゲール語で「Slàinte Mhath（健康を！）」と言って乾杯する。",
-    tags:["culture"] },
+
 ];
