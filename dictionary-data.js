@@ -921,3 +921,22 @@ const DICTIONARY_DATA = [
     tags:["irish","maturation","blending"] }
 
 ];
+, // ← 前のデータとのつなぎ目のカンマ（忘れずに！）
+
+  /* -----------------------
+      追加：その他 (Others)
+  ----------------------- */
+  { id:"cheers", term_en:"Slàinte Mhath", term_jp:"スランジバー（乾杯）",
+    category:"others",
+    description:"スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。「スランジバー」と発音する。",
+    tags:["culture","gaelic"] }
+
+, // ← 前のデータとのつなぎ目（重要！）
+
+  { id:"ここにID（英語小文字）", 
+    term_en:"ここに英語名", 
+    term_jp:"ここに日本語名",
+    category:"カテゴリーID", // raw, fermentation, distillation, maturation, finishing, tasting, distribution, others から選ぶ
+    description:"ここに説明文を書く。",
+    tags:["タグ1","タグ2"] }
+
