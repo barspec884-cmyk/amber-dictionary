@@ -232,6 +232,12 @@
       border: 1px solid #444;
       cursor: pointer;
     }<br>
+	 #r-tags span.tag-material { background:#b58c5a !important; color:#fff !important; }
+#r-tags span.tag-process { background:#4b7a4e !important; color:#fff !important; }
+#r-tags span.tag-cask { background:#6a4b3c !important; color:#fff !important; }
+#r-tags span.tag-flavor { background:#d08a2c !important; color:#fff !important; }
+#r-tags span.tag-bottling { background:#4169e1 !important; color:#fff !important; }
+ 
 /* ▼▼▼ 追加・修正：折りたたみ（アコーディオン）用スタイル ▼▼▼ */
     details {
       margin-bottom: 12px;
@@ -274,6 +280,68 @@
       from { opacity: 0; transform: translateY(-5px); }
       to { opacity: 1; transform: translateY(0); }
     }
+	/* ▼ タグカテゴリ別カラーリング -------------------- */
+.tag-material { background: #b58c5a; color:#fff; }
+.tag-process { background: #4b7a4e; color:#fff; }
+.tag-cask { background: #6a4b3c; color:#fff; }
+.tag-flavor { background: #d08a2c; color:#fff; }
+.tag-bottling { background: #4169e1; color:#fff; }
+
+/* ▼ タグポップアップ（スマホ対応） -------------------- */
+#tagPopup {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  background: #1c1a18;
+  color: #f7f3ea;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid #444;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  display: none;
+  z-index: 2000;
+  font-size: 0.9rem;
+}
+
+#tagPopup .title {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+#tagPopupClose {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  padding: 8px 0;
+  background: #333;
+  border-radius: 6px;
+  color: #ccc;
+}
+  /* TAGS（一覧側）にも色を強制 */
+#tag-container .tag-material { background:#b58c5a !important; color:#fff !important; }
+#tag-container .tag-process { background:#4b7a4e !important; color:#fff !important; }
+#tag-container .tag-cask { background:#6a4b3c !important; color:#fff !important; }
+#tag-container .tag-flavor { background:#d08a2c !important; color:#fff !important; }
+#tag-container .tag-bottling { background:#4169e1 !important; color:#fff !important; }
+
+	  /* ▼ TAGS一覧をカード風に整列（スマホ最適化） --------- */
+#tag-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px;
+}
+
+#tag-container span {
+  text-align: center;
+  padding: 10px 8px !important;
+}
+
+	  
+	  
   </style>
 </head>
 
@@ -321,6 +389,20 @@
 
   <script src="dictionary-data.js"></script>
   <script src="dictionary.js"></script>
+	
+	<div id="tagPopup">
+  <div class="title" id="tagPopupTitle"></div>
+  <div id="tagPopupDesc"></div>
+  <div id="tagPopupClose">閉じる</div>
+</div>
+<footer style="text-align:center; margin:40px 0 20px; color:#827c75; font-size:0.8rem; opacity:0.7;">
+  <a href="https://world-heers.vercel.app"
+     style="color:#c7a97a; text-decoration:none;">
+    🌏 World Cheers Collection（世界の乾杯）
+  </a>
+</footer>
+
+
 
 </body>
 </html>

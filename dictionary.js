@@ -1,4 +1,25 @@
 ﻿// 注意: dictionary-data.js がこのファイルより前に読み込まれている必要があります。
+// ▼ タグ分類ルール ------------------------------------
+const TAG_CATEGORY = {
+  material: ["barley","malt","grain","cereal","raw","raw material"],
+  process: ["distillation","reflux","fermentation","mash","wash","stills","lyne arm"],
+  cask: ["cask","barrel","oak","hogshead","sherry","bourbon","maturation"],
+  flavor: ["peat","phenol","smoky","fruity","floral","aroma"],
+  bottling: ["cask strength","non chill filtered","abv","single cask"]
+};
+
+// ▼ タグ → CSS クラス名に変換
+function getTagColorClass(tag){
+  const t = tag.toLowerCase();
+
+  if(TAG_CATEGORY.material.some(x => t.includes(x))) return "tag-material";
+  if(TAG_CATEGORY.process.some(x => t.includes(x))) return "tag-process";
+  if(TAG_CATEGORY.cask.some(x => t.includes(x))) return "tag-cask";
+  if(TAG_CATEGORY.flavor.some(x => t.includes(x))) return "tag-flavor";
+  if(TAG_CATEGORY.bottling.some(x => t.includes(x))) return "tag-bottling";
+
+  return ""; // その他
+}
 
 // === DOM要素の取得 ===
 const searchInput = document.getElementById('searchInput');
@@ -54,44 +75,68 @@ alphabet.forEach(char => {
 });
 
 // 3. タグボタンを作る
+// ▼ TAG ボタン生成（色付き & 長押しで説明）
 tagContainer.innerHTML = '';
-const allTags = new Set();
-DICTIONARY_DATA.forEach(item => {
-  if(item.tags) item.tags.forEach(t => allTags.add(t));
-});
-Array.from(allTags).sort().forEach(tag => {
-  const btn = document.createElement('div');
-  btn.className = 'btn-chip';
-  btn.textContent = "#" + tag;
+const allTags = [...new Set(
+  DICTIONARY_DATA.flatMap(item => item.tags || [])
+)].sort();
+
+allTags.forEach(tag => {
+  const btn = document.createElement('span');
+  btn.textContent = tag;
+
+  // 色カテゴリを追加
+  btn.className = getTagColorClass(tag);
+
+  btn.style.padding = "8px 14px";
+  btn.style.borderRadius = "20px";
+  btn.style.cursor = "pointer";
+  btn.style.userSelect = "none";
+  btn.style.border = "1px solid #444";
+  btn.style.display = "inline-block";
+  btn.style.margin = "4px";
+
+  // クリックで検索
   btn.addEventListener('click', () => filterByTag(tag));
+
+  // 長押しで説明ポップアップ
+  btn.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    showTagPopup(tag);
+  });
+
+  btn.addEventListener("touchstart", () => {
+    holdTimer = setTimeout(() => showTagPopup(tag), 450);
+  });
+  btn.addEventListener("touchend", () => clearTimeout(holdTimer));
+
   tagContainer.appendChild(btn);
 });
+
 
 
 // === フィルタリングロジック ===
 
 // カテゴリー検索
-function filterByCategory(catId, label) {
-  let matches = [];
-  
-  if (catId === 'all') {
-    matches = DICTIONARY_DATA;
-  } else {
-    matches = DICTIONARY_DATA.filter(item => item.category === catId);
-  }
-  
-  renderListView(matches, `CATEGORY: ${label}`);
-  clearResult();
+let holdTimer = null;
+
+function showTagPopup(tag){
+  const popup = document.getElementById("tagPopup");
+
+  // ▼ タグの説明文を辞書データから抽出
+  const item = DICTIONARY_DATA.find(d => (d.tags || []).includes(tag));
+
+  document.getElementById("tagPopupTitle").textContent = tag;
+  document.getElementById("tagPopupDesc").textContent =
+    item ? item.description : "説明データがありません。";
+
+  popup.style.display = "block";
 }
 
-// インデックス (A-Z) 検索
-function filterByIndex(char) {
-  const matches = DICTIONARY_DATA.filter(item => 
-    item.term_en.toUpperCase().startsWith(char)
-  );
-  renderListView(matches, `INDEX: ${char}`);
-  clearResult();
-}
+document.getElementById("tagPopupClose").onclick = () => {
+  document.getElementById("tagPopup").style.display = "none";
+};
+
 
 // タグ検索
 function filterByTag(tag) {
