@@ -111,21 +111,75 @@
       margin-bottom: 24px;
     }
 
-    .btn-chip {
-      background: var(--chip);
-      border: 1px solid var(--border);
-      color: var(--ink);
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.1s;
-    }
-    .btn-chip:active {
-      background: var(--accent);
-      color: #000;
-    }
+/* ここから .btn-chip を差し替え */
+/* ================ FLAT BUTTON STYLE (Simple & Elegant) ================ */
+
+.btn-chip {
+  background-color: #2a2724;     /* ダークグレー / ブラックの中間 */
+  border: 1px solid #3d3a36;     /* ほぼ見えない線 */
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* hover: 少し色を変えるだけ（影なし） */
+.btn-chip:hover {
+  background-color: #3b3834;
+  border-color: #57524a;
+}
+
+/* active: ほとんど変えない */
+.btn-chip:active {
+  background-color: #4a4640;
+}
+
+
+/* ホバー時：光が流れる＋少し浮く */
+.btn-chip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.32),
+    transparent 40%,
+    rgba(255,255,255,0.08) 60%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateX(-40%);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.btn-chip:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px rgba(199,169,122,0.8),
+    0 10px 24px rgba(0,0,0,0.75);
+  transform: translateY(-1px);
+}
+.btn-chip:hover::before {
+  opacity: 1;
+  transform: translateX(20%);
+}
+
+/* 押したとき：沈む感じ＋色が少し明るく */
+.btn-chip:active {
+  background:
+    radial-gradient(circle at 30% 0%, #4a3324 0, #201813 60%);
+  box-shadow:
+    0 0 0 1px rgba(199,169,122,0.3),
+    0 2px 6px rgba(0,0,0,0.8);
+  transform: translateY(1px) scale(0.98);
+  color: #fdf7ea;
+}
+
 
     #category-container .btn-chip {
       flex: 1 1 45%; 
@@ -262,6 +316,141 @@
       from { opacity: 0; transform: translateY(-5px); }
       to { opacity: 1; transform: translateY(0); }
     }
+	  /* ▼▼▼ 追加：タグのアルファベット分け用スタイル ▼▼▼ */
+/* タグコンテナ自体のフレックス指定を解除（JSで制御するため） */
+#tag-container {
+  display: block; /* button-groupのflexを上書き */
+}
+
+/* アルファベットごとのブロック */
+.tag-section {
+  margin-bottom: 20px;
+}
+
+/* アルファベット見出し (A, B, C...) */
+.tag-header {
+  font-size: 1.1rem;
+  color: var(--accent);
+  border-bottom: 1px solid #333;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  font-weight: bold;
+  font-family: serif; /* 少しおしゃれに */
+}
+
+/* その文字に含まれるタグボタンの並び */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+/* ▼▼▼ MOBILE OPTIMIZATION (スマホ用の一工夫) ▼▼▼ */
+
+/* 1. 検索バーをスクロール追従（固定）させる */
+.search-box {
+  position: sticky;
+  top: 10px;          /* 画面上端から少し余裕を持たせる */
+  z-index: 100;       /* 他の要素より手前に */
+  margin-bottom: 24px;
+}
+/* 検索バーの背景が透けないように影をつける */
+#searchInput {
+  background: rgba(27, 25, 23, 0.95); /* 半透明の黒系 */
+  backdrop-filter: blur(5px);         /* すりガラス効果 */
+  border-color: var(--accent);        /* 枠線を強調 */
+}
+
+/* 2. 詳細画面を「全画面モーダル」風にする */
+.result {
+  /* 既存のスタイルを上書きして全画面固定化 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;      /* 画面いっぱいの高さ */
+  z-index: 2000;      /* 最前面 */
+  margin: 0;
+  border-radius: 0;   /* 角丸解除 */
+  border: none;
+  background: var(--bg); /* 背景色 */
+  overflow-y: auto;   /* 中身が多いときはスクロール */
+  padding: 80px 20px 100px 20px; /* 上下に余白（上は閉じるボタン用、下はフローティングボタン用） */
+  
+  /* 表示アニメーション（下からふわっと） */
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: block !important; /* JSのdisplay制御より優先度を下げるため工夫が必要ですが、今回はopacity制御推奨...ですが、簡易的にtransformで隠す方式にします */
+}
+
+/* JSで display:block になると同時にクラス付与でアニメーションさせたいが、
+   今回は簡易実装のため、既存の display:none/block の挙動に合わせ、
+   display:block になった瞬間に適用されるスタイルを調整します。
+*/
+.result[style*="display: block"] {
+  transform: translateY(0);
+}
+
+/* 3. モバイル用「閉じる」ボタンの強化 */
+/* 既存の右上の×ボタン */
+.close-btn {
+  position: fixed; /* スクロールしても右上に固定 */
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  line-height: 44px; /* 縦中央揃え */
+  padding: 0;
+  z-index: 2001;
+}
+
+/* さらに「下部フローティング閉じるボタン」を追加する擬似要素テクニック */
+.result::after {
+  content: 'CLOSE ×';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  z-index: 2002;
+  pointer-events: none; /* クリックイベントは親(.result)またはJSで処理したいが、今回は視覚的なガイドとして */
+  opacity: 0.9;
+}
+
+/* モーダルが開いている時のスクロールロック（body側）はJSが必要ですが、
+   とりあえずモーダル自体が全画面になるので、このCSSだけでかなりアプリっぽくなります。 */
+
+  /* ▼▼▼ Categoryだけを3列グリッドにする設定 ▼▼▼ */
+  #category-container {
+    display: grid;                         /* グリッドレイアウト */
+    grid-template-columns: repeat(3, 1fr); /* 3等分して3列にする */
+    gap: 8px;                              /* ボタン同士の隙間 */
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Categoryの中にあるボタンだけを横いっぱいに広げる */
+  #category-container .btn-chip {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.75rem;     /* 文字サイズ調整 */
+    padding: 8px 4px;       /* 余白調整 */
+    margin: 0;
+    flex: none;             /* フレックスの解除 */
+  }
+  
+  /* Index（A-Z）やタグには影響を与えないため、これ以前のスタイルが維持されます */
+
   </style>
 </head>
 
