@@ -1392,4 +1392,4 @@ const DICTIONARY_DATA = [
   tags:["cut","distillation"]
 }
 
-]; // <--- DICTIONARY_DATA配列の最終的な閉じ
+]; // ← ここで終わらせてください。後ろに <!doctype html> などをつけないでください！

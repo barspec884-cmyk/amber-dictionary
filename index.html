@@ -23,13 +23,13 @@
       font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
       background:var(--bg);
       color:var(--ink);
-      padding:0; /* スマホ向けに余白リセット */
+      padding:0;
       line-height:1.6;
       -webkit-text-size-adjust: 100%;
     }
 
     body {
-      padding-bottom: 40px; /* 下部に少し余裕を */
+      padding-bottom: 40px;
     }
 
     h1{
@@ -47,28 +47,26 @@
       padding: 0 16px;
     }
 
-    /* 検索ボックス */
     .search-box{
       position:relative;
       margin-bottom: 24px;
     }
     #searchInput{
       width:100%;
-      padding:16px; /* 指で押しやすく */
+      padding:16px;
       border-radius:12px;
-      font-size:16px; /* iOSでズームしないサイズ */
+      font-size:16px;
       border:1px solid var(--border);
       background:var(--panel);
       color:var(--ink);
       outline:none;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      appearance: none; /* iOSの標準スタイルを消す */
+      appearance: none;
     }
     #searchInput:focus {
       border-color: var(--accent);
     }
 
-    /* サジェスト（検索候補） */
     #suggest{
       position:absolute;
       top:54px;
@@ -78,7 +76,7 @@
       border-radius: 8px;
       z-index:999;
       display:none;
-      max-height:60vh; /* 画面の6割まで */
+      max-height:60vh;
       overflow-y:auto;
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
@@ -89,7 +87,6 @@
       font-size: 1rem;
     }
 
-    /* ブラウズエリア（カテゴリー・索引・タグ） */
     .browse-section {
       margin-bottom: 20px;
       background: var(--panel);
@@ -110,16 +107,15 @@
     .button-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px; /* ボタン同士の間隔 */
+      gap: 8px;
       margin-bottom: 24px;
     }
 
-    /* 共通ボタンデザイン */
     .btn-chip {
       background: var(--chip);
       border: 1px solid var(--border);
       color: var(--ink);
-      padding: 8px 14px; /* タップしやすい大きさ */
+      padding: 8px 14px;
       border-radius: 6px;
       font-size: 0.9rem;
       cursor: pointer;
@@ -131,14 +127,11 @@
       color: #000;
     }
 
-/* カテゴリーボタンのレイアウト調整 */
-/* カテゴリーボタンのレイアウト */
     #category-container .btn-chip {
       flex: 1 1 45%; 
       text-align: center;
       padding: 12px 4px;
     }
-    /* 最初のボタン（＝すべて）だけ横幅いっぱい */
     #category-container .btn-chip:first-child {
       flex: 1 1 100%;
       background: var(--accent);
@@ -147,11 +140,10 @@
       margin-bottom: 6px;
     }
 
-    /* A-Zボタン */
     .btn-index {
-      width: 44px;  /* 指で隠れないサイズ */
+      width: 44px;
       height: 44px;
-      line-height: 28px; /* 垂直中央揃え調整 */
+      line-height: 28px;
       text-align: center;
       display: flex;
       align-items: center;
@@ -159,7 +151,6 @@
       font-weight: bold;
     }
 
-    /* リスト表示エリア */
     #list-view {
       display: none;
       margin-bottom: 40px;
@@ -178,7 +169,6 @@
     
     .list-item span:first-child { font-size: 1.1rem; }
 
-    /* 結果詳細エリア（ポップアップ風） */
     .result{
       margin-top:24px;
       padding:24px 20px;
@@ -193,7 +183,7 @@
       position: absolute;
       top: 10px;
       right: 15px;
-      padding: 10px; /* 押しやすく拡大 */
+      padding: 10px;
       cursor: pointer;
       font-size: 1.8rem;
       color: var(--muted);
@@ -219,26 +209,20 @@
       padding-top: 16px;
     }
 
-    /* タグ */
     #r-tags { margin-top: 12px; }
     #r-tags span {
       display: inline-block;
       background: #333;
       color: #ccc;
-      padding: 6px 12px; /* 大きめに */
+      padding: 6px 12px;
       border-radius: 20px;
       font-size: 0.85rem;
       margin: 0 6px 6px 0;
       border: 1px solid #444;
       cursor: pointer;
-    }<br>
-	 #r-tags span.tag-material { background:#b58c5a !important; color:#fff !important; }
-#r-tags span.tag-process { background:#4b7a4e !important; color:#fff !important; }
-#r-tags span.tag-cask { background:#6a4b3c !important; color:#fff !important; }
-#r-tags span.tag-flavor { background:#d08a2c !important; color:#fff !important; }
-#r-tags span.tag-bottling { background:#4169e1 !important; color:#fff !important; }
- 
-/* ▼▼▼ 追加・修正：折りたたみ（アコーディオン）用スタイル ▼▼▼ */
+    }
+
+    /* 折りたたみ（アコーディオン）用スタイル */
     details {
       margin-bottom: 12px;
       border-bottom: 1px solid #333;
@@ -254,14 +238,13 @@
       font-weight: bold;
       letter-spacing: 1px;
       cursor: pointer;
-      list-style: none; /* デフォルトの矢印を消す */
+      list-style: none;
       padding: 10px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     
-    /* 開閉の矢印アイコンをCSSで作る */
     summary::after {
       content: '+'; 
       font-size: 1.2rem;
@@ -272,7 +255,6 @@
       content: '-';
     }
 
-    /* アニメーション用 */
     details[open] .button-group {
       animation: fadeIn 0.3s ease;
     }
@@ -280,68 +262,6 @@
       from { opacity: 0; transform: translateY(-5px); }
       to { opacity: 1; transform: translateY(0); }
     }
-	/* ▼ タグカテゴリ別カラーリング -------------------- */
-.tag-material { background: #b58c5a; color:#fff; }
-.tag-process { background: #4b7a4e; color:#fff; }
-.tag-cask { background: #6a4b3c; color:#fff; }
-.tag-flavor { background: #d08a2c; color:#fff; }
-.tag-bottling { background: #4169e1; color:#fff; }
-
-/* ▼ タグポップアップ（スマホ対応） -------------------- */
-#tagPopup {
-  position: fixed;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 90%;
-  background: #1c1a18;
-  color: #f7f3ea;
-  padding: 18px 20px;
-  border-radius: 12px;
-  border: 1px solid #444;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-  display: none;
-  z-index: 2000;
-  font-size: 0.9rem;
-}
-
-#tagPopup .title {
-  font-size: 1.1rem;
-  color: var(--accent);
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-#tagPopupClose {
-  display: block;
-  text-align: center;
-  margin-top: 12px;
-  padding: 8px 0;
-  background: #333;
-  border-radius: 6px;
-  color: #ccc;
-}
-  /* TAGS（一覧側）にも色を強制 */
-#tag-container .tag-material { background:#b58c5a !important; color:#fff !important; }
-#tag-container .tag-process { background:#4b7a4e !important; color:#fff !important; }
-#tag-container .tag-cask { background:#6a4b3c !important; color:#fff !important; }
-#tag-container .tag-flavor { background:#d08a2c !important; color:#fff !important; }
-#tag-container .tag-bottling { background:#4169e1 !important; color:#fff !important; }
-
-	  /* ▼ TAGS一覧をカード風に整列（スマホ最適化） --------- */
-#tag-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 6px;
-}
-
-#tag-container span {
-  text-align: center;
-  padding: 10px 8px !important;
-}
-
-	  
-	  
   </style>
 </head>
 
@@ -356,7 +276,7 @@
       <div id="suggest"></div>
     </div>
 
-<div class="browse-section">
+    <div class="browse-section">
       
       <div class="browse-title">CATEGORY</div>
       <div id="category-container" class="button-group">
@@ -389,20 +309,6 @@
 
   <script src="dictionary-data.js"></script>
   <script src="dictionary.js"></script>
-	
-	<div id="tagPopup">
-  <div class="title" id="tagPopupTitle"></div>
-  <div id="tagPopupDesc"></div>
-  <div id="tagPopupClose">閉じる</div>
-</div>
-<footer style="text-align:center; margin:40px 0 20px; color:#827c75; font-size:0.8rem; opacity:0.7;">
-  <a href="https://world-heers.vercel.app"
-     style="color:#c7a97a; text-decoration:none;">
-    🌏 World Cheers Collection（世界の乾杯）
-  </a>
-</footer>
-
-
 
 </body>
 </html>
