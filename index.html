@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amber Palette Dictionary - Full Edition</title>
-   <style>
+    <title>Amber Palette Dictionary - Final optimized</title>
+    <style>
         :root {
             --amber-dark: #1a120b; --amber-mid: #2c1e17; --amber-gold: #d4a373;
             --amber-bright: #faedcd; --text-main: #fefae0;
@@ -18,43 +18,43 @@
         /* 検索窓 */
         .search-box { width: 100%; padding: 12px 20px; border-radius: 25px; border: 2px solid var(--amber-gold); background: var(--amber-mid); color: white; font-size: 1.1em; box-sizing: border-box; outline: none; margin-bottom: 20px; }
         
-        /* インデックス（A-Z / あ-わ） */
-        .index-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 12px; }
-        .btn-index { background: var(--amber-mid); color: var(--amber-bright); border: 1px solid var(--amber-gold); padding: 8px 10px; border-radius: 4px; font-size: 0.9em; cursor: pointer; min-width: 40px; }
+        /* インデックス（展開時）のボタングリッド */
+        .index-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        .btn-index { background: var(--amber-mid); color: var(--amber-bright); border: 1px solid var(--amber-gold); padding: 8px 10px; border-radius: 4px; font-size: 0.9em; cursor: pointer; min-width: 42px; }
         .btn-index:hover, .btn-index.active { background: var(--amber-gold); color: black; }
 
-        /* --- 4階層アコーディオン構造（スマホ最適化） --- */
-        .tag-index-container { margin: 20px 0 25px 0; }
+        /* --- アコーディオン構造（スマホ最適化） --- */
+        .tag-index-container, .nav-section { margin: 0 0 10px 0; }
         
-        /* 1階層目: ルート（カテゴリーから探す） */
-        .main-category-root { border: 1.5px solid var(--amber-gold); border-radius: 8px; background: var(--amber-mid); overflow: hidden; margin-bottom: 20px; }
+        /* 共通: ルート（バー部分） */
+        .main-category-root { border: 1.5px solid var(--amber-gold); border-radius: 8px; background: var(--amber-mid); overflow: hidden; margin-bottom: 10px; }
         .btn-root-label { width: 100%; padding: 14px 15px; background: var(--amber-mid); color: var(--amber-gold); border: none; font-size: 1.05em; font-weight: bold; display: flex; align-items: center; cursor: pointer; }
 
-        /* 2階層目: 各カテゴリー */
+        /* カテゴリー/タグ階層 */
         .tag-group { border-top: 1px solid rgba(212, 163, 115, 0.2); }
         .tag-group-label { width: 100%; padding: 12px 15px 12px 25px; font-size: 0.95em; color: var(--amber-bright); background: rgba(255,255,255,0.03); border: none; display: flex; align-items: center; cursor: pointer; }
-
-        /* 3階層目: タグ */
         .tag-sub-group { border-top: 1px solid rgba(255,255,255,0.05); }
         .btn-tag-expand { width: 100%; padding: 10px 15px 10px 40px; font-size: 0.9em; color: #ccc; background: none; border: none; display: flex; align-items: center; cursor: pointer; }
 
-        /* 右揃え設定（カウントを矢印のすぐ左へ） */
+        /* 右揃え設定（カウントを矢印の左へ） */
         .cat-name, .tag-name, .root-name { margin-right: auto; }
-        .count-num { font-size: 0.85em; opacity: 0.7; margin-right: 10px; font-weight: normal; font-family: sans-serif; }
+        .count-num { font-size: 0.85em; opacity: 0.7; margin-right: 10px; font-weight: normal; }
 
-        /* 矢印アイコン（少し大きく調整） */
+        /* 矢印アイコン */
         .tag-group-label::after, .btn-tag-expand::after, .btn-root-label::after { content: '▶'; font-size: 0.75em; transition: transform 0.2s; color: var(--amber-gold); }
         .open > .tag-group-label::after, .open > .btn-tag-expand::after, .open > .btn-root-label::after { transform: rotate(90deg); }
 
-        /* 4階層目: 単語（Word）リスト */
+        /* 展開されるコンテンツ */
+        .tag-group-container, .tag-sub-container { display: none; }
         .tag-term-list { display: none; padding: 5px 15px 12px 55px; background: rgba(0,0,0,0.2); }
         .open > .tag-term-list { display: block; }
-        .term-link { display: block; color: var(--amber-gold); font-size: 0.9em; padding: 8px 0; text-decoration: none; opacity: 1; line-height: 1.4; border-bottom: 1px solid rgba(212, 163, 115, 0.1); }
+
+        /* 4階層目: 単語（Word）リスト */
+        .term-link { display: block; color: var(--amber-gold); font-size: 0.9em; padding: 10px 0; text-decoration: none; opacity: 1; line-height: 1.4; border-bottom: 1px solid rgba(212, 163, 115, 0.1); }
         .term-link:last-child { border-bottom: none; }
-        .term-link:hover { text-decoration: underline; background: rgba(255,255,255,0.05); }
 
         /* 辞書カード表示 */
-        .dictionary-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .dictionary-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
         .dic-card { background: var(--amber-mid); padding: 18px; border-radius: 8px; border-top: 4px solid var(--amber-gold); }
         .term-en { font-weight: bold; font-size: 1.2em; color: var(--amber-gold); }
         .term-jp { font-size: 0.9em; opacity: 0.8; margin-top: 2px; }
@@ -75,8 +75,8 @@
     <input type="text" id="dicSearch" class="search-box" placeholder="単語・説明・タグから逆引き検索...">
 
     <div class="nav-section">
-        <div id="alphaIndex" class="index-row"></div>
-        <div id="kanaIndex" class="index-row"></div>
+        <div id="alphaIndex"></div>
+        <div id="kanaIndex"></div>
     </div>
 
     <div id="tagHierarchicalIndex" class="tag-index-container"></div>
@@ -117,7 +117,30 @@
         }
     }
 
-    // 4階層アコーディオンの生成
+    // インデックスの生成（アコーディオン形式）
+    function createIndexNav() {
+        const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const kana = "あかさたなはまやらわ".split("");
+
+        const makeIndexHtml = (id, label, items, mode) => `
+            <div class="main-category-root" id="${id}">
+                <button class="btn-root-label" onclick="toggleAccordion('${id}')">
+                    <span class="root-name">${label}</span>
+                    <span class="count-num">${items.length} Keys</span>
+                </button>
+                <div class="tag-group-container" style="padding: 10px;">
+                    <div class="index-row">
+                        ${items.map(c => `<button class="btn-index" onclick="filterByChar(event, '${c}', '${mode}')">${c}</button>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('alphaIndex').innerHTML = makeIndexHtml('root-alpha-index', 'Alphabet Index', alpha, 'en');
+        document.getElementById('kanaIndex').innerHTML = makeIndexHtml('root-kana-index', 'Hiragana Index', kana, 'jp');
+    }
+
+    // 4階層カテゴリーアコーディオンの生成
     function createTagAccordion() {
         const container = document.getElementById('tagHierarchicalIndex');
         if(!container) return;
@@ -138,7 +161,7 @@
                     <span class="root-name">カテゴリーから探す</span>
                     <span class="count-num">${Object.keys(structuredData).length} Categories</span>
                 </button>
-                <div class="tag-group-container" style="display:none;">
+                <div class="tag-group-container">
         `;
 
         html += Object.keys(structuredData).sort().map(cat => {
@@ -150,7 +173,7 @@
                         <span class="cat-name">${categoryNames[cat] || cat}</span>
                         <span class="count-num">${Object.keys(tags).length} Tags</span>
                     </button>
-                    <div class="tag-sub-container" style="display:none;">
+                    <div class="tag-sub-container">
                         ${Object.keys(tags).sort().map(tagName => {
                             const items = tags[tagName];
                             const subGroupId = `sub-${cat}-${tagName}`.replace(/\s+/g, '-');
@@ -179,6 +202,7 @@
         container.innerHTML = html;
     }
 
+    // 開閉ロジック
     function toggleAccordion(id) {
         const el = document.getElementById(id);
         if (!el) return;
@@ -189,22 +213,7 @@
         }
     }
 
-    function filterBySingleWord(wordEn) {
-        const filtered = masterData.filter(item => item.term_en === wordEn);
-        renderDictionary(filtered, wordEn);
-        finalizeFilter(`「${wordEn}」の詳細`);
-    }
-
-    // インデックス生成
-    function createIndexNav() {
-        const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-        const kana = "あかさたなはまやらわ".split("");
-        document.getElementById('alphaIndex').innerHTML = alpha.map(c => 
-            `<button class="btn-index" onclick="filterByChar(event, '${c}', 'en')">${c}</button>`).join('');
-        document.getElementById('kanaIndex').innerHTML = kana.map(c => 
-            `<button class="btn-index" onclick="filterByChar(event, '${c}', 'jp')">${c}</button>`).join('');
-    }
-
+    // インデックス選択時の処理（自動閉鎖付き）
     function filterByChar(event, char, mode) {
         clearActiveStates();
         if (event && event.currentTarget) event.currentTarget.classList.add('active');
@@ -216,6 +225,24 @@
         });
         renderDictionary(filtered);
         finalizeFilter(`「${char}」行の結果: ${filtered.length}件`);
+
+        // 自動でインデックスのアコーディオンを閉じる
+        const targetId = (mode === 'en') ? 'root-alpha-index' : 'root-kana-index';
+        toggleAccordion(targetId);
+    }
+
+    // カテゴリーから単語を選択（自動閉鎖付き）
+    function filterBySingleWord(wordEn) {
+        const filtered = masterData.filter(item => item.term_en === wordEn);
+        renderDictionary(filtered, wordEn);
+        finalizeFilter(`「${wordEn}」の詳細`);
+
+        // カテゴリーのアコーディオンを閉じる
+        const rootId = 'root-category-list';
+        const rootEl = document.getElementById(rootId);
+        if (rootEl && rootEl.classList.contains('open')) {
+            toggleAccordion(rootId);
+        }
     }
 
     function filterByTag(tag) {
@@ -271,8 +298,18 @@
         return src.replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60));
     }
 
+    // 検索窓の連動（入力時にアコーディオンをすべて閉じる）
     document.getElementById('dicSearch').addEventListener('input', (e) => {
         const q = e.target.value.toLowerCase();
+        
+        // 入力があった場合、開いている全ルートアコーディオンを閉じる
+        ['root-alpha-index', 'root-kana-index', 'root-category-list'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.classList.contains('open')) {
+                toggleAccordion(id);
+            }
+        });
+
         if(q === "") {
             document.getElementById('resultStatus').classList.remove('show');
             renderDictionary(masterData);
