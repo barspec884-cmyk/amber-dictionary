@@ -1,503 +1,278 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <title>Whisky Dictionary</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amber Palette Dictionary - Mobile Optimized</title>
+    <style>
+        :root {
+            --amber-dark: #1a120b;
+            --amber-mid: #2c1e17;
+            --amber-gold: #d4a373;
+            --amber-bright: #faedcd;
+            --text-main: #fefae0;
+            --color-tasting: #d4a373;
+            --color-distillation: #cd7f32;
+            --color-maturation: #8b4513;
+            --color-raw: #e9c46a;
+        }
 
-  <style>
-    :root{
-      --bg:#0f0e0d;
-      --panel:#1b1917;
-      --ink:#f6f1e9;
-      --muted:#b9b2a6;
-      --accent:#c7a97a;
-      --chip:#262320;
-      --chip-hover:#3a3632;
-      --border:#35302a;
-    }
-    *{box-sizing:border-box;}
-    
-    html,body{
-      margin:0;
-      font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-      padding:0;
-      line-height:1.6;
-      -webkit-text-size-adjust: 100%;
-    }
+        body {
+            background-color: var(--amber-dark);
+            color: var(--text-main);
+            font-family: sans-serif;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.6;
+        }
 
-    body {
-      padding-bottom: 40px;
-    }
+        .container { max-width: 800px; margin: 0 auto; }
 
-    h1{
-      text-align:center;
-      font-size:1.5rem;
-      letter-spacing:1px;
-      margin:20px 0;
-      color:var(--accent);
-      font-weight: 600;
-    }
-    
-    .search-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
+        h1 { text-align: center; color: var(--amber-gold); font-size: 1.5em; }
 
-    .search-box{
-      position:relative;
-      margin-bottom: 24px;
-    }
-    #searchInput{
-      width:100%;
-      padding:16px;
-      border-radius:12px;
-      font-size:16px;
-      border:1px solid var(--border);
-      background:var(--panel);
-      color:var(--ink);
-      outline:none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      appearance: none;
-    }
-    #searchInput:focus {
-      border-color: var(--accent);
-    }
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--amber-gold);
+            background: var(--amber-mid);
+            color: white;
+            font-size: 1em;
+            box-sizing: border-box;
+            outline: none;
+            margin-bottom: 20px;
+        }
 
-    #suggest{
-      position:absolute;
-      top:54px;
-      width:100%;
-      background:#222;
-      border:1px solid var(--border);
-      border-radius: 8px;
-      z-index:999;
-      display:none;
-      max-height:60vh;
-      overflow-y:auto;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-    #suggest div{
-      padding:14px 16px;
-      cursor:pointer;
-      border-bottom:1px solid #333;
-      font-size: 1rem;
-    }
+        /* 2階層タグインデックス（アコーディオン） */
+        .tag-index-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 8px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
 
-    .browse-section {
-      margin-bottom: 20px;
-      background: var(--panel);
-      border-radius: 12px;
-      padding: 20px 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    .browse-title {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 6px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
+        .tag-group {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
 
-/* ここから .btn-chip を差し替え */
-/* ================ FLAT BUTTON STYLE (Simple & Elegant) ================ */
+        /* カテゴリーヘッダー（タップ領域） */
+        .tag-group-label {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: var(--amber-gold);
+            background: none;
+            border: none;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
 
-.btn-chip {
-  background-color: #2a2724;     /* ダークグレー / ブラックの中間 */
-  border: 1px solid #3d3a36;     /* ほぼ見えない線 */
-  color: var(--ink);
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
+        .tag-group-label::after {
+            content: '▶';
+            font-size: 0.7em;
+            transition: transform 0.3s;
+        }
 
-/* hover: 少し色を変えるだけ（影なし） */
-.btn-chip:hover {
-  background-color: #3b3834;
-  border-color: #57524a;
-}
+        /* 開いている時のスタイル */
+        .tag-group.open .tag-group-label::after {
+            transform: rotate(90deg);
+        }
 
-/* active: ほとんど変えない */
-.btn-chip:active {
-  background-color: #4a4640;
-}
+        /* タグ一覧（通常は非表示） */
+        .tag-group-items {
+            display: none;
+            padding: 0 15px 15px;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: rgba(0,0,0,0.2);
+        }
 
+        .tag-group.open .tag-group-items {
+            display: flex;
+        }
 
-/* ホバー時：光が流れる＋少し浮く */
-.btn-chip::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0.32),
-    transparent 40%,
-    rgba(255,255,255,0.08) 60%,
-    transparent 100%
-  );
-  mix-blend-mode: screen;
-  opacity: 0;
-  transform: translateX(-40%);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
-}
+        .btn-tag {
+            background: var(--amber-mid);
+            border: 1px solid rgba(212, 163, 115, 0.4);
+            color: #ccc;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
 
-.btn-chip:hover {
-  border-color: var(--accent);
-  box-shadow:
-    0 0 0 1px rgba(199,169,122,0.8),
-    0 10px 24px rgba(0,0,0,0.75);
-  transform: translateY(-1px);
-}
-.btn-chip:hover::before {
-  opacity: 1;
-  transform: translateX(20%);
-}
+        /* 辞書カード */
+        .dictionary-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .dic-card {
+            background: var(--amber-mid);
+            padding: 15px;
+            border-radius: 8px;
+            border-top: 4px solid var(--amber-gold);
+        }
+        .dic-card[data-cat="tasting"] { border-top-color: var(--color-tasting); }
+        .dic-card[data-cat="distillation"] { border-top-color: var(--color-distillation); }
+        .dic-card[data-cat="maturation"] { border-top-color: var(--color-maturation); }
+        .dic-card[data-cat="raw"] { border-top-color: var(--color-raw); }
 
-/* 押したとき：沈む感じ＋色が少し明るく */
-.btn-chip:active {
-  background:
-    radial-gradient(circle at 30% 0%, #4a3324 0, #201813 60%);
-  box-shadow:
-    0 0 0 1px rgba(199,169,122,0.3),
-    0 2px 6px rgba(0,0,0,0.8);
-  transform: translateY(1px) scale(0.98);
-  color: #fdf7ea;
-}
+        .term-en { font-weight: bold; font-size: 1.1em; color: var(--amber-gold); }
+        .term-jp { font-size: 0.85em; opacity: 0.8; }
+        .desc { font-size: 0.9em; color: #ddd; margin: 10px 0; }
+        .card-tag { color: var(--amber-gold); font-size: 0.8em; margin-right: 10px; text-decoration: none; }
+        
+        .highlight { background: rgba(212, 163, 115, 0.4); border-radius: 2px; }
 
-
-    #category-container .btn-chip {
-      flex: 1 1 45%; 
-      text-align: center;
-      padding: 12px 4px;
-    }
-    #category-container .btn-chip:first-child {
-      flex: 1 1 100%;
-      background: var(--accent);
-      color: #0f0e0d;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-
-    .btn-index {
-      width: 44px;
-      height: 44px;
-      line-height: 28px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    #list-view {
-      display: none;
-      margin-bottom: 40px;
-    }
-    .list-item {
-      background: var(--panel);
-      border-bottom: 1px solid var(--border);
-      padding: 16px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .list-item:first-child { border-top-left-radius: 8px; border-top-right-radius: 8px; }
-    .list-item:last-child { border-bottom: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
-    
-    .list-item span:first-child { font-size: 1.1rem; }
-
-    .result{
-      margin-top:24px;
-      padding:24px 20px;
-      border:1px solid var(--border);
-      background:#22201d;
-      border-radius:12px;
-      display:none;
-      position: relative;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    }
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      padding: 10px;
-      cursor: pointer;
-      font-size: 1.8rem;
-      color: var(--muted);
-      line-height: 0.5;
-    }
-    .term{ font-size:1.8rem; margin-bottom:4px; color:var(--accent); line-height: 1.2; }
-    .term-jp{ font-size:1.1rem; opacity:.8; margin-bottom: 12px; }
-    .category{ 
-      display: inline-block;
-      margin-bottom: 12px; 
-      font-size: 0.75rem; 
-      background: #444; 
-      padding: 2px 8px; 
-      border-radius: 4px; 
-      color: #fff;
-    }
-    
-    .desc{ 
-      margin-top:16px; 
-      font-size:1rem; 
-      line-height: 1.8; 
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-    }
-
-    #r-tags { margin-top: 12px; }
-    #r-tags span {
-      display: inline-block;
-      background: #333;
-      color: #ccc;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      margin: 0 6px 6px 0;
-      border: 1px solid #444;
-      cursor: pointer;
-    }
-
-    /* 折りたたみ（アコーディオン）用スタイル */
-    details {
-      margin-bottom: 12px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 8px;
-    }
-    details:last-of-type {
-      border-bottom: none;
-    }
-    
-    summary {
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-weight: bold;
-      letter-spacing: 1px;
-      cursor: pointer;
-      list-style: none;
-      padding: 10px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    summary::after {
-      content: '+'; 
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin-left: 10px;
-    }
-    details[open] summary::after {
-      content: '-';
-    }
-
-    details[open] .button-group {
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-	  /* ▼▼▼ 追加：タグのアルファベット分け用スタイル ▼▼▼ */
-/* タグコンテナ自体のフレックス指定を解除（JSで制御するため） */
-#tag-container {
-  display: block; /* button-groupのflexを上書き */
-}
-
-/* アルファベットごとのブロック */
-.tag-section {
-  margin-bottom: 20px;
-}
-
-/* アルファベット見出し (A, B, C...) */
-.tag-header {
-  font-size: 1.1rem;
-  color: var(--accent);
-  border-bottom: 1px solid #333;
-  margin-bottom: 8px;
-  padding-bottom: 4px;
-  font-weight: bold;
-  font-family: serif; /* 少しおしゃれに */
-}
-
-/* その文字に含まれるタグボタンの並び */
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-/* ▼▼▼ MOBILE OPTIMIZATION (スマホ用の一工夫) ▼▼▼ */
-
-/* 1. 検索バーをスクロール追従（固定）させる */
-.search-box {
-  position: sticky;
-  top: 10px;          /* 画面上端から少し余裕を持たせる */
-  z-index: 100;       /* 他の要素より手前に */
-  margin-bottom: 24px;
-}
-/* 検索バーの背景が透けないように影をつける */
-#searchInput {
-  background: rgba(27, 25, 23, 0.95); /* 半透明の黒系 */
-  backdrop-filter: blur(5px);         /* すりガラス効果 */
-  border-color: var(--accent);        /* 枠線を強調 */
-}
-
-/* 2. 詳細画面を「全画面モーダル」風にする */
-.result {
-  /* 既存のスタイルを上書きして全画面固定化 */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;      /* 画面いっぱいの高さ */
-  z-index: 2000;      /* 最前面 */
-  margin: 0;
-  border-radius: 0;   /* 角丸解除 */
-  border: none;
-  background: var(--bg); /* 背景色 */
-  overflow-y: auto;   /* 中身が多いときはスクロール */
-  padding: 80px 20px 100px 20px; /* 上下に余白（上は閉じるボタン用、下はフローティングボタン用） */
-  
-  /* 表示アニメーション（下からふわっと） */
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  display: block !important; /* JSのdisplay制御より優先度を下げるため工夫が必要ですが、今回はopacity制御推奨...ですが、簡易的にtransformで隠す方式にします */
-}
-
-/* JSで display:block になると同時にクラス付与でアニメーションさせたいが、
-   今回は簡易実装のため、既存の display:none/block の挙動に合わせ、
-   display:block になった瞬間に適用されるスタイルを調整します。
-*/
-.result[style*="display: block"] {
-  transform: translateY(0);
-}
-
-/* 3. モバイル用「閉じる」ボタンの強化 */
-/* 既存の右上の×ボタン */
-.close-btn {
-  position: fixed; /* スクロールしても右上に固定 */
-  top: 15px;
-  right: 15px;
-  background: rgba(0,0,0,0.5);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  text-align: center;
-  line-height: 44px; /* 縦中央揃え */
-  padding: 0;
-  z-index: 2001;
-}
-
-/* さらに「下部フローティング閉じるボタン」を追加する擬似要素テクニック */
-.result::after {
-  content: 'CLOSE ×';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--accent);
-  color: #000;
-  font-weight: bold;
-  padding: 12px 30px;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  z-index: 2002;
-  pointer-events: none; /* クリックイベントは親(.result)またはJSで処理したいが、今回は視覚的なガイドとして */
-  opacity: 0.9;
-}
-
-/* モーダルが開いている時のスクロールロック（body側）はJSが必要ですが、
-   とりあえずモーダル自体が全画面になるので、このCSSだけでかなりアプリっぽくなります。 */
-
-  /* ▼▼▼ Categoryだけを3列グリッドにする設定 ▼▼▼ */
-  #category-container {
-    display: grid;                         /* グリッドレイアウト */
-    grid-template-columns: repeat(3, 1fr); /* 3等分して3列にする */
-    gap: 8px;                              /* ボタン同士の隙間 */
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  /* Categoryの中にあるボタンだけを横いっぱいに広げる */
-  #category-container .btn-chip {
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 0.75rem;     /* 文字サイズ調整 */
-    padding: 8px 4px;       /* 余白調整 */
-    margin: 0;
-    flex: none;             /* フレックスの解除 */
-  }
-  
-  /* Index（A-Z）やタグには影響を与えないため、これ以前のスタイルが維持されます */
-
-  </style>
+        /* インデックス（スマホ用に少し大きく） */
+        .index-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-bottom: 10px; }
+        .btn-index {
+            background: var(--amber-mid);
+            color: var(--amber-bright);
+            border: 1px solid var(--amber-gold);
+            padding: 6px 9px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+    </style>
 </head>
-
 <body>
 
-  <h1>Whisky Dictionary</h1>
+<div class="container">
+    <h1>Amber Palette Dict</h1>
 
-  <div class="search-container">
-    
-    <div class="search-box">
-      <input id="searchInput" type="search" placeholder="🔍 キーワード検索..." autocomplete="off" />
-      <div id="suggest"></div>
+    <input type="text" id="dicSearch" class="search-box" placeholder="用語・説明・タグから検索...">
+
+    <div class="nav-section">
+        <div id="alphaIndex" class="index-row"></div>
+        <div id="kanaIndex" class="index-row"></div>
     </div>
 
-    <div class="browse-section">
-      
-      <div class="browse-title">CATEGORY</div>
-      <div id="category-container" class="button-group">
-        </div>
+    <div class="tag-index-container" id="tagHierarchicalIndex"></div>
 
-      <details>
-        <summary>INDEX (A-Z)</summary>
-        <div id="index-container" class="button-group" style="margin-top:10px;"></div>
-      </details>
+    <div id="dictionaryList" class="dictionary-grid"></div>
+</div>
 
-      <details>
-        <summary>TAGS (キーワードから探す)</summary>
-        <div id="tag-container" class="button-group" style="margin-top:10px;"></div>
-      </details>
-      
-    </div>
+<script>
+    let masterData = [];
+    const categoryNames = {
+        "tasting": "テイスティング表現",
+        "distillation": "蒸留・設備",
+        "maturation": "熟成・樽",
+        "fermentation": "発酵・微生物",
+        "raw": "原料・製麦",
+        "finishing": "仕上げ・瓶詰め",
+        "distribution": "流通・スタイル",
+        "others": "その他"
+    };
 
-    <div id="list-view"></div>
+    async function init() {
+        try {
+            const res = await fetch('./dictionary-data.json');
+            masterData = await res.json();
+            createIndexNav();
+            createTagAccordion();
+            renderDictionary(masterData);
+        } catch (e) {
+            document.getElementById('dictionaryList').innerHTML = "JSONファイルを読み込めません。";
+        }
+    }
 
-    <div id="result" class="result">
-      <div class="close-btn" id="closeResult">×</div>
-      <div class="term" id="r-term-en"></div>
-      <div class="term-jp" id="r-term-jp"></div>
-      <div><span class="category" id="r-category"></span></div>
-      <div id="r-tags"></div>
-      <div class="desc" id="r-desc"></div>
-    </div>
+    function createIndexNav() {
+        const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const kana = "あかさたなはまやらわ".split(""); // スマホ用に主要な行のみ
+        
+        document.getElementById('alphaIndex').innerHTML = alpha.map(c => `<button class="btn-index" onclick="filterByChar('${c}', 'en')">${c}</button>`).join('');
+        document.getElementById('kanaIndex').innerHTML = kana.map(c => `<button class="btn-index" onclick="filterByChar('${c}', 'jp')">${c}</button>`).join('');
+    }
 
-  </div>
+    // アコーディオン形式でタグインデックスを作成
+    function createTagAccordion() {
+        const tagMap = {};
+        masterData.forEach(item => {
+            if(!tagMap[item.category]) tagMap[item.category] = new Set();
+            item.tags.forEach(t => { if(t) tagMap[item.category].add(t); });
+        });
 
-  <script src="dictionary-data.js"></script>
-  <script src="dictionary.js"></script>
+        const container = document.getElementById('tagHierarchicalIndex');
+        container.innerHTML = Object.keys(tagMap).map(cat => `
+            <div class="tag-group" id="group-${cat}">
+                <button class="tag-group-label" onclick="toggleAccordion('${cat}')">
+                    ${categoryNames[cat] || cat}
+                </button>
+                <div class="tag-group-items">
+                    ${Array.from(tagMap[cat]).sort().map(tag => `
+                        <button class="btn-tag" onclick="filterByTag('${tag}')">#${tag}</button>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 開閉切り替え
+    function toggleAccordion(cat) {
+        const el = document.getElementById(`group-${cat}`);
+        const isOpen = el.classList.contains('open');
+        
+        // 他を全部閉じてから開く（シングルオープン形式）
+        document.querySelectorAll('.tag-group').forEach(g => g.classList.remove('open'));
+        
+        if (!isOpen) {
+            el.classList.add('open');
+        }
+    }
+
+    function renderDictionary(data, query = "") {
+        const list = document.getElementById('dictionaryList');
+        list.innerHTML = data.map(item => `
+            <div class="dic-card" data-cat="${item.category}">
+                <div class="term-en">${highlight(item.term_en, query)}</div>
+                <div class="term-jp">${highlight(item.term_jp, query)}</div>
+                <p class="desc">${highlight(item.description, query)}</p>
+                <div class="card-tags">
+                    ${item.tags.map(tag => `<span class="card-tag" onclick="filterByTag('${tag}')">#${tag}</span>`).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function highlight(text, q) {
+        if (!q) return text;
+        const re = new RegExp(`(${q})`, "gi");
+        return text.replace(re, `<span class="highlight">$1</span>`);
+    }
+
+    document.getElementById('dicSearch').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        const filtered = masterData.filter(item => 
+            item.term_en.toLowerCase().includes(q) || 
+            item.term_jp.includes(q) || 
+            item.description.includes(q) ||
+            item.tags.some(tag => tag.toLowerCase().includes(q))
+        );
+        renderDictionary(filtered, q);
+    });
+
+    function filterByTag(tag) {
+        document.getElementById('dicSearch').value = tag;
+        const filtered = masterData.filter(item => item.tags.includes(tag));
+        renderDictionary(filtered, tag);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    function filterByChar(char, mode) {
+        document.getElementById('dicSearch').value = "";
+        const filtered = masterData.filter(item => {
+            const target = (mode === 'en') ? item.term_en : item.term_jp;
+            return target.toUpperCase().startsWith(char.toUpperCase());
+        });
+        renderDictionary(filtered);
+    }
+
+    init();
+</script>
 
 </body>
 </html>
