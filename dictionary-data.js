@@ -267,15 +267,12 @@ const DICTIONARY_DATA = [
     category:"tasting", description:"磨き上げられたアンティーク家具や蜜蝋（みつろう）のような香り。オイリーで滑らかな質感を伴う、高品質な長期熟成原酒によく使われる表現。", tags:["aroma","texture"] },
 
   { id:"industrial_oil", term_en:"Industrial / Engine Oil", term_jp:"機械油",
-    category:"tasting", description:"工場の重油やエンジンオイルのような、無機質で力強いオイリーさ。一部の蒸留所が持つ、非常に個性的でクラシックなキャラクターを指す。", tags:["aroma","oily"] }
-	
-	
+    category:"tasting", description:"工場の重油やエンジンオイルのような、無機質で力強いオイリーさ。一部の蒸留所が持つ、非常に個性的でクラシックなキャラクターを指す。", tags:["aroma","oily"] },
 	
 	
   /* -----------------------
       その他 (others)
   ----------------------- */
-  // ★新規追加★
   { id:"abv", term_en:"Alcohol by Volume (ABV)", term_jp:"アルコール度数",
     category:"others", description:"アルコールの体積百分率。スコッチウイスキーは法律で40度以上でなければならない。", tags:["legal","measure"] },
 
