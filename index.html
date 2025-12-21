@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amber Palette Dictionary - Final Edition</title>
     <style>
-        /* CSS部分は変更なし */
         :root {
             --amber-dark: #1a120b; --amber-mid: #2c1e17; --amber-gold: #d4a373;
             --amber-bright: #faedcd; --text-main: #fefae0;
@@ -19,7 +18,9 @@
         .index-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-bottom: 10px; }
         .btn-index { background: var(--amber-mid); color: var(--amber-bright); border: 1px solid var(--amber-gold); padding: 7px 10px; border-radius: 4px; font-size: 0.85em; cursor: pointer; min-width: 35px; }
         .btn-index:hover { background: var(--amber-gold); color: black; }
-        .tag-index-container { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 163, 115, 0.3); border-radius: 8px; margin-bottom: 25px; overflow: hidden; }
+        
+        /* タグセクションのスタイル */
+        .tag-index-container { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 163, 115, 0.3); border-radius: 8px; margin: 20px 0 25px 0; overflow: hidden; }
         .tag-group { border-bottom: 1px solid rgba(255,255,255,0.05); }
         .tag-group-label { width: 100%; padding: 12px 15px; font-size: 0.9em; font-weight: bold; color: var(--amber-gold); background: none; border: none; text-align: left; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .tag-group-label::after { content: '▶'; font-size: 0.7em; transition: transform 0.3s; }
@@ -27,6 +28,7 @@
         .tag-group-items { display: none; padding: 0 15px 15px; flex-wrap: wrap; gap: 8px; background: rgba(0,0,0,0.2); }
         .tag-group.open .tag-group-items { display: flex; }
         .btn-tag { background: var(--amber-mid); border: 1px solid rgba(212, 163, 115, 0.4); color: #ccc; padding: 4px 12px; border-radius: 15px; font-size: 0.8em; cursor: pointer; }
+        
         .dictionary-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .dic-card { background: var(--amber-mid); padding: 15px; border-radius: 8px; border-top: 4px solid var(--amber-gold); }
         .dic-card[data-cat="tasting"] { border-top-color: var(--color-tasting); }
@@ -36,34 +38,20 @@
         .term-en { font-weight: bold; font-size: 1.1em; color: var(--amber-gold); }
         .term-jp { font-size: 0.85em; opacity: 0.8; }
         .desc { font-size: 0.9em; color: #ddd; margin: 10px 0; }
-        .card-tag { color: var(--amber-gold); font-size: 0.8em; margin-right: 10px; cursor: pointer; }
+        .card-tag { color: var(--amber-gold); font-size: 0.8em; margin-right: 10px; cursor: pointer; text-decoration: underline; }
         .highlight { background: rgba(212, 163, 115, 0.4); border-radius: 2px; }
-		/* 選択中の状態を視覚化 */
-.btn-index.active, .btn-tag.active {
-    background: var(--amber-gold) !important;
-    color: black !important;
-    border-color: #fff !important;
-    font-weight: bold;
-}
 
-/* 検索結果のステータス表示 */
-.status-bar {
-    background: rgba(212, 163, 115, 0.2);
-    border-left: 5px solid var(--amber-gold);
-    padding: 10px 15px;
-    margin: 10px 0 20px 0;
-    display: none; /* 初期は非表示 */
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 4px;
-}
-.status-bar.show { display: flex; }
+        .btn-index.active, .btn-tag.active { background: var(--amber-gold) !important; color: black !important; font-weight: bold; }
+
+        .status-bar { background: rgba(212, 163, 115, 0.2); border-left: 5px solid var(--amber-gold); padding: 10px 15px; margin: 10px 0 20px 0; display: none; justify-content: space-between; align-items: center; border-radius: 4px; }
+        .status-bar.show { display: flex; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Amber Palette Dictionary</h1>
+    
     <input type="text" id="dicSearch" class="search-box" placeholder="単語・説明・タグから逆引き検索...">
 
     <div class="nav-section">
@@ -71,14 +59,20 @@
         <div id="kanaIndex" class="index-row"></div>
     </div>
 
-<div id="resultStatus" class="status-bar">
-    <span id="statusMessage" style="font-weight: bold;"></span>
-    <button onclick="resetSearch()" style="background:var(--amber-gold); border:none; padding:2px 8px; border-radius:4px; cursor:pointer;">解除</button>
+    <div id="tagHierarchicalIndex" class="tag-index-container"></div>
+
+    <div id="resultStatus" class="status-bar">
+        <span id="statusMessage" style="font-weight: bold;"></span>
+        <button onclick="resetSearch()" style="background:var(--amber-gold); border:none; padding:4px 12px; border-radius:4px; cursor:pointer; font-weight:bold;">解除</button>
+    </div>
+
+    <div id="dictionaryList" class="dictionary-grid"></div>
 </div>
 
-<div id="dictionaryList" class="dictionary-grid"></div>
+<script src="dictionary.js"></script>
+
 <script>
-   let masterData = [];
+    let masterData = [];
     const categoryNames = {
         "tasting": "テイスティング表現", "distillation": "蒸留・設備", "maturation": "熟成・樽",
         "fermentation": "発酵・微生物", "raw": "原料・製麦", "finishing": "仕上げ・瓶詰め",
@@ -92,30 +86,27 @@
     };
 
     function init() {
+        // dictionaryData が読み込まれているかチェック
         if (typeof dictionaryData !== 'undefined') {
             masterData = dictionaryData; 
             createIndexNav();
             createTagAccordion();
             renderDictionary(masterData);
         } else {
-            document.getElementById('dictionaryList').innerHTML = "dictionary.js が見つかりません。";
+            document.getElementById('dictionaryList').innerHTML = 
+                "<div style='text-align:center; padding:20px;'>dictionary.js が読み込めていないか、データが空です。</div>";
         }
     }
 
-    // --- 【新設】ボタンの選択状態（金色）をリセット ---
     function clearActiveStates() {
         document.querySelectorAll('.btn-index, .btn-tag').forEach(el => el.classList.remove('active'));
     }
 
-    // --- 【新設】結果エリアへの自動スクロールとバー表示 ---
     function finalizeFilter(message) {
         const status = document.getElementById('resultStatus');
         const msg = document.getElementById('statusMessage');
-        
         status.classList.add('show');
         msg.innerText = message;
-
-        // 検索結果のバー（金色バー）の位置まで画面をスルスル動かす
         const scrollPos = status.offsetTop - 20; 
         window.scrollTo({ top: scrollPos, behavior: 'smooth' });
     }
@@ -123,8 +114,10 @@
     function createIndexNav() {
         const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
         const kana = "あかさたなはまやらわ".split("");
-        document.getElementById('alphaIndex').innerHTML = alpha.map(c => `<button class="btn-index" onclick="filterByChar('${c}', 'en')">${c}</button>`).join('');
-        document.getElementById('kanaIndex').innerHTML = kana.map(c => `<button class="btn-index" onclick="filterByChar('${c}', 'jp')">${c}</button>`).join('');
+        document.getElementById('alphaIndex').innerHTML = alpha.map(c => 
+            `<button class="btn-index" onclick="filterByChar(event, '${c}', 'en')">${c}</button>`).join('');
+        document.getElementById('kanaIndex').innerHTML = kana.map(c => 
+            `<button class="btn-index" onclick="filterByChar(event, '${c}', 'jp')">${c}</button>`).join('');
     }
 
     function createTagAccordion() {
@@ -133,15 +126,18 @@
             if(!tagMap[item.category]) tagMap[item.category] = new Set();
             item.tags.forEach(t => { if(t) tagMap[item.category].add(t); });
         });
-        // 修正：既存のコードにあるid="tagHierarchicalIndex"を取得
+
         const container = document.getElementById('tagHierarchicalIndex');
         if(!container) return; 
 
-        container.innerHTML = Object.keys(tagMap).map(cat => `
+        container.innerHTML = Object.keys(tagMap).sort().map(cat => `
             <div class="tag-group" id="group-${cat}">
-                <button class="tag-group-label" onclick="toggleAccordion('${cat}')">${categoryNames[cat] || cat}</button>
+                <button class="tag-group-label" onclick="toggleAccordion('${cat}')">
+                    ${categoryNames[cat] || cat} <span>(${tagMap[cat].size})</span>
+                </button>
                 <div class="tag-group-items">
-                    ${Array.from(tagMap[cat]).sort().map(tag => `<button class="btn-tag" onclick="filterByTag('${tag}')">#${tag}</button>`).join('')}
+                    ${Array.from(tagMap[cat]).sort().map(tag => 
+                        `<button class="btn-tag" onclick="filterByTag('${tag}')">#${tag}</button>`).join('')}
                 </div>
             </div>
         `).join('');
@@ -154,10 +150,8 @@
         if (!isOpen) el.classList.add('open');
     }
 
-    // --- 【修正版】インデックスフィルタ（自動スクロール付き） ---
-    function filterByChar(char, mode) {
+    function filterByChar(event, char, mode) {
         clearActiveStates();
-        // 押されたボタンを光らせる
         if (event && event.currentTarget) event.currentTarget.classList.add('active');
 
         const filtered = masterData.filter(item => {
@@ -174,26 +168,22 @@
         finalizeFilter(`「${char}」行の結果: ${filtered.length}件`);
     }
 
-    // --- 【修正版】タグフィルタ（自動スクロール付き） ---
     function filterByTag(tag) {
         clearActiveStates();
-        // 画面上の該当するタグボタンをすべて光らせる
         document.querySelectorAll('.btn-tag').forEach(btn => {
             if(btn.innerText === '#' + tag) btn.classList.add('active');
         });
 
         const filtered = masterData.filter(item => item.tags.includes(tag));
         renderDictionary(filtered, tag);
-        finalizeFilter(`「#${tag}」の結果: ${filtered.length}件`);
+        finalizeFilter(`タグ「#${tag}」の結果: ${filtered.length}件`);
     }
 
-    // --- 【新設】検索リセット ---
     function resetSearch() {
         clearActiveStates();
         document.getElementById('resultStatus').classList.remove('show');
         document.getElementById('dicSearch').value = "";
         renderDictionary(masterData);
-        // 一番上（検索窓）まで戻す
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -205,6 +195,10 @@
 
     function renderDictionary(data, query = "") {
         const list = document.getElementById('dictionaryList');
+        if (data.length === 0) {
+            list.innerHTML = "<div style='text-align:center; padding:40px; opacity:0.6;'>該当する項目が見つかりませんでした。</div>";
+            return;
+        }
         list.innerHTML = data.map(item => `
             <div class="dic-card" data-cat="${item.category}">
                 <div class="term-en">${highlight(item.term_en, query)}</div>
@@ -218,29 +212,34 @@
     }
 
     function highlight(text, q) {
-        if (!q) return text;
-        const re = new RegExp(`(${q})`, "gi");
-        return text.replace(re, `<span class="highlight">$1</span>`);
+        if (!q || q.length < 1) return text;
+        try {
+            const re = new RegExp(`(${q})`, "gi");
+            return text.replace(re, `<span class="highlight">$1</span>`);
+        } catch(e) { return text; }
     }
 
     document.getElementById('dicSearch').addEventListener('input', (e) => {
         const q = e.target.value.toLowerCase();
         if(q === "") {
             document.getElementById('resultStatus').classList.remove('show');
+            renderDictionary(masterData);
         } else {
+            const filtered = masterData.filter(item => 
+                item.term_en.toLowerCase().includes(q) || 
+                item.term_jp.includes(q) || 
+                (item.reading && item.reading.includes(q)) || 
+                item.description.includes(q) || 
+                item.tags.some(tag => tag.toLowerCase().includes(q))
+            );
+            renderDictionary(filtered, q);
             document.getElementById('resultStatus').classList.add('show');
-            document.getElementById('statusMessage').innerText = `「${q}」の検索結果`;
+            document.getElementById('statusMessage').innerText = `「${q}」の検索結果: ${filtered.length}件`;
         }
-        
-        const filtered = masterData.filter(item => 
-            item.term_en.toLowerCase().includes(q) || item.term_jp.includes(q) || 
-            (item.reading && item.reading.includes(q)) || item.description.includes(q) || 
-            item.tags.some(tag => tag.toLowerCase().includes(q))
-        );
-        renderDictionary(filtered, q);
     });
 
-    init();
+    // ページ読み込み完了後に初期化
+    window.onload = init;
 </script>
 </body>
 </html>
