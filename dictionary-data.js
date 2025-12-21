@@ -186,8 +186,92 @@ const DICTIONARY_DATA = [
     category:"tasting", description:"スコットランドでのウイスキー1杯分の呼称。明確な定義はないが、25ml〜35ml程度を指すことが多い。", tags:["unit","culture"] },
   { id:"flight", term_en:"Flight", term_jp:"フライト",
     category:"tasting", description:"数種類のウイスキーの飲み比べセットのこと。", tags:["style","menu"] },
+/* -----------------------
+      テイスティング (tasting) - 追加分
+  ----------------------- */
+  { id:"floral", term_en:"Floral", term_jp:"フローラル",
+    category:"tasting", description:"花のような香り。草花、ドライフラワー、あるいはハーブのような華やかなニュアンス。", tags:["aroma","flower"] },
+  { id:"sweet_flavor", term_en:"Sweet", term_jp:"スイート",
+    category:"tasting", description:"甘い香りや味わい。バニラ、ハチミツ、キャラメル、チョコレートなど。主に樽由来の成分からくる。", tags:["aroma","taste"] },
+  { id:"winey", term_en:"Winey", term_jp:"ワイニー",
+    category:"tasting", description:"ワインやシェリー酒を思わせる、濃縮された果実味とフルーティーな酸味。タンニン（渋み）を感じることもある。", tags:["cask","aroma"] },
+  { id:"sulfury", term_en:"Sulfury", term_jp:"サルファリー",
+    category:"tasting", description:"硫黄のようなニュアンス。マッチの火、ゴム、肉のような重厚な香り。蒸留器の銅との反応に関連する。", tags:["aroma","off-flavor"] },
+  { id:"cereal", term_en:"Cereal", term_jp:"シリアル",
+    category:"tasting", description:"穀物由来の香り。麦芽、トースト、酵母など、ウイスキーの原料を感じさせる香ばしいニュアンス。", tags:["aroma","raw material"] },
+  { id:"astringency", term_en:"Astringency", term_jp:"収斂味（しゅうれんみ）",
+    category:"tasting", description:"口の中が引き締まるような、あるいは乾くような感覚。主に木樽由来のタンニンによって引き起こされる「渋み」。", tags:["mouthfeel","tannin"] },
+  { id:"body", term_en:"Body", term_jp:"ボディ",
+    category:"tasting", description:"口に含んだ時の重みや厚みの表現。フルボディ（重口）、ライトボディ（軽口）などと使われる。", tags:["mouthfeel","texture"] },
+  { id:"finish_length", term_en:"Finish / Aftertaste", term_jp:"フィニッシュ / 余韻",
+    category:"tasting", description:"飲み込んだ後に口の中に残る香りと味わい。その持続時間を「長い（ロング・フィニッシュ）」「短い（ショート・フィニッシュ）」と表現する。", tags:["tasting","experience"] },
+  { id:"nose", term_en:"Nose", term_jp:"ノーズ",
+    category:"tasting", description:"グラスから立ち上がる香りを嗅ぐこと、またはその香りの質そのものを指す。", tags:["tasting","aroma"] },
+  { id:"palate", term_en:"Palate", term_jp:"パレット",
+    category:"tasting", description:"口に含んだ時の味わい、テクスチャー、全体的な風味の構成のこと。", tags:["tasting","flavor"] },
+  { id:"peaty", term_en:"Peaty", term_jp:"ピーティー",
+    category:"tasting", description:"ピート（泥炭）の風味が強いこと。薬品、ヨード、あるいは土っぽさを伴う独特の個性。", tags:["aroma","peat"] },
+	/* -----------------------
+      テイスティング (さらに深く)
+  ----------------------- */
+  { id:"esters", term_en:"Esters", term_jp:"エステル",
+    category:"tasting", description:"発酵中に酵母が作り出す芳香成分。ウイスキーにフルーティーさ（バナナ、リンゴなど）や華やかさを与える正体。", tags:["science","aroma"] },
+  { id:"phenols", term_en:"Phenols", term_jp:"フェノール",
+    category:"tasting", description:"ピートを焚いた際に生じる化合物。スモーキー、薬品、ヨードといった香りの指標。PPMという単位で表される。", tags:["science","smoky"] },
+  { id:"mouthfeel", term_en:"Mouthfeel", term_jp:"マウスフィール",
+    category:"tasting", description:"口に含んだときの感触。クリーミー、オイリー、ドライ、ざらつきなど、味そのものよりも「触感」に近い表現。", tags:["tasting","texture"] },
+  { id:"viscosity", term_en:"Viscosity", term_jp:"粘性（ねんせい）",
+    category:"tasting", description:"液体の「とろみ」。グラスの壁を流れる液滴（レッグス）の速さや、口当たりで判断される。", tags:["tasting","texture"] },
+  { id:"complexity", term_en:"Complexity", term_jp:"複雑さ",
+    category:"tasting", description:"香りと味わいが重層的で、時間の経過とともに様々な表情を見せること。高品質なウイスキーの褒め言葉として使われる。", tags:["evaluation"] },
+/* -----------------------
+      テイスティング (ユニーク・比喩表現)
+  ----------------------- */
+  { id:"oeil_de_perdrix", term_en:"Eye of the Partridge", term_jp:"ヤマウズラの目の色",
+    category:"tasting", description:"ワイン用語（Oeil de Perdrix）に由来。極めて淡い琥珀色や、ロゼワインのようなピンクがかった銅色を指す非常に優雅な表現。", tags:["color","poetic"] },
+  
+  { id:"rancio", term_en:"Rancio", term_jp:"ランシオ",
+    category:"tasting", description:"長期間の熟成を経たコニャックやウイスキーに現れる、熟したキノコ、ナッツ、あるいはチーズのような独特の芳醇な香り。", tags:["aging","aroma"] },
 
+  { id:"pipi_de_chat", term_en:"Cat's Pee", term_jp:"猫の尿",
+    category:"tasting", description:"ソーヴィニヨン・ブランなどのワインで使われる有名な表現。ウイスキーでは、ある種の硫黄化合物や若い原酒が持つ、ツンとした刺激的なハーブのような香りを指す。", tags:["aroma","strange"] },
 
+  { id:"dunnage_warehouse", term_en:"Dunnage Aroma", term_jp:"ダンネージ式の貯蔵庫の香り",
+    category:"tasting", description:"湿った土、古いオーク、そしてわずかなカビの匂いが混ざり合った、伝統的な貯蔵庫特有の香り。ウイスキーファンにとっては非常に魅惑的な表現。", tags:["aroma","warehouse"] },
+
+  { id:"petrichor", term_en:"Petrichor", term_jp:"ペトリコール",
+    category:"tasting", description:"「雨が降った後の地面の匂い」。土っぽさ（アース）の中に、清涼感と湿り気を含んだ複雑なニュアンスを表す時に使われる。", tags:["aroma","nature"] },
+
+  { id:"old_library", term_en:"Old Library", term_jp:"古い図書館",
+    category:"tasting", description:"古い紙、革の装丁、埃っぽさ、そしてわずかなワックスの香りが混じった状態。長期熟成されたモルトにしばしば見られる表現。", tags:["aroma","antique"] }
+	
+	/* -----------------------
+      テイスティング (驚きの表現・比喩)
+  ----------------------- */
+  { id:"wet_dog", term_en:"Wet Dog", term_jp:"濡れた犬",
+    category:"tasting", description:"濡れた犬の毛のような、独特の動物的・湿ったニュアンス。ある種の新酒や特定の発酵プロセスを経たウイスキーに現れる。愛好家には『野性的』とポジティブに捉えられることも。", tags:["aroma","animalic"] },
+
+  { id:"old_leather_shoe", term_en:"Old Leather Shoe", term_jp:"古い革靴",
+    category:"tasting", description:"使い込まれた革製品や靴のような香り。シェリー樽での長期熟成によって生まれる、重厚で深みのある芳醇さを表す際に使われる褒め言葉。", tags:["aroma","aging"] },
+
+  { id:"band_aid", term_en:"Band-Aid / Medicinal", term_jp:"絆創膏（ばんそうこう）",
+    category:"tasting", description:"消毒液やプラスチック製の絆創膏のような、薬品的な香り。アイラモルトなどのピートが強いウイスキー特有の表現。フェノール類に由来する。", tags:["aroma","peat"] },
+
+  { id:"gunpowder", term_en:"Gunpowder", term_jp:"火薬",
+    category:"tasting", description:"打ち上げ花火や爆竹を鳴らした後のような、焦げた硫黄の匂い。シェリー樽由来の成分や、蒸留過程の化学反応で現れる、非常にパンチのある表現。", tags:["aroma","sulfury"] },
+
+  { id:"barnyard", term_en:"Barnyard / Farmyard", term_jp:"農場・馬小屋",
+    category:"tasting", description:"干し草、家畜、土などが混ざり合った、田舎の農場のような香り。非常に複雑な香味を持つ古いボトルや、独特の酵母由来のニュアンスに使われる。", tags:["aroma","earthy"] },
+
+  { id:"furniture_polish", term_en:"Furniture Polish / Wax", term_jp:"家具のワックス",
+    category:"tasting", description:"磨き上げられたアンティーク家具や蜜蝋（みつろう）のような香り。オイリーで滑らかな質感を伴う、高品質な長期熟成原酒によく使われる表現。", tags:["aroma","texture"] },
+
+  { id:"industrial_oil", term_en:"Industrial / Engine Oil", term_jp:"機械油",
+    category:"tasting", description:"工場の重油やエンジンオイルのような、無機質で力強いオイリーさ。一部の蒸留所が持つ、非常に個性的でクラシックなキャラクターを指す。", tags:["aroma","oily"] }
+	
+	
+	
+	
   /* -----------------------
       その他 (others)
   ----------------------- */
