@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(data => {
       window.DICTIONARY_DATA = data;
-      initDictionary(); // ← 既存初期化処理
+
+      // ここで初期化
+      renderCategoryGrid();
+      renderIndexButtons();
     });
 });
 
@@ -356,5 +359,3 @@ function renderCategoryGrid() {
   resultModal.addEventListener('click', (e) => {
     if (e.target === resultModal) closeResultModal();
   });
-
-});
