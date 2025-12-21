@@ -4,6 +4,13 @@
 ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  fetch('dictionary-data.json')
+    .then(res => res.json())
+    .then(data => {
+      window.DICTIONARY_DATA = data;
+      initDictionary(); // ← 既存初期化処理
+    });
+});
 
   // --- DOM Elements ---
   const searchInput = document.getElementById('searchInput');

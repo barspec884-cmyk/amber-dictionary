@@ -1,0 +1,179 @@
+﻿[
+  {
+    "id": "barley",
+    "term_en": "Barley",
+    "term_jp": "大麦",
+    "category": "raw",
+    "description": "ウイスキーの主原料となる穀物。モルトウイスキーでは二条大麦が主に使われる。",
+    "tags": ["grain", "raw material"]
+  },
+  {
+    "id": "malt",
+    "term_en": "Malt",
+    "term_jp": "麦芽",
+    "category": "raw",
+    "description": "発芽させた大麦を乾燥させたもの。糖化しやすくなり、ウイスキーの基盤となる香味を生む。",
+    "tags": ["raw material", "malting"]
+  },
+  {
+    "id": "peat",
+    "term_en": "Peat",
+    "term_jp": "ピート",
+    "category": "raw",
+    "description": "長年堆積した植物が変化してできた泥炭。麦芽の乾燥時に燃料として用いることで、スモーキーな香りを付与する。",
+    "tags": ["smoky", "fuel", "islay"]
+  },
+  {
+    "id": "kiln",
+    "term_en": "Kiln",
+    "term_jp": "キルン",
+    "category": "raw",
+    "description": "発芽した麦芽を乾燥させるための窯や炉。ここでピートを焚くことでスモーキーな香りがつく。",
+    "tags": ["malting", "drying"]
+  },
+  {
+    "id": "floor_malting",
+    "term_en": "Floor Malting",
+    "term_jp": "フロアモルティング",
+    "category": "raw",
+    "description": "大麦を床に広げ、手作業でかき混ぜながら発芽させる伝統的な製麦方法。",
+    "tags": ["traditional", "malting"]
+  },
+
+  {
+    "id": "malting",
+    "term_en": "Malting",
+    "term_jp": "モルティング",
+    "category": "raw",
+    "description": "大麦を麦芽（モルト）へ加工する、製麦工程のこと。",
+    "tags": ["process", "raw"]
+  },
+  {
+    "id": "maltster",
+    "term_en": "Maltster",
+    "term_jp": "モルトスター",
+    "category": "raw",
+    "description": "製麦工程を専門的に行い、原料を提供する業者。",
+    "tags": ["profession", "raw"]
+  },
+  {
+    "id": "milling",
+    "term_en": "Milling",
+    "term_jp": "ミリング",
+    "category": "raw",
+    "description": "精麦（モルティング）された麦芽の糖を水に溶けやすくするために挽き割りする、粉砕工程のこと。",
+    "tags": ["process", "milling"]
+  },
+  {
+    "id": "grist",
+    "term_en": "Grist",
+    "term_jp": "グリスト",
+    "category": "raw",
+    "description": "粉砕した麦芽のこと。粉砕度合いは粗いものからハスク、グリッツ、一番細かいものをフラワーと呼び、全体をまとめてグリストと呼ぶ。",
+    "tags": ["raw", "material"]
+  },
+
+  {
+    "id": "yeast",
+    "term_en": "Yeast",
+    "term_jp": "酵母",
+    "category": "fermentation",
+    "description": "糖をアルコールと二酸化炭素に変える微生物。香りや味わいへの影響が大きい。",
+    "tags": ["microorganism", "aroma"]
+  },
+  {
+    "id": "wash",
+    "term_en": "Wash",
+    "term_jp": "ウォッシュ",
+    "category": "fermentation",
+    "description": "もろみ（発酵液）のこと。麦汁（ウォート）にイースト（酵母）を加えてできる。",
+    "tags": ["liquid", "fermentation"]
+  },
+
+  {
+    "id": "pot_still",
+    "term_en": "Pot Still",
+    "term_jp": "ポットスチル",
+    "category": "distillation",
+    "description": "銅製の釜を用いた伝統的蒸留器。形状が香味に影響する。",
+    "tags": ["equipment", "copper"]
+  },
+  {
+    "id": "new_make",
+    "term_en": "New Make",
+    "term_jp": "ニューメイク",
+    "category": "distillation",
+    "description": "樽熟成する前の蒸留液。無色透明で荒々しい香りが特徴。",
+    "tags": ["liquid", "unaged"]
+  },
+
+  {
+    "id": "bourbon_barrel",
+    "term_en": "Bourbon Barrel",
+    "term_jp": "バーボンバレル",
+    "category": "maturation",
+    "description": "バーボン熟成後の樽。バニラやカラメルの甘い香りを付与する。",
+    "tags": ["cask", "american oak"]
+  },
+
+  {
+    "id": "finish",
+    "term_en": "Finish",
+    "term_jp": "フィニッシュ（後熟）",
+    "category": "finishing",
+    "description": "熟成後に別樽へ移して追加熟成させる手法。",
+    "tags": ["process", "flavor"]
+  },
+
+  {
+    "id": "single_malt",
+    "term_en": "Single Malt",
+    "term_jp": "シングルモルト",
+    "category": "distribution",
+    "description": "1つの蒸溜所のモルト原酒のみからつくられたウイスキー。",
+    "tags": ["style", "popular"]
+  },
+
+  {
+    "id": "fruity",
+    "term_en": "Fruity",
+    "term_jp": "フルーティー",
+    "category": "tasting",
+    "description": "果実のような香り。リンゴ、洋ナシ、柑橘など。",
+    "tags": ["aroma", "fruit"]
+  },
+  {
+    "id": "smoky",
+    "term_en": "Smoky",
+    "term_jp": "スモーキー",
+    "category": "tasting",
+    "description": "煙のような香り。ピート由来の個性。",
+    "tags": ["aroma", "peat"]
+  },
+
+  {
+    "id": "industrial_oil",
+    "term_en": "Industrial / Engine Oil",
+    "term_jp": "機械油",
+    "category": "tasting",
+    "description": "工場の重油やエンジンオイルのような無機質で力強いオイリーさ。",
+    "tags": ["aroma", "oily"]
+  },
+
+  {
+    "id": "abv",
+    "term_en": "Alcohol by Volume (ABV)",
+    "term_jp": "アルコール度数",
+    "category": "others",
+    "description": "アルコールの体積百分率。スコッチウイスキーは40度以上が必要。",
+    "tags": ["legal", "measure"]
+  },
+  {
+    "id": "cheers",
+    "term_en": "Slàinte Mhath",
+    "term_jp": "スランジバー（乾杯）",
+    "category": "others",
+    "description": "スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。",
+    "tags": ["culture", "gaelic"]
+  }
+]
