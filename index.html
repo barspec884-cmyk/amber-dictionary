@@ -65,11 +65,31 @@
         /* ステータスバー */
         .status-bar { background: rgba(212, 163, 115, 0.2); border-left: 5px solid var(--amber-gold); padding: 12px 15px; margin: 10px 0 20px 0; display: none; justify-content: space-between; align-items: center; border-radius: 4px; }
         .status-bar.show { display: flex; }
+		/* 戻るボタンのスタイル */
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--amber-gold);
+            font-size: 0.85em;
+            border: 1px solid var(--amber-gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            background: rgba(212, 163, 115, 0.1);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: var(--amber-gold);
+            color: black;
+            transform: translateX(-3px);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <a href="https://amber-palette-hub.vercel.app/" class="back-button">← Amber Palette Hub</a>
+    
     <h1>Amber Palette Dictionary</h1>
     
     <input type="text" id="dicSearch" class="search-box" placeholder="単語・説明・タグから逆引き検索...">
