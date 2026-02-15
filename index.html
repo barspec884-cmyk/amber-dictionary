@@ -3,349 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amber Palette Dictionary - Final optimized</title>
+    <title>Amber Palette: Dual Mode</title>
     <style>
         :root {
-            --amber-dark: #1a120b; --amber-mid: #2c1e17; --amber-gold: #d4a373;
-            --amber-bright: #faedcd; --text-main: #fefae0;
-            --color-tasting: #d4a373; --color-distillation: #cd7f32;
-            --color-maturation: #8b4513; --color-raw: #e9c46a;
+            --amber: #c7a97a; --amber-gold: #d4a373; --amber-mid: #1b1917;
+            --bg-dark: #0f0e0d; --ink: #f6f1e9; --border: #2a2724; --muted: #9b948a;
         }
-        body { background-color: var(--amber-dark); color: var(--text-main); font-family: sans-serif; padding: 15px; margin: 0; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { text-align: center; color: var(--amber-gold); font-size: 1.5em; margin-bottom: 20px; }
-        
-        /* 検索窓 */
-        .search-box { width: 100%; padding: 12px 20px; border-radius: 25px; border: 2px solid var(--amber-gold); background: var(--amber-mid); color: white; font-size: 1.1em; box-sizing: border-box; outline: none; margin-bottom: 20px; }
-        
-        /* インデックス（展開時）のボタングリッド */
-        .index-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-        .btn-index { background: var(--amber-mid); color: var(--amber-bright); border: 1px solid var(--amber-gold); padding: 8px 10px; border-radius: 4px; font-size: 0.9em; cursor: pointer; min-width: 42px; }
-        .btn-index:hover, .btn-index.active { background: var(--amber-gold); color: black; }
-
-        /* --- アコーディオン構造（スマホ最適化） --- */
-        .tag-index-container, .nav-section { margin: 0 0 10px 0; }
-        
-        /* 共通: ルート（バー部分） */
-        .main-category-root { border: 1.5px solid var(--amber-gold); border-radius: 8px; background: var(--amber-mid); overflow: hidden; margin-bottom: 10px; }
-        .btn-root-label { width: 100%; padding: 14px 15px; background: var(--amber-mid); color: var(--amber-gold); border: none; font-size: 1.05em; font-weight: bold; display: flex; align-items: center; cursor: pointer; }
-
-        /* カテゴリー/タグ階層 */
-        .tag-group { border-top: 1px solid rgba(212, 163, 115, 0.2); }
-        .tag-group-label { width: 100%; padding: 12px 15px 12px 25px; font-size: 0.95em; color: var(--amber-bright); background: rgba(255,255,255,0.03); border: none; display: flex; align-items: center; cursor: pointer; }
-        .tag-sub-group { border-top: 1px solid rgba(255,255,255,0.05); }
-        .btn-tag-expand { width: 100%; padding: 10px 15px 10px 40px; font-size: 0.9em; color: #ccc; background: none; border: none; display: flex; align-items: center; cursor: pointer; }
-
-        /* 右揃え設定（カウントを矢印の左へ） */
-        .cat-name, .tag-name, .root-name { margin-right: auto; }
-        .count-num { font-size: 0.85em; opacity: 0.7; margin-right: 10px; font-weight: normal; }
-
-        /* 矢印アイコン */
-        .tag-group-label::after, .btn-tag-expand::after, .btn-root-label::after { content: '▶'; font-size: 0.75em; transition: transform 0.2s; color: var(--amber-gold); }
-        .open > .tag-group-label::after, .open > .btn-tag-expand::after, .open > .btn-root-label::after { transform: rotate(90deg); }
-
-        /* 展開されるコンテンツ */
-        .tag-group-container, .tag-sub-container { display: none; }
-        .tag-term-list { display: none; padding: 5px 15px 12px 55px; background: rgba(0,0,0,0.2); }
-        .open > .tag-term-list { display: block; }
-
-        /* 4階層目: 単語（Word）リスト */
-        .term-link { display: block; color: var(--amber-gold); font-size: 0.9em; padding: 10px 0; text-decoration: none; opacity: 1; line-height: 1.4; border-bottom: 1px solid rgba(212, 163, 115, 0.1); }
-        .term-link:last-child { border-bottom: none; }
-
-        /* 辞書カード表示 */
-        .dictionary-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
-        .dic-card { background: var(--amber-mid); padding: 18px; border-radius: 8px; border-top: 4px solid var(--amber-gold); }
-        .term-en { font-weight: bold; font-size: 1.2em; color: var(--amber-gold); }
-        .term-jp { font-size: 0.9em; opacity: 0.8; margin-top: 2px; }
-        .desc { font-size: 0.95em; color: #ddd; margin: 12px 0; line-height: 1.5; }
-        .card-tag { color: var(--amber-gold); font-size: 0.85em; margin-right: 12px; cursor: pointer; text-decoration: underline; }
-        .highlight { background: rgba(212, 163, 115, 0.4); border-radius: 2px; }
-
-        /* ステータスバー */
-        .status-bar { background: rgba(212, 163, 115, 0.2); border-left: 5px solid var(--amber-gold); padding: 12px 15px; margin: 10px 0 20px 0; display: none; justify-content: space-between; align-items: center; border-radius: 4px; }
-        .status-bar.show { display: flex; }
-		/* 戻るボタンのスタイル */
-        .back-button {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--amber-gold);
-            font-size: 0.85em;
-            border: 1px solid var(--amber-gold);
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            background: rgba(212, 163, 115, 0.1);
-            transition: all 0.3s ease;
+        body {
+            margin: 0; font-family: "Noto Sans JP", "Meiryo", sans-serif;
+            background: radial-gradient(1200px 600px at 50% -10%, #201c18 0%, var(--bg-dark) 30%, #1b1917 100%);
+            color: var(--ink); min-height: 100vh; padding-bottom: 50px;
         }
-        .back-button:hover {
-            background: var(--amber-gold);
-            color: black;
-            transform: translateX(-3px);
+
+        /* --- ヘッダー --- */
+        header {
+            padding: 12px 16px; position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 14, 13, 0.9); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
+        .header-container { max-width: 900px; margin: 0 auto; }
+        .back-hub {
+            display: inline-block; text-decoration: none; color: var(--amber);
+            font-size: 0.8em; border: 1px solid var(--amber); padding: 4px 12px;
+            border-radius: 20px; margin-bottom: 8px; transition: 0.3s;
+        }
+        .back-hub:hover { background: var(--amber); color: #000; }
+
+        .header-main { display: flex; justify-content: space-between; align-items: center; }
+        h1 { margin: 0; font-size: 1.1em; color: var(--amber); letter-spacing: 0.05em; }
+
+        /* モード切替 */
+        .mode-switcher {
+            display: flex; background: #000; border: 1px solid var(--border); border-radius: 20px; padding: 2px;
+        }
+        .mode-btn {
+            padding: 6px 14px; border-radius: 18px; border: none; background: none;
+            color: var(--muted); cursor: pointer; font-size: 0.85em; transition: 0.3s;
+        }
+        .mode-btn.active { background: var(--amber); color: #000; font-weight: bold; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 15px; }
+
+        /* --- 検索・インデックス --- */
+        .search-box {
+            width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--border);
+            background: #141211; color: white; font-size: 1em; outline: none; box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        
+        .index-section { margin-bottom: 15px; }
+        .index-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+        .btn-index {
+            background: var(--amber-mid); color: var(--amber-gold); border: 1px solid var(--border);
+            padding: 6px 10px; border-radius: 6px; font-size: 0.8em; cursor: pointer; min-width: 35px;
+        }
+        .btn-index:hover, .btn-index.active { background: var(--amber); color: #000; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; justify-content: center; }
+        .chip {
+            padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border);
+            background: #171514; color: var(--ink); font-size: 0.8em; cursor: pointer;
+        }
+        .chip.active { border-color: var(--amber); color: var(--amber); background: rgba(199, 169, 122, 0.1); }
+
+        /* --- 用語カード --- */
+        .dic-card {
+            background: #1b1917; padding: 18px; border-radius: 12px; border-top: 3px solid var(--amber-gold); margin-bottom: 15px;
+        }
+        .dic-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .dic-en { font-weight: bold; font-size: 1.15em; color: var(--amber-gold); }
+        .dic-jp { font-size: 0.9em; opacity: 0.8; margin-bottom: 8px; }
+        .dic-desc { line-height: 1.6; font-size: 0.95em; color: #ddd; }
+        
+        /* --- 表現行 --- */
+        .lex-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+            background: #141211; border: 1px solid var(--border); border-radius: 12px; padding: 10px; margin-bottom: 8px;
+        }
+        .lex-cell { padding: 10px; background: #0f0e0d; border-radius: 8px; font-size: 0.95em; position: relative; }
+
+        .tag-badge { font-size: 0.65em; color: var(--amber); border: 1px solid rgba(199,169,122,0.3); padding: 2px 6px; border-radius: 4px; }
+        mark { background: rgba(199, 169, 122, 0.4); color: inherit; border-radius: 2px; }
+        .status { font-size: 0.8em; color: var(--muted); text-align: center; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <a href="https://amber-palette-hub.vercel.app/" class="back-button">← Amber Palette Hub</a>
-    
-    <h1>Amber Palette Dictionary</h1>
-    
-    <input type="text" id="dicSearch" class="search-box" placeholder="単語・説明・タグから逆引き検索...">
+<header>
+    <div class="header-container">
+        <a href="https://amber-palette-hub.vercel.app/" class="back-hub">← Amber Palette Hub</a>
+        <div class="header-main">
+            <h1 id="appTitle">Amber Dictionary</h1>
+            <div class="mode-switcher">
+                <button id="btn-knowledge" class="mode-btn active" onclick="switchMode('knowledge')">用語集</button>
+                <button id="btn-flavor" class="mode-btn" onclick="switchMode('flavor')">味・香り</button>
+            </div>
+        </div>
+    </div>
+</header>
 
-    <div class="nav-section">
-        <div id="alphaIndex"></div>
-        <div id="kanaIndex"></div>
+<main class="container">
+    <input type="search" id="mainSearch" class="search-box" placeholder="検索...">
+    
+    <div class="index-section">
+        <div id="indexContainer" class="index-row"></div>
     </div>
 
-    <div id="tagHierarchicalIndex" class="tag-index-container"></div>
-
-    <div id="resultStatus" class="status-bar">
-        <span id="statusMessage" style="font-weight: bold;"></span>
-        <button onclick="resetSearch()" style="background:var(--amber-gold); border:none; padding:4px 12px; border-radius:4px; cursor:pointer; font-weight:bold;">解除</button>
-    </div>
-
-    <div id="dictionaryList" class="dictionary-grid"></div>
-</div>
-
-<script src="dictionary.js"></script>
+    <div id="filterChips" class="chips"></div>
+    <div id="countStatus" class="status"></div>
+    <div id="contentArea"></div>
+</main>
 
 <script>
-    let masterData = [];
-    const categoryNames = {
-        "tasting": "テイスティング表現", "distillation": "蒸留・設備", "maturation": "熟成・樽",
-        "fermentation": "発酵・微生物", "raw": "原料・製麦", "finishing": "仕上げ・瓶詰め",
-        "distribution": "流通・スタイル", "others": "その他"
-    };
+// --- データ1：用語解説 (アップロードされたJSONに基づき、プロパティの割り当てを修正) ---
+const dictionaryData = [
+  { "id": "coffey_still", "term_en": "Coffey Still", "term_jp": "コフィースチル", "category_tag": "distillation", "description": "高純度のアルコールを連続で得られるカフェ式蒸留器。" },
+  { "id": "column_still", "term_en": "Column Still", "term_jp": "カラムスチル", "category_tag": "distillation", "description": "連続蒸留が可能でグレーンウイスキーに使われる蒸留器。" },
+  { "id": "cut_point", "term_en": "Cut Point", "term_jp": "カットポイント", "category_tag": "distillation", "description": "ミドルカットを行うポイントのこと。前寄りにカットするか後寄りにカットするかで、ウイスキーの酒質が変わる。" },
+  { "id": "direct_heating", "term_en": "Direct Heating", "term_jp": "直火加熱", "category_tag": "distillation", "description": "ポットスチルを直接炎で加熱する方法。香ばしい風味がつきやすい。" },
+  { "id": "distillation_process", "term_en": "Distillation", "term_jp": "ディスティレーション", "category_tag": "distillation", "description": "発酵液を水とアルコールの沸点の違いを利用して、アルコール度数の高い蒸留液を抽出する、蒸留工程のこと。" },
+  { "id": "indirect_heating", "term_en": "Indirect Heating", "term_jp": "間接加熱", "category_tag": "distillation", "description": "蒸気などで内部から均一に加熱する方法。コントロールしやすい。" },
+  { "id": "low_wine", "term_en": "Low Wine", "term_jp": "ローワイン", "category_tag": "distillation", "description": "ウォッシュスチル（初留釜）で最初の蒸留が終わった後にできる液体。初留液ともよばれる。アルコール度数は約20～30%で不純物を含む。" },
+  { "id": "lyne_arm", "term_en": "Lyne Arm", "term_jp": "ラインアーム", "category_tag": "distillation", "description": "ポットスチルの加熱部分と冷却器（コンデンサー）を繋ぐパイプ。長さや角度で、リフラックスに大きな影響を与える。" },
+  { "id": "middle_cut", "term_en": "Middle Cut", "term_jp": "ミドルカット", "category_tag": "distillation", "description": "別名ハートカット。蒸留液の最初（ヘッド）と最後（テール）を切り捨て、最も風味豊かな「ハート」部分だけを取り出す作業。" },
+  { "id": "new_make", "term_en": "New Make", "term_jp": "ニューメイク", "category_tag": "distillation", "description": "樽熟成する前の蒸留液のこと。ニューポットとも呼ばれる。無色透明で、荒々しい香りや口当たりが特徴。" },
+  { "id": "pot_still", "term_en": "Pot Still", "term_jp": "ポットスチル", "category_tag": "distillation", "description": "銅製の釜を用いた伝統的蒸留器。形状が香味に影響する。" },
+  { "id": "reflux", "term_en": "Reflux", "term_jp": "リフラックス", "category_tag": "distillation", "description": "還流のこと。蒸留の際に、ポットスチル内の液体が蒸発と凝縮を繰り返えしながら、純度を高めていくプロセス。還流が強ければ強いほど、軽いフレーバーの酒質となる。" },
+  { "id": "spirit_still", "term_en": "Spirit Still", "term_jp": "スピリットスチル", "category_tag": "distillation", "description": "2つ目のポットスチル、再留釜ともよばれる。ローワインを再蒸留し、アルコール度数をより高めていく。カットポイントなどが決められる重要な工程。" },
+  { "id": "wash_still", "term_en": "Wash Still", "term_jp": "ウォッシュスチル", "category_tag": "distillation", "description": "モルトウイスキー製造で最初に使われるスチルのこと。初溜釜ともよばれる。銅製の場合が多く、ウォッシュを蒸留してローワイン（初留液）に変える。" },
+  { "id": "cask_finishing", "term_en": "Cask Finishing", "term_jp": "カスク・フィニッシュ", "category_tag": "distribution", "description": "本熟成の後に、別の樽（シェリーやワイン等）へ移し替えて数ヶ月から数年追加熟成させる手法。" },
+  { "id": "cask_owner", "term_en": "Cask Owner", "term_jp": "カスクオーナー", "category_tag": "distribution", "description": "蒸留所から樽ごと原酒を買い取り、所有する権利。個人やグループで購入することが多い。" },
+  { "id": "exclusive_bottling", "term_en": "Exclusive Bottling", "term_jp": "エクスクルーシブ・ボトリング", "category_tag": "distribution", "description": "特定の酒販店やバー、あるいは団体のために特別に瓶詰めされた限定品。" },
+  { "id": "foreshots", "term_en": "Foreshots", "term_jp": "フォーショッツ", "category_tag": "distillation", "description": "蒸留の最初に出てくる液（ヘッド）。不純物が多く含まれるため、熟成には回さず再蒸留される。" },
+  { "id": "importer", "term_en": "Importer", "term_jp": "インポーター", "category_tag": "distribution", "description": "海外ウイスキーの輸入代理店。" },
+  { "id": "independent_bottlers", "term_en": "Independent Bottlers", "term_jp": "インディペンデント・ボトラーズ", "category_tag": "distribution", "description": "蒸溜所から原酒を樽ごと購入し、独自に熟成・瓶詰して販売する業者。ボトラーズとも呼ばれる。" },
+  { "id": "official_bottle", "term_en": "Official Bottle (OB)", "term_jp": "オフィシャルボトル", "category_tag": "distribution", "description": "蒸留所を所有するメーカーが、自社ブランドとして公式に瓶詰め・販売する標準的な製品。" },
+  { "id": "pot_still_whisky", "term_en": "Pot Still Whisky", "term_jp": "ポットスチルウイスキー", "category_tag": "distribution", "description": "麦芽と未発芽大麦を原料とし、ポットスチルで蒸留するアイルランド特有のスタイル。" },
+  { "id": "quarter_cask_style", "term_en": "Quarter Cask Whisky", "term_jp": "クォーターカスク・ウイスキー", "category_tag": "distribution", "description": "標準の1/4サイズの樽で熟成させたウイスキー。木材との接触面積が広く、熟成が早く進むのが特徴。" },
+  { "id": "shell_and_tube", "term_en": "Shell and Tube", "term_jp": "シェル＆チューブ", "category_tag": "distillation", "description": "現代的な冷却装置。多数の細い管に蒸気を通す。クリーンで華やかな原酒になりやすい。" },
+  { "id": "single_cask", "term_en": "Single Cask", "term_jp": "シングル・カスク", "category_tag": "distribution", "description": "他の樽の原酒と混ぜずに、1つの蒸溜所の1つの樽から瓶詰めされたウイスキー。希少価値が高い。" },
+  { "id": "single_cask_bottling", "term_en": "Single Cask Bottling", "term_jp": "シングルカスク・ボトリング", "category_tag": "distribution", "description": "他の樽と混ぜず、たった一つの樽からのみ瓶詰めすること。ボトラーズブランドでよく見られる手法。" },
+  { "id": "single_malt", "term_en": "Single Malt", "term_jp": "シングルモルト", "category_tag": "distribution", "description": "1つの蒸溜所のモルト原酒のみからつくられたウイスキーのこと。" },
+  { "id": "spirit_safe", "term_en": "Spirit Safe", "term_jp": "スピリット・セーフ", "category_tag": "distillation", "description": "蒸留された液体の流れを管理する真鍮とガラスの箱。職人は外から比重を測りカットポイントを決める。" },
+  { "id": "teaspoon_malt", "term_en": "Teaspooned Malt", "term_jp": "ティースプーンモルト", "category_tag": "distribution", "description": "シングルモルトへごく少量の他蒸溜所ウイスキーを加えたもの。ブランド保護などのために行われる。" },
+  { "id": "travel_retail", "term_en": "Travel Retail Exclusive", "term_jp": "免税店限定品", "category_tag": "distribution", "description": "空港の免税店など、特定の流通ルートのみで販売される限定ボトル。" },
+  { "id": "vatted_malt", "term_en": "Vatted Malt", "term_jp": "ヴァッテッド・モルト", "category_tag": "distribution", "description": "複数の蒸留所のシングルモルトのみを混ぜ合わせたもの。現在は「ブレンデッド・モルト」と呼ぶのが一般的。" },
+  { "id": "vintage_whisky", "term_en": "Vintage Whisky", "term_jp": "ヴィンテージ・ウイスキー", "category_tag": "distribution", "description": "ラベルに「蒸留年」が明記されているボトル。特定の年の作柄や個性を楽しむスタイル。" },
+  { "id": "worm_tub", "term_en": "Worm Tub", "term_jp": "ワームタブ", "category_tag": "distillation", "description": "伝統的な冷却装置。水槽の中の蛇管で蒸気を冷やす。重厚で力強い原酒になりやすい。" },
+  { "id": "fermentation_process", "term_en": "Fermentation", "term_jp": "ファーメンテーション", "category_tag": "fermentation", "description": "麦汁に酵母を加え、アルコール分7〜8%程度の発酵液に変える発酵工程のこと。" },
+  { "id": "mash_tun", "term_en": "Mash Tun", "term_jp": "マッシュタン", "category_tag": "fermentation", "description": "糖化槽のこと。麦汁（ウォート）をつくるための容器で、木製や金属製など、蒸溜所によって異なる。" },
+  { "id": "mashing", "term_en": "Mashing", "term_jp": "マッシング", "category_tag": "fermentation", "description": "グリストとお湯を混ぜて加熱し、麦汁（ウォート）を抽出する、糖化工程のこと。" },
+  { "id": "sour_mash", "term_en": "Sour Mash", "term_jp": "サワーマッシュ", "category_tag": "fermentation", "description": "前回蒸留の残液を次回仕込みに加えて発酵を安定させるバーボンの製法。" },
+  { "id": "wash", "term_en": "Wash", "term_jp": "ウォッシュ", "category_tag": "fermentation", "description": "もろみ（発酵液）のこと。麦汁（ウォート）にイースト（酵母）を加えてできる。" },
+  { "id": "wash_back", "term_en": "Wash Back", "term_jp": "ウォッシュバック", "category_tag": "fermentation", "description": "発酵槽のこと。麦汁（ウォート）に酵母を加えて発酵させ、もろみ（ウォッシュ）をつくる。" },
+  { "id": "wort_mash", "term_en": "Wort / Mash", "term_jp": "ウォート / マッシュ", "category_tag": "fermentation", "description": "グリストに熱湯を注ぎ、麦芽中のデンプンを酵素で糖化したもの。" },
+  { "id": "yeast", "term_en": "Yeast", "term_jp": "酵母", "category_tag": "fermentation", "description": "糖をアルコールと二酸化炭素に変える微生物。香りや味わいへの影響が大きい。" },
+  { "id": "bottling", "term_en": "Bottling", "term_jp": "ボトリング", "category_tag": "finishing", "description": "製品化に向けて、樽で熟成したウイスキーをボトル詰めする工程のこと。" },
+  { "id": "cask_strength", "term_en": "Cask Strength", "term_jp": "カスク・ストレングス", "category_tag": "finishing", "description": "樽出しのアルコール度数で瓶詰めされたウイスキーのこと。加水されていないため、アルコール度数が50~60度であることが多い。" },
+  { "id": "coloring", "term_en": "Coloring", "term_jp": "着色（カラメル色素）", "category_tag": "finishing", "description": "製品ごとの色のバラつきを整えるための着色。" },
+  { "id": "finish", "term_en": "Finish", "term_jp": "フィニッシュ（後熟）", "category_tag": "finishing", "description": "熟成後に別樽へ移して追加熟成させる手法。" },
+  { "id": "non_chill_filtered", "term_en": "Non-Chill Filtered", "term_jp": "ノンチルフィルタード", "category_tag": "finishing", "description": "冷却濾過が施されていないウイスキーのこと。澱を取り除かないため、ウイスキー本来の味わいを楽しめる。" },
+  { "id": "one_batch", "term_en": "One Batch", "term_jp": "ワンバッチ", "category_tag": "finishing", "description": "製造工程における一度の生産量・使用量の単位。" },
+  { "id": "small_batch", "term_en": "Small Batch", "term_jp": "スモールバッチ", "category_tag": "finishing", "description": "少数の良質な樽からのみボトリングされた、数量限定のウイスキー。" },
+  { "id": "vatting", "term_en": "Vatting", "term_jp": "ヴァッティング", "category_tag": "finishing", "description": "異なるウイスキーの原酒を混ぜ合わせること。（モルト同士など同種の混合を指すことが多い）" },
+  { "id": "angels_share", "term_en": "Angel's Share", "term_jp": "天使の分け前", "category_tag": "maturation", "description": "熟成中に水分やアルコールが蒸発して失われる分。" },
+  { "id": "bourbon_barrel", "term_en": "Bourbon Barrel", "term_jp": "バーボンバレル", "category_tag": "maturation", "description": "バーボン熟成後の樽。バニラやカラメルのような甘い香りを付与する。" },
+  { "id": "cask_barrel", "term_en": "Cask / Barrel", "term_jp": "カスク / バレル", "category_tag": "maturation", "description": "ウイスキー樽のこと。サイズによって様々な名称がある。" },
+  { "id": "charring", "term_en": "Charring", "term_jp": "チャーリング", "category_tag": "maturation", "description": "樽の内側を直火で焦がすこと。アメリカの法律により、バーボンはチャーリングされた新樽で熟成させることが義務付けられている。" },
+  { "id": "cooperage", "term_en": "Cooperage", "term_jp": "クーパレッジ", "category_tag": "maturation", "description": "製樽工場のこと。樽をつくる職人のことはクーパー（cooper）と呼ぶ。樽を一から製造したり、中古樽の修理をしたりする。" },
+  { "id": "devils_cut", "term_en": "Devil's Cut", "term_jp": "デビルズカット", "category_tag": "maturation", "description": "樽材に染み込み取り出せない部分のこと。" },
+  { "id": "dunnage", "term_en": "Dunnage", "term_jp": "ダンネージ式", "category_tag": "maturation", "description": "樽を横向きで3〜4段積み上げる伝統的な貯蔵方式。湿度が保たれやすいが、スペース効率は悪い。" },
+  { "id": "first_fill", "term_en": "1st Fill", "term_jp": "ファーストフィル", "category_tag": "maturation", "description": "古樽がウイスキーの熟成に初めて使用される場合に用いる。新樽とは異なる。成分の影響が強く出る。" },
+  { "id": "maturation_process", "term_en": "Maturation", "term_jp": "マチュレーション", "category_tag": "maturation", "description": "蒸留したてのウイスキー（ニューポット）を木製の樽に詰めて寝かせる、熟成工程のこと。" },
+  { "id": "palletised", "term_en": "Palletised", "term_jp": "パレタイズ式", "category_tag": "maturation", "description": "樽を縦向きにパレットに乗せて積む方式。効率は良いが長期熟成には不向きとされる。" },
+  { "id": "racked", "term_en": "Racked", "term_jp": "ラック式", "category_tag": "maturation", "description": "金属製の棚に樽を横向きで十数段積み上げる方式。効率が良く、大手蒸溜所でよく利用される。" },
+  { "id": "re_charring", "term_en": "Re-charring", "term_jp": "リチャリング", "category_tag": "maturation", "description": "使い古した樽の内側を再度焼くこと。樽の成分を再活性化させ、風味を蘇らせる。" },
+  { "id": "re_racking", "term_en": "Re-racking", "term_jp": "リラック", "category_tag": "maturation", "description": "樽の中の原酒を、一つの樽から別の樽へと移し替えること。複数の樽で熟成させることで、ウイスキーの味わいや香りを豊かにすることができる。" },
+  { "id": "refill_cask", "term_en": "Refill Cask", "term_jp": "リフィル・カスク", "category_tag": "maturation", "description": "一度ウイスキー熟成に使われた後の樽を再利用したもの。樽の影響が穏やかになり、蒸留所の個性が引き立ちやすい。" },
+  { "id": "sherry_cask", "term_en": "Sherry Cask", "term_jp": "シェリーカスク", "category_tag": "maturation", "description": "シェリー酒熟成後の樽。ドライフルーツやスパイスの濃厚な香りを付与する。" },
+  { "id": "toast", "term_en": "Toast", "term_jp": "トースト", "category_tag": "maturation", "description": "樽を遠火の遠赤外線で低温加熱し焦がすこと。ワイン樽などに特有の香りをつけたり、成分を溶出しやすくする。" },
+  { "id": "abv", "term_en": "Alcohol by Volume (ABV)", "term_jp": "アルコール度数", "category_tag": "others", "description": "アルコールの体積百分率。スコッチウイスキーは法律で40度以上でなければならない。" },
+  { "id": "age_statement", "term_en": "Age Statement", "term_jp": "エイジ・ステイトメント", "category_tag": "others", "description": "ブレンドされている一番若い原酒の熟成年数を記載すること。" },
+  { "id": "cheers", "term_en": "Slàinte Mhath", "term_jp": "スランジバー（乾杯）", "category_tag": "others", "description": "スコットランド・ゲール語で「健康を！」という意味の乾杯の言葉。" },
+  { "id": "hall_of_fame", "term_en": "Hall of Fame", "term_jp": "ホール・オブ・フェイム", "category_tag": "others", "description": "ウイスキー業界に偉大な功績を残した人物を称える「殿堂入り」の称号。" },
+  { "id": "house_style", "term_en": "House Style", "term_jp": "ハウススタイル", "category_tag": "others", "description": "蒸溜所が持つ独自の味わいの傾向のこと。" },
+  { "id": "keepers_of_the_quaich", "term_en": "The Keepers of the Quaich", "term_jp": "ザ・キーパー・オブ・ザ・クエイヒ", "category_tag": "others", "description": "スコッチウイスキー業界に貢献した人物が入会できる格式高い協会。" },
+  { "id": "master_of_the_quaich", "term_en": "The Master of the Quaich", "term_jp": "ザ・マスター・オブ・ザ・クエイヒ", "category_tag": "others", "description": "キーパーの中でも特に貢献度が大きく、長年務めた人物に贈られる名誉称号。" },
+  { "id": "moonshine", "term_en": "Moonshine", "term_jp": "ムーンシャイン", "category_tag": "others", "description": "密造酒のこと。禁酒法時代に月明かりの下で作られたことに由来する。" },
+  { "id": "mothballed_distillery", "term_en": "Mothballed Distillery", "term_jp": "モスボール・ディスティラリー", "category_tag": "others", "description": "過去に稼働していたが、現在は閉鎖している蒸溜所のこと。" },
+  { "id": "non_age_statement", "term_en": "Non Age Statement (NAS)", "term_jp": "ノンエイジ", "category_tag": "others", "description": "ラベルに熟成年数を表記しないウイスキーのこと。" },
+  { "id": "regauge", "term_en": "Regauge", "term_jp": "リゲージ", "category_tag": "others", "description": "樽の液体量やアルコール度数を再測定すること。熟成管理のために行われる。" },
+  { "id": "world_whiskies_awards", "term_en": "World Whiskies Awards (WWA)", "term_jp": "ワールド・ウイスキー・アワード", "category_tag": "others", "description": "年に1回開催される国際的なウイスキーコンペティション。" },
+  { "id": "astringency", "term_en": "Astringency", "term_jp": "収斂味（しゅうれんみ）", "category_tag": "tasting", "description": "口の中が引き締まるような、あるいは乾くような感覚。主に木樽由来のタンニンによって引き起こされる「渋み」。" },
+  { "id": "band_aid", "term_en": "Band-Aid / Medicinal", "term_jp": "絆創膏（ばんそうこう）", "category_tag": "tasting", "description": "消毒液やプラスチック製の絆創膏のような、薬品的な香り。アイラモルトなどのピートが強いウイスキー特有の表現。フェノール類に由来する。" },
+  { "id": "barnyard", "term_en": "Barnyard / Farmyard", "term_jp": "農場・馬小屋", "category_tag": "tasting", "description": "干し草、家畜、土などが混ざり合った、田舎の農場のような香り。非常に複雑な香味を持つ古いボトルや、独特の酵母由来のニュアンスに使われる。" },
+  { "id": "body", "term_en": "Body", "term_jp": "ボディ", "category_tag": "tasting", "description": "口に含んだ時の重みや厚みの表現。フルボディ（重口）、ライトボディ（軽口）などと使われる。" },
+  { "id": "cereal", "term_en": "Cereal", "term_jp": "シリアル", "category_tag": "tasting", "description": "穀物由来の香り。麦芽、トースト、酵母など、ウイスキーの原料を感じさせる香ばしいニュアンス。" },
+  { "id": "complexity", "term_en": "Complexity", "term_jp": "複雑さ", "category_tag": "tasting", "description": "香りと味わいが重層的で、時間の経過とともに様々な表情を見せること。高品質なウイスキーの褒め言葉として使われる。" },
+  { "id": "dram", "term_en": "Dram", "term_jp": "ドラム", "category_tag": "tasting", "description": "スコットランドでのウイスキー1杯分の呼称。明確な定義はないが、25ml〜35ml程度を指すことが多い。" },
+  { "id": "dunnage_warehouse", "term_en": "Dunnage Aroma", "term_jp": "ダンネージ式の貯蔵庫の香り", "category_tag": "tasting", "description": "湿った土、古いオーク、そしてわずかなカビの匂いが混ざり合った、伝統的な貯蔵庫特有の香り。ウイスキーファンにとっては非常に魅惑的な表現。" },
+  { "id": "esters", "term_en": "Esters", "term_jp": "エステル", "category_tag": "tasting", "description": "発酵中に酵母が作り出す芳香成分。ウイスキーにフルーティーさ（バナナ、リンゴなど）や華やかさを与える正体。" },
+  { "id": "estery", "term_en": "Estery", "term_jp": "エステリー", "category_tag": "tasting", "description": "華やかな果実（バナナやリンゴ）や花のような香り。発酵や熟成中に生成されるエステル成分に由来する。" },
+  { "id": "finish_length", "term_en": "Finish / Aftertaste", "term_jp": "フィニッシュ / 余韻", "category_tag": "tasting", "description": "飲み込んだ後に口の中に残る香りと味わい。その持続時間を「長い（ロング・フィニッシュ）」「短い（ショート・フィニッシュ）」と表現する。" },
+  { "id": "flight", "term_en": "Flight", "term_jp": "フライト", "category_tag": "tasting", "description": "数種類のウイスキーの飲み比べセットのこと。" },
+  { "id": "floral", "term_en": "Floral", "term_jp": "フローラル", "category_tag": "tasting", "description": "花のような香り。草花、ドライフラワー、あるいはハーブのような華やかなニュアンス。" },
+  { "id": "fruity", "term_en": "Fruity", "term_jp": "フルーティー", "category_tag": "tasting", "description": "果実のような香り。リンゴ、洋ナシ、柑橘、トロピカルなど様々。" },
+  { "id": "furniture_polish", "term_en": "Furniture Polish / Wax", "term_jp": "家具のワックス", "category_tag": "tasting", "description": "磨き上げられたアンティーク家具や蜜蝋（みつろう）のような香り。オイリーで滑らかな質感を伴う、高品質な長期熟成原酒によく使われる表現。" },
+  { "id": "gunpowder", "term_en": "Gunpowder", "term_jp": "火薬", "category_tag": "tasting", "description": "打ち上げ花火や爆竹を鳴らした後のような、焦げた硫黄の匂い。シェリー樽由来の成分や、蒸留過程の化学反応で現れる、非常にパンチのある表現。" },
+  { "id": "industrial_oil", "term_en": "Industrial / Engine Oil", "term_jp": "機械油", "category_tag": "tasting", "description": "工場の重油やエンジンオイルのような、無機質で力強いオイリーさ。一部の蒸留所が持つ、非常に個性的でクラシックなキャラクターを指す。" },
+  { "id": "maritime", "term_en": "Maritime", "term_jp": "マリティム（潮っぽさ）", "category_tag": "tasting", "description": "海風、塩気、ヨードなどを連想させる香り。海岸近くの熟成庫で育ったウイスキーに多く見られる。" },
+  { "id": "mouthfeel", "term_en": "Mouthfeel", "term_jp": "マウスフィール", "category_tag": "tasting", "description": "口に含んだときの感触。クリーミー、オイリー、ドライ、ざらつきなど、味そのものよりも「触感」に近い表現。" },
+  { "id": "nose", "term_en": "Nose", "term_jp": "ノーズ", "category_tag": "tasting", "description": "グラスから立ち上がる香りを嗅ぐこと、またはその香りの質そのものを指す。" },
+  { "id": "oeil_de_perdrix", "term_en": "Eye of the Partridge", "term_jp": "ヤマウズラの目の色", "category_tag": "tasting", "description": "ワイン用語（Oeil de Perdrix）に由来。極めて淡い琥珀色や、ロゼワインのようなピンクがかった銅色を指す非常に優雅な表現。" },
+  { "id": "old_leather_shoe", "term_en": "Old Leather Shoe", "term_jp": "古い革靴", "category_tag": "tasting", "description": "使い込まれた革製品や靴のような香り。シェリー樽での長期熟成によって生まれる、重厚で深みのある芳醇さを表す際に使われる褒め言葉。" },
+  { "id": "old_library", "term_en": "Old Library", "term_jp": "古い図書館", "category_tag": "tasting", "description": "古い紙、革の装丁、埃っぽさ、そしてわずかなワックスの香りが混じった状態。長期熟成されたモルトにしばしば見られる表現。" },
+  { "id": "palate", "term_en": "Palate", "term_jp": "パレット", "category_tag": "tasting", "description": "口に含んだ時の味わい、テクスチャー、全体的な風味の構成のこと。" },
+  { "id": "peaty", "term_en": "Peaty", "term_jp": "ピーティー", "category_tag": "tasting", "description": "ピート（泥炭）の風味が強いこと。薬品、ヨード、あるいは土っぽさを伴う独特の個性。" },
+  { "id": "petrichor", "term_en": "Petrichor", "term_jp": "ペトリコール", "category_tag": "tasting", "description": "「雨が降った後の地面の匂い」。土っぽさ（アース）の中に、清涼感と湿り気を含んだ複雑なニュアンスを表す時に使われる。" },
+  { "id": "phenols", "term_en": "Phenols", "term_jp": "フェノール", "category_tag": "tasting", "description": "ピートを焚いた際に生じる化合物。スモーキー、薬品、ヨードといった香りの指標。PPMという単位で表される。" },
+  { "id": "pipi_de_chat", "term_en": "Cat's Pee", "term_jp": "猫の尿", "category_tag": "tasting", "description": "ソーヴィニヨン・ブランなどのワインで使われる有名な表現。ウイスキーでは、ある種の硫黄化合物や若い原酒が持つ、ツンとした刺激的なハーブのような香りを指す。" },
+  { "id": "rancio", "term_en": "Rancio", "term_jp": "ランシオ", "category_tag": "tasting", "description": "長期間の熟成を経たコニャックやウイスキーに現れる、熟したキノコ、ナッツ、あるいはチーズのような独特の芳醇な香り。" },
+  { "id": "smoky", "term_en": "Smoky", "term_jp": "スモーキー", "category_tag": "tasting", "description": "煙のような香り。ピート由来のものや樽由来のものがある。" },
+  { "id": "spicy", "term_en": "Spicy", "term_jp": "スパイシー", "category_tag": "tasting", "description": "胡椒やシナモンのような刺激のある香り。" },
+  { "id": "sulfury", "term_en": "Sulfury", "term_jp": "サルファリー", "category_tag": "tasting", "description": "硫黄のようなニュアンス。マッチの火、ゴム、肉のような重厚な香り。蒸留器の銅との反応に関連する。" },
+  { "id": "sweet_flavor", "term_en": "Sweet", "term_jp": "スイート", "category_tag": "tasting", "description": "甘い香りや味わい。バニラ、ハチミツ、キャラメル、チョコレートなど。主に樽由来の成分からくる。" },
+  { "id": "viscosity", "term_en": "Viscosity", "term_jp": "粘性（ねんせい）", "category_tag": "tasting", "description": "液体の「とろみ」。グラスの壁を流れる液滴（レッグス）の速さや、口当たりで判断される。" },
+  { "id": "waxy", "term_en": "Waxy", "term_jp": "ワクシー", "category_tag": "tasting", "description": "蜜蝋やキャンドルのような、口の中に膜が張るような独特の質感。一部のハイランドモルト等に顕著。" },
+  { "id": "wet_dog", "term_en": "Wet Dog", "term_jp": "濡れた犬", "category_tag": "tasting", "description": "濡れた犬の毛のような、独特の動物的・湿ったニュアンス。ある種の新酒や特定の発酵プロセスを経たウイスキーに現れる。愛好家には『野性的』とポジティブに捉えられることも。" },
+  { "id": "winey", "term_en": "Winey", "term_jp": "ワイニー", "category_tag": "tasting", "description": "ワインやシェリー酒を思わせる、濃縮された果実味とフルーティーな酸味。タンニン（渋み）を感じることもある。" },
+  { "id": "woody", "term_en": "Woody", "term_jp": "ウッディー", "category_tag": "tasting", "description": "木の香り。熟成に使われたオーク樽に由来する。" },
+  { "id": "barley", "term_en": "Barley", "term_jp": "大麦", "category_tag": "raw", "description": "ウイスキーの主原料となる穀物。モルトウイスキーでは二条大麦が主に使われる。" },
+  { "id": "floor_malting", "term_en": "Floor Malting", "term_jp": "フロアモルティング", "category_tag": "raw", "description": "大麦を床に広げ、手作業でかき混ぜながら発芽させる伝統的な製麦方法。" },
+  { "id": "grist", "term_en": "Grist", "term_jp": "グリスト", "category_tag": "raw", "description": "粉砕した麦芽のこと。粉砕度合いは粗いものからハスク、グリッツ、一番細かいものをフラワーと呼び、全体をまとめてグリストと呼ぶ。" },
+  { "id": "kiln", "term_en": "Kiln", "term_jp": "キルン", "category_tag": "raw", "description": "発芽した麦芽を乾燥させるための窯や炉。ここでピートを焚くことでスモーキーな香りがつく。" },
+  { "id": "kilning", "term_en": "Kilning", "term_jp": "キルニング", "category_tag": "raw", "description": "発芽した麦芽に熱風を当てて乾燥させ、成長を止める工程。ここでピートを焚き込むことで香りが付く。" },
+  { "id": "malt", "term_en": "Malt", "term_jp": "麦芽", "category_tag": "raw", "description": "発芽させた大麦を乾燥させたもの。糖化しやすくなり、ウイスキーの基盤となる香味を生む。" },
+  { "id": "malting", "term_en": "Malting", "term_jp": "モルティング", "category_tag": "raw", "description": "大麦を麦芽（モルト）へ加工する、製麦工程のこと。" },
+  { "id": "maltster", "term_en": "Maltster", "term_jp": "モルトスター", "category_tag": "raw", "description": "製麦工程を専門的に行い、原料を提供する業者。" },
+  { "id": "milling", "term_en": "Milling", "term_jp": "ミリング", "category_tag": "raw", "description": "精麦（モルティング）された麦芽の糖を水に溶けやすくするために挽き割りする、粉砕工程のこと。" },
+  { "id": "peat", "term_en": "Peat", "term_jp": "ピート", "category_tag": "raw", "description": "長年堆積した植物が変化してできた泥炭。麦芽の乾燥時に燃料として用いることで、スモーキーな香りを付与する。" }
+];
 
-    const kanaRows = {
-        "あ": "あいうえおぁぃぅぇぉ", "か": "かきくけこがぎぐげご", "さ": "さしすせそざじずぜぞ",
-        "た": "たちつてとだぢづでど", "な": "なにぬねの", "は": "はひふへほばびぶべぼぱぴぷぺぽ",
-        "ま": "まみむめも", "や": "やゆよゃゅょ", "ら": "らりるれろ", "わ": "わをん"
-    };
+// --- データ2：形容詞 (Lexicon の DATA) ---
+const FLAVOR_DATA = [
+    ["甘い","sweet","味",""],["まろやか","mellow / smooth","味",""],["濃厚な","rich / full-bodied","味",""],
+    ["フルーティな","fruity","香り",""],["スモーキーな","smoky / peaty","香り",""],["複雑な","complex / layered","総合","(interesting)"],
+    ["なめらか","silky / smooth","リ",""],["長い（余韻）","long finish","リ",""]
+];
 
-    function init() {
-        if (typeof dictionaryData !== 'undefined') {
-            masterData = dictionaryData; 
-            createIndexNav();
-            createTagAccordion();
-            renderDictionary(masterData);
-        } else {
-            document.getElementById('dictionaryList').innerHTML = 
-                "<div style='text-align:center; padding:20px;'>dictionary.js を読み込めません。</div>";
-        }
-    }
+const alphaRows = "ABCDEFGHIJKLMNO PQRSTUVWXYZ".replace(" ", "").split("");
+const kanaRows = ["あ","か","さ","た","な","は","ま","やらわ"];
 
-    // インデックスの生成（アコーディオン形式）
-    function createIndexNav() {
-        const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-        const kana = "あかさたなはまやらわ".split("");
+let currentMode = 'knowledge';
+let currentCategory = 'すべて';
+let currentIndexChar = null;
 
-        const makeIndexHtml = (id, label, items, mode) => `
-            <div class="main-category-root" id="${id}">
-                <button class="btn-root-label" onclick="toggleAccordion('${id}')">
-                    <span class="root-name">${label}</span>
-                    <span class="count-num">${items.length} Keys</span>
-                </button>
-                <div class="tag-group-container" style="padding: 10px;">
-                    <div class="index-row">
-                        ${items.map(c => `<button class="btn-index" onclick="filterByChar(event, '${c}', '${mode}')">${c}</button>`).join('')}
-                    </div>
-                </div>
-            </div>
-        `;
+function switchMode(mode) {
+    currentMode = mode;
+    currentCategory = 'すべて';
+    currentIndexChar = null;
+    
+    document.getElementById('btn-knowledge').classList.toggle('active', mode === 'knowledge');
+    document.getElementById('btn-flavor').classList.toggle('active', mode === 'flavor');
+    document.getElementById('appTitle').innerText = mode === 'knowledge' ? 'Amber Dictionary' : 'Amber Lexicon';
+    document.getElementById('mainSearch').value = "";
+    
+    renderIndex();
+    renderFilters();
+    renderList();
+}
 
-        document.getElementById('alphaIndex').innerHTML = makeIndexHtml('root-alpha-index', 'Alphabet Index', alpha, 'en');
-        document.getElementById('kanaIndex').innerHTML = makeIndexHtml('root-kana-index', 'Hiragana Index', kana, 'jp');
-    }
-
-    // 4階層カテゴリーアコーディオンの生成
-    function createTagAccordion() {
-        const container = document.getElementById('tagHierarchicalIndex');
-        if(!container) return;
-
-        const structuredData = {};
-        masterData.forEach(item => {
-            if (!structuredData[item.category]) structuredData[item.category] = {};
-            item.tags.forEach(tag => {
-                if (!tag) return;
-                if (!structuredData[item.category][tag]) structuredData[item.category][tag] = [];
-                structuredData[item.category][tag].push(item);
-            });
-        });
-
-        let html = `
-            <div class="main-category-root" id="root-category-list">
-                <button class="btn-root-label" onclick="toggleAccordion('root-category-list')">
-                    <span class="root-name">カテゴリーから探す</span>
-                    <span class="count-num">${Object.keys(structuredData).length} Categories</span>
-                </button>
-                <div class="tag-group-container">
-        `;
-
-        html += Object.keys(structuredData).sort().map(cat => {
-            const tags = structuredData[cat];
-            const categoryId = `group-${cat}`.replace(/\s+/g, '-');
-            return `
-                <div class="tag-group" id="${categoryId}">
-                    <button class="tag-group-label" onclick="toggleAccordion('${categoryId}')">
-                        <span class="cat-name">${categoryNames[cat] || cat}</span>
-                        <span class="count-num">${Object.keys(tags).length} Tags</span>
-                    </button>
-                    <div class="tag-sub-container">
-                        ${Object.keys(tags).sort().map(tagName => {
-                            const items = tags[tagName];
-                            const subGroupId = `sub-${cat}-${tagName}`.replace(/\s+/g, '-');
-                            return `
-                                <div class="tag-sub-group" id="${subGroupId}">
-                                    <button class="btn-tag-expand" onclick="toggleAccordion('${subGroupId}')">
-                                        <span class="tag-name">#${tagName}</span>
-                                        <span class="count-num">${items.length}</span>
-                                    </button>
-                                    <div class="tag-term-list">
-                                        ${items.map(item => `
-                                            <a href="javascript:void(0)" class="term-link" onclick="filterBySingleWord('${item.term_en}')">
-                                                ・${item.term_en}
-                                            </a>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        html += `</div></div>`;
-        container.innerHTML = html;
-    }
-
-    // 開閉ロジック
-    function toggleAccordion(id) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.classList.toggle('open');
-        const content = el.querySelector('.tag-group-container, .tag-sub-container, .tag-term-list');
-        if (content) {
-            content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
-        }
-    }
-
-    // インデックス選択時の処理（自動閉鎖付き）
-    function filterByChar(event, char, mode) {
-        clearActiveStates();
-        if (event && event.currentTarget) event.currentTarget.classList.add('active');
-        const filtered = masterData.filter(item => {
-            if (mode === 'en') return item.term_en.toUpperCase().startsWith(char.toUpperCase());
-            const rowChars = kanaRows[char] || char;
-            const target = item.reading || item.term_jp || "";
-            return rowChars.includes(toHiragana(target.charAt(0)));
-        });
-        renderDictionary(filtered);
-        finalizeFilter(`「${char}」行の結果: ${filtered.length}件`);
-
-        // 自動でインデックスのアコーディオンを閉じる
-        const targetId = (mode === 'en') ? 'root-alpha-index' : 'root-kana-index';
-        toggleAccordion(targetId);
-    }
-
-    // カテゴリーから単語を選択（自動閉鎖付き）
-    function filterBySingleWord(wordEn) {
-        const filtered = masterData.filter(item => item.term_en === wordEn);
-        renderDictionary(filtered, wordEn);
-        finalizeFilter(`「${wordEn}」の詳細`);
-
-        // カテゴリーのアコーディオンを閉じる
-        const rootId = 'root-category-list';
-        const rootEl = document.getElementById(rootId);
-        if (rootEl && rootEl.classList.contains('open')) {
-            toggleAccordion(rootId);
-        }
-    }
-
-    function filterByTag(tag) {
-        const filtered = masterData.filter(item => item.tags.includes(tag));
-        renderDictionary(filtered, tag);
-        finalizeFilter(`タグ「#${tag}」の結果: ${filtered.length}件`);
-    }
-
-    function renderDictionary(data, query = "") {
-        const list = document.getElementById('dictionaryList');
-        if (data.length === 0) {
-            list.innerHTML = "<div style='text-align:center; padding:40px; opacity:0.6;'>該当なし</div>";
-            return;
-        }
-        list.innerHTML = data.map(item => `
-            <div class="dic-card" data-cat="${item.category}">
-                <div class="term-en">${highlight(item.term_en, query)}</div>
-                <div class="term-jp">${item.term_jp}</div>
-                <p class="desc">${highlight(item.description, query)}</p>
-                <div class="card-tags">
-                    ${item.tags.map(tag => `<span class="card-tag" onclick="filterByTag('${tag}')">#${tag}</span>`).join('')}
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function highlight(text, q) {
-        if (!q || q.length < 1) return text;
-        const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "gi");
-        return text.replace(re, `<span class="highlight">$1</span>`);
-    }
-
-    function clearActiveStates() {
-        document.querySelectorAll('.btn-index').forEach(el => el.classList.remove('active'));
-    }
-
-    function finalizeFilter(message) {
-        const status = document.getElementById('resultStatus');
-        const msg = document.getElementById('statusMessage');
-        status.classList.add('show');
-        msg.innerText = message;
-        window.scrollTo({ top: status.offsetTop - 20, behavior: 'smooth' });
-    }
-
-    function resetSearch() {
-        clearActiveStates();
-        document.getElementById('resultStatus').classList.remove('show');
-        document.getElementById('dicSearch').value = "";
-        renderDictionary(masterData);
-    }
-
-    function toHiragana(src) {
-        return src.replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60));
-    }
-
-    // 検索窓の連動（入力時にアコーディオンをすべて閉じる）
-    document.getElementById('dicSearch').addEventListener('input', (e) => {
-        const q = e.target.value.toLowerCase();
-        
-        // 入力があった場合、開いている全ルートアコーディオンを閉じる
-        ['root-alpha-index', 'root-kana-index', 'root-category-list'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el && el.classList.contains('open')) {
-                toggleAccordion(id);
-            }
-        });
-
-        if(q === "") {
-            document.getElementById('resultStatus').classList.remove('show');
-            renderDictionary(masterData);
-        } else {
-            const filtered = masterData.filter(item => 
-                item.term_en.toLowerCase().includes(q) || item.term_jp.includes(q) || 
-                (item.reading && item.reading.includes(q)) || item.description.includes(q)
-            );
-            renderDictionary(filtered, q);
-            document.getElementById('resultStatus').classList.add('show');
-            document.getElementById('statusMessage').innerText = `「${q}」の検索結果: ${filtered.length}件`;
-        }
+function renderIndex() {
+    const container = document.getElementById('indexContainer');
+    container.innerHTML = '';
+    const list = currentMode === 'knowledge' ? alphaRows : kanaRows;
+    
+    list.forEach(char => {
+        const btn = document.createElement('button');
+        btn.className = `btn-index ${currentIndexChar === char ? 'active' : ''}`;
+        btn.innerText = char;
+        btn.onclick = () => {
+            currentIndexChar = (currentIndexChar === char) ? null : char;
+            renderIndex();
+            renderList();
+        };
+        container.appendChild(btn);
     });
+}
 
-    window.onload = init;
+function renderFilters() {
+    const chipArea = document.getElementById('filterChips');
+    chipArea.innerHTML = '';
+    const cats = currentMode === 'knowledge' 
+        ? ["すべて","tasting","distillation","maturation","raw","fermentation","finishing","distribution","others"]
+        : ["すべて","味","香り","リ","総合"];
+
+    cats.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = `chip ${currentCategory === cat ? 'active' : ''}`;
+        btn.innerText = cat === 'リ' ? '口当り・余韻' : cat;
+        btn.onclick = () => {
+            currentCategory = cat;
+            renderFilters();
+            renderList();
+        };
+        chipArea.appendChild(btn);
+    });
+}
+
+function renderList() {
+    const q = document.getElementById('mainSearch').value.toLowerCase();
+    const area = document.getElementById('contentArea');
+    area.innerHTML = '';
+
+    let results = [];
+
+    if (currentMode === 'knowledge') {
+        results = dictionaryData.filter(item => {
+            const matchCat = currentCategory === 'すべて' || item.category_tag === currentCategory;
+            const matchSearch = item.term_en.toLowerCase().includes(q) || item.term_jp.includes(q) || item.description.includes(q);
+            const matchIndex = !currentIndexChar || item.term_en.toUpperCase().startsWith(currentIndexChar);
+            return matchCat && matchSearch && matchIndex;
+        });
+
+        results.forEach(item => {
+            area.innerHTML += `
+                <div class="dic-card">
+                    <div class="dic-header">
+                        <div class="dic-en">${highlight(item.term_en, q)}</div>
+                        <span class="tag-badge">${item.category_tag}</span>
+                    </div>
+                    <div class="dic-jp">${highlight(item.term_jp, q)}</div>
+                    <div class="dic-desc">${highlight(item.description, q)}</div>
+                </div>`;
+        });
+    } else {
+        results = FLAVOR_DATA.filter(item => {
+            const matchCat = currentCategory === 'すべて' || item[2] === currentCategory;
+            const matchSearch = item[0].includes(q) || item[1].toLowerCase().includes(q);
+            const matchIndex = !currentIndexChar || getKanaRow(item[0]) === currentIndexChar;
+            return matchCat && matchSearch && matchIndex;
+        });
+
+        results.forEach(item => {
+            area.innerHTML += `
+                <div class="lex-row">
+                    <div class="lex-cell"><span class="tag-badge" style="float:right">${item[2]}</span>${highlight(item[0], q)}</div>
+                    <div class="lex-cell">${highlight(item[1], q)}</div>
+                </div>`;
+        });
+    }
+    document.getElementById('countStatus').innerText = `${results.length} 件`;
+}
+
+function getKanaRow(text) {
+    const char = text.charAt(0);
+    const code = char.charCodeAt(0);
+    if (code >= 12353 && code <= 12362) return "あ";
+    if (code >= 12363 && code <= 12372) return "か";
+    if (code >= 12373 && code <= 12382) return "さ";
+    if (code >= 12383 && code <= 12392) return "た";
+    if (code >= 12393 && code <= 12397) return "な";
+    if (code >= 12398 && code <= 12412) return "は";
+    if (code >= 12413 && code <= 12417) return "ま";
+    return "やらわ";
+}
+
+function highlight(text, q) {
+    if (!q) return text;
+    const re = new RegExp(`(${q})`, "gi");
+    return text.replace(re, `<mark>$1</mark>`);
+}
+
+document.getElementById('mainSearch').oninput = () => { 
+    currentIndexChar = null; 
+    renderIndex(); 
+    renderList(); 
+};
+
+window.onload = () => switchMode('knowledge');
 </script>
-<script src="./hub-header.js"></script>	
 </body>
 </html>
