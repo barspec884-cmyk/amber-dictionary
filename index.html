@@ -163,8 +163,6 @@
     <div id="dictionaryList" class="dictionary-grid"></div>
 </div>
 
-<script src="dictionary.js"></script>
-
 <script>
     let masterData = [];
     let suggestActiveIndex = -1;
@@ -182,15 +180,21 @@
     };
 
     function init() {
-        if (typeof dictionaryData !== 'undefined') {
-            masterData = dictionaryData;
-            createIndexNav();
-            createTagAccordion();
-            renderDictionary(masterData);
-        } else {
-            document.getElementById('dictionaryList').innerHTML =
-                "<div style='text-align:center; padding:20px;'>dictionary.js を読み込めません。</div>";
-        }
+        fetch('dictionary-data.json')
+            .then(response => {
+                if (!response.ok) throw new Error('読み込み失敗');
+                return response.json();
+            })
+            .then(data => {
+                masterData = data;
+                createIndexNav();
+                createTagAccordion();
+                renderDictionary(masterData);
+            })
+            .catch(err => {
+                document.getElementById('dictionaryList').innerHTML =
+                    "<div style='text-align:center; padding:20px;'>dictionary-data.json を読み込めません。<br><small>" + err.message + "</small></div>";
+            });
     }
 
     // ===== サジェスト機能 =====

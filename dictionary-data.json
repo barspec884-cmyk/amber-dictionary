@@ -1,12 +1,21 @@
 ﻿[
   {
-    "id": "pot_still",
-    "term_en": "Pot Still",
-    "term_jp": "ポットスチル",
-    "reading": "ぽっとすちる",
+    "id": "wash_still",
+    "term_en": "Wash Still",
+    "term_jp": "ウォッシュスチル",
+    "reading": "うぉっしゅすちる",
     "category": "distillation",
-    "description": "銅製の釜を用いた伝統的蒸留器。形状が香味に影響する。",
-    "tags": ["equipment", "copper"]
+    "description": "モルトウイスキー製造で最初に使われるスチルのこと。初溜釜ともよばれる。銅製の場合が多く、ウォッシュを蒸留してローワイン（初留液）に変える。",
+    "tags": ["equipment", "first"]
+  },
+  {
+    "id": "cut_point",
+    "term_en": "Cut Point",
+    "term_jp": "カットポイント",
+    "reading": "かっとぽいんと",
+    "category": "distillation",
+    "description": "ミドルカットを行うポイントのこと。前寄りにカットするか後寄りにカットするかで、ウイスキーの酒質が変わる。",
+    "tags": ["process", "cut"]
   },
   {
     "id": "column_still",
@@ -27,58 +36,22 @@
     "tags": ["equipment", "grain"]
   },
   {
-    "id": "direct_heating",
-    "term_en": "Direct Heating",
-    "term_jp": "直火加熱",
-    "reading": "じかびかねつ",
+    "id": "condenser",
+    "term_en": "Condenser",
+    "term_jp": "コンデンサー",
+    "reading": "こんでんさー",
     "category": "distillation",
-    "description": "ポットスチルを直接炎で加熱する方法。香ばしい風味がつきやすい。",
-    "tags": ["process", "heating"]
+    "description": "蒸留器から立ち上った蒸気を冷却して液体に戻す装置の総称。",
+    "tags": ["equipment", "cooling"]
   },
   {
-    "id": "indirect_heating",
-    "term_en": "Indirect Heating",
-    "term_jp": "間接加熱",
-    "reading": "かんせつかねつ",
+    "id": "shell_and_tube",
+    "term_en": "Shell and Tube Condenser",
+    "term_jp": "シェルアンドチューブ",
+    "reading": "しぇるあんどちゅーぶ",
     "category": "distillation",
-    "description": "蒸気などで内部から均一に加熱する方法。コントロールしやすい。",
-    "tags": ["process", "heating"]
-  },
-  {
-    "id": "distillation_process",
-    "term_en": "Distillation",
-    "term_jp": "ディスティレーション",
-    "reading": "でぃすてぃれーしょん",
-    "category": "distillation",
-    "description": "発酵液を水とアルコールの沸点の違いを利用して、アルコール度数の高い蒸留液を抽出する、蒸留工程のこと。",
-    "tags": ["process", "distillation"]
-  },
-  {
-    "id": "reflux",
-    "term_en": "Reflux",
-    "term_jp": "リフラックス",
-    "reading": "りふらっくす",
-    "category": "distillation",
-    "description": "還流のこと。蒸留の際に、ポットスチル内の液体が蒸発と凝縮を繰り返えしながら、純度を高めていくプロセス。還流が強ければ強いほど、軽いフレーバーの酒質となる。",
-    "tags": ["process", "science"]
-  },
-  {
-    "id": "lyne_arm",
-    "term_en": "Lyne Arm",
-    "term_jp": "ラインアーム",
-    "reading": "らいんあーむ",
-    "category": "distillation",
-    "description": "ポットスチルの加熱部分と冷却器（コンデンサー）を繋ぐパイプ。長さや角度で、リフラックスに大きな影響を与える。",
-    "tags": ["equipment", "part"]
-  },
-  {
-    "id": "wash_still",
-    "term_en": "Wash Still",
-    "term_jp": "ウォッシュスチル",
-    "reading": "うぉっしゅすちる",
-    "category": "distillation",
-    "description": "モルトウイスキー製造で最初に使われるスチルのこと。初溜釜ともよばれる。銅製の場合が多く、ウォッシュを蒸留してローワイン（初留液）に変える。",
-    "tags": ["equipment", "first"]
+    "description": "複数の銅管の中に冷却水を通す近代的なコンデンサー。効率が良く、多くの蒸留所で使われている。",
+    "tags": ["equipment", "cooling"]
   },
   {
     "id": "spirit_still",
@@ -90,31 +63,40 @@
     "tags": ["equipment", "second"]
   },
   {
-    "id": "low_wine",
-    "term_en": "Low Wine",
-    "term_jp": "ローワイン",
-    "reading": "ろーわいん",
+    "id": "spirit_safe",
+    "term_en": "Spirit Safe",
+    "term_jp": "スピリットセーフ",
+    "reading": "すぴりっとせーふ",
     "category": "distillation",
-    "description": "ウォッシュスチル（初留釜）で最初の蒸留が終わった後にできる液体。初留液ともよばれる。アルコール度数は約20～30%で不純物を含む。",
-    "tags": ["liquid", "raw spirit"]
+    "description": "蒸留液の品質を目視で確認するための施錠付きガラス容器。英国では税務管理のため法的に義務付けられていた。",
+    "tags": ["equipment", "legal"]
   },
   {
-    "id": "middle_cut",
-    "term_en": "Middle Cut",
-    "term_jp": "ミドルカット",
-    "reading": "みどるかっと",
+    "id": "double_distillation",
+    "term_en": "Double Distillation",
+    "term_jp": "ダブルディスティレーション",
+    "reading": "だぶるでぃすてぃれーしょん",
     "category": "distillation",
-    "description": "別名ハートカット。蒸留液の最初（ヘッド）と最後（テール）を切り捨て、最も風味豊かな「ハート」部分だけを取り出す作業。",
-    "tags": ["process", "cut"]
+    "description": "2回蒸留を行うスコッチウイスキーの標準的な手法。初留と再留の2段階で行われる。",
+    "tags": ["process", "scotch"]
   },
   {
-    "id": "cut_point",
-    "term_en": "Cut Point",
-    "term_jp": "カットポイント",
-    "reading": "かっとぽいんと",
+    "id": "distillation_process",
+    "term_en": "Distillation",
+    "term_jp": "ディスティレーション",
+    "reading": "でぃすてぃれーしょん",
     "category": "distillation",
-    "description": "ミドルカットを行うポイントのこと。前寄りにカットするか後寄りにカットするかで、ウイスキーの酒質が変わる。",
-    "tags": ["process", "cut"]
+    "description": "発酵液を水とアルコールの沸点の違いを利用して、アルコール度数の高い蒸留液を抽出する、蒸留工程のこと。",
+    "tags": ["process", "distillation"]
+  },
+  {
+    "id": "triple_distillation",
+    "term_en": "Triple Distillation",
+    "term_jp": "トリプルディスティレーション",
+    "reading": "とりぷるでぃすてぃれーしょん",
+    "category": "distillation",
+    "description": "3回蒸留を行う手法。アイリッシュウイスキーに多く見られ、軽やかで滑らかな酒質になる。",
+    "tags": ["process", "irish"]
   },
   {
     "id": "new_make",
@@ -126,39 +108,129 @@
     "tags": ["liquid", "unaged"]
   },
   {
-    "id": "single_malt",
-    "term_en": "Single Malt",
-    "term_jp": "シングルモルト",
-    "reading": "しんぐるもると",
-    "category": "distribution",
-    "description": "1つの蒸溜所のモルト原酒のみからつくられたウイスキーのこと。",
-    "tags": ["style", "popular"]
+    "id": "heart",
+    "term_en": "Heart",
+    "term_jp": "ハート",
+    "reading": "はーと",
+    "category": "distillation",
+    "description": "ミドルカットで取り出される蒸留液の中心部分。最も品質が高く、ニューメイクスピリッツとなる。",
+    "tags": ["liquid", "cut"]
   },
   {
-    "id": "single_cask",
-    "term_en": "Single Cask",
-    "term_jp": "シングル・カスク",
-    "reading": "しんぐる・かすく",
-    "category": "distribution",
-    "description": "他の樽の原酒と混ぜずに、1つの蒸溜所の1つの樽から瓶詰めされたウイスキー。希少価値が高い。",
-    "tags": ["style", "rare"]
+    "id": "purifier",
+    "term_en": "Purifier",
+    "term_jp": "ピュリファイアー",
+    "reading": "ぴゅりふぁいあー",
+    "category": "distillation",
+    "description": "ラインアームに取り付けて蒸気の還流（リフラックス）を促進する追加装置。より軽い酒質を生む。",
+    "tags": ["equipment", "part"]
   },
   {
-    "id": "teaspoon_malt",
-    "term_en": "Teaspooned Malt",
-    "term_jp": "ティースプーンモルト",
-    "reading": "てぃーすぷーんもると",
-    "category": "distribution",
-    "description": "シングルモルトへごく少量の他蒸溜所ウイスキーを加えたもの。ブランド保護などのために行われる。",
-    "tags": ["style", "geeky"]
+    "id": "feints",
+    "term_en": "Feints",
+    "term_jp": "フェインツ",
+    "reading": "ふぇいんつ",
+    "category": "distillation",
+    "description": "蒸留の後半に出てくる液体（テール）。重い油分やフーゼル油を多く含み、次回の蒸留に戻される。",
+    "tags": ["liquid", "cut"]
   },
   {
-    "id": "pot_still_whisky",
-    "term_en": "Pot Still Whisky",
-    "term_jp": "ポットスチルウイスキー",
-    "reading": "ぽっとすちるういすきー",
+    "id": "foreshots",
+    "term_en": "Foreshots",
+    "term_jp": "フォアショッツ",
+    "reading": "ふぉあしょっつ",
+    "category": "distillation",
+    "description": "蒸留の最初に出てくる液体（ヘッド）。メタノールなど有害物質を含むため、製品には使用しない。",
+    "tags": ["liquid", "cut"]
+  },
+  {
+    "id": "pot_still",
+    "term_en": "Pot Still",
+    "term_jp": "ポットスチル",
+    "reading": "ぽっとすちる",
+    "category": "distillation",
+    "description": "銅製の釜を用いた伝統的蒸留器。形状が香味に影響する。",
+    "tags": ["equipment", "copper"]
+  },
+  {
+    "id": "middle_cut",
+    "term_en": "Middle Cut",
+    "term_jp": "ミドルカット",
+    "reading": "みどるかっと",
+    "category": "distillation",
+    "description": "別名ハートカット。蒸留液の最初（ヘッド）と最後（テール）を切り捨て、最も風味豊かな「ハート」部分だけを取り出す作業。",
+    "tags": ["process", "cut"]
+  },
+  {
+    "id": "lyne_arm",
+    "term_en": "Lyne Arm",
+    "term_jp": "ラインアーム",
+    "reading": "らいんあーむ",
+    "category": "distillation",
+    "description": "ポットスチルの加熱部分と冷却器（コンデンサー）を繋ぐパイプ。長さや角度で、リフラックスに大きな影響を与える。",
+    "tags": ["equipment", "part"]
+  },
+  {
+    "id": "reflux",
+    "term_en": "Reflux",
+    "term_jp": "リフラックス",
+    "reading": "りふらっくす",
+    "category": "distillation",
+    "description": "還流のこと。蒸留の際に、ポットスチル内の液体が蒸発と凝縮を繰り返えしながら、純度を高めていくプロセス。還流が強ければ強いほど、軽いフレーバーの酒質となる。",
+    "tags": ["process", "science"]
+  },
+  {
+    "id": "low_wine",
+    "term_en": "Low Wine",
+    "term_jp": "ローワイン",
+    "reading": "ろーわいん",
+    "category": "distillation",
+    "description": "ウォッシュスチル（初留釜）で最初の蒸留が終わった後にできる液体。初留液ともよばれる。アルコール度数は約20～30%で不純物を含む。",
+    "tags": ["liquid", "raw spirit"]
+  },
+  {
+    "id": "lomond_still",
+    "term_en": "Lomond Still",
+    "term_jp": "ロモンドスチル",
+    "reading": "ろもんどすちる",
+    "category": "distillation",
+    "description": "首部に調整可能な棚段（プレート）を備えた特殊なポットスチル。1つのスチルで異なる酒質を生み出せる。",
+    "tags": ["equipment", "special"]
+  },
+  {
+    "id": "worm_tub",
+    "term_en": "Worm Tub",
+    "term_jp": "ワームタブ",
+    "reading": "わーむたぶ",
+    "category": "distillation",
+    "description": "蛇管（ワーム）を冷水の入った桶に浸して冷却する伝統的なコンデンサー。重厚な酒質を生むとされる。",
+    "tags": ["equipment", "traditional"]
+  },
+  {
+    "id": "indirect_heating",
+    "term_en": "Indirect Heating",
+    "term_jp": "間接加熱",
+    "reading": "かんせつかねつ",
+    "category": "distillation",
+    "description": "蒸気などで内部から均一に加熱する方法。コントロールしやすい。",
+    "tags": ["process", "heating"]
+  },
+  {
+    "id": "direct_heating",
+    "term_en": "Direct Heating",
+    "term_jp": "直火加熱",
+    "reading": "じかびかねつ",
+    "category": "distillation",
+    "description": "ポットスチルを直接炎で加熱する方法。香ばしい風味がつきやすい。",
+    "tags": ["process", "heating"]
+  },
+  {
+    "id": "irish_whiskey",
+    "term_en": "Irish Whiskey",
+    "term_jp": "アイリッシュウイスキー",
+    "reading": "あいりっしゅういすきー",
     "category": "distribution",
-    "description": "麦芽と未発芽大麦を原料とし、ポットスチルで蒸留するアイルランド特有のスタイル。",
+    "description": "アイルランド産のウイスキー。3回蒸留が多く、滑らかで軽やかな酒質が特徴。",
     "tags": ["style", "irish"]
   },
   {
@@ -171,15 +243,6 @@
     "tags": ["distribution", "ib"]
   },
   {
-    "id": "official_bottle",
-    "term_en": "Official Bottle",
-    "term_jp": "オフィシャルボトル",
-    "reading": "おふぃしゃるぼとる",
-    "category": "distribution",
-    "description": "蒸留所が自社ブランドとして公式に販売するボトル。",
-    "tags": ["distribution", "ob"]
-  },
-  {
     "id": "importer",
     "term_en": "Importer",
     "term_jp": "インポーター",
@@ -189,31 +252,148 @@
     "tags": ["distribution", "business"]
   },
   {
-    "id": "yeast",
-    "term_en": "Yeast",
-    "term_jp": "酵母",
-    "reading": "こうぼ",
-    "category": "fermentation",
-    "description": "糖をアルコールと二酸化炭素に変える微生物。香りや味わいへの影響が大きい。",
-    "tags": ["microorganism", "aroma"]
+    "id": "vintage_bottle",
+    "term_en": "Vintage",
+    "term_jp": "ヴィンテージ",
+    "reading": "ゔぃんてーじ",
+    "category": "distribution",
+    "description": "蒸留された年（ヴィンテージイヤー）がラベルに表記されたボトル。その年の原酒の個性を味わえる。",
+    "tags": ["distribution", "label"]
   },
   {
-    "id": "sour_mash",
-    "term_en": "Sour Mash",
-    "term_jp": "サワーマッシュ",
-    "reading": "さわーまっしゅ",
-    "category": "fermentation",
-    "description": "前回蒸留の残液を次回仕込みに加えて発酵を安定させるバーボンの製法。",
-    "tags": ["bourbon", "process"]
+    "id": "official_bottle",
+    "term_en": "Official Bottle",
+    "term_jp": "オフィシャルボトル",
+    "reading": "おふぃしゃるぼとる",
+    "category": "distribution",
+    "description": "蒸留所が自社ブランドとして公式に販売するボトル。",
+    "tags": ["distribution", "ob"]
   },
   {
-    "id": "mashing",
-    "term_en": "Mashing",
-    "term_jp": "マッシング",
-    "reading": "まっしんぐ",
-    "category": "fermentation",
-    "description": "グリストとお湯を混ぜて加熱し、麦汁（ウォート）を抽出する、糖化工程のこと。",
-    "tags": ["process", "mash"]
+    "id": "grain_whisky",
+    "term_en": "Grain Whisky",
+    "term_jp": "グレーンウイスキー",
+    "reading": "ぐれーんういすきー",
+    "category": "distribution",
+    "description": "トウモロコシや小麦などの穀物を原料とし、連続式蒸留器で製造されるウイスキー。軽やかな酒質が特徴。",
+    "tags": ["style", "grain"]
+  },
+  {
+    "id": "japanese_whisky",
+    "term_en": "Japanese Whisky",
+    "term_jp": "ジャパニーズウイスキー",
+    "reading": "じゃぱにーずういすきー",
+    "category": "distribution",
+    "description": "日本で製造されるウイスキー。2021年に日本洋酒酒造組合が定義を制定。繊細で多様な酒質が世界的に評価されている。",
+    "tags": ["style", "japanese"]
+  },
+  {
+    "id": "single_cask",
+    "term_en": "Single Cask",
+    "term_jp": "シングル・カスク",
+    "reading": "しんぐる・かすく",
+    "category": "distribution",
+    "description": "他の樽の原酒と混ぜずに、1つの蒸溜所の1つの樽から瓶詰めされたウイスキー。希少価値が高い。",
+    "tags": ["style", "rare"]
+  },
+  {
+    "id": "single_malt",
+    "term_en": "Single Malt",
+    "term_jp": "シングルモルト",
+    "reading": "しんぐるもると",
+    "category": "distribution",
+    "description": "1つの蒸溜所のモルト原酒のみからつくられたウイスキーのこと。",
+    "tags": ["style", "popular"]
+  },
+  {
+    "id": "scotch_whisky",
+    "term_en": "Scotch Whisky",
+    "term_jp": "スコッチウイスキー",
+    "reading": "すこっちういすきー",
+    "category": "distribution",
+    "description": "スコットランドで製造・3年以上樽熟成されたウイスキー。法律で厳格に定義されている。",
+    "tags": ["style", "scotch"]
+  },
+  {
+    "id": "charcoal_mellowing",
+    "term_en": "Charcoal Mellowing",
+    "term_jp": "チャコールメローイング",
+    "reading": "ちゃこーるめろーいんぐ",
+    "category": "distribution",
+    "description": "テネシーウイスキー特有の工程。蒸留したての原酒をサトウカエデの活性炭で濾過し、まろやかにする。リンカーンカウンティプロセスとも呼ばれる。",
+    "tags": ["process", "tennessee"]
+  },
+  {
+    "id": "teaspoon_malt",
+    "term_en": "Teaspooned Malt",
+    "term_jp": "ティースプーンモルト",
+    "reading": "てぃーすぷーんもると",
+    "category": "distribution",
+    "description": "シングルモルトへごく少量の他蒸溜所ウイスキーを加えたもの。ブランド保護などのために行われる。",
+    "tags": ["style", "geeky"]
+  },
+  {
+    "id": "tennessee_whiskey",
+    "term_en": "Tennessee Whiskey",
+    "term_jp": "テネシーウイスキー",
+    "reading": "てねしーういすきー",
+    "category": "distribution",
+    "description": "テネシー州で製造されるウイスキー。蒸留後にサトウカエデの炭で濾過するチャコールメローイングが特徴。",
+    "tags": ["style", "american"]
+  },
+  {
+    "id": "bourbon",
+    "term_en": "Bourbon",
+    "term_jp": "バーボン",
+    "reading": "ばーぼん",
+    "category": "distribution",
+    "description": "アメリカ産ウイスキー。原料の51%以上がトウモロコシで、新しいチャーリングしたオーク樽で熟成される。",
+    "tags": ["style", "american"]
+  },
+  {
+    "id": "blended_whisky",
+    "term_en": "Blended Whisky",
+    "term_jp": "ブレンデッドウイスキー",
+    "reading": "ぶれんでっどういすきー",
+    "category": "distribution",
+    "description": "モルトウイスキーとグレーンウイスキーを混合したウイスキー。世界で最も消費量が多いスタイル。",
+    "tags": ["style", "popular"]
+  },
+  {
+    "id": "blended_malt",
+    "term_en": "Blended Malt",
+    "term_jp": "ブレンデッドモルト",
+    "reading": "ぶれんでっどもると",
+    "category": "distribution",
+    "description": "複数の蒸留所のモルトウイスキーを混合したもの。ヴァッテッドモルトとも呼ばれていた。",
+    "tags": ["style", "malt"]
+  },
+  {
+    "id": "pot_still_whisky",
+    "term_en": "Pot Still Whisky",
+    "term_jp": "ポットスチルウイスキー",
+    "reading": "ぽっとすちるういすきー",
+    "category": "distribution",
+    "description": "麦芽と未発芽大麦を原料とし、ポットスチルで蒸留するアイルランド特有のスタイル。",
+    "tags": ["style", "irish"]
+  },
+  {
+    "id": "rye_whiskey",
+    "term_en": "Rye Whiskey",
+    "term_jp": "ライウイスキー",
+    "reading": "らいういすきー",
+    "category": "distribution",
+    "description": "ライ麦を51%以上使用したアメリカンウイスキー。スパイシーでドライな味わいが特徴。",
+    "tags": ["style", "american"]
+  },
+  {
+    "id": "limited_edition",
+    "term_en": "Limited Edition",
+    "term_jp": "リミテッドエディション",
+    "reading": "りみてっどえでぃしょん",
+    "category": "distribution",
+    "description": "生産本数が限られた限定ボトル。特別な樽選びや特定のヴィンテージを用いることが多い。",
+    "tags": ["distribution", "rare"]
   },
   {
     "id": "wort_mash",
@@ -223,24 +403,6 @@
     "category": "fermentation",
     "description": "グリストに熱湯を注ぎ、麦芽中のデンプンを酵素で糖化したもの。",
     "tags": ["liquid", "mash"]
-  },
-  {
-    "id": "mash_tun",
-    "term_en": "Mash Tun",
-    "term_jp": "マッシュタン",
-    "reading": "まっしゅたん",
-    "category": "fermentation",
-    "description": "糖化槽のこと。麦汁（ウォート）をつくるための容器で、木製や金属製など、蒸溜所によって異なる。",
-    "tags": ["equipment", "mash"]
-  },
-  {
-    "id": "fermentation_process",
-    "term_en": "Fermentation",
-    "term_jp": "ファーメンテーション",
-    "reading": "ふぁーめんてーしょん",
-    "category": "fermentation",
-    "description": "麦汁に酵母を加え、アルコール分7〜8%程度の発酵液に変える発酵工程のこと。",
-    "tags": ["process", "fermentation"]
   },
   {
     "id": "wash",
@@ -261,40 +423,112 @@
     "tags": ["equipment", "fermentation"]
   },
   {
-    "id": "finish",
-    "term_en": "Finish",
-    "term_jp": "フィニッシュ（後熟）",
-    "reading": "ふぃにっしゅ（あとじゅく）",
-    "category": "finishing",
-    "description": "熟成後に別樽へ移して追加熟成させる手法。",
-    "tags": ["process:flavor"]
+    "id": "open_fermentation",
+    "term_en": "Open Fermentation",
+    "term_jp": "オープンファーメンテーション",
+    "reading": "おーぷんふぁーめんてーしょん",
+    "category": "fermentation",
+    "description": "蓋をしない開放型の発酵槽で発酵させる方法。空気中の野生酵母や乳酸菌が関与し、独特の風味を生む。",
+    "tags": ["process", "traditional"]
   },
   {
-    "id": "coloring",
-    "term_en": "Coloring",
-    "term_jp": "着色（カラメル色素）",
-    "reading": "ちゃくしょく（からめるしきそ）",
-    "category": "finishing",
-    "description": "製品ごとの色のバラつきを整えるための着色。",
-    "tags": ["process:additive"]
+    "id": "sour_mash",
+    "term_en": "Sour Mash",
+    "term_jp": "サワーマッシュ",
+    "reading": "さわーまっしゅ",
+    "category": "fermentation",
+    "description": "前回蒸留の残液を次回仕込みに加えて発酵を安定させるバーボンの製法。",
+    "tags": ["bourbon", "process"]
   },
   {
-    "id": "cask_strength",
-    "term_en": "Cask Strength",
-    "term_jp": "カスク・ストレングス",
-    "reading": "かすく・すとれんぐす",
-    "category": "finishing",
-    "description": "樽出しのアルコール度数で瓶詰めされたウイスキーのこと。加水されていないため、アルコール度数が50~60度であることが多い。",
-    "tags": ["bottling:high proof"]
+    "id": "distillers_yeast",
+    "term_en": "Distiller's Yeast",
+    "term_jp": "ディスティラーズイースト",
+    "reading": "でぃすてぃらーずいーすと",
+    "category": "fermentation",
+    "description": "蒸留酒の製造に特化して選別・培養された酵母。高いアルコール耐性を持つ。",
+    "tags": ["microorganism", "process"]
   },
   {
-    "id": "non_chill_filtered",
-    "term_en": "Non-Chill Filtered",
-    "term_jp": "ノンチルフィルタード",
-    "reading": "のんちるふぃるたーど",
-    "category": "finishing",
-    "description": "冷却濾過が施されていないウイスキーのこと。澱を取り除かないため、ウイスキー本来の味わいを楽しめる。",
-    "tags": ["bottling:natural"]
+    "id": "fermentation_process",
+    "term_en": "Fermentation",
+    "term_jp": "ファーメンテーション",
+    "reading": "ふぁーめんてーしょん",
+    "category": "fermentation",
+    "description": "麦汁に酵母を加え、アルコール分7〜8%程度の発酵液に変える発酵工程のこと。",
+    "tags": ["process", "fermentation"]
+  },
+  {
+    "id": "brewers_yeast",
+    "term_en": "Brewer's Yeast",
+    "term_jp": "ブルワーズイースト",
+    "reading": "ぶるわーずいーすと",
+    "category": "fermentation",
+    "description": "ビール醸造に由来する酵母。ウイスキー製造でも使われ、複雑なエステルを生む品種がある。",
+    "tags": ["microorganism", "aroma"]
+  },
+  {
+    "id": "mash_tun",
+    "term_en": "Mash Tun",
+    "term_jp": "マッシュタン",
+    "reading": "まっしゅたん",
+    "category": "fermentation",
+    "description": "糖化槽のこと。麦汁（ウォート）をつくるための容器で、木製や金属製など、蒸溜所によって異なる。",
+    "tags": ["equipment", "mash"]
+  },
+  {
+    "id": "mashing",
+    "term_en": "Mashing",
+    "term_jp": "マッシング",
+    "reading": "まっしんぐ",
+    "category": "fermentation",
+    "description": "グリストとお湯を混ぜて加熱し、麦汁（ウォート）を抽出する、糖化工程のこと。",
+    "tags": ["process", "mash"]
+  },
+  {
+    "id": "enzyme",
+    "term_en": "Enzyme",
+    "term_jp": "酵素（エンザイム）",
+    "reading": "こうそ",
+    "category": "fermentation",
+    "description": "麦芽に含まれるタンパク質の一種。デンプンを糖に分解する触媒として糖化工程で重要な役割を果たす。",
+    "tags": ["science", "process"]
+  },
+  {
+    "id": "yeast",
+    "term_en": "Yeast",
+    "term_jp": "酵母",
+    "reading": "こうぼ",
+    "category": "fermentation",
+    "description": "糖をアルコールと二酸化炭素に変える微生物。香りや味わいへの影響が大きい。",
+    "tags": ["microorganism", "aroma"]
+  },
+  {
+    "id": "diastatic_power",
+    "term_en": "Diastatic Power",
+    "term_jp": "糖化力",
+    "reading": "とうかりょく",
+    "category": "fermentation",
+    "description": "麦芽がデンプンを糖に分解する能力の指標。数値が高いほど効率よく糖化できる。",
+    "tags": ["science", "measure"]
+  },
+  {
+    "id": "lactic_acid_bacteria",
+    "term_en": "Lactic Acid Bacteria",
+    "term_jp": "乳酸菌",
+    "reading": "にゅうさんきん",
+    "category": "fermentation",
+    "description": "長時間発酵の過程で活動する細菌。フルーティーで複雑な香味成分を生み出す要因のひとつ。",
+    "tags": ["microorganism", "science"]
+  },
+  {
+    "id": "fermentation_time",
+    "term_en": "Fermentation Time",
+    "term_jp": "発酵時間",
+    "reading": "はっこうじかん",
+    "category": "fermentation",
+    "description": "発酵にかける時間の長さ。短時間（48時間程度）だと穀物感が強く、長時間（70時間以上）だとフルーティーになる傾向がある。",
+    "tags": ["process", "variable"]
   },
   {
     "id": "vatting",
@@ -306,13 +540,22 @@
     "tags": ["process:blend"]
   },
   {
-    "id": "one_batch",
-    "term_en": "One Batch",
-    "term_jp": "ワンバッチ",
-    "reading": "わんばっち",
+    "id": "wood_finish",
+    "term_en": "Wood Finish",
+    "term_jp": "ウッドフィニッシュ",
+    "reading": "うっどふぃにっしゅ",
     "category": "finishing",
-    "description": "製造工程における一度の生産量・使用量の単位。",
-    "tags": ["unit:production"]
+    "description": "メインの熟成後に、異なる種類の樽（ワイン樽、ポート樽など）で追加熟成する手法の総称。",
+    "tags": ["process:flavor"]
+  },
+  {
+    "id": "cask_strength",
+    "term_en": "Cask Strength",
+    "term_jp": "カスク・ストレングス",
+    "reading": "かすく・すとれんぐす",
+    "category": "finishing",
+    "description": "樽出しのアルコール度数で瓶詰めされたウイスキーのこと。加水されていないため、アルコール度数が50~60度であることが多い。",
+    "tags": ["bottling:high proof"]
   },
   {
     "id": "small_batch",
@@ -324,6 +567,60 @@
     "tags": ["bottling:premium"]
   },
   {
+    "id": "chill_filtration",
+    "term_en": "Chill Filtration",
+    "term_jp": "チルフィルタレーション",
+    "reading": "ちるふぃるたれーしょん",
+    "category": "finishing",
+    "description": "ウイスキーを0〜4℃に冷却し、白濁の原因となる脂肪酸エステルなどを除去する濾過工程。",
+    "tags": ["process:finish"]
+  },
+  {
+    "id": "natural_colour",
+    "term_en": "Natural Colour",
+    "term_jp": "ナチュラルカラー",
+    "reading": "なちゅらるからー",
+    "category": "finishing",
+    "description": "カラメル色素（E150a）を添加していないこと。樽由来の自然な色のみであることを示す表記。",
+    "tags": ["bottling:natural"]
+  },
+  {
+    "id": "non_chill_filtered",
+    "term_en": "Non-Chill Filtered",
+    "term_jp": "ノンチルフィルタード",
+    "reading": "のんちるふぃるたーど",
+    "category": "finishing",
+    "description": "冷却濾過が施されていないウイスキーのこと。澱を取り除かないため、ウイスキー本来の味わいを楽しめる。",
+    "tags": ["bottling:natural"]
+  },
+  {
+    "id": "finish",
+    "term_en": "Finish",
+    "term_jp": "フィニッシュ（後熟）",
+    "reading": "ふぃにっしゅ（あとじゅく）",
+    "category": "finishing",
+    "description": "熟成後に別樽へ移して追加熟成させる手法。",
+    "tags": ["process:flavor"]
+  },
+  {
+    "id": "proofing",
+    "term_en": "Proofing",
+    "term_jp": "プルーフィング（加水）",
+    "reading": "ぷるーふぃんぐ",
+    "category": "finishing",
+    "description": "瓶詰め前に純水を加えてアルコール度数を所定の数値（通常40〜46%）に調整する工程。",
+    "tags": ["process:finish"]
+  },
+  {
+    "id": "blending",
+    "term_en": "Blending",
+    "term_jp": "ブレンディング",
+    "reading": "ぶれんでぃんぐ",
+    "category": "finishing",
+    "description": "異なる原酒（モルトやグレーン）を混合して、一貫した味わいの製品をつくる工程。",
+    "tags": ["process:blend"]
+  },
+  {
     "id": "bottling",
     "term_en": "Bottling",
     "term_jp": "ボトリング",
@@ -333,49 +630,94 @@
     "tags": ["process:finish"]
   },
   {
-    "id": "bourbon_barrel",
-    "term_en": "Bourbon Barrel",
-    "term_jp": "バーボンバレル",
-    "reading": "ばーぼんばれる",
-    "category": "maturation",
-    "description": "バーボン熟成後の樽。バニラやカラメルのような甘い香りを付与する。",
-    "tags": ["cask", "american oak"]
+    "id": "marrying",
+    "term_en": "Marrying",
+    "term_jp": "マリッジ",
+    "reading": "まりっじ",
+    "category": "finishing",
+    "description": "ブレンドした原酒を大きな容器に入れ、一定期間寝かせて風味を馴染ませる工程。後熟とは異なる。",
+    "tags": ["process:blend"]
   },
   {
-    "id": "sherry_cask",
-    "term_en": "Sherry Cask",
-    "term_jp": "シェリーカスク",
-    "reading": "しぇりーかすく",
-    "category": "maturation",
-    "description": "シェリー酒熟成後の樽。ドライフルーツやスパイスの濃厚な香りを付与する。",
-    "tags": ["cask", "european oak"]
+    "id": "rum_cask_finish",
+    "term_en": "Rum Cask Finish",
+    "term_jp": "ラムカスクフィニッシュ",
+    "reading": "らむかすくふぃにっしゅ",
+    "category": "finishing",
+    "description": "ラム酒の熟成に使われた樽で後熟させる手法。トロピカルな甘さやスパイス感が加わる。",
+    "tags": ["process:flavor"]
   },
   {
-    "id": "angels_share",
-    "term_en": "Angel's Share",
-    "term_jp": "天使の分け前",
-    "reading": "てんしのわけまえ",
-    "category": "maturation",
-    "description": "熟成中に水分やアルコールが蒸発して失われる分。",
-    "tags": ["phenomenon", "romantic"]
+    "id": "wine_cask_finish",
+    "term_en": "Wine Cask Finish",
+    "term_jp": "ワインカスクフィニッシュ",
+    "reading": "わいんかすくふぃにっしゅ",
+    "category": "finishing",
+    "description": "赤ワインや白ワインの樽で後熟させる手法。果実味やタンニンのニュアンスが加わる。",
+    "tags": ["process:flavor"]
   },
   {
-    "id": "devils_cut",
-    "term_en": "Devil's Cut",
-    "term_jp": "デビルズカット",
-    "reading": "でびるずかっと",
-    "category": "maturation",
-    "description": "樽材に染み込み取り出せない部分のこと。",
-    "tags": ["phenomenon", "loss"]
+    "id": "one_batch",
+    "term_en": "One Batch",
+    "term_jp": "ワンバッチ",
+    "reading": "わんばっち",
+    "category": "finishing",
+    "description": "製造工程における一度の生産量・使用量の単位。",
+    "tags": ["unit:production"]
   },
   {
-    "id": "maturation_process",
-    "term_en": "Maturation",
-    "term_jp": "マチュレーション",
-    "reading": "まちゅれーしょん",
+    "id": "coloring",
+    "term_en": "Coloring",
+    "term_jp": "着色（カラメル色素）",
+    "reading": "ちゃくしょく（からめるしきそ）",
+    "category": "finishing",
+    "description": "製品ごとの色のバラつきを整えるための着色。",
+    "tags": ["process:additive"]
+  },
+  {
+    "id": "str_cask",
+    "term_en": "STR Cask",
+    "term_jp": "STRカスク",
+    "reading": "えすてぃーあーるかすく",
     "category": "maturation",
-    "description": "蒸留したてのウイスキー（ニューポット）を木製の樽に詰めて寝かせる、熟成工程のこと。",
-    "tags": ["process", "aging"]
+    "description": "Shave（削る）、Toast（焼く）、Re-char（再度焦がす）の3工程で再生された樽。故ジム・スワン博士が提唱。",
+    "tags": ["cask", "innovation"]
+  },
+  {
+    "id": "american_oak",
+    "term_en": "American Oak",
+    "term_jp": "アメリカンオーク",
+    "reading": "あめりかんおーく",
+    "category": "maturation",
+    "description": "主にバーボン樽に使われるホワイトオーク（Quercus alba）。バニラ、ココナッツ、キャラメルの甘い香りを生む。",
+    "tags": ["cask", "wood"]
+  },
+  {
+    "id": "virgin_oak",
+    "term_en": "Virgin Oak",
+    "term_jp": "ヴァージンオーク",
+    "reading": "ゔぁーじんおーく",
+    "category": "maturation",
+    "description": "一度も使用されていない新品のオーク樽。樽材の成分が強く溶出するため、バニラやスパイスの風味が強い。",
+    "tags": ["cask", "condition"]
+  },
+  {
+    "id": "warehouse",
+    "term_en": "Warehouse",
+    "term_jp": "ウェアハウス",
+    "reading": "うぇあはうす",
+    "category": "maturation",
+    "description": "ウイスキーの樽を貯蔵・熟成させるための倉庫の総称。環境条件が熟成に大きく影響する。",
+    "tags": ["place", "storage"]
+  },
+  {
+    "id": "extraction",
+    "term_en": "Extraction",
+    "term_jp": "エクストラクション",
+    "reading": "えくすとらくしょん",
+    "category": "maturation",
+    "description": "樽材に含まれるバニリン、タンニン、ラクトンなどの成分がウイスキーに溶け出すこと。色や風味の主要な源。",
+    "tags": ["science", "aging"]
   },
   {
     "id": "cask_barrel",
@@ -396,40 +738,31 @@
     "tags": ["place", "craft"]
   },
   {
-    "id": "re_racking",
-    "term_en": "Re-racking",
-    "term_jp": "リラック",
-    "reading": "りらっく",
+    "id": "quarter_cask",
+    "term_en": "Quarter Cask",
+    "term_jp": "クォーターカスク",
+    "reading": "くぉーたーかすく",
     "category": "maturation",
-    "description": "樽の中の原酒を、一つの樽から別の樽へと移し替えること。複数の樽で熟成させることで、ウイスキーの味わいや香りを豊かにすることができる。",
+    "description": "容量約125リットルの小型樽。液体と樽材の接触面積が大きいため、熟成が早く進む。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "seasoning",
+    "term_en": "Seasoning",
+    "term_jp": "シーズニング",
+    "reading": "しーずにんぐ",
+    "category": "maturation",
+    "description": "新樽やリメイクした樽にシェリー酒などを一定期間詰めて、樽に風味を染み込ませる処理のこと。",
     "tags": ["process", "cask"]
   },
   {
-    "id": "charring",
-    "term_en": "Charring",
-    "term_jp": "チャーリング",
-    "reading": "ちゃーりんぐ",
+    "id": "sherry_cask",
+    "term_en": "Sherry Cask",
+    "term_jp": "シェリーカスク",
+    "reading": "しぇりーかすく",
     "category": "maturation",
-    "description": "樽の内側を直火で焦がすこと。アメリカの法律により、バーボンはチャーリングされた新樽で熟成させることが義務付けられている。",
-    "tags": ["process", "barrel"]
-  },
-  {
-    "id": "toast",
-    "term_en": "Toast",
-    "term_jp": "トースト",
-    "reading": "とーすと",
-    "category": "maturation",
-    "description": "樽を遠火の遠赤外線で低温加熱し焦がすこと。ワイン樽などに特有の香りをつけたり、成分を溶出しやすくする。",
-    "tags": ["process", "barrel"]
-  },
-  {
-    "id": "first_fill",
-    "term_en": "1st Fill",
-    "term_jp": "ファーストフィル",
-    "reading": "ふぁーすとふぃる",
-    "category": "maturation",
-    "description": "古樽がウイスキーの熟成に初めて使用される場合に用いる。新樽とは異なる。成分の影響が強く出る。",
-    "tags": ["cask", "condition"]
+    "description": "シェリー酒熟成後の樽。ドライフルーツやスパイスの濃厚な香りを付与する。",
+    "tags": ["cask", "european oak"]
   },
   {
     "id": "dunnage",
@@ -441,13 +774,49 @@
     "tags": ["warehouse", "traditional"]
   },
   {
-    "id": "racked",
-    "term_en": "Racked",
-    "term_jp": "ラック式",
-    "reading": "らっくしき",
+    "id": "charring",
+    "term_en": "Charring",
+    "term_jp": "チャーリング",
+    "reading": "ちゃーりんぐ",
     "category": "maturation",
-    "description": "金属製の棚に樽を横向きで十数段積み上げる方式。効率が良く、大手蒸溜所でよく利用される。",
-    "tags": ["warehouse", "modern"]
+    "description": "樽の内側を直火で焦がすこと。アメリカの法律により、バーボンはチャーリングされた新樽で熟成させることが義務付けられている。",
+    "tags": ["process", "barrel"]
+  },
+  {
+    "id": "devils_cut",
+    "term_en": "Devil's Cut",
+    "term_jp": "デビルズカット",
+    "reading": "でびるずかっと",
+    "category": "maturation",
+    "description": "樽材に染み込み取り出せない部分のこと。",
+    "tags": ["phenomenon", "loss"]
+  },
+  {
+    "id": "toast",
+    "term_en": "Toast",
+    "term_jp": "トースト",
+    "reading": "とーすと",
+    "category": "maturation",
+    "description": "樽を遠火の遠赤外線で低温加熱し焦がすこと。ワイン樽などに特有の香りをつけたり、成分を溶出しやすくする。",
+    "tags": ["process", "barrel"]
+  },
+  {
+    "id": "bourbon_barrel",
+    "term_en": "Bourbon Barrel",
+    "term_jp": "バーボンバレル",
+    "reading": "ばーぼんばれる",
+    "category": "maturation",
+    "description": "バーボン熟成後の樽。バニラやカラメルのような甘い香りを付与する。",
+    "tags": ["cask", "american oak"]
+  },
+  {
+    "id": "butt",
+    "term_en": "Butt",
+    "term_jp": "バット",
+    "reading": "ばっと",
+    "category": "maturation",
+    "description": "容量約500リットルの大型シェリー樽。シェリーカスク熟成の代表的なサイズ。",
+    "tags": ["cask", "size"]
   },
   {
     "id": "palletised",
@@ -459,6 +828,114 @@
     "tags": ["warehouse", "efficiency"]
   },
   {
+    "id": "puncheon",
+    "term_en": "Puncheon",
+    "term_jp": "パンチョン",
+    "reading": "ぱんちょん",
+    "category": "maturation",
+    "description": "容量約500リットルの樽。バットより背が低く太い形状で、シェリーやラムの熟成に使われたものが多い。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "first_fill",
+    "term_en": "1st Fill",
+    "term_jp": "ファーストフィル",
+    "reading": "ふぁーすとふぃる",
+    "category": "maturation",
+    "description": "古樽がウイスキーの熟成に初めて使用される場合に用いる。新樽とは異なる。成分の影響が強く出る。",
+    "tags": ["cask", "condition"]
+  },
+  {
+    "id": "hogshead",
+    "term_en": "Hogshead",
+    "term_jp": "ホグスヘッド",
+    "reading": "ほぐすへっど",
+    "category": "maturation",
+    "description": "容量約250リットルの樽。バーボンバレルを解体して組み直し、少し大きくしたものが多い。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "maturation_process",
+    "term_en": "Maturation",
+    "term_jp": "マチュレーション",
+    "reading": "まちゅれーしょん",
+    "category": "maturation",
+    "description": "蒸留したてのウイスキー（ニューポット）を木製の樽に詰めて寝かせる、熟成工程のこと。",
+    "tags": ["process", "aging"]
+  },
+  {
+    "id": "mizunara",
+    "term_en": "Mizunara",
+    "term_jp": "ミズナラ",
+    "reading": "みずなら",
+    "category": "maturation",
+    "description": "日本固有のオーク材（Quercus crispula）。伽羅（きゃら）や白檀のようなオリエンタルな香りを生む。非常に希少。",
+    "tags": ["cask", "japanese"]
+  },
+  {
+    "id": "european_oak",
+    "term_en": "European Oak",
+    "term_jp": "ヨーロピアンオーク",
+    "reading": "よーろぴあんおーく",
+    "category": "maturation",
+    "description": "主にシェリー樽に使われるオーク（Quercus robur等）。タンニンが豊富で、スパイシーで重厚な風味を付与する。",
+    "tags": ["cask", "wood"]
+  },
+  {
+    "id": "racked",
+    "term_en": "Racked",
+    "term_jp": "ラック式",
+    "reading": "らっくしき",
+    "category": "maturation",
+    "description": "金属製の棚に樽を横向きで十数段積み上げる方式。効率が良く、大手蒸溜所でよく利用される。",
+    "tags": ["warehouse", "modern"]
+  },
+  {
+    "id": "refill_cask",
+    "term_en": "Refill Cask",
+    "term_jp": "リフィルカスク",
+    "reading": "りふぃるかすく",
+    "category": "maturation",
+    "description": "ウイスキーの熟成に2回目以降使用される樽。樽由来の風味が穏やかになり、原酒本来の個性が出やすい。",
+    "tags": ["cask", "condition"]
+  },
+  {
+    "id": "re_racking",
+    "term_en": "Re-racking",
+    "term_jp": "リラック",
+    "reading": "りらっく",
+    "category": "maturation",
+    "description": "樽の中の原酒を、一つの樽から別の樽へと移し替えること。複数の樽で熟成させることで、ウイスキーの味わいや香りを豊かにすることができる。",
+    "tags": ["process", "cask"]
+  },
+  {
+    "id": "oxidation",
+    "term_en": "Oxidation",
+    "term_jp": "酸化",
+    "reading": "さんか",
+    "category": "maturation",
+    "description": "樽材の微細な穴を通じて外気の酸素がウイスキーと反応すること。まろやかさや複雑さを生む熟成の重要な要素。",
+    "tags": ["science", "aging"]
+  },
+  {
+    "id": "angels_share",
+    "term_en": "Angel's Share",
+    "term_jp": "天使の分け前",
+    "reading": "てんしのわけまえ",
+    "category": "maturation",
+    "description": "熟成中に水分やアルコールが蒸発して失われる分。",
+    "tags": ["phenomenon", "romantic"]
+  },
+  {
+    "id": "islay",
+    "term_en": "Islay",
+    "term_jp": "アイラ",
+    "reading": "あいら",
+    "category": "others",
+    "description": "スコットランド西海岸沖の島。ピーティーでスモーキーなウイスキーの聖地として世界的に有名。",
+    "tags": ["region", "scotch"]
+  },
+  {
     "id": "abv",
     "term_en": "Alcohol by Volume (ABV)",
     "term_jp": "アルコール度数",
@@ -466,6 +943,24 @@
     "category": "others",
     "description": "アルコールの体積百分率。スコッチウイスキーは法律で40度以上でなければならない。",
     "tags": ["legal", "measure"]
+  },
+  {
+    "id": "whisky_trail",
+    "term_en": "Whisky Trail",
+    "term_jp": "ウイスキートレイル",
+    "reading": "ういすきーとれいる",
+    "category": "others",
+    "description": "蒸留所を巡る観光ルートの総称。スペイサイドのモルトウイスキートレイルが有名。",
+    "tags": ["tourism", "culture"]
+  },
+  {
+    "id": "uisge_beatha",
+    "term_en": "Uisge Beatha",
+    "term_jp": "ウシュクベーハ",
+    "reading": "うしゅくべーは",
+    "category": "others",
+    "description": "スコットランド・ゲール語で「命の水」を意味する言葉。ラテン語の「aqua vitae」の翻訳で、whiskyの語源。",
+    "tags": ["culture", "etymology"]
   },
   {
     "id": "age_statement",
@@ -477,40 +972,31 @@
     "tags": ["label", "legal"]
   },
   {
-    "id": "non_age_statement",
-    "term_en": "Non Age Statement (NAS)",
-    "term_jp": "ノンエイジ",
-    "reading": "のんえいじ",
+    "id": "campbeltown",
+    "term_en": "Campbeltown",
+    "term_jp": "キャンベルタウン",
+    "reading": "きゃんべるたうん",
     "category": "others",
-    "description": "ラベルに熟成年数を表記しないウイスキーのこと。",
-    "tags": ["label", "trend"]
+    "description": "スコットランド南西部の港町。かつては30以上の蒸留所があった「ウイスキーの首都」。現在は3蒸留所が稼働。",
+    "tags": ["region", "scotch"]
   },
   {
-    "id": "house_style",
-    "term_en": "House Style",
-    "term_jp": "ハウススタイル",
-    "reading": "はうすすたいる",
+    "id": "cooper",
+    "term_en": "Cooper",
+    "term_jp": "クーパー",
+    "reading": "くーぱー",
     "category": "others",
-    "description": "蒸溜所が持つ独自の味わいの傾向のこと。",
-    "tags": ["concept", "character"]
+    "description": "ウイスキー樽の製造・修理を行う専門の職人。樽の品質がウイスキーの風味を大きく左右する。",
+    "tags": ["profession", "craft"]
   },
   {
-    "id": "mothballed_distillery",
-    "term_en": "Mothballed Distillery",
-    "term_jp": "モスボール・ディスティラリー",
-    "reading": "もすぼーる・でぃすてぃらりー",
+    "id": "quaich",
+    "term_en": "Quaich",
+    "term_jp": "クエイヒ",
+    "reading": "くえいひ",
     "category": "others",
-    "description": "過去に稼働していたが、現在は閉鎖している蒸溜所のこと。",
-    "tags": ["status", "history"]
-  },
-  {
-    "id": "moonshine",
-    "term_en": "Moonshine",
-    "term_jp": "ムーンシャイン",
-    "reading": "むーんしゃいん",
-    "category": "others",
-    "description": "密造酒のこと。禁酒法時代に月明かりの下で作られたことに由来する。",
-    "tags": ["history", "slang"]
+    "description": "スコットランドの伝統的な両手持ちの浅い杯。「友情の杯」とも呼ばれ、歓迎や友好の象徴として使われる。",
+    "tags": ["culture", "gaelic"]
   },
   {
     "id": "keepers_of_the_quaich",
@@ -531,31 +1017,31 @@
     "tags": ["honor", "rare"]
   },
   {
-    "id": "world_whiskies_awards",
-    "term_en": "World Whiskies Awards (WWA)",
-    "term_jp": "ワールド・ウイスキー・アワード",
-    "reading": "わーるど・ういすきー・あわーど",
+    "id": "swa",
+    "term_en": "SWA",
+    "term_jp": "スコッチウイスキー協会",
+    "reading": "えすだぶりゅーえー",
     "category": "others",
-    "description": "年に1回開催される国際的なウイスキーコンペティション。",
-    "tags": ["competition", "award"]
+    "description": "Scotch Whisky Associationの略。スコッチウイスキーの品質基準や法的定義を管理する業界団体。",
+    "tags": ["organization", "scotch"]
   },
   {
-    "id": "hall_of_fame",
-    "term_en": "Hall of Fame",
-    "term_jp": "ホール・オブ・フェイム",
-    "reading": "ほーる・おぶ・ふぇいむ",
+    "id": "stillman",
+    "term_en": "Stillman",
+    "term_jp": "スチルマン",
+    "reading": "すちるまん",
     "category": "others",
-    "description": "ウイスキー業界に偉大な功績を残した人物を称える「殿堂入り」の称号。",
-    "tags": ["honor", "history"]
+    "description": "蒸留器を直接操作する職人。温度管理やスピリットセーフの監視など、蒸留の現場作業を担う。",
+    "tags": ["profession", "craft"]
   },
   {
-    "id": "regauge",
-    "term_en": "Regauge",
-    "term_jp": "リゲージ",
-    "reading": "りげーじ",
+    "id": "speyside",
+    "term_en": "Speyside",
+    "term_jp": "スペイサイド",
+    "reading": "すぺいさいど",
     "category": "others",
-    "description": "樽の液体量やアルコール度数を再測定すること。熟成管理のために行われる。",
-    "tags": ["management", "cask"]
+    "description": "スコットランド北東部、スペイ川流域の蒸留所密集地域。華やかでフルーティーな酒質が多い。",
+    "tags": ["region", "scotch"]
   },
   {
     "id": "cheers",
@@ -567,346 +1053,130 @@
     "tags": ["culture", "gaelic"]
   },
   {
-    "id": "fruity",
-    "term_en": "Fruity",
-    "term_jp": "フルーティー",
-    "reading": "ふるーてぃー",
-    "category": "tasting",
-    "description": "果実のような香り。リンゴ、洋ナシ、柑橘、トロピカルなど様々。",
-    "tags": ["aroma", "fruit"]
+    "id": "dramming",
+    "term_en": "Dramming",
+    "term_jp": "ドラミング",
+    "reading": "どらみんぐ",
+    "category": "others",
+    "description": "蒸留所で働く人々が勤務中にウイスキーを一杯飲むことができた伝統的な慣習。現在はほぼ廃止されている。",
+    "tags": ["culture", "history"]
   },
   {
-    "id": "smoky",
-    "term_en": "Smoky",
-    "term_jp": "スモーキー",
-    "reading": "すもーきー",
-    "category": "tasting",
-    "description": "煙のような香り。ピート由来のものや樽由来のものがある。",
-    "tags": ["aroma", "peat"]
+    "id": "non_age_statement",
+    "term_en": "Non Age Statement (NAS)",
+    "term_jp": "ノンエイジ",
+    "reading": "のんえいじ",
+    "category": "others",
+    "description": "ラベルに熟成年数を表記しないウイスキーのこと。",
+    "tags": ["label", "trend"]
   },
   {
-    "id": "woody",
-    "term_en": "Woody",
-    "term_jp": "ウッディー",
-    "reading": "うっでぃー",
-    "category": "tasting",
-    "description": "木の香り。熟成に使われたオーク樽に由来する。",
-    "tags": ["aroma", "oak"]
+    "id": "highlands",
+    "term_en": "Highlands",
+    "term_jp": "ハイランド",
+    "reading": "はいらんど",
+    "category": "others",
+    "description": "スコットランド最大の生産地域。広大なエリアのため、蒸留所ごとに酒質のバリエーションが非常に豊富。",
+    "tags": ["region", "scotch"]
   },
   {
-    "id": "spicy",
-    "term_en": "Spicy",
-    "term_jp": "スパイシー",
-    "reading": "すぱいしー",
-    "category": "tasting",
-    "description": "胡椒やシナモンのような刺激のある香り。",
-    "tags": ["aroma", "spice"]
+    "id": "house_style",
+    "term_en": "House Style",
+    "term_jp": "ハウススタイル",
+    "reading": "はうすすたいる",
+    "category": "others",
+    "description": "蒸溜所が持つ独自の味わいの傾向のこと。",
+    "tags": ["concept", "character"]
   },
   {
-    "id": "dram",
-    "term_en": "Dram",
-    "term_jp": "ドラム",
-    "reading": "どらむ",
-    "category": "tasting",
-    "description": "スコットランドでのウイスキー1杯分の呼称。明確な定義はないが、25ml〜35ml程度を指すことが多い。",
-    "tags": ["unit", "culture"]
+    "id": "proof",
+    "term_en": "Proof",
+    "term_jp": "プルーフ",
+    "reading": "ぷるーふ",
+    "category": "others",
+    "description": "アルコール度数の旧単位。米国式はABVの2倍（80プルーフ＝40%）、英国式は計算方法が異なる。",
+    "tags": ["measure", "history"]
   },
   {
-    "id": "flight",
-    "term_en": "Flight",
-    "term_jp": "フライト",
-    "reading": "ふらいと",
-    "category": "tasting",
-    "description": "数種類のウイスキーの飲み比べセットのこと。",
-    "tags": ["style", "menu"]
+    "id": "brewer",
+    "term_en": "Brewer",
+    "term_jp": "ブルワー",
+    "reading": "ぶるわー",
+    "category": "others",
+    "description": "蒸留所で糖化・発酵工程を担当する職人。マッシングからウォッシュの管理までを受け持つ。",
+    "tags": ["profession", "craft"]
   },
   {
-    "id": "floral",
-    "term_en": "Floral",
-    "term_jp": "フローラル",
-    "reading": "ふろーらる",
-    "category": "tasting",
-    "description": "花のような香り。草花、ドライフラワー、あるいはハーブのような華やかなニュアンス。",
-    "tags": ["aroma", "flower"]
+    "id": "hall_of_fame",
+    "term_en": "Hall of Fame",
+    "term_jp": "ホール・オブ・フェイム",
+    "reading": "ほーる・おぶ・ふぇいむ",
+    "category": "others",
+    "description": "ウイスキー業界に偉大な功績を残した人物を称える「殿堂入り」の称号。",
+    "tags": ["honor", "history"]
   },
   {
-    "id": "sweet_flavor",
-    "term_en": "Sweet",
-    "term_jp": "スイート",
-    "reading": "すいーと",
-    "category": "tasting",
-    "description": "甘い香りや味わい。バニラ、ハチミツ、キャラメル、チョコレートなど。主に樽由来の成分からくる。",
-    "tags": ["aroma", "taste"]
+    "id": "master_distiller",
+    "term_en": "Master Distiller",
+    "term_jp": "マスターディスティラー",
+    "reading": "ますたーでぃすてぃらー",
+    "category": "others",
+    "description": "蒸留工程の最高責任者。蒸留器の運転管理やカットポイントの判断など、酒質を左右する重要な役職。",
+    "tags": ["profession", "key person"]
   },
   {
-    "id": "winey",
-    "term_en": "Winey",
-    "term_jp": "ワイニー",
-    "reading": "わいにー",
-    "category": "tasting",
-    "description": "ワインやシェリー酒を思わせる、濃縮された果実味とフルーティーな酸味。タンニン（渋み）を感じることもある。",
-    "tags": ["cask", "aroma"]
+    "id": "master_blender",
+    "term_en": "Master Blender",
+    "term_jp": "マスターブレンダー",
+    "reading": "ますたーぶれんだー",
+    "category": "others",
+    "description": "ウイスキーのブレンドの最高責任者。原酒の選定と配合を決定し、製品の品質と一貫性を管理する。",
+    "tags": ["profession", "key person"]
   },
   {
-    "id": "sulfury",
-    "term_en": "Sulfury",
-    "term_jp": "サルファリー",
-    "reading": "さるふぁりー",
-    "category": "tasting",
-    "description": "硫黄のようなニュアンス。マッチの火、ゴム、肉のような重厚な香り。蒸留器の銅との反応に関連する。",
-    "tags": ["aroma", "off-flavor"]
+    "id": "moonshine",
+    "term_en": "Moonshine",
+    "term_jp": "ムーンシャイン",
+    "reading": "むーんしゃいん",
+    "category": "others",
+    "description": "密造酒のこと。禁酒法時代に月明かりの下で作られたことに由来する。",
+    "tags": ["history", "slang"]
   },
   {
-    "id": "cereal",
-    "term_en": "Cereal",
-    "term_jp": "シリアル",
-    "reading": "しりある",
-    "category": "tasting",
-    "description": "穀物由来の香り。麦芽、トースト、酵母など、ウイスキーの原料を感じさせる香ばしいニュアンス。",
-    "tags": ["aroma", "raw material"]
+    "id": "mothballed_distillery",
+    "term_en": "Mothballed Distillery",
+    "term_jp": "モスボール・ディスティラリー",
+    "reading": "もすぼーる・でぃすてぃらりー",
+    "category": "others",
+    "description": "過去に稼働していたが、現在は閉鎖している蒸溜所のこと。",
+    "tags": ["status", "history"]
   },
   {
-    "id": "astringency",
-    "term_en": "Astringency",
-    "term_jp": "収斂味（しゅうれんみ）",
-    "reading": "しゅうれんみ（しゅうれんみ）",
-    "category": "tasting",
-    "description": "口の中が引き締まるような、あるいは乾くような感覚。主に木樽由来のタンニンによって引き起こされる「渋み」。",
-    "tags": ["mouthfeel", "tannin"]
+    "id": "regauge",
+    "term_en": "Regauge",
+    "term_jp": "リゲージ",
+    "reading": "りげーじ",
+    "category": "others",
+    "description": "樽の液体量やアルコール度数を再測定すること。熟成管理のために行われる。",
+    "tags": ["management", "cask"]
   },
   {
-    "id": "body",
-    "term_en": "Body",
-    "term_jp": "ボディ",
-    "reading": "ぼでぃ",
-    "category": "tasting",
-    "description": "口に含んだ時の重みや厚みの表現。フルボディ（重口）、ライトボディ（軽口）などと使われる。",
-    "tags": ["mouthfeel", "texture"]
+    "id": "lowlands",
+    "term_en": "Lowlands",
+    "term_jp": "ローランド",
+    "reading": "ろーらんど",
+    "category": "others",
+    "description": "スコットランド南部の生産地域。軽やかで穏やか、フローラルな酒質が特徴。3回蒸留を行う蒸留所もある。",
+    "tags": ["region", "scotch"]
   },
   {
-    "id": "finish_length",
-    "term_en": "Finish / Aftertaste",
-    "term_jp": "フィニッシュ / 余韻",
-    "reading": "ふぃにっしゅ　／　よいん",
-    "category": "tasting",
-    "description": "飲み込んだ後に口の中に残る香りと味わい。その持続時間を「長い（ロング・フィニッシュ）」「短い（ショート・フィニッシュ）」と表現する。",
-    "tags": ["tasting", "experience"]
-  },
-  {
-    "id": "nose",
-    "term_en": "Nose",
-    "term_jp": "ノーズ",
-    "reading": "のーず",
-    "category": "tasting",
-    "description": "グラスから立ち上がる香りを嗅ぐこと、またはその香りの質そのものを指す。",
-    "tags": ["tasting", "aroma"]
-  },
-  {
-    "id": "palate",
-    "term_en": "Palate",
-    "term_jp": "パレット",
-    "reading": "ぱれっと",
-    "category": "tasting",
-    "description": "口に含んだ時の味わい、テクスチャー、全体的な風味の構成のこと。",
-    "tags": ["tasting", "flavor"]
-  },
-  {
-    "id": "peaty",
-    "term_en": "Peaty",
-    "term_jp": "ピーティー",
-    "reading": "ぴーてぃー",
-    "category": "tasting",
-    "description": "ピート（泥炭）の風味が強いこと。薬品、ヨード、あるいは土っぽさを伴う独特の個性。",
-    "tags": ["aroma", "peat"]
-  },
-  {
-    "id": "esters",
-    "term_en": "Esters",
-    "term_jp": "エステル",
-    "reading": "えすてる",
-    "category": "tasting",
-    "description": "発酵中に酵母が作り出す芳香成分。ウイスキーにフルーティーさ（バナナ、リンゴなど）や華やかさを与える正体。",
-    "tags": ["science", "aroma"]
-  },
-  {
-    "id": "phenols",
-    "term_en": "Phenols",
-    "term_jp": "フェノール",
-    "reading": "ふぇのーる",
-    "category": "tasting",
-    "description": "ピートを焚いた際に生じる化合物。スモーキー、薬品、ヨードといった香りの指標。PPMという単位で表される。",
-    "tags": ["science", "smoky"]
-  },
-  {
-    "id": "mouthfeel",
-    "term_en": "Mouthfeel",
-    "term_jp": "マウスフィール",
-    "reading": "まうすふぃーる",
-    "category": "tasting",
-    "description": "口に含んだときの感触。クリーミー、オイリー、ドライ、ざらつきなど、味そのものよりも「触感」に近い表現。",
-    "tags": ["tasting", "texture"]
-  },
-  {
-    "id": "viscosity",
-    "term_en": "Viscosity",
-    "term_jp": "粘性（ねんせい）",
-    "reading": "ねんせい（ねんせい）",
-    "category": "tasting",
-    "description": "液体の「とろみ」。グラスの壁を流れる液滴（レッグス）の速さや、口当たりで判断される。",
-    "tags": ["tasting", "texture"]
-  },
-  {
-    "id": "complexity",
-    "term_en": "Complexity",
-    "term_jp": "複雑さ",
-    "reading": "ふくざつさ",
-    "category": "tasting",
-    "description": "香りと味わいが重層的で、時間の経過とともに様々な表情を見せること。高品質なウイスキーの褒め言葉として使われる。",
-    "tags": ["evaluation"]
-  },
-  {
-    "id": "oeil_de_perdrix",
-    "term_en": "Eye of the Partridge",
-    "term_jp": "ヤマウズラの目の色",
-    "reading": "やまうずらのめのいろ",
-    "category": "tasting",
-    "description": "ワイン用語（Oeil de Perdrix）に由来。極めて淡い琥珀色や、ロゼワインのようなピンクがかった銅色を指す非常に優雅な表現。",
-    "tags": ["color", "poetic"]
-  },
-  {
-    "id": "rancio",
-    "term_en": "Rancio",
-    "term_jp": "ランシオ",
-    "reading": "らんしお",
-    "category": "tasting",
-    "description": "長期間の熟成を経たコニャックやウイスキーに現れる、熟したキノコ、ナッツ、あるいはチーズのような独特の芳醇な香り。",
-    "tags": ["aging", "aroma"]
-  },
-  {
-    "id": "pipi_de_chat",
-    "term_en": "Cat's Pee",
-    "term_jp": "猫の尿",
-    "reading": "ねこのにょう",
-    "category": "tasting",
-    "description": "ソーヴィニヨン・ブランなどのワインで使われる有名な表現。ウイスキーでは、ある種の硫黄化合物や若い原酒が持つ、ツンとした刺激的なハーブのような香りを指す。",
-    "tags": ["aroma", "strange"]
-  },
-  {
-    "id": "dunnage_warehouse",
-    "term_en": "Dunnage Aroma",
-    "term_jp": "ダンネージ式の貯蔵庫の香り",
-    "reading": "だんねーじしきのちょぞうこのかおり",
-    "category": "tasting",
-    "description": "湿った土、古いオーク、そしてわずかなカビの匂いが混ざり合った、伝統的な貯蔵庫特有の香り。ウイスキーファンにとっては非常に魅惑的な表現。",
-    "tags": ["aroma", "warehouse"]
-  },
-  {
-    "id": "petrichor",
-    "term_en": "Petrichor",
-    "term_jp": "ペトリコール",
-    "reading": "ぺとりこーる",
-    "category": "tasting",
-    "description": "「雨が降った後の地面の匂い」。土っぽさ（アース）の中に、清涼感と湿り気を含んだ複雑なニュアンスを表す時に使われる。",
-    "tags": ["aroma", "nature"]
-  },
-  {
-    "id": "old_library",
-    "term_en": "Old Library",
-    "term_jp": "古い図書館",
-    "reading": "ふるいとしょかん",
-    "category": "tasting",
-    "description": "古い紙、革の装丁、埃っぽさ、そしてわずかなワックスの香りが混じった状態。長期熟成されたモルトにしばしば見られる表現。",
-    "tags": ["aroma", "antique"]
-  },
-  {
-    "id": "wet_dog",
-    "term_en": "Wet Dog",
-    "term_jp": "濡れた犬",
-    "reading": "ぬれたいぬ",
-    "category": "tasting",
-    "description": "濡れた犬の毛のような、独特の動物的・湿ったニュアンス。ある種の新酒や特定の発酵プロセスを経たウイスキーに現れる。愛好家には『野性的』とポジティブに捉えられることも。",
-    "tags": ["aroma", "animalic"]
-  },
-  {
-    "id": "old_leather_shoe",
-    "term_en": "Old Leather Shoe",
-    "term_jp": "古い革靴",
-    "reading": "ふるいかわぐつ",
-    "category": "tasting",
-    "description": "使い込まれた革製品や靴のような香り。シェリー樽での長期熟成によって生まれる、重厚で深みのある芳醇さを表す際に使われる褒め言葉。",
-    "tags": ["aroma", "aging"]
-  },
-  {
-    "id": "band_aid",
-    "term_en": "Band-Aid / Medicinal",
-    "term_jp": "絆創膏（ばんそうこう）",
-    "reading": "ばんそうこう（ばんそうこう）",
-    "category": "tasting",
-    "description": "消毒液やプラスチック製の絆創膏のような、薬品的な香り。アイラモルトなどのピートが強いウイスキー特有の表現。フェノール類に由来する。",
-    "tags": ["aroma", "peat"]
-  },
-  {
-    "id": "gunpowder",
-    "term_en": "Gunpowder",
-    "term_jp": "火薬",
-    "reading": "かやく",
-    "category": "tasting",
-    "description": "打ち上げ花火や爆竹を鳴らした後のような、焦げた硫黄の匂い。シェリー樽由来の成分や、蒸留過程の化学反応で現れる、非常にパンチのある表現。",
-    "tags": ["aroma", "sulfury"]
-  },
-  {
-    "id": "barnyard",
-    "term_en": "Barnyard / Farmyard",
-    "term_jp": "農場・馬小屋",
-    "reading": "のうじょう・うまごや",
-    "category": "tasting",
-    "description": "干し草、家畜、土などが混ざり合った、田舎の農場のような香り。非常に複雑な香味を持つ古いボトルや、独特の酵母由来のニュアンスに使われる。",
-    "tags": ["aroma", "earthy"]
-  },
-  {
-    "id": "furniture_polish",
-    "term_en": "Furniture Polish / Wax",
-    "term_jp": "家具のワックス",
-    "reading": "かぐのわっくす",
-    "category": "tasting",
-    "description": "磨き上げられたアンティーク家具や蜜蝋（みつろう）のような香り。オイリーで滑らかな質感を伴う、高品質な長期熟成原酒によく使われる表現。",
-    "tags": ["aroma", "texture"]
-  },
-  {
-    "id": "industrial_oil",
-    "term_en": "Industrial / Engine Oil",
-    "term_jp": "機械油",
-    "reading": "きかいあぶら",
-    "category": "tasting",
-    "description": "工場の重油やエンジンオイルのような、無機質で力強いオイリーさ。一部の蒸留所が持つ、非常に個性的でクラシックなキャラクターを指す。",
-    "tags": ["aroma", "oily"]
-  },
-  {
-    "id": "barley",
-    "term_en": "Barley",
-    "term_jp": "大麦",
-    "reading": "おおむぎ",
-    "category": "raw",
-    "description": "ウイスキーの主原料となる穀物。モルトウイスキーでは二条大麦が主に使われる。",
-    "tags": ["grain", "raw material"]
-  },
-  {
-    "id": "malt",
-    "term_en": "Malt",
-    "term_jp": "麦芽",
-    "reading": "ばくが",
-    "category": "raw",
-    "description": "発芽させた大麦を乾燥させたもの。糖化しやすくなり、ウイスキーの基盤となる香味を生む。",
-    "tags": ["raw material", "malting"]
-  },
-  {
-    "id": "peat",
-    "term_en": "Peat",
-    "term_jp": "ピート",
-    "reading": "ぴーと",
-    "category": "raw",
-    "description": "長年堆積した植物が変化してできた泥炭。麦芽の乾燥時に燃料として用いることで、スモーキーな香りを付与する。",
-    "tags": ["smoky", "fuel", "islay"]
+    "id": "world_whiskies_awards",
+    "term_en": "World Whiskies Awards (WWA)",
+    "term_jp": "ワールド・ウイスキー・アワード",
+    "reading": "わーるど・ういすきー・あわーど",
+    "category": "others",
+    "description": "年に1回開催される国際的なウイスキーコンペティション。",
+    "tags": ["competition", "award"]
   },
   {
     "id": "kiln",
@@ -918,6 +1188,78 @@
     "tags": ["malting", "drying"]
   },
   {
+    "id": "green_malt",
+    "term_en": "Green Malt",
+    "term_jp": "グリーンモルト",
+    "reading": "ぐりーんもると",
+    "category": "raw",
+    "description": "発芽した後、まだ乾燥させていない状態の湿った麦芽のこと。",
+    "tags": ["raw material", "malting"]
+  },
+  {
+    "id": "grist",
+    "term_en": "Grist",
+    "term_jp": "グリスト",
+    "reading": "ぐりすと",
+    "category": "raw",
+    "description": "粉砕した麦芽のこと。粉砕度合いは粗いものからハスク、グリッツ、一番細かいものをフラワーと呼び、全体をまとめてグリストと呼ぶ。",
+    "tags": ["raw", "material"]
+  },
+  {
+    "id": "steep",
+    "term_en": "Steep",
+    "term_jp": "スティープ（浸麦）",
+    "reading": "すてぃーぷ",
+    "category": "raw",
+    "description": "大麦を水に浸けて水分を吸収させ、発芽を促す製麦の最初の工程。",
+    "tags": ["process", "malting"]
+  },
+  {
+    "id": "corn",
+    "term_en": "Corn",
+    "term_jp": "トウモロコシ",
+    "reading": "とうもろこし",
+    "category": "raw",
+    "description": "バーボンウイスキーの主原料。法律で原料の51%以上をトウモロコシとすることが義務付けられている。",
+    "tags": ["grain", "bourbon"]
+  },
+  {
+    "id": "drum_malting",
+    "term_en": "Drum Malting",
+    "term_jp": "ドラムモルティング",
+    "reading": "どらむもるてぃんぐ",
+    "category": "raw",
+    "description": "大型の回転ドラムを使って大量に製麦する近代的な手法。フロアモルティングに比べて効率が高い。",
+    "tags": ["process", "malting"]
+  },
+  {
+    "id": "husk",
+    "term_en": "Husk",
+    "term_jp": "ハスク",
+    "reading": "はすく",
+    "category": "raw",
+    "description": "麦芽の外皮部分。粉砕後の糖化工程で天然のフィルター層として麦汁の濾過を助ける役割を持つ。",
+    "tags": ["raw material", "milling"]
+  },
+  {
+    "id": "peat",
+    "term_en": "Peat",
+    "term_jp": "ピート",
+    "reading": "ぴーと",
+    "category": "raw",
+    "description": "長年堆積した植物が変化してできた泥炭。麦芽の乾燥時に燃料として用いることで、スモーキーな香りを付与する。",
+    "tags": ["smoky", "fuel", "islay"]
+  },
+  {
+    "id": "ppm",
+    "term_en": "PPM",
+    "term_jp": "ピーピーエム",
+    "reading": "ぴーぴーえむ",
+    "category": "raw",
+    "description": "Parts Per Millionの略。麦芽に含まれるフェノール化合物の濃度を示す単位で、ピートの強さの指標となる。",
+    "tags": ["measure", "peat"]
+  },
+  {
     "id": "floor_malting",
     "term_en": "Floor Malting",
     "term_jp": "フロアモルティング",
@@ -925,6 +1267,15 @@
     "category": "raw",
     "description": "大麦を床に広げ、手作業でかき混ぜながら発芽させる伝統的な製麦方法。",
     "tags": ["traditional", "malting"]
+  },
+  {
+    "id": "milling",
+    "term_en": "Milling",
+    "term_jp": "ミリング",
+    "reading": "みりんぐ",
+    "category": "raw",
+    "description": "精麦（モルティング）された麦芽の糖を水に溶けやすくするために挽き割りする、粉砕工程のこと。",
+    "tags": ["process", "milling"]
   },
   {
     "id": "malting",
@@ -945,21 +1296,534 @@
     "tags": ["profession", "raw"]
   },
   {
-    "id": "milling",
-    "term_en": "Milling",
-    "term_jp": "ミリング",
-    "reading": "みりんぐ",
+    "id": "rye_grain",
+    "term_en": "Rye",
+    "term_jp": "ライ麦",
+    "reading": "らいむぎ",
     "category": "raw",
-    "description": "精麦（モルティング）された麦芽の糖を水に溶けやすくするために挽き割りする、粉砕工程のこと。",
-    "tags": ["process", "milling"]
+    "description": "ライウイスキーの主原料。スパイシーでドライな風味を生む穀物。",
+    "tags": ["grain", "rye"]
   },
   {
-    "id": "grist",
-    "term_en": "Grist",
-    "term_jp": "グリスト",
-    "reading": "ぐりすと",
+    "id": "wheat",
+    "term_en": "Wheat",
+    "term_jp": "小麦",
+    "reading": "こむぎ",
     "category": "raw",
-    "description": "粉砕した麦芽のこと。粉砕度合いは粗いものからハスク、グリッツ、一番細かいものをフラワーと呼び、全体をまとめてグリストと呼ぶ。",
-    "tags": ["raw", "material"]
+    "description": "ウィーテッドバーボン（メーカーズマークなど）で副原料として使用される穀物。柔らかく甘い酒質を生む。",
+    "tags": ["grain", "bourbon"]
+  },
+  {
+    "id": "barley",
+    "term_en": "Barley",
+    "term_jp": "大麦",
+    "reading": "おおむぎ",
+    "category": "raw",
+    "description": "ウイスキーの主原料となる穀物。モルトウイスキーでは二条大麦が主に使われる。",
+    "tags": ["grain", "raw material"]
+  },
+  {
+    "id": "two_row_barley",
+    "term_en": "Two-Row Barley",
+    "term_jp": "二条大麦",
+    "reading": "にじょうおおむぎ",
+    "category": "raw",
+    "description": "モルトウイスキーの主原料となる大麦の品種。粒が大きく、デンプン含有量が多いため糖化効率に優れる。",
+    "tags": ["grain", "raw material"]
+  },
+  {
+    "id": "malt",
+    "term_en": "Malt",
+    "term_jp": "麦芽",
+    "reading": "ばくが",
+    "category": "raw",
+    "description": "発芽させた大麦を乾燥させたもの。糖化しやすくなり、ウイスキーの基盤となる香味を生む。",
+    "tags": ["raw material", "malting"]
+  },
+  {
+    "id": "six_row_barley",
+    "term_en": "Six-Row Barley",
+    "term_jp": "六条大麦",
+    "reading": "ろくじょうおおむぎ",
+    "category": "raw",
+    "description": "北米系ウイスキーで使われることがある大麦の品種。酵素力が強いが、タンパク質が多い。",
+    "tags": ["grain", "raw material"]
+  },
+  {
+    "id": "earthy",
+    "term_en": "Earthy",
+    "term_jp": "アーシー",
+    "reading": "あーしー",
+    "category": "tasting",
+    "description": "土、腐葉土、根菜のような大地を感じさせる香り。ピート由来やシェリー樽由来で現れる。",
+    "tags": ["aroma", "nature"]
+  },
+  {
+    "id": "vanilla",
+    "term_en": "Vanilla",
+    "term_jp": "ヴァニラ",
+    "reading": "ゔぁにら",
+    "category": "tasting",
+    "description": "アメリカンオーク樽に含まれるバニリンに由来する甘い香り。バーボン樽熟成の代表的なフレーバー。",
+    "tags": ["aroma", "sweet"]
+  },
+  {
+    "id": "woody",
+    "term_en": "Woody",
+    "term_jp": "ウッディー",
+    "reading": "うっでぃー",
+    "category": "tasting",
+    "description": "木の香り。熟成に使われたオーク樽に由来する。",
+    "tags": ["aroma", "oak"]
+  },
+  {
+    "id": "esters",
+    "term_en": "Esters",
+    "term_jp": "エステル",
+    "reading": "えすてる",
+    "category": "tasting",
+    "description": "発酵中に酵母が作り出す芳香成分。ウイスキーにフルーティーさ（バナナ、リンゴなど）や華やかさを与える正体。",
+    "tags": ["science", "aroma"]
+  },
+  {
+    "id": "oily",
+    "term_en": "Oily",
+    "term_jp": "オイリー",
+    "reading": "おいりー",
+    "category": "tasting",
+    "description": "口の中で油のように滑らかに広がる質感。ワームタブを使用する蒸留所のウイスキーに多い特徴。",
+    "tags": ["mouthfeel", "texture"]
+  },
+  {
+    "id": "oxidative",
+    "term_en": "Oxidative",
+    "term_jp": "オキシダティブ",
+    "reading": "おきしだてぃぶ",
+    "category": "tasting",
+    "description": "酸化熟成による独特の深みや複雑さ。シェリーのような枯れたニュアンスやナッツ感を含むことが多い。",
+    "tags": ["tasting", "aging"]
+  },
+  {
+    "id": "cask_influence",
+    "term_en": "Cask Influence",
+    "term_jp": "カスクインフルエンス",
+    "reading": "かすくいんふるえんす",
+    "category": "tasting",
+    "description": "樽がウイスキーに与える風味や色の影響全般を指す表現。熟成年数や樽の種類で大きく変わる。",
+    "tags": ["tasting", "cask"]
+  },
+  {
+    "id": "creamy",
+    "term_en": "Creamy",
+    "term_jp": "クリーミー",
+    "reading": "くりーみー",
+    "category": "tasting",
+    "description": "クリームや生クリームのような、滑らかでまろやかな口当たり。バニラ系の甘さを伴うことが多い。",
+    "tags": ["mouthfeel", "texture"]
+  },
+  {
+    "id": "sulfury",
+    "term_en": "Sulfury",
+    "term_jp": "サルファリー",
+    "reading": "さるふぁりー",
+    "category": "tasting",
+    "description": "硫黄のようなニュアンス。マッチの火、ゴム、肉のような重厚な香り。蒸留器の銅との反応に関連する。",
+    "tags": ["aroma", "off-flavor"]
+  },
+  {
+    "id": "citrus",
+    "term_en": "Citrus",
+    "term_jp": "シトラス",
+    "reading": "しとらす",
+    "category": "tasting",
+    "description": "レモン、オレンジ、グレープフルーツなど柑橘系の爽やかな香り。リフィルカスク熟成の軽い原酒に多い。",
+    "tags": ["aroma", "fruit"]
+  },
+  {
+    "id": "cereal",
+    "term_en": "Cereal",
+    "term_jp": "シリアル",
+    "reading": "しりある",
+    "category": "tasting",
+    "description": "穀物由来の香り。麦芽、トースト、酵母など、ウイスキーの原料を感じさせる香ばしいニュアンス。",
+    "tags": ["aroma", "raw material"]
+  },
+  {
+    "id": "sweet_flavor",
+    "term_en": "Sweet",
+    "term_jp": "スイート",
+    "reading": "すいーと",
+    "category": "tasting",
+    "description": "甘い香りや味わい。バニラ、ハチミツ、キャラメル、チョコレートなど。主に樽由来の成分からくる。",
+    "tags": ["aroma", "taste"]
+  },
+  {
+    "id": "spicy",
+    "term_en": "Spicy",
+    "term_jp": "スパイシー",
+    "reading": "すぱいしー",
+    "category": "tasting",
+    "description": "胡椒やシナモンのような刺激のある香り。",
+    "tags": ["aroma", "spice"]
+  },
+  {
+    "id": "smoky",
+    "term_en": "Smoky",
+    "term_jp": "スモーキー",
+    "reading": "すもーきー",
+    "category": "tasting",
+    "description": "煙のような香り。ピート由来のものや樽由来のものがある。",
+    "tags": ["aroma", "peat"]
+  },
+  {
+    "id": "tobacco",
+    "term_en": "Tobacco",
+    "term_jp": "タバコ",
+    "reading": "たばこ",
+    "category": "tasting",
+    "description": "葉タバコ、シガーボックスのような深く芳醇な香り。長期熟成されたモルトに現れることがある。",
+    "tags": ["aroma", "aging"]
+  },
+  {
+    "id": "dunnage_warehouse",
+    "term_en": "Dunnage Aroma",
+    "term_jp": "ダンネージ式の貯蔵庫の香り",
+    "reading": "だんねーじしきのちょぞうこのかおり",
+    "category": "tasting",
+    "description": "湿った土、古いオーク、そしてわずかなカビの匂いが混ざり合った、伝統的な貯蔵庫特有の香り。ウイスキーファンにとっては非常に魅惑的な表現。",
+    "tags": ["aroma", "warehouse"]
+  },
+  {
+    "id": "toffee",
+    "term_en": "Toffee",
+    "term_jp": "トフィー",
+    "reading": "とふぃー",
+    "category": "tasting",
+    "description": "バターと砂糖を煮詰めたようなコクのある甘さ。長期熟成やシェリー樽由来の風味として現れることが多い。",
+    "tags": ["aroma", "sweet"]
+  },
+  {
+    "id": "dried_fruit",
+    "term_en": "Dried Fruit",
+    "term_jp": "ドライフルーツ",
+    "reading": "どらいふるーつ",
+    "category": "tasting",
+    "description": "レーズン、イチジク、デーツ、プルーンなど乾燥果実の凝縮された甘みと香り。シェリー樽熟成の代表的な風味。",
+    "tags": ["aroma", "fruit"]
+  },
+  {
+    "id": "dram",
+    "term_en": "Dram",
+    "term_jp": "ドラム",
+    "reading": "どらむ",
+    "category": "tasting",
+    "description": "スコットランドでのウイスキー1杯分の呼称。明確な定義はないが、25ml〜35ml程度を指すことが多い。",
+    "tags": ["unit", "culture"]
+  },
+  {
+    "id": "nutty",
+    "term_en": "Nutty",
+    "term_jp": "ナッティー",
+    "reading": "なってぃー",
+    "category": "tasting",
+    "description": "アーモンド、ヘーゼルナッツ、クルミなどのナッツ類を思わせる香ばしい香りや味わい。",
+    "tags": ["aroma", "taste"]
+  },
+  {
+    "id": "nose",
+    "term_en": "Nose",
+    "term_jp": "ノーズ",
+    "reading": "のーず",
+    "category": "tasting",
+    "description": "グラスから立ち上がる香りを嗅ぐこと、またはその香りの質そのものを指す。",
+    "tags": ["tasting", "aroma"]
+  },
+  {
+    "id": "honey_flavor",
+    "term_en": "Honey",
+    "term_jp": "ハニー",
+    "reading": "はにー",
+    "category": "tasting",
+    "description": "蜂蜜のような甘い香りや味わい。スペイサイドのモルトやバーボン樽熟成のウイスキーに多く見られる。",
+    "tags": ["aroma", "sweet"]
+  },
+  {
+    "id": "palate",
+    "term_en": "Palate",
+    "term_jp": "パレット",
+    "reading": "ぱれっと",
+    "category": "tasting",
+    "description": "口に含んだ時の味わい、テクスチャー、全体的な風味の構成のこと。",
+    "tags": ["tasting", "flavor"]
+  },
+  {
+    "id": "peaty",
+    "term_en": "Peaty",
+    "term_jp": "ピーティー",
+    "reading": "ぴーてぃー",
+    "category": "tasting",
+    "description": "ピート（泥炭）の風味が強いこと。薬品、ヨード、あるいは土っぽさを伴う独特の個性。",
+    "tags": ["aroma", "peat"]
+  },
+  {
+    "id": "finish_length",
+    "term_en": "Finish / Aftertaste",
+    "term_jp": "フィニッシュ / 余韻",
+    "reading": "ふぃにっしゅ　／　よいん",
+    "category": "tasting",
+    "description": "飲み込んだ後に口の中に残る香りと味わい。その持続時間を「長い（ロング・フィニッシュ）」「短い（ショート・フィニッシュ）」と表現する。",
+    "tags": ["tasting", "experience"]
+  },
+  {
+    "id": "phenols",
+    "term_en": "Phenols",
+    "term_jp": "フェノール",
+    "reading": "ふぇのーる",
+    "category": "tasting",
+    "description": "ピートを焚いた際に生じる化合物。スモーキー、薬品、ヨードといった香りの指標。PPMという単位で表される。",
+    "tags": ["science", "smoky"]
+  },
+  {
+    "id": "flight",
+    "term_en": "Flight",
+    "term_jp": "フライト",
+    "reading": "ふらいと",
+    "category": "tasting",
+    "description": "数種類のウイスキーの飲み比べセットのこと。",
+    "tags": ["style", "menu"]
+  },
+  {
+    "id": "briny",
+    "term_en": "Briny",
+    "term_jp": "ブライニー",
+    "reading": "ぶらいにー",
+    "category": "tasting",
+    "description": "海水や潮風のような塩気のあるニュアンス。沿岸部の蒸留所のウイスキーに見られることが多い。",
+    "tags": ["aroma", "maritime"]
+  },
+  {
+    "id": "fruity",
+    "term_en": "Fruity",
+    "term_jp": "フルーティー",
+    "reading": "ふるーてぃー",
+    "category": "tasting",
+    "description": "果実のような香り。リンゴ、洋ナシ、柑橘、トロピカルなど様々。",
+    "tags": ["aroma", "fruit"]
+  },
+  {
+    "id": "floral",
+    "term_en": "Floral",
+    "term_jp": "フローラル",
+    "reading": "ふろーらる",
+    "category": "tasting",
+    "description": "花のような香り。草花、ドライフラワー、あるいはハーブのような華やかなニュアンス。",
+    "tags": ["aroma", "flower"]
+  },
+  {
+    "id": "petrichor",
+    "term_en": "Petrichor",
+    "term_jp": "ペトリコール",
+    "reading": "ぺとりこーる",
+    "category": "tasting",
+    "description": "「雨が降った後の地面の匂い」。土っぽさ（アース）の中に、清涼感と湿り気を含んだ複雑なニュアンスを表す時に使われる。",
+    "tags": ["aroma", "nature"]
+  },
+  {
+    "id": "body",
+    "term_en": "Body",
+    "term_jp": "ボディ",
+    "reading": "ぼでぃ",
+    "category": "tasting",
+    "description": "口に含んだ時の重みや厚みの表現。フルボディ（重口）、ライトボディ（軽口）などと使われる。",
+    "tags": ["mouthfeel", "texture"]
+  },
+  {
+    "id": "mouthfeel",
+    "term_en": "Mouthfeel",
+    "term_jp": "マウスフィール",
+    "reading": "まうすふぃーる",
+    "category": "tasting",
+    "description": "口に含んだときの感触。クリーミー、オイリー、ドライ、ざらつきなど、味そのものよりも「触感」に近い表現。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "maritime",
+    "term_en": "Maritime",
+    "term_jp": "マリタイム",
+    "reading": "まりたいむ",
+    "category": "tasting",
+    "description": "海藻、潮風、ヨード、塩気など海を連想させる風味の総称。アイラ島や沿岸蒸留所のウイスキーに特徴的。",
+    "tags": ["aroma", "coastal"]
+  },
+  {
+    "id": "mineral",
+    "term_en": "Mineral",
+    "term_jp": "ミネラル",
+    "reading": "みねらる",
+    "category": "tasting",
+    "description": "石、チョーク、鉱物のようなニュアンス。仕込み水の硬度やテロワールに由来するとされる。",
+    "tags": ["aroma", "nature"]
+  },
+  {
+    "id": "malty",
+    "term_en": "Malty",
+    "term_jp": "モルティー",
+    "reading": "もるてぃー",
+    "category": "tasting",
+    "description": "麦芽（モルト）由来の穀物感のある香りや味わい。ビスケットやトーストを連想させる。",
+    "tags": ["aroma", "raw material"]
+  },
+  {
+    "id": "oeil_de_perdrix",
+    "term_en": "Eye of the Partridge",
+    "term_jp": "ヤマウズラの目の色",
+    "reading": "やまうずらのめのいろ",
+    "category": "tasting",
+    "description": "ワイン用語（Oeil de Perdrix）に由来。極めて淡い琥珀色や、ロゼワインのようなピンクがかった銅色を指す非常に優雅な表現。",
+    "tags": ["color", "poetic"]
+  },
+  {
+    "id": "rancio",
+    "term_en": "Rancio",
+    "term_jp": "ランシオ",
+    "reading": "らんしお",
+    "category": "tasting",
+    "description": "長期間の熟成を経たコニャックやウイスキーに現れる、熟したキノコ、ナッツ、あるいはチーズのような独特の芳醇な香り。",
+    "tags": ["aging", "aroma"]
+  },
+  {
+    "id": "leather",
+    "term_en": "Leather",
+    "term_jp": "レザー",
+    "reading": "れざー",
+    "category": "tasting",
+    "description": "革の香り。シェリー樽での長期熟成や、ヨーロピアンオーク由来のタンニンが生む重厚なニュアンス。",
+    "tags": ["aroma", "aging"]
+  },
+  {
+    "id": "legs_tears",
+    "term_en": "Legs / Tears",
+    "term_jp": "レッグス / ティアーズ",
+    "reading": "れっぐす",
+    "category": "tasting",
+    "description": "グラスの壁面をゆっくりと流れ落ちる液滴のこと。粘性やアルコール度数の指標として観察される。",
+    "tags": ["tasting", "visual"]
+  },
+  {
+    "id": "winey",
+    "term_en": "Winey",
+    "term_jp": "ワイニー",
+    "reading": "わいにー",
+    "category": "tasting",
+    "description": "ワインやシェリー酒を思わせる、濃縮された果実味とフルーティーな酸味。タンニン（渋み）を感じることもある。",
+    "tags": ["cask", "aroma"]
+  },
+  {
+    "id": "furniture_polish",
+    "term_en": "Furniture Polish / Wax",
+    "term_jp": "家具のワックス",
+    "reading": "かぐのわっくす",
+    "category": "tasting",
+    "description": "磨き上げられたアンティーク家具や蜜蝋（みつろう）のような香り。オイリーで滑らかな質感を伴う、高品質な長期熟成原酒によく使われる表現。",
+    "tags": ["aroma", "texture"]
+  },
+  {
+    "id": "gunpowder",
+    "term_en": "Gunpowder",
+    "term_jp": "火薬",
+    "reading": "かやく",
+    "category": "tasting",
+    "description": "打ち上げ花火や爆竹を鳴らした後のような、焦げた硫黄の匂い。シェリー樽由来の成分や、蒸留過程の化学反応で現れる、非常にパンチのある表現。",
+    "tags": ["aroma", "sulfury"]
+  },
+  {
+    "id": "industrial_oil",
+    "term_en": "Industrial / Engine Oil",
+    "term_jp": "機械油",
+    "reading": "きかいあぶら",
+    "category": "tasting",
+    "description": "工場の重油やエンジンオイルのような、無機質で力強いオイリーさ。一部の蒸留所が持つ、非常に個性的でクラシックなキャラクターを指す。",
+    "tags": ["aroma", "oily"]
+  },
+  {
+    "id": "old_leather_shoe",
+    "term_en": "Old Leather Shoe",
+    "term_jp": "古い革靴",
+    "reading": "ふるいかわぐつ",
+    "category": "tasting",
+    "description": "使い込まれた革製品や靴のような香り。シェリー樽での長期熟成によって生まれる、重厚で深みのある芳醇さを表す際に使われる褒め言葉。",
+    "tags": ["aroma", "aging"]
+  },
+  {
+    "id": "old_library",
+    "term_en": "Old Library",
+    "term_jp": "古い図書館",
+    "reading": "ふるいとしょかん",
+    "category": "tasting",
+    "description": "古い紙、革の装丁、埃っぽさ、そしてわずかなワックスの香りが混じった状態。長期熟成されたモルトにしばしば見られる表現。",
+    "tags": ["aroma", "antique"]
+  },
+  {
+    "id": "astringency",
+    "term_en": "Astringency",
+    "term_jp": "収斂味（しゅうれんみ）",
+    "reading": "しゅうれんみ（しゅうれんみ）",
+    "category": "tasting",
+    "description": "口の中が引き締まるような、あるいは乾くような感覚。主に木樽由来のタンニンによって引き起こされる「渋み」。",
+    "tags": ["mouthfeel", "tannin"]
+  },
+  {
+    "id": "wet_dog",
+    "term_en": "Wet Dog",
+    "term_jp": "濡れた犬",
+    "reading": "ぬれたいぬ",
+    "category": "tasting",
+    "description": "濡れた犬の毛のような、独特の動物的・湿ったニュアンス。ある種の新酒や特定の発酵プロセスを経たウイスキーに現れる。愛好家には『野性的』とポジティブに捉えられることも。",
+    "tags": ["aroma", "animalic"]
+  },
+  {
+    "id": "pipi_de_chat",
+    "term_en": "Cat's Pee",
+    "term_jp": "猫の尿",
+    "reading": "ねこのにょう",
+    "category": "tasting",
+    "description": "ソーヴィニヨン・ブランなどのワインで使われる有名な表現。ウイスキーでは、ある種の硫黄化合物や若い原酒が持つ、ツンとした刺激的なハーブのような香りを指す。",
+    "tags": ["aroma", "strange"]
+  },
+  {
+    "id": "viscosity",
+    "term_en": "Viscosity",
+    "term_jp": "粘性（ねんせい）",
+    "reading": "ねんせい（ねんせい）",
+    "category": "tasting",
+    "description": "液体の「とろみ」。グラスの壁を流れる液滴（レッグス）の速さや、口当たりで判断される。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "barnyard",
+    "term_en": "Barnyard / Farmyard",
+    "term_jp": "農場・馬小屋",
+    "reading": "のうじょう・うまごや",
+    "category": "tasting",
+    "description": "干し草、家畜、土などが混ざり合った、田舎の農場のような香り。非常に複雑な香味を持つ古いボトルや、独特の酵母由来のニュアンスに使われる。",
+    "tags": ["aroma", "earthy"]
+  },
+  {
+    "id": "complexity",
+    "term_en": "Complexity",
+    "term_jp": "複雑さ",
+    "reading": "ふくざつさ",
+    "category": "tasting",
+    "description": "香りと味わいが重層的で、時間の経過とともに様々な表情を見せること。高品質なウイスキーの褒め言葉として使われる。",
+    "tags": ["evaluation"]
+  },
+  {
+    "id": "band_aid",
+    "term_en": "Band-Aid / Medicinal",
+    "term_jp": "絆創膏（ばんそうこう）",
+    "reading": "ばんそうこう（ばんそうこう）",
+    "category": "tasting",
+    "description": "消毒液やプラスチック製の絆創膏のような、薬品的な香り。アイラモルトなどのピートが強いウイスキー特有の表現。フェノール類に由来する。",
+    "tags": ["aroma", "peat"]
   }
 ]
