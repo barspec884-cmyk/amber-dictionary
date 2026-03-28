@@ -270,6 +270,15 @@
     "tags": ["distribution", "ob"]
   },
   {
+    "id": "cask_number",
+    "term_en": "Cask Number",
+    "term_jp": "カスクナンバー",
+    "reading": "かすくなんばー",
+    "category": "distribution",
+    "description": "シングルカスクなどのラベルに記載される、その原酒が熟成されていた特定の樽の識別番号。",
+    "tags": ["label", "cask"]
+  },
+  {
     "id": "grain_whisky",
     "term_en": "Grain Whisky",
     "term_jp": "グレーンウイスキー",
@@ -376,6 +385,15 @@
     "category": "distribution",
     "description": "麦芽と未発芽大麦を原料とし、ポットスチルで蒸留するアイルランド特有のスタイル。",
     "tags": ["style", "irish"]
+  },
+  {
+    "id": "bottled_in_bond",
+    "term_en": "Bottled in Bond",
+    "term_jp": "ボトルド・イン・ボンド",
+    "reading": "ぼとるど・いん・ぼんど",
+    "category": "distribution",
+    "description": "1897年の連邦法に基づくアメリカンウイスキーの品質保証規格。単一の蒸溜所・単一の季節に蒸留され、政府監督下の熟成庫で4年以上熟成、100プルーフ（50%）で瓶詰めなどの厳格な条件がある。",
+    "tags": ["legal", "american"]
   },
   {
     "id": "rye_whiskey",
@@ -576,6 +594,15 @@
     "tags": ["process:finish"]
   },
   {
+    "id": "chill_haze",
+    "term_en": "Chill Haze",
+    "term_jp": "チルヘイズ",
+    "reading": "ちるへいず",
+    "category": "finishing",
+    "description": "ノンチルフィルタードのウイスキーに冷水を加えたり低温環境に置いたりした際に、ウイスキー内の脂肪酸などが析出して白濁する現象。品質や味わいには全く問題ない。",
+    "tags": ["phenomenon", "finishing"]
+  },
+  {
     "id": "natural_colour",
     "term_en": "Natural Colour",
     "term_jp": "ナチュラルカラー",
@@ -693,6 +720,15 @@
     "tags": ["cask", "wood"]
   },
   {
+    "id": "ullage",
+    "term_en": "Ullage",
+    "term_jp": "アレッジ",
+    "reading": "あれっじ",
+    "category": "maturation",
+    "description": "樽やボトル内の空気の隙間（目減り分）のこと。樽熟成においては天使の分け前によってウイスキーが減ることで生じる。",
+    "tags": ["phenomenon", "aging"]
+  },
+  {
     "id": "virgin_oak",
     "term_en": "Virgin Oak",
     "term_jp": "ヴァージンオーク",
@@ -700,6 +736,15 @@
     "category": "maturation",
     "description": "一度も使用されていない新品のオーク樽。樽材の成分が強く溶出するため、バニラやスパイスの風味が強い。",
     "tags": ["cask", "condition"]
+  },
+  {
+    "id": "valinch",
+    "term_en": "Valinch",
+    "term_jp": "ヴァリンチ",
+    "reading": "ゔぁりんち",
+    "category": "maturation",
+    "description": "熟成中のウイスキーを樽の穴（バングホール）から直接抜き取るための、大きなスポイト状の金属製またはガラス製の道具。",
+    "tags": ["equipment", "tasting"]
   },
   {
     "id": "warehouse",
@@ -765,6 +810,15 @@
     "tags": ["cask", "european oak"]
   },
   {
+    "id": "stave",
+    "term_en": "Stave",
+    "term_jp": "ステイヴ",
+    "reading": "すていゔ",
+    "category": "maturation",
+    "description": "樽を構成する細長い側面板のこと。これを鉄の輪（フープ）で束ねて樽の形に組み上げる。",
+    "tags": ["equipment", "cask"]
+  },
+  {
     "id": "dunnage",
     "term_en": "Dunnage",
     "term_jp": "ダンネージ式",
@@ -828,6 +882,15 @@
     "tags": ["warehouse", "efficiency"]
   },
   {
+    "id": "bung",
+    "term_en": "Bung",
+    "term_jp": "バング",
+    "reading": "ばんぐ",
+    "category": "maturation",
+    "description": "樽の側面にある注ぎ口（バングホール）を密閉するための栓。伝統的な木製のものや、現代的なシリコン製のものがある。",
+    "tags": ["equipment", "cask"]
+  },
+  {
     "id": "puncheon",
     "term_en": "Puncheon",
     "term_jp": "パンチョン",
@@ -889,6 +952,15 @@
     "category": "maturation",
     "description": "金属製の棚に樽を横向きで十数段積み上げる方式。効率が良く、大手蒸溜所でよく利用される。",
     "tags": ["warehouse", "modern"]
+  },
+  {
+    "id": "rickhouse",
+    "term_en": "Rickhouse",
+    "term_jp": "リックハウス",
+    "reading": "りっくはうす",
+    "category": "maturation",
+    "description": "主にアメリカンウイスキーで使われる、風通しの良い多層階の熟成庫。階層によって温度差が大きく、どの段に置くかで熟成スピードや個性が変わる。",
+    "tags": ["warehouse", "american"]
   },
   {
     "id": "refill_cask",
@@ -999,6 +1071,15 @@
     "tags": ["culture", "gaelic"]
   },
   {
+    "id": "glen",
+    "term_en": "Glen",
+    "term_jp": "グレン",
+    "reading": "ぐれん",
+    "category": "others",
+    "description": "スコットランド・ゲール語で「谷」を意味する言葉。清らかな水源がある場所に蒸溜所が多く建てられたため、グレンフィディックなどスコッチの銘柄名に非常によく使われる。",
+    "tags": ["etymology", "scotch"]
+  },
+  {
     "id": "keepers_of_the_quaich",
     "term_en": "The Keepers of the Quaich",
     "term_jp": "ザ・キーパー・オブ・ザ・クエイヒ",
@@ -1015,6 +1096,15 @@
     "category": "others",
     "description": "キーパーの中でも特に貢献度が大きく、長年務めた人物に贈られる名誉称号。",
     "tags": ["honor", "rare"]
+  },
+  {
+    "id": "silent_season",
+    "term_en": "Silent Season",
+    "term_jp": "サイレントシーズン",
+    "reading": "さいれんとしいずん",
+    "category": "others",
+    "description": "夏場に蒸溜所が生産を一時休止する期間のこと。水不足や水温上昇による冷却効率の低下を避けるためや、設備のメンテナンスにあてられる。",
+    "tags": ["process", "tradition"]
   },
   {
     "id": "swa",
@@ -1269,6 +1359,15 @@
     "tags": ["traditional", "malting"]
   },
   {
+    "id": "mash_bill",
+    "term_en": "Mash Bill",
+    "term_jp": "マッシュビル",
+    "reading": "まっしゅびる",
+    "category": "raw",
+    "description": "バーボンなどのアメリカンウイスキーにおける、原料となる穀物（コーン、ライ麦、小麦、大麦麦芽など）の配合比率のこと。",
+    "tags": ["raw material", "bourbon"]
+  },
+  {
     "id": "milling",
     "term_en": "Milling",
     "term_jp": "ミリング",
@@ -1404,6 +1503,15 @@
     "tags": ["tasting", "aging"]
   },
   {
+    "id": "on_the_rocks",
+    "term_en": "On the Rocks",
+    "term_jp": "オン・ザ・ロックス",
+    "reading": "おん・ざ・ろっくす",
+    "category": "tasting",
+    "description": "氷を入れたグラスにウイスキーを注ぐ飲み方。時間の経過とともに氷が溶け、温度と度数が下がることで味わいが変化していくのを楽しめる。",
+    "tags": ["style", "drinking"]
+  },
+  {
     "id": "cask_influence",
     "term_en": "Cask Influence",
     "term_jp": "カスクインフルエンス",
@@ -1521,6 +1629,15 @@
     "tags": ["unit", "culture"]
   },
   {
+    "id": "twice_up",
+    "term_en": "Twice Up",
+    "term_jp": "トワイスアップ",
+    "reading": "とわいすあっぷ",
+    "category": "tasting",
+    "description": "ウイスキーと常温の水を1：1の割合でグラスに注ぐ飲み方。アルコール度数が20度前後になり、アルコールの刺激が和らいで香りが最も開きやすいとされる。",
+    "tags": ["style", "drinking"]
+  },
+  {
     "id": "nutty",
     "term_en": "Nutty",
     "term_jp": "ナッティー",
@@ -1602,6 +1719,15 @@
     "tags": ["aroma", "maritime"]
   },
   {
+    "id": "blind_tasting",
+    "term_en": "Blind Tasting",
+    "term_jp": "ブラインドテイスティング",
+    "reading": "ぶらいんどていすてぃんぐ",
+    "category": "tasting",
+    "description": "銘柄や熟成年数などの情報を一切隠した状態でウイスキーを試飲し、先入観なしに香りや味わいを純粋に評価する手法。",
+    "tags": ["tasting", "evaluation"]
+  },
+  {
     "id": "fruity",
     "term_en": "Fruity",
     "term_jp": "フルーティー",
@@ -1618,6 +1744,15 @@
     "category": "tasting",
     "description": "花のような香り。草花、ドライフラワー、あるいはハーブのような華やかなニュアンス。",
     "tags": ["aroma", "flower"]
+  },
+  {
+    "id": "heather",
+    "term_en": "Heather",
+    "term_jp": "ヘザー（ヒース）",
+    "reading": "へざー",
+    "category": "tasting",
+    "description": "スコットランドの荒野（ムーア）に群生する低木。その花のような甘く華やかな香りや、ピートに混ざり込んだ独特の風味がウイスキーに表れることがある。",
+    "tags": ["aroma", "nature"]
   },
   {
     "id": "petrichor",
@@ -1825,5 +1960,2138 @@
     "category": "tasting",
     "description": "消毒液やプラスチック製の絆創膏のような、薬品的な香り。アイラモルトなどのピートが強いウイスキー特有の表現。フェノール類に由来する。",
     "tags": ["aroma", "peat"]
+  },
+  {
+    "id": "malt",
+    "term_en": " Malt",
+    "term_jp": "モルト",
+    "reading": "もると",
+    "category": "raw_material",
+    "description": "発芽させた大麦麦芽のこと。モルトウイスキーの主要原料となる。",
+    "tags": ["grain", "base"]
+  },
+  {
+    "id": "peated_malt",
+    "term_en": "Peated Malt",
+    "term_jp": "ピーテッドモルト",
+    "reading": "ぴーてっどもると",
+    "category": "raw_material",
+    "description": "乾燥工程でピートの煙香を付与した麦芽。スモーキーな酒質のもとになる。",
+    "tags": ["peat", "smoky"]
+  },
+  {
+    "id": "unpeated_malt",
+    "term_en": "Unpeated Malt",
+    "term_jp": "ノンピートモルト",
+    "reading": "のんぴーともると",
+    "category": "raw_material",
+    "description": "ピート香を付けずに製麦した麦芽。穀物感や果実感が素直に出やすい。",
+    "tags": ["peat", "clean"]
+  },
+  {
+    "id": "barley",
+    "term_en": "Barley",
+    "term_jp": "大麦",
+    "reading": "おおむぎ",
+    "category": "raw_material",
+    "description": "ウイスキー造りで最も代表的な穀物原料。品種や産地で個性が変わる。",
+    "tags": ["grain", "ingredient"]
+  },
+  {
+    "id": "malted_barley",
+    "term_en": "Malted Barley",
+    "term_jp": "麦芽",
+    "reading": "ばくが",
+    "category": "raw_material",
+    "description": "発芽と乾燥を経た大麦。糖化に必要な酵素を備える。",
+    "tags": ["grain", "ingredient"]
+  },
+  {
+    "id": "unmalted_barley",
+    "term_en": "Unmalted Barley",
+    "term_jp": "未発芽大麦",
+    "reading": "みはつがだいむぎ",
+    "category": "raw_material",
+    "description": "麦芽化していない大麦。アイリッシュ系などで使われることがある。",
+    "tags": ["grain", "irish"]
+  },
+  {
+    "id": "corn",
+    "term_en": "Corn",
+    "term_jp": "トウモロコシ",
+    "reading": "とうもろこし",
+    "category": "raw_material",
+    "description": "バーボンで主原料となる穀物。甘みと厚みのある酒質を生みやすい。",
+    "tags": ["grain", "american"]
+  },
+  {
+    "id": "rye",
+    "term_en": "Rye",
+    "term_jp": "ライ麦",
+    "reading": "らいむぎ",
+    "category": "raw_material",
+    "description": "スパイシーでドライな個性を与える穀物。アメリカンウイスキーで重要。",
+    "tags": ["grain", "spicy"]
+  },
+  {
+    "id": "wheat",
+    "term_en": "Wheat",
+    "term_jp": "小麦",
+    "reading": "こむぎ",
+    "category": "raw_material",
+    "description": "やわらかく丸みのある酒質に寄与しやすい穀物。",
+    "tags": ["grain", "soft"]
+  },
+  {
+    "id": "grist",
+    "term_en": "Grist",
+    "term_jp": "グリスト",
+    "reading": "ぐりすと",
+    "category": "raw_material",
+    "description": "粉砕した麦芽のこと。粒度の違いが糖化効率に影響する。",
+    "tags": ["milling", "mash"]
+  },
+  {
+    "id": "husks",
+    "term_en": "Husks",
+    "term_jp": "ハスク",
+    "reading": "はすく",
+    "category": "raw_material",
+    "description": "麦芽の外皮部分。ろ過層として働き、マッシング時に役立つ。",
+    "tags": ["milling", "filter"]
+  },
+  {
+    "id": "starch",
+    "term_en": "Starch",
+    "term_jp": "デンプン",
+    "reading": "でんぷん",
+    "category": "raw_material",
+    "description": "穀物中に含まれる糖化前の炭水化物。酵素で糖へ分解される。",
+    "tags": ["science", "ingredient"]
+  },
+  {
+    "id": "phenol",
+    "term_en": "Phenol",
+    "term_jp": "フェノール",
+    "reading": "ふぇのーる",
+    "category": "raw_material",
+    "description": "ピート由来の燻香成分を表す際によく使われる指標。",
+    "tags": ["peat", "measure"]
+  },
+  {
+    "id": "ppm",
+    "term_en": "PPM",
+    "term_jp": "PPM",
+    "reading": "ぴーぴーえむ",
+    "category": "raw_material",
+    "description": "フェノール量などの濃度を示す単位。ピートレベルの目安として使われる。",
+    "tags": ["measure", "peat"]
+  },
+  {
+    "id": "water_source",
+    "term_en": "Water Source",
+    "term_jp": "水源",
+    "reading": "すいげん",
+    "category": "raw_material",
+    "description": "仕込み水の採水源。硬度やミネラル構成が工程に影響する。",
+    "tags": ["water", "ingredient"]
+  },
+  {
+    "id": "spring_water",
+    "term_en": "Spring Water",
+    "term_jp": "湧水",
+    "reading": "ゆうすい",
+    "category": "raw_material",
+    "description": "地下から自然に湧き出る水。仕込み水として用いられることがある。",
+    "tags": ["water", "source"]
+  },
+  {
+    "id": "peat",
+    "term_en": "Peat",
+    "term_jp": "ピート",
+    "reading": "ぴーと",
+    "category": "raw_material",
+    "description": "泥炭のこと。麦芽乾燥時の燃料として使われ、独特の燻香を与える。",
+    "tags": ["peat", "smoky"]
+  },
+  {
+    "id": "kilning",
+    "term_en": "Kilning",
+    "term_jp": "キルニング",
+    "reading": "きるにんぐ",
+    "category": "malting",
+    "description": "発芽した麦芽を乾燥させる工程。香味形成に大きく関わる。",
+    "tags": ["malting", "process"]
+  },
+  {
+    "id": "malting",
+    "term_en": "Malting",
+    "term_jp": "モルティング",
+    "reading": "もるてぃんぐ",
+    "category": "malting",
+    "description": "大麦を浸漬・発芽・乾燥して麦芽にする工程。",
+    "tags": ["malting", "process"]
+  },
+  {
+    "id": "steeping",
+    "term_en": "Steeping",
+    "term_jp": "浸漬",
+    "reading": "しんし",
+    "category": "malting",
+    "description": "大麦を水に浸して発芽を促す製麦初期工程。",
+    "tags": ["malting", "process"]
+  },
+  {
+    "id": "germination",
+    "term_en": "Germination",
+    "term_jp": "発芽",
+    "reading": "はつが",
+    "category": "malting",
+    "description": "大麦が芽を出す工程。酵素が活性化し、糖化の準備が整う。",
+    "tags": ["malting", "process"]
+  },
+  {
+    "id": "floor_malting",
+    "term_en": "Floor Malting",
+    "term_jp": "フロアモルティング",
+    "reading": "ふろあもるてぃんぐ",
+    "category": "malting",
+    "description": "床に麦を広げて発芽管理する伝統的製麦法。手間はかかるが個性が出やすい。",
+    "tags": ["traditional", "malting"]
+  },
+  {
+    "id": "maltings",
+    "term_en": "Maltings",
+    "term_jp": "モルティング施設",
+    "reading": "もるてぃんぐしせつ",
+    "category": "malting",
+    "description": "製麦を行うための設備や建屋の総称。",
+    "tags": ["equipment", "malting"]
+  },
+  {
+    "id": "green_malt",
+    "term_en": "Green Malt",
+    "term_jp": "グリーンモルト",
+    "reading": "ぐりーんもると",
+    "category": "malting",
+    "description": "発芽後で乾燥前の湿った麦芽。",
+    "tags": ["kilning", "malting"]
+  },
+  {
+    "id": "peat_reek",
+    "term_en": "Peat Reek",
+    "term_jp": "ピートリーク",
+    "reading": "ぴーとりーく",
+    "category": "malting",
+    "description": "ピート燃焼時に発生する煙香のこと。麦芽へスモーキーさを与える。",
+    "tags": ["peat", "smoke"]
+  },
+  {
+    "id": "drum_maltings",
+    "term_en": "Drum Maltings",
+    "term_jp": "ドラムモルティング",
+    "reading": "どらむもるてぃんぐ",
+    "category": "malting",
+    "description": "回転式設備で効率的に製麦する方法。大量生産向き。",
+    "tags": ["industrial", "malting"]
+  },
+  {
+    "id": "moisture_content",
+    "term_en": "Moisture Content",
+    "term_jp": "水分量",
+    "reading": "すいぶんりょう",
+    "category": "malting",
+    "description": "麦芽や穀物に含まれる水分の割合。管理が品質に直結する。",
+    "tags": ["measure", "quality"]
+  },
+  {
+    "id": "hot_water_charge",
+    "term_en": "Hot Water Charge",
+    "term_jp": "加水投入",
+    "reading": "かすいとうにゅう",
+    "category": "mashing",
+    "description": "マッシュタンへ熱湯を加える工程。温度設定で抽出効率が変わる。",
+    "tags": ["mash", "process"]
+  },
+  {
+    "id": "strike_temperature",
+    "term_en": "Strike Temperature",
+    "term_jp": "仕込み温度",
+    "reading": "しこみおんど",
+    "category": "mashing",
+    "description": "マッシング開始時のお湯の温度。酵素活性に影響する重要条件。",
+    "tags": ["mash", "temperature"]
+  },
+  {
+    "id": "lautering",
+    "term_en": "Lautering",
+    "term_jp": "ろ過",
+    "reading": "ろか",
+    "category": "mashing",
+    "description": "糖化後の液体と穀物固形分を分離する工程。",
+    "tags": ["filter", "mash"]
+  },
+  {
+    "id": "first_wort",
+    "term_en": "First Wort",
+    "term_jp": "一番麦汁",
+    "reading": "いちばんばくじゅう",
+    "category": "mashing",
+    "description": "最初に得られる濃い麦汁。発酵原料として重要。",
+    "tags": ["mash", "liquid"]
+  },
+  {
+    "id": "sparging",
+    "term_en": "Sparging",
+    "term_jp": "スパージング",
+    "reading": "すぱーじんぐ",
+    "category": "mashing",
+    "description": "穀物層に湯をかけて残った糖分を洗い流す工程。",
+    "tags": ["mash", "process"]
+  },
+  {
+    "id": "underlet",
+    "term_en": "Underlet",
+    "term_jp": "アンダーレット",
+    "reading": "あんだーれっと",
+    "category": "mashing",
+    "description": "マッシュタン下部から湯や液体を導入する仕組み。",
+    "tags": ["equipment", "mash"]
+  },
+  {
+    "id": "mash_filter",
+    "term_en": "Mash Filter",
+    "term_jp": "マッシュフィルター",
+    "reading": "まっしゅふぃるたー",
+    "category": "mashing",
+    "description": "ろ過効率を高めるための機械式ろ過装置。",
+    "tags": ["equipment", "filter"]
+  },
+  {
+    "id": "specific_gravity",
+    "term_en": "Specific Gravity",
+    "term_jp": "比重",
+    "reading": "ひじゅう",
+    "category": "mashing",
+    "description": "液体中の糖分濃度の目安。発酵前後の管理に用いられる。",
+    "tags": ["measure", "science"]
+  },
+  {
+    "id": "original_gravity",
+    "term_en": "Original Gravity",
+    "term_jp": "初期比重",
+    "reading": "しょきひじゅう",
+    "category": "mashing",
+    "description": "発酵前の麦汁の比重。アルコール生成量の目安になる。",
+    "tags": ["measure", "fermentation"]
+  },
+  {
+    "id": "final_gravity",
+    "term_en": "Final Gravity",
+    "term_jp": "最終比重",
+    "reading": "さいしゅうひじゅう",
+    "category": "fermentation",
+    "description": "発酵後の比重。発酵の進行度や残糖感の目安になる。",
+    "tags": ["measure", "fermentation"]
+  },
+  {
+    "id": "esters",
+    "term_en": "Esters",
+    "term_jp": "エステル",
+    "reading": "えすてる",
+    "category": "fermentation",
+    "description": "発酵由来で果実香を生む代表的な香気成分群。",
+    "tags": ["aroma", "science"]
+  },
+  {
+    "id": "congeners",
+    "term_en": "Congeners",
+    "term_jp": "コンジナー",
+    "reading": "こんじなー",
+    "category": "fermentation",
+    "description": "発酵や蒸留で生成される香味成分の総称。酒の個性を形づくる。",
+    "tags": ["aroma", "science"]
+  },
+  {
+    "id": "wash_charger",
+    "term_en": "Wash Charger",
+    "term_jp": "ウォッシュチャージャー",
+    "reading": "うぉっしゅちゃーじゃー",
+    "category": "distillation",
+    "description": "ウォッシュをスチルへ送る装置や工程。",
+    "tags": ["equipment", "distillation"]
+  },
+  {
+    "id": "stillman",
+    "term_en": "Stillman",
+    "term_jp": "スチルマン",
+    "reading": "すちるまん",
+    "category": "distillation",
+    "description": "蒸留工程の管理を担う職人。カット判断など重要な役割を持つ。",
+    "tags": ["people", "production"]
+  },
+  {
+    "id": "run",
+    "term_en": "Still Run",
+    "term_jp": "蒸留ラン",
+    "reading": "じょうりゅうらん",
+    "category": "distillation",
+    "description": "1回の蒸留運転のこと。条件設定で酒質が変わる。",
+    "tags": ["process", "distillation"]
+  },
+  {
+    "id": "charge",
+    "term_en": "Charge",
+    "term_jp": "仕込み量",
+    "reading": "しこみりょう",
+    "category": "distillation",
+    "description": "スチルに投入する液量。蒸留効率や風味に影響する。",
+    "tags": ["process", "measure"]
+  },
+  {
+    "id": "spirit_receiver",
+    "term_en": "Spirit Receiver",
+    "term_jp": "スピリットレシーバー",
+    "reading": "すぴりっとれしーばー",
+    "category": "distillation",
+    "description": "蒸留後の液体を受ける容器。",
+    "tags": ["equipment", "distillation"]
+  },
+  {
+    "id": "safe_lock",
+    "term_en": "Excise Lock",
+    "term_jp": "施錠機構",
+    "reading": "せじょうきこう",
+    "category": "distillation",
+    "description": "スピリットセーフなどに備わる税務管理上の施錠機構。",
+    "tags": ["legal", "equipment"]
+  },
+  {
+    "id": "copper_contact",
+    "term_en": "Copper Contact",
+    "term_jp": "銅接触",
+    "reading": "どうせっしょく",
+    "category": "distillation",
+    "description": "蒸気や液体が銅と触れること。硫黄系成分低減などに寄与する。",
+    "tags": ["science", "distillation"]
+  },
+  {
+    "id": "still_shape",
+    "term_en": "Still Shape",
+    "term_jp": "スチル形状",
+    "reading": "すちるけいじょう",
+    "category": "distillation",
+    "description": "ポットスチルの首の高さや膨らみなどの形状。香味に大きく影響する。",
+    "tags": ["equipment", "shape"]
+  },
+  {
+    "id": "boil_ball",
+    "term_en": "Boil Ball",
+    "term_jp": "ボイルボール",
+    "reading": "ぼいるぼーる",
+    "category": "distillation",
+    "description": "スチル中腹の膨らみ部分。還流を増やす要素として知られる。",
+    "tags": ["equipment", "shape"]
+  },
+  {
+    "id": "lamp_glass",
+    "term_en": "Lamp Glass",
+    "term_jp": "ランプグラス",
+    "reading": "らんぷぐらす",
+    "category": "distillation",
+    "description": "蒸留液の流れや透明度を確認するガラス部分。",
+    "tags": ["equipment", "control"]
+  },
+  {
+    "id": "receiver",
+    "term_en": "Receiver",
+    "term_jp": "レシーバー",
+    "reading": "れしーばー",
+    "category": "distillation",
+    "description": "蒸留液を一時的に受ける容器の総称。",
+    "tags": ["equipment", "liquid"]
+  },
+  {
+    "id": "tails",
+    "term_en": " Tails",
+    "term_jp": "テール",
+    "reading": "てーる",
+    "category": "distillation",
+    "description": "蒸留後半に出る重い成分を多く含む部分。フェインツと近い意味で使われる。",
+    "tags": ["cut", "liquid"]
+  },
+  {
+    "id": "heads",
+    "term_en": "Heads",
+    "term_jp": "ヘッズ",
+    "reading": "へっず",
+    "category": "distillation",
+    "description": "蒸留初期に出る軽く刺激的な成分を多く含む部分。",
+    "tags": ["cut", "liquid"]
+  },
+  {
+    "id": "spirit_cut",
+    "term_en": "Spirit Cut",
+    "term_jp": "スピリットカット",
+    "reading": "すぴりっとかっと",
+    "category": "distillation",
+    "description": "製品用として採用する蒸留液の範囲を切り分ける判断。",
+    "tags": ["cut", "process"]
+  },
+  {
+    "id": "recharge",
+    "term_en": "Recharge",
+    "term_jp": "再投入",
+    "reading": "さいとうにゅう",
+    "category": "distillation",
+    "description": "フェインツなどを次回蒸留に戻すこと。",
+    "tags": ["process", "cut"]
+  },
+  {
+    "id": "still_strength",
+    "term_en": "Still Strength",
+    "term_jp": "留出度数",
+    "reading": "りゅうしゅつどすう",
+    "category": "distillation",
+    "description": "蒸留中または蒸留直後の液体のアルコール度数。",
+    "tags": ["measure", "alcohol"]
+  },
+  {
+    "id": "maturation",
+    "term_en": "Maturation",
+    "term_jp": "熟成",
+    "reading": "じゅくせい",
+    "category": "maturation",
+    "description": "樽の中で時間をかけて香味が変化し整う工程。",
+    "tags": ["aging", "process"]
+  },
+  {
+    "id": "aging",
+    "term_en": "Ageing",
+    "term_jp": "エイジング",
+    "reading": "えいじんぐ",
+    "category": "maturation",
+    "description": "熟成を意味する英語表現。時間経過による変化全般を指す。",
+    "tags": ["aging", "process"]
+  },
+  {
+    "id": "warehouse",
+    "term_en": "Warehouse",
+    "term_jp": "ウェアハウス",
+    "reading": "うぇあはうす",
+    "category": "maturation",
+    "description": "樽を保管して熟成させる倉庫。環境条件が酒質に影響する。",
+    "tags": ["storage", "aging"]
+  },
+  {
+    "id": "dunnage_warehouse",
+    "term_en": "Dunnage Warehouse",
+    "term_jp": "ダンネージウェアハウス",
+    "reading": "だんねーじうぇあはうす",
+    "category": "maturation",
+    "description": "土床で低層の伝統的熟成庫。温湿度変化が穏やかとされる。",
+    "tags": ["traditional", "warehouse"]
+  },
+  {
+    "id": "racked_warehouse",
+    "term_en": "Racked Warehouse",
+    "term_jp": "ラック式熟成庫",
+    "reading": "らっくしきじゅくせいこ",
+    "category": "maturation",
+    "description": "樽を棚に積む近代的な熟成庫。効率的な保管に向く。",
+    "tags": ["warehouse", "industrial"]
+  },
+  {
+    "id": "bonded_warehouse",
+    "term_en": "Bonded Warehouse",
+    "term_jp": "保税熟成庫",
+    "reading": "ほぜいじゅくせいこ",
+    "category": "maturation",
+    "description": "税務管理下で未納税酒類を保管する倉庫。",
+    "tags": ["legal", "warehouse"]
+  },
+  {
+    "id": "angel_share",
+    "term_en": "Angel's Share",
+    "term_jp": "天使の分け前",
+    "reading": "てんしのわけまえ",
+    "category": "maturation",
+    "description": "熟成中に樽から蒸発して失われる成分。年ごとに容量が減少する。",
+    "tags": ["aging", "evaporation"]
+  },
+  {
+    "id": "warehouse_loss",
+    "term_en": "Warehouse Loss",
+    "term_jp": "熟成減",
+    "reading": "じゅくせいげん",
+    "category": "maturation",
+    "description": "熟成中の蒸発などによる容量減少。エンジェルズシェアを含む概念。",
+    "tags": ["aging", "loss"]
+  },
+  {
+    "id": "oak",
+    "term_en": " Oak",
+    "term_jp": "オーク",
+    "reading": "おーく",
+    "category": "maturation",
+    "description": "ウイスキー熟成に用いられる代表的な木材。樽香や色に大きく関わる。",
+    "tags": ["wood", "cask"]
+  },
+  {
+    "id": "american_oak",
+    "term_en": "American Oak",
+    "term_jp": "アメリカンオーク",
+    "reading": "あめりかんおーく",
+    "category": "maturation",
+    "description": "バニラやココナッツ様の香味を与えやすいオーク材。",
+    "tags": ["wood", "flavor"]
+  },
+  {
+    "id": "european_oak",
+    "term_en": "European Oak",
+    "term_jp": "ヨーロピアンオーク",
+    "reading": "よーろぴあんおーく",
+    "category": "maturation",
+    "description": "スパイスやドライフルーツ系の強い個性を与えやすいオーク材。",
+    "tags": ["wood", "flavor"]
+  },
+  {
+    "id": "mizunara",
+    "term_en": "Mizunara",
+    "term_jp": "ミズナラ",
+    "reading": "みずなら",
+    "category": "maturation",
+    "description": "日本原産のオーク材。白檀や伽羅を思わせる独特の香りで知られる。",
+    "tags": ["japanese", "wood"]
+  },
+  {
+    "id": "cask",
+    "term_en": "Cask",
+    "term_jp": "カスク",
+    "reading": "かすく",
+    "category": "maturation",
+    "description": "熟成や保管に用いる樽のこと。材質やサイズで個性が変わる。",
+    "tags": ["cask", "wood"]
+  },
+  {
+    "id": "barrel",
+    "term_en": "Barrel",
+    "term_jp": "バレル",
+    "reading": "ばれる",
+    "category": "maturation",
+    "description": "アメリカンウイスキーで一般的な小型樽。約200リットル前後が多い。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "hogshead",
+    "term_en": "Hogshead",
+    "term_jp": "ホグスヘッド",
+    "reading": "ほぐすへっど",
+    "category": "maturation",
+    "description": "バレルを組み替えて作ることが多い中型樽。スコッチで広く使われる。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "butt",
+    "term_en": "Butt",
+    "term_jp": "バット",
+    "reading": "ばっと",
+    "category": "maturation",
+    "description": "主にシェリー熟成で知られる大型樽。豊かな樽香を与えることがある。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "puncheon",
+    "term_en": "Puncheon",
+    "term_jp": "パンチョン",
+    "reading": "ぱんちょん",
+    "category": "maturation",
+    "description": "大型樽の一種。ラムやバーボン由来など多様な用途がある。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "quarter_cask",
+    "term_en": "Quarter Cask",
+    "term_jp": "クオーターカスク",
+    "reading": "くおーたーかすく",
+    "category": "maturation",
+    "description": "小型樽の一種。接液面積比が高く熟成が早く進みやすい。",
+    "tags": ["cask", "size"]
+  },
+  {
+    "id": "virgin_oak",
+    "term_en": "Virgin Oak",
+    "term_jp": "ヴァージンオーク",
+    "reading": "ゔぁーじんおーく",
+    "category": "maturation",
+    "description": "ウイスキー熟成に未使用の新樽オーク。強い木香やスパイス感を与える。",
+    "tags": ["cask", "new oak"]
+  },
+  {
+    "id": "first_fill",
+    "term_en": "First Fill",
+    "term_jp": "ファーストフィル",
+    "reading": "ふぁーすとふぃる",
+    "category": "maturation",
+    "description": "その樽の前熟成酒を払い出した直後に初めて使うこと。樽影響が強い。",
+    "tags": ["cask", "active"]
+  },
+  {
+    "id": "refill",
+    "term_en": "Refill",
+    "term_jp": "リフィル",
+    "reading": "りふぃる",
+    "category": "maturation",
+    "description": "再使用樽のこと。ファーストフィルより樽影響は穏やかになりやすい。",
+    "tags": ["cask", "reuse"]
+  },
+  {
+    "id": "rechar",
+    "term_en": "Rechar",
+    "term_jp": "リチャー",
+    "reading": "りちゃー",
+    "category": "maturation",
+    "description": "樽内面を再度焼き直して活性化させる処理。",
+    "tags": ["cask", "treatment"]
+  },
+  {
+    "id": "toast",
+    "term_en": "Toasting",
+    "term_jp": "トースティング",
+    "reading": "とーすてぃんぐ",
+    "category": "maturation",
+    "description": "樽内面を穏やかに加熱する処理。甘香ばしさや複雑さに影響する。",
+    "tags": ["cask", "treatment"]
+  },
+  {
+    "id": "char",
+    "term_en": "Charring",
+    "term_jp": "チャーリング",
+    "reading": "ちゃーりんぐ",
+    "category": "maturation",
+    "description": "樽内面を強く焼いて炭化層をつくる処理。色や風味形成に重要。",
+    "tags": ["cask", "treatment"]
+  },
+  {
+    "id": "char_level",
+    "term_en": "Char Level",
+    "term_jp": "チャーレベル",
+    "reading": "ちゃーれべる",
+    "category": "maturation",
+    "description": "樽の焼き具合の強さ。バニラ感やスモーキーさの出方に影響する。",
+    "tags": ["cask", "measure"]
+  },
+  {
+    "id": "seasoned_cask",
+    "term_en": "Seasoned Cask",
+    "term_jp": "シーズンドカスク",
+    "reading": "しーずんどかすく",
+    "category": "maturation",
+    "description": "シェリーなどを一定期間入れてからウイスキー熟成用に整えた樽。",
+    "tags": ["cask", "sherry"]
+  },
+  {
+    "id": "sherry_cask",
+    "term_en": "Sherry Cask",
+    "term_jp": "シェリーカスク",
+    "reading": "しぇりーかすく",
+    "category": "maturation",
+    "description": "シェリーの熟成に使われた、またはシーズニングされた樽。",
+    "tags": ["dried fruit", "cask"]
+  },
+  {
+    "id": "bourbon_cask",
+    "term_en": "Bourbon Cask",
+    "term_jp": "バーボンカスク",
+    "reading": "ばーぼんかすく",
+    "category": "maturation",
+    "description": "バーボン熟成に使われた樽。バニラやハチミツ様の香味が出やすい。",
+    "tags": ["vanilla", "cask"]
+  },
+  {
+    "id": "port_cask",
+    "term_en": "Port Cask",
+    "term_jp": "ポートカスク",
+    "reading": "ぽーとかすく",
+    "category": "maturation",
+    "description": "ポートワイン由来の甘みや果実感を与えることがある樽。",
+    "tags": ["wine", "cask"]
+  },
+  {
+    "id": "madeira_cask",
+    "term_en": "Madeira Cask",
+    "term_jp": "マデイラカスク",
+    "reading": "までいらかすく",
+    "category": "maturation",
+    "description": "マデイラワイン由来の複雑な甘みや酸味を与える樽。",
+    "tags": ["wine", "cask"]
+  },
+  {
+    "id": "sauternes_cask",
+    "term_en": "Sauternes Cask",
+    "term_jp": "ソーテルヌカスク",
+    "reading": "そーてるぬかすく",
+    "category": "maturation",
+    "description": "貴腐ワイン由来の蜂蜜感や華やかさを付与しやすい樽。",
+    "tags": ["wine", "cask"]
+  },
+  {
+    "id": "rum_cask",
+    "term_en": "Rum Cask",
+    "term_jp": "ラムカスク",
+    "reading": "らむかすく",
+    "category": "maturation",
+    "description": "ラム由来の糖蜜感や南国果実感を与えることがある樽。",
+    "tags": ["rum", "cask"]
+  },
+  {
+    "id": "wine_cask",
+    "term_en": "Wine Cask",
+    "term_jp": "ワインカスク",
+    "reading": "わいんかすく",
+    "category": "maturation",
+    "description": "赤白さまざまなワインの影響を持つ樽の総称。",
+    "tags": ["wine", "cask"]
+  },
+  {
+    "id": "finish_period",
+    "term_en": "Finish Period",
+    "term_jp": "後熟期間",
+    "reading": "あとじゅくきかん",
+    "category": "finishing",
+    "description": "フィニッシュ樽で追加熟成する期間。短さ長さで風味の出方が変わる。",
+    "tags": ["finish", "time"]
+  },
+  {
+    "id": "marrying",
+    "term_en": "Marrying",
+    "term_jp": "マリッジ",
+    "reading": "まりっじ",
+    "category": "finishing",
+    "description": "ブレンド後に原酒同士をなじませる工程。香味の一体感を高める。",
+    "tags": ["blend", "process"]
+  },
+  {
+    "id": "marrying_tun",
+    "term_en": "Marrying Tun",
+    "term_jp": "マリッジタン",
+    "reading": "まりっじたん",
+    "category": "finishing",
+    "description": "ブレンド原酒をなじませるための槽や容器。",
+    "tags": ["equipment", "blend"]
+  },
+  {
+    "id": "reduction",
+    "term_en": "Reduction",
+    "term_jp": "加水調整",
+    "reading": "かすいちょうせい",
+    "category": "finishing",
+    "description": "瓶詰め前などに水を加えて度数を整えること。",
+    "tags": ["process", "alcohol"]
+  },
+  {
+    "id": "batch",
+    "term_en": "Batch",
+    "term_jp": "バッチ",
+    "reading": "ばっち",
+    "category": "finishing",
+    "description": "同一条件でまとめて扱う生産単位。",
+    "tags": ["bottling", "production"]
+  },
+  {
+    "id": "single_barrel",
+    "term_en": "Single Barrel",
+    "term_jp": "シングルバレル",
+    "reading": "しんぐるばれる",
+    "category": "finishing",
+    "description": "単一樽から瓶詰めされたボトル。アメリカでよく使われる表現。",
+    "tags": ["cask", "american"]
+  },
+  {
+    "id": "age_statement",
+    "term_en": "Age Statement",
+    "term_jp": "熟成年数表記",
+    "reading": "じゅくせいねんすうひょうき",
+    "category": "bottling_label",
+    "description": "ラベルに記載される熟成年数。通常は最も若い原酒の年数を示す。",
+    "tags": ["label", "legal"]
+  },
+  {
+    "id": "nas",
+    "term_en": "NAS",
+    "term_jp": "NAS",
+    "reading": "なす",
+    "category": "bottling_label",
+    "description": "熟成年数表記のないボトル。No Age Statementの略。",
+    "tags": ["label", "marketing"]
+  },
+  {
+    "id": "bottle_code",
+    "term_en": "Bottle Code",
+    "term_jp": "ボトルコード",
+    "reading": "ぼとるこーど",
+    "category": "bottling_label",
+    "description": "瓶詰日やロット識別に使われる記号や番号。",
+    "tags": ["label", "tracking"]
+  },
+  {
+    "id": "lot_number",
+    "term_en": "Lot Number",
+    "term_jp": "ロット番号",
+    "reading": "ろっとばんごう",
+    "category": "bottling_label",
+    "description": "生産や出荷単位を識別する番号。品質管理にも使われる。",
+    "tags": ["label", "tracking"]
+  },
+  {
+    "id": "abv",
+    "term_en": "ABV",
+    "term_jp": "アルコール度数",
+    "reading": "あるこーるどすう",
+    "category": "bottling_label",
+    "description": "アルコール含有率を示す表示。通常は百分率で表記される。",
+    "tags": ["alcohol", "label"]
+  },
+  {
+    "id": "proof",
+    "term_en": "Proof",
+    "term_jp": "プルーフ",
+    "reading": "ぷるーふ",
+    "category": "bottling_label",
+    "description": "主にアメリカで使われる度数表記。100プルーフは50%相当。",
+    "tags": ["alcohol", "american"]
+  },
+  {
+    "id": "back_label",
+    "term_en": "Back Label",
+    "term_jp": "裏ラベル",
+    "reading": "うららべる",
+    "category": "bottling_label",
+    "description": "ボトル背面に貼られる説明ラベル。原材料や輸入情報などが載る。",
+    "tags": ["label", "packaging"]
+  },
+  {
+    "id": "bottling_date",
+    "term_en": "Bottling Date",
+    "term_jp": "ボトリング日",
+    "reading": "ぼとりんぐび",
+    "category": "bottling_label",
+    "description": "瓶詰めが行われた日付。ヴィンテージや熟成管理と合わせて見られる。",
+    "tags": ["label", "date"]
+  },
+  {
+    "id": "distillation_date",
+    "term_en": "Distillation Date",
+    "term_jp": "蒸留日",
+    "reading": "じょうりゅうび",
+    "category": "bottling_label",
+    "description": "原酒が蒸留された日付。シングルカスクなどで重視される。",
+    "tags": ["label", "date"]
+  },
+  {
+    "id": "non_age_statement",
+    "term_en": "No Age Statement",
+    "term_jp": "年数表記なし",
+    "reading": "ねんすうひょうきなし",
+    "category": "bottling_label",
+    "description": "熟成年数を明記しない表記。NASと同義で使われる。",
+    "tags": ["label", "nas"]
+  },
+  {
+    "id": "master_blender",
+    "term_en": "Master Blender",
+    "term_jp": "マスターブレンダー",
+    "reading": "ますたーぶれんだー",
+    "category": "people",
+    "description": "原酒の選定やブレンドを統括する責任者。",
+    "tags": ["people", "blend"]
+  },
+  {
+    "id": "warehouseman",
+    "term_en": "Warehouseman",
+    "term_jp": "ウェアハウスマン",
+    "reading": "うぇあはうすまん",
+    "category": "people",
+    "description": "熟成庫で樽管理を担う担当者。",
+    "tags": ["people", "warehouse"]
+  },
+  {
+    "id": "nose",
+    "term_en": "Nose",
+    "term_jp": "香り",
+    "reading": "かおり",
+    "category": "tasting",
+    "description": "グラスから立ち上る香り全体、または香りを嗅ぐ行為を指す。",
+    "tags": ["tasting", "aroma"]
+  },
+  {
+    "id": "palate",
+    "term_en": "Palate",
+    "term_jp": "口当たり",
+    "reading": "くちあたり",
+    "category": "tasting",
+    "description": "口に含んだ際の味わいや質感の印象。",
+    "tags": ["tasting", "flavor"]
+  },
+  {
+    "id": "mouthfeel",
+    "term_en": "Mouthfeel",
+    "term_jp": "マウスフィール",
+    "reading": "まうすふぃーる",
+    "category": "tasting",
+    "description": "口中で感じる質感や重さ、粘性などの感覚。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "body",
+    "term_en": "Body",
+    "term_jp": "ボディ",
+    "reading": "ぼでぃ",
+    "category": "tasting",
+    "description": "酒の厚みや存在感を表す言葉。ライトからフルまで使われる。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "attack",
+    "term_en": "Attack",
+    "term_jp": "アタック",
+    "reading": "あたっく",
+    "category": "tasting",
+    "description": "口に含んだ瞬間の第一印象。味や刺激の立ち上がりを示す。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "mid_palate",
+    "term_en": "Mid Palate",
+    "term_jp": "ミッドパレット",
+    "reading": "みっどぱれっと",
+    "category": "tasting",
+    "description": "口中の中盤で感じる味わいの中心部分。",
+    "tags": ["tasting", "flavor"]
+  },
+  {
+    "id": "aftertaste",
+    "term_en": "Aftertaste",
+    "term_jp": "余韻",
+    "reading": "よいん",
+    "category": "tasting",
+    "description": "飲み込んだ後に続く香味の印象。フィニッシュと近い文脈で使われる。",
+    "tags": ["tasting", "finish"]
+  },
+  {
+    "id": "oakiness",
+    "term_en": "Oakiness",
+    "term_jp": "オーキーさ",
+    "reading": "おーきーさ",
+    "category": "tasting",
+    "description": "樽由来の木香やバニラ感、スパイス感の印象。",
+    "tags": ["tasting", "wood"]
+  },
+  {
+    "id": "waxy",
+    "term_en": "Waxy",
+    "term_jp": "ワクシー",
+    "reading": "わくしー",
+    "category": "tasting",
+    "description": "蝋のような質感や香味を表す表現。",
+    "tags": ["old style", "texture"]
+  },
+  {
+    "id": "oily",
+    "term_en": "Oily",
+    "term_jp": "オイリー",
+    "reading": "おいりー",
+    "category": "tasting",
+    "description": "油分を感じるような厚みや滑らかさを表す表現。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "drying",
+    "term_en": "Drying",
+    "term_jp": "ドライイング",
+    "reading": "どらいいんぐ",
+    "category": "tasting",
+    "description": "口中の水分を奪うような乾いた感覚。",
+    "tags": ["tasting", "finish"]
+  },
+  {
+    "id": "astringent",
+    "term_en": "Astringent",
+    "term_jp": "収斂感",
+    "reading": "しゅうれんかん",
+    "category": "tasting",
+    "description": "渋みや口内が締まる感覚。樽やアルコール由来で感じることがある。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "balanced",
+    "term_en": "Balanced",
+    "term_jp": "バランスが良い",
+    "reading": "ばらんすがよい",
+    "category": "tasting",
+    "description": "香り、甘み、樽感、余韻などが調和している状態。",
+    "tags": ["tasting", "evaluation"]
+  },
+  {
+    "id": "complex",
+    "term_en": "Complex",
+    "term_jp": "複雑",
+    "reading": "ふくざつ",
+    "category": "tasting",
+    "description": "複数の香味要素が重なり合い、多層的に感じられる状態。",
+    "tags": ["tasting", "evaluation"]
+  },
+  {
+    "id": "cask_type",
+    "term_en": "Cask Type",
+    "term_jp": "樽タイプ",
+    "reading": "たるたいぷ",
+    "category": "maturation",
+    "description": "熟成に使われる樽の種類区分。材質や前歴で酒質が変わる。",
+    "tags": ["cask", "classification"]
+  },
+  {
+    "id": "cask_influence",
+    "term_en": "Cask Influence",
+    "term_jp": "樽影響",
+    "reading": "たるえいきょう",
+    "category": "maturation",
+    "description": "熟成中に樽が原酒へ与える香味や色、質感への作用。",
+    "tags": ["cask", "flavor"]
+  },
+  {
+    "id": "active_cask",
+    "term_en": "Active Cask",
+    "term_jp": "活性の高い樽",
+    "reading": "かっせいのたかいたる",
+    "category": "maturation",
+    "description": "香味成分を強く与えやすい状態の樽。ファーストフィルなどに多い。",
+    "tags": ["cask", "flavor"]
+  },
+  {
+    "id": "tired_cask",
+    "term_en": "Tired Cask",
+    "term_jp": "抜けた樽",
+    "reading": "ぬけたたる",
+    "category": "maturation",
+    "description": "樽由来成分の抽出力が弱くなった樽。影響は穏やかになりやすい。",
+    "tags": ["cask", "mild"]
+  },
+  {
+    "id": "wood_extract",
+    "term_en": "Wood Extract",
+    "term_jp": "木材抽出成分",
+    "reading": "もくざいちゅうしゅつせいぶん",
+    "category": "maturation",
+    "description": "樽材から溶け出す香味成分の総称。バニラやスパイス感に関与する。",
+    "tags": ["wood", "science"]
+  },
+  {
+    "id": "lignin",
+    "term_en": "Lignin",
+    "term_jp": "リグニン",
+    "reading": "りぐにん",
+    "category": "maturation",
+    "description": "木材成分のひとつ。分解によりバニリンなどの香気に関与する。",
+    "tags": ["wood", "science"]
+  },
+  {
+    "id": "hemicellulose",
+    "term_en": "Hemicellulose",
+    "term_jp": "ヘミセルロース",
+    "reading": "へみせるろーす",
+    "category": "maturation",
+    "description": "樽加熱によって甘香ばしい香味成分へ変化しうる木材成分。",
+    "tags": ["wood", "science"]
+  },
+  {
+    "id": "tannin",
+    "term_en": "Tannin",
+    "term_jp": "タンニン",
+    "reading": "たんにん",
+    "category": "maturation",
+    "description": "渋みや骨格感に関わる成分。樽由来の収斂感に影響する。",
+    "tags": ["wood", "texture"]
+  },
+  {
+    "id": "vanillin",
+    "term_en": "Vanillin",
+    "term_jp": "バニリン",
+    "reading": "ばにりん",
+    "category": "maturation",
+    "description": "バニラ香の代表的成分。主にオーク樽由来で感じられる。",
+    "tags": ["wood", "aroma"]
+  },
+  {
+    "id": "oak_lactone",
+    "term_en": "Oak Lactone",
+    "term_jp": "オークラクトン",
+    "reading": "おーくらくとん",
+    "category": "maturation",
+    "description": "ココナッツ様やウッディさに関わる樽由来成分。",
+    "tags": ["wood", "aroma"]
+  },
+  {
+    "id": "seasoning",
+    "term_en": "Seasoning",
+    "term_jp": "シーズニング",
+    "reading": "しーずにんぐ",
+    "category": "maturation",
+    "description": "樽を熟成用に整えるため、事前に酒類を入れて馴染ませる工程。",
+    "tags": ["cask", "preparation"]
+  },
+  {
+    "id": "cooperage",
+    "term_en": "Cooperage",
+    "term_jp": "クーパレッジ",
+    "reading": "くーぱれっじ",
+    "category": "maturation",
+    "description": "樽の製造・修理を行う工房、またはその技術分野。",
+    "tags": ["cask", "craft"]
+  },
+  {
+    "id": "cooper",
+    "term_en": "Cooper",
+    "term_jp": "クーパー",
+    "reading": "くーぱー",
+    "category": "people",
+    "description": "樽職人のこと。樽組みや修理を担う専門職。",
+    "tags": ["people", "cask"]
+  },
+  {
+    "id": "stave",
+    "term_en": "Stave",
+    "term_jp": "ステーブ",
+    "reading": "すてーぶ",
+    "category": "maturation",
+    "description": "樽胴を構成する細長い板材。樽の香味特性にも関与する。",
+    "tags": ["cask", "part"]
+  },
+  {
+    "id": "cask_head",
+    "term_en": "Cask Head",
+    "term_jp": "樽の蓋板",
+    "reading": "たるのふたいた",
+    "category": "maturation",
+    "description": "樽の上下を塞ぐ円形の板部分。",
+    "tags": ["cask", "part"]
+  },
+  {
+    "id": "bung",
+    "term_en": "Bung",
+    "term_jp": "バング",
+    "reading": "ばんぐ",
+    "category": "maturation",
+    "description": "樽の注入口を塞ぐ栓。サンプリング時にも扱われる。",
+    "tags": ["cask", "part"]
+  },
+  {
+    "id": "bung_hole",
+    "term_en": "Bung Hole",
+    "term_jp": "バングホール",
+    "reading": "ばんぐほーる",
+    "category": "maturation",
+    "description": "樽の液体を出し入れするための開口部。",
+    "tags": ["cask", "part"]
+  },
+  {
+    "id": "recoopering",
+    "term_en": "Recoopering",
+    "term_jp": "樽修復",
+    "reading": "たるしゅうふく",
+    "category": "maturation",
+    "description": "古樽の板交換や再組立てなどの補修作業。",
+    "tags": ["cask", "maintenance"]
+  },
+  {
+    "id": "racking",
+    "term_en": "Racking",
+    "term_jp": "樽積み",
+    "reading": "たるづみ",
+    "category": "maturation",
+    "description": "熟成庫内で樽を棚や段に配置して保管すること。",
+    "tags": ["warehouse", "storage"]
+  },
+  {
+    "id": "warehouse_climate",
+    "term_en": "Warehouse Climate",
+    "term_jp": "熟成庫環境",
+    "reading": "じゅくせいこかんきょう",
+    "category": "maturation",
+    "description": "温度や湿度など、熟成庫内の環境条件全体。",
+    "tags": ["warehouse", "climate"]
+  },
+  {
+    "id": "temperature_cycle",
+    "term_en": "Temperature Cycle",
+    "term_jp": "温度変動",
+    "reading": "おんどへんどう",
+    "category": "maturation",
+    "description": "季節や日較差による温度の上下。熟成進行に影響する。",
+    "tags": ["climate", "aging"]
+  },
+  {
+    "id": "humidity",
+    "term_en": "Humidity",
+    "term_jp": "湿度",
+    "reading": "しつど",
+    "category": "maturation",
+    "description": "熟成庫内の湿り気の程度。蒸発の傾向や度数変化に影響する。",
+    "tags": ["climate", "aging"]
+  },
+  {
+    "id": "micro_oxidation",
+    "term_en": "Micro-Oxidation",
+    "term_jp": "微小酸化",
+    "reading": "びしょうさんか",
+    "category": "maturation",
+    "description": "樽を通じて少量の酸素が入り、香味が穏やかに変化する現象。",
+    "tags": ["aging", "science"]
+  },
+  {
+    "id": "oxidation",
+    "term_en": "Oxidation",
+    "term_jp": "酸化",
+    "reading": "さんか",
+    "category": "maturation",
+    "description": "空気との反応によって香味が変化すること。熟成や開栓後にも起こる。",
+    "tags": ["aging", "science"]
+  },
+  {
+    "id": "evaporation",
+    "term_en": "Evaporation",
+    "term_jp": "蒸発",
+    "reading": "じょうはつ",
+    "category": "maturation",
+    "description": "熟成中に水分やアルコールが失われる現象。",
+    "tags": ["aging", "loss"]
+  },
+  {
+    "id": "fill_strength",
+    "term_en": "Fill Strength",
+    "term_jp": "樽詰め度数",
+    "reading": "たるづめどすう",
+    "category": "maturation",
+    "description": "原酒を樽に入れる時点のアルコール度数。熟成の出方に影響する。",
+    "tags": ["alcohol", "maturation"]
+  },
+  {
+    "id": "entry_proof",
+    "term_en": "Entry Proof",
+    "term_jp": "樽入れプルーフ",
+    "reading": "たるいれぷるーふ",
+    "category": "maturation",
+    "description": "主にアメリカンウイスキーで使われる、樽詰め時の度数表現。",
+    "tags": ["alcohol", "american"]
+  },
+  {
+    "id": "cask_sample",
+    "term_en": "Cask Sample",
+    "term_jp": "樽サンプル",
+    "reading": "たるさんぷる",
+    "category": "maturation",
+    "description": "樽から抜き取って状態確認や評価に使う少量の原酒。",
+    "tags": ["cask", "tasting"]
+  },
+  {
+    "id": "valinch",
+    "term_en": "Valinch",
+    "term_jp": "ヴァリンチ",
+    "reading": "ゔぁりんち",
+    "category": "maturation",
+    "description": "樽からサンプルを採取するための器具。",
+    "tags": ["cask", "tool"]
+  },
+  {
+    "id": "racked_strength",
+    "term_en": "Racked Strength",
+    "term_jp": "払い出し度数",
+    "reading": "はらいだしどすう",
+    "category": "maturation",
+    "description": "熟成後に樽から出した時点のアルコール度数。",
+    "tags": ["alcohol", "maturation"]
+  },
+  {
+    "id": "dumping",
+    "term_en": "Dumping",
+    "term_jp": "樽出し",
+    "reading": "たるだし",
+    "category": "maturation",
+    "description": "熟成を終えた原酒を樽から抜き出す工程。",
+    "tags": ["cask", "process"]
+  },
+  {
+    "id": "recasking",
+    "term_en": "Recasking",
+    "term_jp": "再樽詰め",
+    "reading": "さいたるづめ",
+    "category": "finishing",
+    "description": "別の樽に詰め替えて熟成や調整を続けること。",
+    "tags": ["finish", "cask"]
+  },
+  {
+    "id": "double_cask",
+    "term_en": "Double Cask",
+    "term_jp": "ダブルカスク",
+    "reading": "だぶるかすく",
+    "category": "finishing",
+    "description": "2種類の樽を使って熟成またはヴァッティングしたスタイル。",
+    "tags": ["cask", "style"]
+  },
+  {
+    "id": "triple_cask",
+    "term_en": "Triple Cask",
+    "term_jp": "トリプルカスク",
+    "reading": "とりぷるかすく",
+    "category": "finishing",
+    "description": "3種類の樽を使って構成された熟成または仕上げ。",
+    "tags": ["cask", "style"]
+  },
+  {
+    "id": "secondary_maturation",
+    "term_en": "Secondary Maturation",
+    "term_jp": "二次熟成",
+    "reading": "にじじゅくせい",
+    "category": "finishing",
+    "description": "メイン熟成後に別樽で追加熟成する工程。",
+    "tags": ["finish", "process"]
+  },
+  {
+    "id": "finishing_cask",
+    "term_en": "Finishing Cask",
+    "term_jp": "フィニッシュ樽",
+    "reading": "ふぃにっしゅだる",
+    "category": "finishing",
+    "description": "追加熟成に使う樽。ワイン樽など多様な種類がある。",
+    "tags": ["finish", "cask"]
+  },
+  {
+    "id": "solera",
+    "term_en": "Solera",
+    "term_jp": "ソレラ",
+    "reading": "それら",
+    "category": "finishing",
+    "description": "一部を継ぎ足しながら熟成・ブレンドする方式。",
+    "tags": ["solera", "process"]
+  },
+  {
+    "id": "solera_vat",
+    "term_en": "Solera Vat",
+    "term_jp": "ソレラ槽",
+    "reading": "それらそう",
+    "category": "finishing",
+    "description": "ソレラ方式で原酒を管理・なじませるための槽。",
+    "tags": ["solera", "equipment"]
+  },
+  {
+    "id": "finishing_room",
+    "term_en": "Finishing Room",
+    "term_jp": "仕上げ庫",
+    "reading": "しあげこ",
+    "category": "finishing",
+    "description": "フィニッシュ工程用の樽を管理する区画や倉庫。",
+    "tags": ["finish", "warehouse"]
+  },
+  {
+    "id": "batch_consistency",
+    "term_en": "Batch Consistency",
+    "term_jp": "バッチ一貫性",
+    "reading": "ばっちいっかんせい",
+    "category": "finishing",
+    "description": "ロットごとの味わいを安定させる品質管理の考え方。",
+    "tags": ["quality", "batch"]
+  },
+  {
+    "id": "vatting_tank",
+    "term_en": "Vatting Tank",
+    "term_jp": "ヴァッティングタンク",
+    "reading": "ゔぁってぃんぐたんく",
+    "category": "finishing",
+    "description": "原酒を混合するための大型容器。",
+    "tags": ["blend", "equipment"]
+  },
+  {
+    "id": "marrying_period",
+    "term_en": "Marrying Period",
+    "term_jp": "マリッジ期間",
+    "reading": "まりっじきかん",
+    "category": "finishing",
+    "description": "ブレンド後に原酒をなじませる期間。",
+    "tags": ["blend", "time"]
+  },
+  {
+    "id": "resting",
+    "term_en": "Resting",
+    "term_jp": "静置",
+    "reading": "せいち",
+    "category": "finishing",
+    "description": "加水後やブレンド後に落ち着かせる工程。",
+    "tags": ["blend", "process"]
+  },
+  {
+    "id": "proof_reduction",
+    "term_en": "Proof Reduction",
+    "term_jp": "度数調整",
+    "reading": "どすうちょうせい",
+    "category": "finishing",
+    "description": "瓶詰め前に加水して目標度数へ整えること。",
+    "tags": ["alcohol", "bottling"]
+  },
+  {
+    "id": "filtration",
+    "term_en": "Filtration",
+    "term_jp": "ろ過",
+    "reading": "ろか",
+    "category": "finishing",
+    "description": "微粒子などを取り除いて外観や安定性を整える工程。",
+    "tags": ["finish", "process"]
+  },
+  {
+    "id": "barrier_filter",
+    "term_en": "Barrier Filter",
+    "term_jp": "バリアフィルター",
+    "reading": "ばりあふぃるたー",
+    "category": "finishing",
+    "description": "瓶詰め前の微粒子除去に使うフィルター。",
+    "tags": ["filter", "equipment"]
+  },
+  {
+    "id": "sediment",
+    "term_en": "Sediment",
+    "term_jp": "沈殿物",
+    "reading": "ちんでんぶつ",
+    "category": "finishing",
+    "description": "瓶内や液中に見られる微細な固形物。品質問題でない場合もある。",
+    "tags": ["appearance", "natural"]
+  },
+  {
+    "id": "cloudiness",
+    "term_en": "Cloudiness",
+    "term_jp": "濁り",
+    "reading": "にごり",
+    "category": "finishing",
+    "description": "液体が白っぽく見える状態。低温や成分析出で起こることがある。",
+    "tags": ["appearance", "phenomenon"]
+  },
+  {
+    "id": "bottle_conditioning",
+    "term_en": "Bottle Conditioning",
+    "term_jp": "瓶内安定化",
+    "reading": "びんないあんていか",
+    "category": "finishing",
+    "description": "瓶詰め後に味わいが落ち着くまでの変化過程。",
+    "tags": ["bottle", "process"]
+  },
+  {
+    "id": "bottling_line",
+    "term_en": " Bottling Line",
+    "term_jp": "ボトリングライン",
+    "reading": "ぼとりんぐらいん",
+    "category": "bottling_label",
+    "description": "充填・打栓・ラベル貼付などを行う設備ライン。",
+    "tags": ["bottling", "equipment"]
+  },
+  {
+    "id": "fill_level",
+    "term_en": "Fill Level",
+    "term_jp": "液面",
+    "reading": "えきめん",
+    "category": "bottling_label",
+    "description": "ボトル内で液体が入っている高さ。保管状態の目安にもなる。",
+    "tags": ["bottle", "appearance"]
+  },
+  {
+    "id": "capsule",
+    "term_en": "Capsule",
+    "term_jp": "キャップシール",
+    "reading": "きゃっぷしーる",
+    "category": "bottling_label",
+    "description": "ボトル口部を覆う外装材。開封性や装飾性を兼ねる。",
+    "tags": ["packaging", "bottle"]
+  },
+  {
+    "id": "closure",
+    "term_en": "Closure",
+    "term_jp": "栓",
+    "reading": "せん",
+    "category": "bottling_label",
+    "description": "ボトルを封止する部材の総称。コルクやスクリューなどがある。",
+    "tags": ["packaging", "bottle"]
+  },
+  {
+    "id": "cork",
+    "term_en": "Cork",
+    "term_jp": "コルク",
+    "reading": "こるく",
+    "category": "bottling_label",
+    "description": "天然または合成素材の栓。高級感のある仕様で多く使われる。",
+    "tags": ["packaging", "bottle"]
+  },
+  {
+    "id": "natural_cork",
+    "term_en": "Natural Cork",
+    "term_jp": "天然コルク",
+    "reading": "てんねんこるく",
+    "category": "bottling_label",
+    "description": "天然樹皮から作られたコルク栓。個体差がある。",
+    "tags": ["packaging", "natural"]
+  },
+  {
+    "id": "synthetic_cork",
+    "term_en": "Synthetic Cork",
+    "term_jp": "合成コルク",
+    "reading": "ごうせいこるく",
+    "category": "bottling_label",
+    "description": "人工素材で作られたコルク栓。品質の均一性が高い。",
+    "tags": ["packaging", "synthetic"]
+  },
+  {
+    "id": "tamper_evident",
+    "term_en": " Tamper-Evident Seal",
+    "term_jp": "開封防止シール",
+    "reading": "かいふうぼうししーる",
+    "category": "bottling_label",
+    "description": "未開封であることを示す封印仕様。",
+    "tags": ["packaging", "security"]
+  },
+  {
+    "id": "label_copy",
+    "term_en": "Label Copy",
+    "term_jp": "ラベル文言",
+    "reading": "らべるもんごん",
+    "category": "bottling_label",
+    "description": "ラベルに記載される説明文や販売用コピー。",
+    "tags": ["label", "marketing"]
+  },
+  {
+    "id": "legal_statement",
+    "term_en": "Legal Statement",
+    "term_jp": "法定表示",
+    "reading": "ほうていひょうじ",
+    "category": "bottling_label",
+    "description": "法令上必要とされる表示事項の総称。",
+    "tags": ["label", "legal"]
+  },
+  {
+    "id": "country_of_origin",
+    "term_en": "Country of Origin",
+    "term_jp": "原産国表示",
+    "reading": "げんさんこくひょうじ",
+    "category": "bottling_label",
+    "description": "製品の原産国を示す表示。",
+    "tags": ["label", "legal"]
+  },
+  {
+    "id": "import_label",
+    "term_en": "Import Label",
+    "term_jp": "輸入者表示",
+    "reading": "ゆにゅうしゃひょうじ",
+    "category": "bottling_label",
+    "description": "輸入業者名や連絡先を記載する表示。",
+    "tags": ["label", "import"]
+  },
+  {
+    "id": "barcode",
+    "term_en": "Barcode",
+    "term_jp": "バーコード",
+    "reading": "ばーこーど",
+    "category": "bottling_label",
+    "description": "商品識別用のコード表示。流通管理に使われる。",
+    "tags": ["retail", "tracking"]
+  },
+  {
+    "id": "sku",
+    "term_en": "SKU",
+    "term_jp": "SKU",
+    "reading": "えすけーゆー",
+    "category": "bottling_label",
+    "description": "在庫管理上の商品識別コード。",
+    "tags": ["retail", "tracking"]
+  },
+  {
+    "id": "release",
+    "term_en": "Release",
+    "term_jp": "リリース",
+    "reading": "りりーす",
+    "category": "bottling_label",
+    "description": "発売版や特定の出荷シリーズを指す表現。",
+    "tags": ["release", "marketing"]
+  },
+  {
+    "id": "annual_release",
+    "term_en": "Annual Release",
+    "term_jp": "年次リリース",
+    "reading": "ねんじりりーす",
+    "category": "bottling_label",
+    "description": "毎年定期的に出される限定または定番シリーズ。",
+    "tags": ["release", "limited"]
+  },
+  {
+    "id": "core_range",
+    "term_en": "Core Range",
+    "term_jp": "定番レンジ",
+    "reading": "ていばんれんじ",
+    "category": "bottling_label",
+    "description": "ブランドの通常ラインアップ。",
+    "tags": ["marketing", "range"]
+  },
+  {
+    "id": "special_release",
+    "term_en": "Special Release",
+    "term_jp": "特別リリース",
+    "reading": "とくべつりりーす",
+    "category": "bottling_label",
+    "description": "限定性や企画性の高い発売品。",
+    "tags": ["release", "limited"]
+  },
+  {
+    "id": "travel_retail",
+    "term_en": "Travel Retail",
+    "term_jp": "トラベルリテール",
+    "reading": "とらべるりてーる",
+    "category": "distribution",
+    "description": "空港免税店向けなどの流通チャネル。",
+    "tags": ["retail", "duty free"]
+  },
+  {
+    "id": "domestic_market",
+    "term_en": " Domestic Market",
+    "term_jp": "国内向け市場",
+    "reading": "こくないむけしじょう",
+    "category": "distribution",
+    "description": "自国内での流通・販売市場。",
+    "tags": ["market", "distribution"]
+  },
+  {
+    "id": "export_market",
+    "term_en": "Export Market",
+    "term_jp": "輸出市場",
+    "reading": "ゆしゅつしじょう",
+    "category": "distribution",
+    "description": "海外向けに販売される市場や販路。",
+    "tags": ["market", "distribution"]
+  },
+  {
+    "id": "allocation",
+    "term_en": "Allocation",
+    "term_jp": "割当販売",
+    "reading": "わりあてはんばい",
+    "category": "distribution",
+    "description": "人気商品の出荷数量を限定して配分すること。",
+    "tags": ["retail", "limited"]
+  },
+  {
+    "id": "secondary_market",
+    "term_en": "Secondary Market",
+    "term_jp": "二次流通市場",
+    "reading": "にじりゅうつうしじょう",
+    "category": "distribution",
+    "description": "小売以外で再販売される市場。",
+    "tags": ["auction", "resale"]
+  },
+  {
+    "id": "auction",
+    "term_en": "Auction",
+    "term_jp": "オークション",
+    "reading": "おーくしょん",
+    "category": "distribution",
+    "description": "競売形式で売買される流通形態。",
+    "tags": ["resale", "market"]
+  },
+  {
+    "id": "retailer",
+    "term_en": "Retailer",
+    "term_jp": "小売店",
+    "reading": "こうりてん",
+    "category": "distribution",
+    "description": "最終消費者へ販売する業者。",
+    "tags": ["retail", "business"]
+  },
+  {
+    "id": "on_trade",
+    "term_en": "On-Trade",
+    "term_jp": "業務店市場",
+    "reading": "ぎょうむてんしじょう",
+    "category": "distribution",
+    "description": "バーやレストランなどで提供される業務用市場。",
+    "tags": ["bar", "market"]
+  },
+  {
+    "id": "off_trade",
+    "term_en": "Off-Trade",
+    "term_jp": "持ち帰り市場",
+    "reading": "もちかえりしじょう",
+    "category": "distribution",
+    "description": "酒販店や量販店などの家庭消費向け市場。",
+    "tags": ["retail", "market"]
+  },
+  {
+    "id": "private_bottling",
+    "term_en": "Private Bottling",
+    "term_jp": "プライベートボトリング",
+    "reading": "ぷらいべーとぼとりんぐ",
+    "category": "distribution",
+    "description": "特定ショップや団体向けに詰められる限定ボトル。",
+    "tags": ["private", "label"]
+  },
+  {
+    "id": "store_pick",
+    "term_en": "Store Pick",
+    "term_jp": "ストアピック",
+    "reading": "すとあぴっく",
+    "category": "distribution",
+    "description": "小売店が樽を選定して販売するボトル。",
+    "tags": ["retail", "single cask"]
+  },
+  {
+    "id": "single_estate",
+    "term_en": "Single Estate",
+    "term_jp": "シングルエステート",
+    "reading": "しんぐるえすてーと",
+    "category": "distribution",
+    "description": "原料供給から製造まで一貫管理された出自を強調する表現。",
+    "tags": ["farm", "style"]
+  },
+  {
+    "id": "farm_distillery",
+    "term_en": "Farm Distillery",
+    "term_jp": "ファームディスティラリー",
+    "reading": "ふぁーむでぃすてぃらりー",
+    "category": "distribution",
+    "description": "農場併設で原料から蒸留まで行う蒸留所。",
+    "tags": ["farm", "distillery"]
+  },
+  {
+    "id": "craft_distillery",
+    "term_en": "Craft Distillery",
+    "term_jp": "クラフトディスティラリー",
+    "reading": "くらふとでぃすてぃらりー",
+    "category": "distribution",
+    "description": "小規模で個性を重視する蒸留所。",
+    "tags": ["craft", "distillery"]
+  },
+  {
+    "id": "sourced_whisky",
+    "term_en": "Sourced Whisky",
+    "term_jp": "ソースドウイスキー",
+    "reading": "そーすどういすきー",
+    "category": "distribution",
+    "description": "他社原酒を調達して販売するウイスキー。",
+    "tags": ["business", "blending"]
+  },
+  {
+    "id": "contract_distilling",
+    "term_en": "Contract Distilling",
+    "term_jp": "受託蒸留",
+    "reading": "じゅたくじょうりゅう",
+    "category": "distribution",
+    "description": "他ブランド向けに蒸留を請け負うこと。",
+    "tags": ["business", "production"]
+  },
+  {
+    "id": "house_style",
+    "term_en": "House Style",
+    "term_jp": "ハウススタイル",
+    "reading": "はうすすたいる",
+    "category": "distribution",
+    "description": "蒸留所やブランドに一貫して見られる個性や方向性。",
+    "tags": ["style", "identity"]
+  },
+  {
+    "id": "regional_style",
+    "term_en": "Regional Style",
+    "term_jp": "地域スタイル",
+    "reading": "ちいきすたいる",
+    "category": "distribution",
+    "description": "産地に共通するとされる香味傾向。",
+    "tags": ["style", "region"]
+  },
+  {
+    "id": "ageing_regime",
+    "term_en": "Ageing Regime",
+    "term_jp": "熟成設計",
+    "reading": "じゅくせいせっけい",
+    "category": "distribution",
+    "description": "どの樽でどの程度熟成させるかという設計思想。",
+    "tags": ["aging", "design"]
+  },
+  {
+    "id": "house_character",
+    "term_en": "House Character",
+    "term_jp": "蒸留所個性",
+    "reading": "じょうりゅうしょこせい",
+    "category": "tasting",
+    "description": "特定蒸留所に共通して感じられる香味の特徴。",
+    "tags": ["style", "distillery"]
+  },
+  {
+    "id": "distillery_character",
+    "term_en": "Distillery Character",
+    "term_jp": "ディスティラリーキャラクター",
+    "reading": "でぃすてぃらりーきゃらくたー",
+    "category": "tasting",
+    "description": "蒸留所由来の個性を指す表現。",
+    "tags": ["style", "distillery"]
+  },
+  {
+    "id": "peat_reek_note",
+    "term_en": "Peat Reek Note",
+    "term_jp": "ピート香",
+    "reading": "ぴーとか",
+    "category": "tasting",
+    "description": "ピート由来の煙感や土っぽさを表す香り表現。",
+    "tags": ["peat", "aroma"]
+  },
+  {
+    "id": "medicinal",
+    "term_en": "Medicinal",
+    "term_jp": "薬品香",
+    "reading": "やくひんか",
+    "category": "tasting",
+    "description": "ヨードや消毒液を思わせる香り表現。",
+    "tags": ["peat", "aroma"]
+  },
+  {
+    "id": "briny",
+    "term_en": "Briny",
+    "term_jp": "塩気",
+    "reading": "しおけ",
+    "category": "tasting",
+    "description": "海水や塩を思わせるミネラル感のあるニュアンス。",
+    "tags": ["coastal", "aroma"]
+  },
+  {
+    "id": "maritime",
+    "term_en": "Maritime",
+    "term_jp": "海っぽさ",
+    "reading": "うみっぽさ",
+    "category": "tasting",
+    "description": "潮風や海辺を思わせる総合的な香味表現。",
+    "tags": ["coastal", "aroma"]
+  },
+  {
+    "id": "minerality",
+    "term_en": "Minerality",
+    "term_jp": "ミネラル感",
+    "reading": "みねらるかん",
+    "category": "tasting",
+    "description": "石や塩、金属感に通じる引き締まった印象。",
+    "tags": ["tasting", "texture"]
+  },
+  {
+    "id": "cereal_note",
+    "term_en": "Cereal Note",
+    "term_jp": "穀物香",
+    "reading": "こくもつか",
+    "category": "tasting",
+    "description": "麦やシリアルを思わせる香り。",
+    "tags": ["grain", "aroma"]
+  },
+  {
+    "id": "malty",
+    "term_en": "Malty",
+    "term_jp": "モルティ",
+    "reading": "もるてぃ",
+    "category": "tasting",
+    "description": "麦芽らしい甘香ばしさを感じる表現。",
+    "tags": ["malt", "aroma"]
+  },
+  {
+    "id": "nutty",
+    "term_en": "Nutty",
+    "term_jp": "ナッティ",
+    "reading": "なってぃ",
+    "category": "tasting",
+    "description": "ナッツ類を思わせる香味表現。",
+    "tags": ["tasting", "aroma"]
+  },
+  {
+    "id": "honeyed",
+    "term_en": "Honeyed",
+    "term_jp": "ハニー感",
+    "reading": "はにーかん",
+    "category": "tasting",
+    "description": "蜂蜜を思わせる甘い香りや風味。",
+    "tags": ["sweet", "aroma"]
+  },
+  {
+    "id": "toffee",
+    "term_en": "Toffee",
+    "term_jp": "トフィー",
+    "reading": "とふぃー",
+    "category": "tasting",
+    "description": "バターや砂糖を煮詰めたような甘い香味。",
+    "tags": ["sweet", "aroma"]
+  },
+  {
+    "id": "caramel",
+    "term_en": "Caramel",
+    "term_jp": "キャラメル",
+    "reading": "きゃらめる",
+    "category": "tasting",
+    "description": "焦がし砂糖のような甘香ばしさ。",
+    "tags": ["sweet", "aroma"]
+  },
+  {
+    "id": "orchard_fruit",
+    "term_en": "Orchard Fruit",
+    "term_jp": "果樹園系果実",
+    "reading": "かじゅえんけいかじつ",
+    "category": "tasting",
+    "description": "リンゴや洋梨などを連想させる果実香の総称。",
+    "tags": ["fruit", "aroma"]
+  },
+  {
+    "id": "stone_fruit",
+    "term_en": "Stone Fruit",
+    "term_jp": "核果系果実",
+    "reading": "かくかけいかじつ",
+    "category": "tasting",
+    "description": "桃や杏のような果実を思わせる香り。",
+    "tags": ["fruit", "aroma"]
+  },
+  {
+    "id": "citrus_note",
+    "term_en": "Citrus Note",
+    "term_jp": "柑橘感",
+    "reading": "かんきつかん",
+    "category": "tasting",
+    "description": "レモンやオレンジなどの明るい果実感。",
+    "tags": ["fruit", "aroma"]
+  },
+  {
+    "id": "dried_fruit",
+    "term_en": "Dried Fruit",
+    "term_jp": "ドライフルーツ感",
+    "reading": "どらいふるーつかん",
+    "category": "tasting",
+    "description": "レーズンやデーツのような凝縮感のある甘い香り。",
+    "tags": ["fruit", "sherry"]
+  },
+  {
+    "id": "spicy",
+    "term_en": "Spicy",
+    "term_jp": "スパイシー",
+    "reading": "すぱいしー",
+    "category": "tasting",
+    "description": "胡椒やクローブのような刺激的な香味表現。",
+    "tags": ["spice", "aroma"]
+  },
+  {
+    "id": "peppery",
+    "term_en": "Peppery",
+    "term_jp": "ペッパリー",
+    "reading": "ぺっぱりー",
+    "category": "tasting",
+    "description": "黒胡椒のような辛みや刺激を感じる表現。",
+    "tags": ["spice", "texture"]
+  },
+  {
+    "id": "clove_note",
+    "term_en": "Clove Note",
+    "term_jp": "クローブ感",
+    "reading": "くろーぶかん",
+    "category": "tasting",
+    "description": "クローブを思わせる甘く重いスパイス香。",
+    "tags": ["spice", "aroma"]
+  },
+  {
+    "id": "cinnamon_note",
+    "term_en": "Cinnamon Note",
+    "term_jp": "シナモン感",
+    "reading": "しなもんかん",
+    "category": "tasting",
+    "description": "シナモン由来の甘いスパイス感。",
+    "tags": ["spice", "aroma"]
+  },
+  {
+    "id": "gingery",
+    "term_en": "Gingery",
+    "term_jp": "ジンジャー感",
+    "reading": "じんじゃーかん",
+    "category": "tasting",
+    "description": "生姜のような温かみと刺激を感じる表現。",
+    "tags": ["spice", "aroma"]
+  },
+  {
+    "id": "sulfur_note",
+    "term_en": "Sulfur Note",
+    "term_jp": "硫黄感",
+    "reading": "いおうかん",
+    "category": "tasting",
+    "description": "マッチやゴムを連想させる硫黄系ニュアンス。",
+    "tags": ["sulfur", "aroma"]
+  },
+  {
+    "id": "rubbery",
+    "term_en": "Rubbery",
+    "term_jp": "ラバー感",
+    "reading": "らばーかん",
+    "category": "tasting",
+    "description": "ゴム様の香りや質感を表す表現。",
+    "tags": ["sulfur", "aroma"]
+  },
+  {
+    "id": "meaty",
+    "term_en": "Meaty",
+    "term_jp": "ミーティ",
+    "reading": "みーてぃ",
+    "category": "tasting",
+    "description": "肉汁や旨味を思わせる重厚な香味表現。",
+    "tags": ["umami", "aroma"]
+  },
+  {
+    "id": "funky",
+    "term_en": "Funky",
+    "term_jp": "ファンキー",
+    "reading": "ふぁんきー",
+    "category": "tasting",
+    "description": "独特で発酵感や癖を伴う個性的な香味表現。",
+    "tags": ["fermentation", "aroma"]
+  },
+  {
+    "id": "clean",
+    "term_en": "Clean",
+    "term_jp": "クリーン",
+    "reading": "くりーん",
+    "category": "tasting",
+    "description": "雑味が少なく輪郭が整った印象。",
+    "tags": ["evaluation", "style"]
+  },
+  {
+    "id": "elegant",
+    "term_en": "Elegant",
+    "term_jp": "エレガント",
+    "reading": "えれがんと",
+    "category": "tasting",
+    "description": "繊細で上品なまとまりを持つ香味の印象。",
+    "tags": ["evaluation", "style"]
+  },
+  {
+    "id": "robust",
+    "term_en": "Robust",
+    "term_jp": "ロバスト",
+    "reading": "ろばすと",
+    "category": "tasting",
+    "description": "力強く、厚みと存在感のある印象。",
+    "tags": ["evaluation", "style"]
+  },
+  {
+    "id": "layered",
+    "term_en": "Layered",
+    "term_jp": "レイヤー感",
+    "reading": "れいやーかん",
+    "category": "tasting",
+    "description": "複数の要素が段階的に現れる多層的な印象。",
+    "tags": ["evaluation", "complexity"]
+  },
+  {
+    "id": "integrated",
+    "term_en": "Integrated",
+    "term_jp": "一体感がある",
+    "reading": "いったいかんがある",
+    "category": "tasting",
+    "description": "香味要素が分離せず自然にまとまっている状態。",
+    "tags": ["evaluation", "balance"]
   }
 ]
