@@ -3,121 +3,513 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amber Palette Dictionary</title>
+    <title>Amber Palette Dictionary & Cask Library</title>
     <style>
         :root {
-            --amber-dark: #1a120b; --amber-mid: #2c1e17; --amber-gold: #d4a373;
-            --amber-bright: #faedcd; --text-main: #fefae0;
+            --amber-dark: #1a120b;
+            --amber-mid: #2c1e17;
+            --amber-gold: #d4a373;
+            --amber-bright: #faedcd;
+            --text-main: #fefae0;
             --cask-accent: #b08968;
         }
+
         * { box-sizing: border-box; }
-        body { background-color: var(--amber-dark); color: var(--text-main); font-family: sans-serif; padding: 15px; margin: 0; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { text-align: center; color: var(--amber-gold); font-size: 1.5em; margin-bottom: 16px; }
+
+        body {
+            background-color: var(--amber-dark);
+            color: var(--text-main);
+            font-family: sans-serif;
+            padding: 15px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--amber-gold);
+            font-size: 1.5em;
+            margin-bottom: 16px;
+        }
 
         /* ===== タブ切り替え ===== */
-        .tab-bar { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid rgba(212,163,115,0.3); }
-        .tab-btn {
-            flex: 1; padding: 12px 8px; background: none; border: none; border-bottom: 3px solid transparent;
-            color: rgba(250,237,205,0.5); font-size: 1em; font-weight: bold; cursor: pointer;
-            transition: color 0.2s, border-color 0.2s; text-align: center;
+        .tab-bar {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(212, 163, 115, 0.3);
         }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: rgba(250, 237, 205, 0.5);
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s;
+            text-align: center;
+        }
+
         .tab-btn:hover { color: var(--amber-bright); }
-        .tab-btn.active { color: var(--amber-gold); border-bottom-color: var(--amber-gold); }
-        .tab-btn .tab-count { font-size: 0.75em; font-weight: normal; opacity: 0.6; margin-left: 4px; }
+
+        .tab-btn.active {
+            color: var(--amber-gold);
+            border-bottom-color: var(--amber-gold);
+        }
+
+        .tab-btn .tab-count {
+            font-size: 0.75em;
+            font-weight: normal;
+            opacity: 0.6;
+            margin-left: 4px;
+        }
+
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
 
         /* ===== 検索窓 + サジェスト ===== */
-        .search-wrapper { position: relative; margin-bottom: 20px; }
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
         .search-box {
-            width: 100%; padding: 14px 48px 14px 20px; border-radius: 25px;
-            border: 2px solid var(--amber-gold); background: var(--amber-mid);
-            color: white; font-size: 1.1em; outline: none;
+            width: 100%;
+            padding: 14px 48px 14px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--amber-gold);
+            background: var(--amber-mid);
+            color: white;
+            font-size: 1.1em;
+            outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .search-box:focus { border-color: #e8b878; box-shadow: 0 0 12px rgba(212,163,115,0.35); }
-        .search-box::placeholder { color: rgba(250,237,205,0.45); }
-        .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--amber-gold); opacity: 0.7; pointer-events: none; font-size: 1.2em; }
-        .search-clear { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--amber-gold); font-size: 1.3em; cursor: pointer; display: none; padding: 4px 8px; opacity: 0.7; }
+
+        .search-box:focus {
+            border-color: #e8b878;
+            box-shadow: 0 0 12px rgba(212, 163, 115, 0.35);
+        }
+
+        .search-box::placeholder {
+            color: rgba(250, 237, 205, 0.45);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--amber-gold);
+            opacity: 0.7;
+            pointer-events: none;
+            font-size: 1.2em;
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 44px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--amber-gold);
+            font-size: 1.3em;
+            cursor: pointer;
+            display: none;
+            padding: 4px 8px;
+            opacity: 0.7;
+        }
+
         .search-clear:hover { opacity: 1; }
         .search-clear.visible { display: block; }
 
         .suggest-dropdown {
-            position: absolute; top: calc(100% + 4px); left: 0; right: 0;
-            background: var(--amber-mid); border: 1.5px solid var(--amber-gold);
-            border-radius: 12px; max-height: 400px; overflow-y: auto;
-            z-index: 100; display: none; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: var(--amber-mid);
+            border: 1.5px solid var(--amber-gold);
+            border-radius: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
-        .suggest-dropdown.open { display: block; }
-        .suggest-section-label { padding: 10px 16px 4px; font-size: 0.75em; letter-spacing: 0.08em; color: var(--amber-gold); opacity: 0.7; text-transform: uppercase; font-weight: bold; }
-        .suggest-item { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(212,163,115,0.08); transition: background 0.12s; }
-        .suggest-item:last-child { border-bottom: none; }
-        .suggest-item:hover, .suggest-item.active { background: rgba(212,163,115,0.15); }
-        .suggest-badge { font-size: 0.7em; padding: 2px 8px; border-radius: 10px; background: rgba(212,163,115,0.2); color: var(--amber-gold); white-space: nowrap; flex-shrink: 0; }
-        .suggest-badge.cask-badge { background: rgba(176,137,104,0.3); color: var(--cask-accent); }
-        .suggest-main { flex: 1; min-width: 0; }
-        .suggest-term { font-weight: bold; color: var(--amber-bright); font-size: 0.95em; }
-        .suggest-sub { font-size: 0.8em; color: #aaa; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .suggest-match { background: rgba(212,163,115,0.4); border-radius: 2px; color: #fff; }
-        .suggest-footer { padding: 8px 16px; text-align: center; font-size: 0.8em; color: rgba(250,237,205,0.4); border-top: 1px solid rgba(212,163,115,0.15); }
 
-        .keyboard-hint { display: none; text-align: center; font-size: 0.75em; color: rgba(250,237,205,0.3); margin-top: -14px; margin-bottom: 14px; }
-        @media (hover: hover) and (pointer: fine) { .keyboard-hint { display: block; } }
+        .suggest-dropdown.open { display: block; }
+
+        .suggest-section-label {
+            padding: 10px 16px 4px;
+            font-size: 0.75em;
+            letter-spacing: 0.08em;
+            color: var(--amber-gold);
+            opacity: 0.7;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .suggest-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.08);
+            transition: background 0.12s;
+        }
+
+        .suggest-item:last-child { border-bottom: none; }
+
+        .suggest-item:hover,
+        .suggest-item.active {
+            background: rgba(212, 163, 115, 0.15);
+        }
+
+        .suggest-badge {
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: rgba(212, 163, 115, 0.2);
+            color: var(--amber-gold);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .suggest-badge.cask-badge {
+            background: rgba(176, 137, 104, 0.3);
+            color: var(--cask-accent);
+        }
+
+        .suggest-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .suggest-term {
+            font-weight: bold;
+            color: var(--amber-bright);
+            font-size: 0.95em;
+        }
+
+        .suggest-sub {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-top: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .suggest-match {
+            background: rgba(212, 163, 115, 0.4);
+            border-radius: 2px;
+            color: #fff;
+        }
+
+        .suggest-footer {
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 0.8em;
+            color: rgba(250, 237, 205, 0.4);
+            border-top: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .keyboard-hint {
+            display: none;
+            text-align: center;
+            font-size: 0.75em;
+            color: rgba(250, 237, 205, 0.3);
+            margin-top: -14px;
+            margin-bottom: 14px;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .keyboard-hint { display: block; }
+        }
 
         /* ===== インデックス・アコーディオン ===== */
-        .index-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-        .btn-index { background: var(--amber-mid); color: var(--amber-bright); border: 1px solid var(--amber-gold); padding: 8px 10px; border-radius: 4px; font-size: 0.9em; cursor: pointer; min-width: 42px; }
-        .btn-index:hover, .btn-index.active { background: var(--amber-gold); color: black; }
-        .tag-index-container, .nav-section { margin: 0 0 10px 0; }
-        .main-category-root { border: 1.5px solid var(--amber-gold); border-radius: 8px; background: var(--amber-mid); overflow: hidden; margin-bottom: 10px; }
-        .btn-root-label { width: 100%; padding: 14px 15px; background: var(--amber-mid); color: var(--amber-gold); border: none; font-size: 1.05em; font-weight: bold; display: flex; align-items: center; cursor: pointer; }
-        .tag-group { border-top: 1px solid rgba(212,163,115,0.2); }
-        .tag-group-label { width: 100%; padding: 12px 15px 12px 25px; font-size: 0.95em; color: var(--amber-bright); background: rgba(255,255,255,0.03); border: none; display: flex; align-items: center; cursor: pointer; }
-        .tag-sub-group { border-top: 1px solid rgba(255,255,255,0.05); }
-        .btn-tag-expand { width: 100%; padding: 10px 15px 10px 40px; font-size: 0.9em; color: #ccc; background: none; border: none; display: flex; align-items: center; cursor: pointer; }
-        .cat-name, .tag-name, .root-name { margin-right: auto; }
-        .count-num { font-size: 0.85em; opacity: 0.7; margin-right: 10px; font-weight: normal; }
-        .tag-group-label::after, .btn-tag-expand::after, .btn-root-label::after { content: '▶'; font-size: 0.75em; transition: transform 0.2s; color: var(--amber-gold); }
-        .open > .tag-group-label::after, .open > .btn-tag-expand::after, .open > .btn-root-label::after { transform: rotate(90deg); }
-        .tag-group-container, .tag-sub-container { display: none; }
-        .tag-term-list { display: none; padding: 5px 15px 12px 55px; background: rgba(0,0,0,0.2); }
+        .index-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-index {
+            background: var(--amber-mid);
+            color: var(--amber-bright);
+            border: 1px solid var(--amber-gold);
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            min-width: 42px;
+        }
+
+        .btn-index:hover,
+        .btn-index.active {
+            background: var(--amber-gold);
+            color: black;
+        }
+
+        .tag-index-container,
+        .nav-section {
+            margin: 0 0 10px 0;
+        }
+
+        .main-category-root {
+            border: 1.5px solid var(--amber-gold);
+            border-radius: 8px;
+            background: var(--amber-mid);
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .btn-root-label {
+            width: 100%;
+            padding: 14px 15px;
+            background: var(--amber-mid);
+            color: var(--amber-gold);
+            border: none;
+            font-size: 1.05em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .tag-group { border-top: 1px solid rgba(212, 163, 115, 0.2); }
+
+        .tag-group-label {
+            width: 100%;
+            padding: 12px 15px 12px 25px;
+            font-size: 0.95em;
+            color: var(--amber-bright);
+            background: rgba(255, 255, 255, 0.03);
+            border: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .tag-sub-group { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+        .btn-tag-expand {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            font-size: 0.9em;
+            color: #ccc;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cat-name,
+        .tag-name,
+        .root-name {
+            margin-right: auto;
+        }
+
+        .count-num {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-right: 10px;
+            font-weight: normal;
+        }
+
+        .tag-group-label::after,
+        .btn-tag-expand::after,
+        .btn-root-label::after {
+            content: '▶';
+            font-size: 0.75em;
+            transition: transform 0.2s;
+            color: var(--amber-gold);
+        }
+
+        .open > .tag-group-label::after,
+        .open > .btn-tag-expand::after,
+        .open > .btn-root-label::after {
+            transform: rotate(90deg);
+        }
+
+        .tag-group-container,
+        .tag-sub-container { display: none; }
+
+        .tag-term-list {
+            display: none;
+            padding: 5px 15px 12px 55px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
         .open > .tag-term-list { display: block; }
-        .term-link { display: block; color: var(--amber-gold); font-size: 0.9em; padding: 10px 0; text-decoration: none; line-height: 1.4; border-bottom: 1px solid rgba(212,163,115,0.1); }
+
+        .term-link {
+            display: block;
+            color: var(--amber-gold);
+            font-size: 0.9em;
+            padding: 10px 0;
+            text-decoration: none;
+            line-height: 1.4;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+        }
+
         .term-link:last-child { border-bottom: none; }
 
-        /* ===== 辞書カード ===== */
-        .dictionary-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
-        .dic-card { background: var(--amber-mid); padding: 18px; border-radius: 8px; border-top: 4px solid var(--amber-gold); }
-        .term-en { font-weight: bold; font-size: 1.2em; color: var(--amber-gold); }
-        .term-jp { font-size: 0.9em; opacity: 0.8; margin-top: 2px; }
-        .desc { font-size: 0.95em; color: #ddd; margin: 12px 0; line-height: 1.5; }
-        .card-tag { color: var(--amber-gold); font-size: 0.85em; margin-right: 12px; cursor: pointer; text-decoration: underline; }
-        .highlight { background: rgba(212,163,115,0.4); border-radius: 2px; }
+        /* ===== カード ===== */
+        .dictionary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .dic-card {
+            background: var(--amber-mid);
+            padding: 18px;
+            border-radius: 8px;
+            border-top: 4px solid var(--amber-gold);
+        }
+
+        .term-en {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--amber-gold);
+        }
+
+        .term-jp {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .desc {
+            font-size: 0.95em;
+            color: #ddd;
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .card-tag {
+            color: var(--amber-gold);
+            font-size: 0.85em;
+            margin-right: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background: rgba(212, 163, 115, 0.4);
+            border-radius: 2px;
+        }
 
         /* ===== 樽カード ===== */
         .cask-card { border-top-color: var(--cask-accent); }
-        .cask-notes { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
-        .cask-note-chip { font-size: 0.8em; padding: 3px 10px; border-radius: 12px; background: rgba(176,137,104,0.15); color: var(--cask-accent); border: 1px solid rgba(176,137,104,0.3); }
-        .cask-meta { display: flex; gap: 16px; margin-top: 8px; font-size: 0.8em; opacity: 0.7; }
-        .influence-bar { display: inline-flex; gap: 3px; align-items: center; margin-left: 4px; }
-        .influence-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(176,137,104,0.25); }
-        .influence-dot.filled { background: var(--cask-accent); }
+
+        .cask-notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .cask-note-chip {
+            font-size: 0.8em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: rgba(176, 137, 104, 0.15);
+            color: var(--cask-accent);
+            border: 1px solid rgba(176, 137, 104, 0.3);
+        }
+
+        .cask-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        .influence-bar {
+            display: inline-flex;
+            gap: 3px;
+            align-items: center;
+            margin-left: 4px;
+        }
+
+        .influence-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(176, 137, 104, 0.25);
+        }
+
+        .influence-dot.filled {
+            background: var(--cask-accent);
+        }
 
         /* ===== 樽グループナビ ===== */
-        .cask-group-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-        .cask-group-btn { padding: 8px 14px; border-radius: 20px; border: 1px solid rgba(176,137,104,0.4); background: var(--amber-mid); color: var(--amber-bright); font-size: 0.85em; cursor: pointer; transition: all 0.15s; }
-        .cask-group-btn:hover, .cask-group-btn.active { background: var(--cask-accent); color: #1a120b; border-color: var(--cask-accent); }
-        .cask-group-btn .g-count { font-size: 0.8em; opacity: 0.6; margin-left: 4px; }
+        .cask-group-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .cask-group-btn {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(176, 137, 104, 0.4);
+            background: var(--amber-mid);
+            color: var(--amber-bright);
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .cask-group-btn:hover,
+        .cask-group-btn.active {
+            background: var(--cask-accent);
+            color: #1a120b;
+            border-color: var(--cask-accent);
+        }
+
+        .cask-group-btn .g-count {
+            font-size: 0.8em;
+            opacity: 0.6;
+            margin-left: 4px;
+        }
 
         /* ===== ステータスバー ===== */
-        .status-bar { background: rgba(212,163,115,0.2); border-left: 5px solid var(--amber-gold); padding: 12px 15px; margin: 10px 0 20px 0; display: none; justify-content: space-between; align-items: center; border-radius: 4px; }
+        .status-bar {
+            background: rgba(212, 163, 115, 0.2);
+            border-left: 5px solid var(--amber-gold);
+            padding: 12px 15px;
+            margin: 10px 0 20px 0;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+        }
+
         .status-bar.show { display: flex; }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Amber Palette Dictionary</h1>
+    <h1>Amber Palette Dictionary & Cask Library</h1>
 
     <div class="search-wrapper">
         <input type="text" id="dicSearch" class="search-box" placeholder="用語・樽・フレーバーから検索..." autocomplete="off">
@@ -128,211 +520,663 @@
     <div class="keyboard-hint">↑↓ で選択 ・ Enter で確定 ・ Esc で閉じる</div>
 
     <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchTab('dictionary')">📖 用語辞典<span class="tab-count" id="dictCount"></span></button>
-        <button class="tab-btn" onclick="switchTab('cask')">🪵 樽図鑑<span class="tab-count" id="caskCount"></span></button>
+        <button class="tab-btn active" id="tabBtnDictionary" onclick="switchTab('dictionary')">📖 用語辞典<span class="tab-count" id="dictCount"></span></button>
+        <button class="tab-btn" id="tabBtnCask" onclick="switchTab('cask')">🪵 樽図鑑<span class="tab-count" id="caskCount"></span></button>
     </div>
 
     <div class="tab-panel active" id="panel-dictionary">
-        <div class="nav-section"><div id="alphaIndex"></div><div id="kanaIndex"></div></div>
+        <div class="nav-section">
+            <div id="alphaIndex"></div>
+            <div id="kanaIndex"></div>
+        </div>
         <div id="tagHierarchicalIndex" class="tag-index-container"></div>
+
         <div id="resultStatus" class="status-bar">
             <span id="statusMessage" style="font-weight: bold;"></span>
             <button onclick="resetSearch()" style="background:var(--amber-gold); border:none; padding:4px 12px; border-radius:4px; cursor:pointer; font-weight:bold;">解除</button>
         </div>
+
         <div id="dictionaryList" class="dictionary-grid"></div>
     </div>
 
     <div class="tab-panel" id="panel-cask">
         <div id="caskGroupNav" class="cask-group-nav"></div>
+
         <div id="caskStatus" class="status-bar">
             <span id="caskStatusMessage" style="font-weight: bold;"></span>
             <button onclick="resetCaskFilter()" style="background:var(--cask-accent); border:none; padding:4px 12px; border-radius:4px; cursor:pointer; font-weight:bold;">解除</button>
         </div>
+
         <div id="caskList" class="dictionary-grid"></div>
     </div>
 </div>
 
 <script>
-let masterData = [], caskData = [], suggestActiveIndex = -1, currentTab = 'dictionary';
+let masterData = [];
+let caskData = [];
+let suggestActiveIndex = -1;
+let currentTab = 'dictionary';
 
 const categoryNames = {
-    "tasting": "テイスティング表現", "distillation": "蒸留・設備", "maturation": "熟成・樽",
-    "fermentation": "発酵・微生物", "raw": "原料・製麦", "finishing": "仕上げ・瓶詰め",
-    "distribution": "流通・スタイル", "others": "その他"
+    tasting: 'テイスティング表現',
+    distillation: '蒸留・設備',
+    maturation: '熟成・樽',
+    fermentation: '発酵・微生物',
+    raw: '原料・製麦',
+    finishing: '仕上げ・瓶詰め',
+    distribution: '流通・スタイル',
+    others: 'その他'
 };
+
 const sortGroupNames = {
-    "01_sherry": "シェリー樽", "02_fortified_wine": "酒精強化ワイン樽",
-    "03_table_wine": "ワイン樽", "04_spirits": "スピリッツ樽",
-    "05_beer": "ビール樽", "06_tea": "茶系樽",
-    "07_rare_wood": "希少木材", "08_oak_type": "オーク種別",
-    "09_finish": "フィニッシュ技法", "10_experimental": "実験的・特殊樽"
+    '01_sherry': 'シェリー樽',
+    '02_fortified_wine': '酒精強化ワイン樽',
+    '03_table_wine': 'ワイン樽',
+    '04_spirits': 'スピリッツ樽',
+    '05_beer': 'ビール樽',
+    '06_tea': '茶系樽',
+    '07_rare_wood': '希少木材',
+    '08_oak_type': 'オーク種別',
+    '09_finish': 'フィニッシュ技法',
+    '10_experimental': '実験的・特殊樽'
 };
+
 const kanaRows = {
-    "あ": "あいうえおぁぃぅぇぉ", "か": "かきくけこがぎぐげご", "さ": "さしすせそざじずぜぞ",
-    "た": "たちつてとだぢづでど", "な": "なにぬねの", "は": "はひふへほばびぶべぼぱぴぷぺぽ",
-    "ま": "まみむめも", "や": "やゆよゃゅょ", "ら": "らりるれろ", "わ": "わをん"
+    'あ': 'あいうえおぁぃぅぇぉ',
+    'か': 'かきくけこがぎぐげご',
+    'さ': 'さしすせそざじずぜぞ',
+    'た': 'たちつてとだぢづでど',
+    'な': 'なにぬねの',
+    'は': 'はひふへほばびぶべぼぱぴぷぺぽ',
+    'ま': 'まみむめも',
+    'や': 'やゆよゃゅょ',
+    'ら': 'らりるれろ',
+    'わ': 'わをん'
 };
 
 async function init() {
     try {
-        const [dictRes, caskRes] = await Promise.all([fetch('dictionary-data.json'), fetch('cask-data.json')]);
+        const [dictRes, caskRes] = await Promise.all([
+            fetch('dictionary-data.json'),
+            fetch('cask-data.json')
+        ]);
+
         if (!dictRes.ok) throw new Error('dictionary-data.json 読み込み失敗');
         if (!caskRes.ok) throw new Error('cask-data.json 読み込み失敗');
+
         masterData = await dictRes.json();
         caskData = await caskRes.json();
+
         document.getElementById('dictCount').textContent = `(${masterData.length})`;
         document.getElementById('caskCount').textContent = `(${caskData.length})`;
-        createIndexNav(); createTagAccordion(); renderDictionary(masterData);
-        createCaskGroupNav(); renderCaskList(caskData);
+
+        createIndexNav();
+        createTagAccordion();
+        createCaskGroupNav();
+
+        renderDictionary(masterData);
+        renderCaskList(caskData);
     } catch (err) {
-        document.getElementById('dictionaryList').innerHTML = "<div style='text-align:center; padding:20px;'>データを読み込めません。<br><small>" + err.message + "</small></div>";
+        const msg = `<div style="text-align:center; padding:20px;">データを読み込めません。<br><small>${err.message}</small></div>`;
+        document.getElementById('dictionaryList').innerHTML = msg;
+        document.getElementById('caskList').innerHTML = msg;
     }
 }
 
 function switchTab(tab) {
     currentTab = tab;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
-    document.getElementById(`panel-${tab}`).classList.add('active');
+
+    document.getElementById('tabBtnDictionary').classList.toggle('active', tab === 'dictionary');
+    document.getElementById('tabBtnCask').classList.toggle('active', tab === 'cask');
+    document.getElementById('panel-dictionary').classList.toggle('active', tab === 'dictionary');
+    document.getElementById('panel-cask').classList.toggle('active', tab === 'cask');
 }
 
 // ===== 統合サジェスト =====
 function buildSuggestions(query) {
     if (!query || query.length < 1) return [];
-    const q = query.toLowerCase(), results = [], foundIds = new Set();
-    masterData.forEach(item => { if (item.term_en.toLowerCase().startsWith(q) || item.term_jp.startsWith(query)) { results.push({ item, source: 'dict', type: 'term', priority: 1 }); foundIds.add('d-'+item.id); } });
-    masterData.forEach(item => { if (foundIds.has('d-'+item.id)) return; if (item.term_en.toLowerCase().includes(q) || item.term_jp.includes(query)) { results.push({ item, source: 'dict', type: 'term', priority: 2 }); foundIds.add('d-'+item.id); } });
-    masterData.forEach(item => { if (foundIds.has('d-'+item.id)) return; if (item.description.toLowerCase().includes(q)) { results.push({ item, source: 'dict', type: 'desc', priority: 3 }); foundIds.add('d-'+item.id); } });
-    caskData.forEach(item => { if (item.term_en.toLowerCase().startsWith(q) || item.term_jp.startsWith(query)) { results.push({ item, source: 'cask', type: 'term', priority: 1.5 }); foundIds.add('c-'+item.id); } });
-    caskData.forEach(item => { if (foundIds.has('c-'+item.id)) return; if (item.term_en.toLowerCase().includes(q) || item.term_jp.includes(query)) { results.push({ item, source: 'cask', type: 'term', priority: 2.5 }); foundIds.add('c-'+item.id); } });
-    caskData.forEach(item => { if (foundIds.has('c-'+item.id)) return; const notes = (item.typical_notes||[]).join(' ').toLowerCase(); if (notes.includes(q) || item.description.toLowerCase().includes(q)) { results.push({ item, source: 'cask', type: 'notes', priority: 3.5 }); foundIds.add('c-'+item.id); } });
+
+    const q = query.toLowerCase();
+    const results = [];
+    const foundIds = new Set();
+
+    masterData.forEach(item => {
+        if (item.term_en.toLowerCase().startsWith(q) || item.term_jp.startsWith(query)) {
+            results.push({ item, source: 'dict', type: 'term', priority: 1 });
+            foundIds.add('d-' + item.id);
+        }
+    });
+
+    masterData.forEach(item => {
+        if (foundIds.has('d-' + item.id)) return;
+        if (item.term_en.toLowerCase().includes(q) || item.term_jp.includes(query)) {
+            results.push({ item, source: 'dict', type: 'term', priority: 2 });
+            foundIds.add('d-' + item.id);
+        }
+    });
+
+    masterData.forEach(item => {
+        if (foundIds.has('d-' + item.id)) return;
+        if ((item.description || '').toLowerCase().includes(q)) {
+            results.push({ item, source: 'dict', type: 'desc', priority: 3 });
+            foundIds.add('d-' + item.id);
+        }
+    });
+
+    masterData.forEach(item => {
+        if (foundIds.has('d-' + item.id)) return;
+        if ((item.tags || []).some(t => t.toLowerCase().includes(q))) {
+            results.push({ item, source: 'dict', type: 'tag', priority: 4 });
+            foundIds.add('d-' + item.id);
+        }
+    });
+
+    caskData.forEach(item => {
+        if (item.term_en.toLowerCase().startsWith(q) || item.term_jp.startsWith(query)) {
+            results.push({ item, source: 'cask', type: 'term', priority: 1.5 });
+            foundIds.add('c-' + item.id);
+        }
+    });
+
+    caskData.forEach(item => {
+        if (foundIds.has('c-' + item.id)) return;
+        if (item.term_en.toLowerCase().includes(q) || item.term_jp.includes(query)) {
+            results.push({ item, source: 'cask', type: 'term', priority: 2.5 });
+            foundIds.add('c-' + item.id);
+        }
+    });
+
+    caskData.forEach(item => {
+        if (foundIds.has('c-' + item.id)) return;
+        const notes = (item.typical_notes || []).join(' ').toLowerCase();
+        const desc = (item.description || '').toLowerCase();
+        if (notes.includes(q) || desc.includes(q)) {
+            results.push({ item, source: 'cask', type: 'notes', priority: 3.5 });
+            foundIds.add('c-' + item.id);
+        }
+    });
+
     results.sort((a, b) => a.priority - b.priority);
     return results.slice(0, 10);
 }
 
-function highlightMatch(text, query) { if (!query) return text; return text.replace(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<span class="suggest-match">$1</span>'); }
+function highlightMatch(text, query) {
+    if (!query) return text;
+    const re = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+    return String(text).replace(re, '<span class="suggest-match">$1</span>');
+}
 
 function renderSuggestions(query) {
     const dropdown = document.getElementById('suggestDropdown');
     const results = buildSuggestions(query);
     suggestActiveIndex = -1;
-    if (results.length === 0) { dropdown.classList.remove('open'); return; }
-    const badgeMap = { 'dict-term': '用語', 'dict-desc': '説明', 'cask-term': '🪵 樽', 'cask-notes': '🪵 香味' };
+
+    if (results.length === 0) {
+        dropdown.classList.remove('open');
+        return;
+    }
+
+    const badgeMap = {
+        'dict-term': '用語',
+        'dict-desc': '説明',
+        'dict-tag': 'タグ',
+        'cask-term': '🪵 樽',
+        'cask-notes': '🪵 香味'
+    };
+
     let html = '<div class="suggest-section-label">候補</div>';
+
     results.forEach((r, i) => {
-        const item = r.item, isCask = r.source === 'cask';
+        const item = r.item;
+        const isCask = r.source === 'cask';
         let sub = item.term_jp;
-        if (r.type === 'desc') sub = truncateAround(item.description, query, 40);
-        if (r.type === 'notes') sub = (item.typical_notes||[]).join(', ');
-        html += `<div class="suggest-item" data-index="${i}" onmouseenter="setSuggestActive(${i})" onclick="selectSuggestion(${i})">
-            <span class="suggest-badge${isCask?' cask-badge':''}">${badgeMap[r.source+'-'+r.type]||r.source}</span>
-            <div class="suggest-main"><div class="suggest-term">${highlightMatch(item.term_en, query)}</div><div class="suggest-sub">${highlightMatch(sub, query)}</div></div></div>`;
+
+        if (r.type === 'desc') sub = truncateAround(item.description || '', query, 40);
+        if (r.type === 'notes') sub = (item.typical_notes || []).join(', ');
+
+        html += `
+            <div class="suggest-item" data-index="${i}" onmouseenter="setSuggestActive(${i})" onclick="selectSuggestion(${i})">
+                <span class="suggest-badge${isCask ? ' cask-badge' : ''}">${badgeMap[r.source + '-' + r.type] || r.source}</span>
+                <div class="suggest-main">
+                    <div class="suggest-term">${highlightMatch(item.term_en, query)}</div>
+                    <div class="suggest-sub">${highlightMatch(sub, query)}</div>
+                </div>
+            </div>
+        `;
     });
+
     html += `<div class="suggest-footer">Enter で選択</div>`;
-    dropdown.innerHTML = html; dropdown.classList.add('open'); dropdown._results = results;
+
+    dropdown.innerHTML = html;
+    dropdown.classList.add('open');
+    dropdown._results = results;
 }
 
 function truncateAround(text, query, radius) {
-    const idx = text.toLowerCase().indexOf(query.toLowerCase());
-    if (idx === -1) return text.substring(0, radius*2) + '…';
-    const start = Math.max(0, idx-radius), end = Math.min(text.length, idx+query.length+radius);
-    let s = text.substring(start, end);
-    if (start > 0) s = '…'+s; if (end < text.length) s += '…'; return s;
+    const source = String(text || '');
+    const idx = source.toLowerCase().indexOf(query.toLowerCase());
+    if (idx === -1) return source.substring(0, radius * 2) + (source.length > radius * 2 ? '…' : '');
+
+    const start = Math.max(0, idx - radius);
+    const end = Math.min(source.length, idx + query.length + radius);
+    let s = source.substring(start, end);
+    if (start > 0) s = '…' + s;
+    if (end < source.length) s += '…';
+    return s;
 }
-function setSuggestActive(index) { suggestActiveIndex = index; document.querySelectorAll('.suggest-item').forEach((el,i) => el.classList.toggle('active', i===index)); }
+
+function setSuggestActive(index) {
+    suggestActiveIndex = index;
+    document.querySelectorAll('.suggest-item').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+}
 
 function selectSuggestion(index) {
-    const dropdown = document.getElementById('suggestDropdown'), results = dropdown._results;
-    if (!results?.[index]) return;
-    const r = results[index], item = r.item;
-    document.getElementById('dicSearch').value = item.term_en; dropdown.classList.remove('open');
-    if (r.source === 'cask') { switchTab('cask'); renderCaskList(caskData.filter(d => d.id===item.id), item.term_en); showCaskStatus(`「${item.term_en}」の詳細`); }
-    else { switchTab('dictionary'); renderDictionary(masterData.filter(d => d.id===item.id), item.term_en); finalizeFilter(`「${item.term_en}」の詳細`); }
+    const dropdown = document.getElementById('suggestDropdown');
+    const results = dropdown._results;
+    if (!results || !results[index]) return;
+
+    const r = results[index];
+    const item = r.item;
+
+    document.getElementById('dicSearch').value = item.term_en;
+    dropdown.classList.remove('open');
+
+    if (r.source === 'cask') {
+        switchTab('cask');
+        renderCaskList(caskData.filter(d => d.id === item.id), item.term_en);
+        showCaskStatus(`「${item.term_en}」の詳細`);
+    } else {
+        switchTab('dictionary');
+        renderDictionary(masterData.filter(d => d.id === item.id), item.term_en);
+        finalizeFilter(`「${item.term_en}」の詳細`);
+    }
 }
 
 // ===== 検索窓イベント =====
-const searchBox = document.getElementById('dicSearch'), clearBtn = document.getElementById('searchClear');
+const searchBox = document.getElementById('dicSearch');
+const clearBtn = document.getElementById('searchClear');
+
 searchBox.addEventListener('input', (e) => {
-    const q = e.target.value; clearBtn.classList.toggle('visible', q.length > 0);
-    ['root-alpha-index','root-kana-index','root-category-list'].forEach(id => { const el = document.getElementById(id); if (el?.classList.contains('open')) toggleAccordion(id); });
-    if (q === "") { document.getElementById('resultStatus').classList.remove('show'); document.getElementById('caskStatus').classList.remove('show'); document.getElementById('suggestDropdown').classList.remove('open'); renderDictionary(masterData); renderCaskList(caskData); }
-    else {
-        renderSuggestions(q); const ql = q.toLowerCase();
-        const df = masterData.filter(item => item.term_en.toLowerCase().includes(ql)||item.term_jp.includes(q)||(item.reading&&item.reading.includes(q))||item.description.includes(q)||item.tags.some(t=>t.toLowerCase().includes(ql)));
-        renderDictionary(df, q); document.getElementById('resultStatus').classList.add('show'); document.getElementById('statusMessage').innerText = `「${q}」: ${df.length}件`;
-        const cf = caskData.filter(item => item.term_en.toLowerCase().includes(ql)||item.term_jp.includes(q)||(item.reading&&item.reading.includes(q))||item.description.includes(q)||(item.typical_notes||[]).some(n=>n.includes(q))||item.tags.some(t=>t.toLowerCase().includes(ql)));
-        renderCaskList(cf, q); showCaskStatus(`「${q}」: ${cf.length}件`);
+    const q = e.target.value;
+    clearBtn.classList.toggle('visible', q.length > 0);
+
+    ['root-alpha-index', 'root-kana-index', 'root-category-list'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.classList.contains('open')) toggleAccordion(id);
+    });
+
+    if (q === '') {
+        document.getElementById('resultStatus').classList.remove('show');
+        document.getElementById('caskStatus').classList.remove('show');
+        document.getElementById('suggestDropdown').classList.remove('open');
+        renderDictionary(masterData);
+        renderCaskList(caskData);
+        resetCaskGroupButtons();
+        return;
+    }
+
+    renderSuggestions(q);
+
+    const ql = q.toLowerCase();
+
+    const dictFiltered = masterData.filter(item =>
+        item.term_en.toLowerCase().includes(ql) ||
+        item.term_jp.includes(q) ||
+        ((item.reading || '').includes(q)) ||
+        (item.description || '').includes(q) ||
+        (item.tags || []).some(t => t.toLowerCase().includes(ql))
+    );
+
+    renderDictionary(dictFiltered, q);
+    document.getElementById('resultStatus').classList.add('show');
+    document.getElementById('statusMessage').innerText = `「${q}」: ${dictFiltered.length}件`;
+
+    const caskFiltered = caskData.filter(item =>
+        item.term_en.toLowerCase().includes(ql) ||
+        item.term_jp.includes(q) ||
+        ((item.reading || '').includes(q)) ||
+        (item.description || '').includes(q) ||
+        (item.typical_notes || []).some(n => String(n).includes(q)) ||
+        (item.tags || []).some(t => t.toLowerCase().includes(ql))
+    );
+
+    renderCaskList(caskFiltered, q);
+    showCaskStatus(`「${q}」: ${caskFiltered.length}件`);
+    resetCaskGroupButtons();
+});
+
+searchBox.addEventListener('keydown', (e) => {
+    const dropdown = document.getElementById('suggestDropdown');
+    if (!dropdown.classList.contains('open')) return;
+
+    const items = dropdown.querySelectorAll('.suggest-item');
+    const max = items.length - 1;
+
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        suggestActiveIndex = Math.min(suggestActiveIndex + 1, max);
+        setSuggestActive(suggestActiveIndex);
+        items[suggestActiveIndex]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        suggestActiveIndex = Math.max(suggestActiveIndex - 1, 0);
+        setSuggestActive(suggestActiveIndex);
+        items[suggestActiveIndex]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (suggestActiveIndex >= 0) {
+            selectSuggestion(suggestActiveIndex);
+        } else {
+            dropdown.classList.remove('open');
+        }
+    } else if (e.key === 'Escape') {
+        dropdown.classList.remove('open');
     }
 });
-searchBox.addEventListener('keydown', (e) => {
-    const dd = document.getElementById('suggestDropdown'); if (!dd.classList.contains('open')) return;
-    const items = dd.querySelectorAll('.suggest-item'), max = items.length-1;
-    if (e.key==='ArrowDown') { e.preventDefault(); suggestActiveIndex=Math.min(suggestActiveIndex+1,max); setSuggestActive(suggestActiveIndex); items[suggestActiveIndex]?.scrollIntoView({block:'nearest'}); }
-    else if (e.key==='ArrowUp') { e.preventDefault(); suggestActiveIndex=Math.max(suggestActiveIndex-1,0); setSuggestActive(suggestActiveIndex); items[suggestActiveIndex]?.scrollIntoView({block:'nearest'}); }
-    else if (e.key==='Enter') { e.preventDefault(); if (suggestActiveIndex>=0) selectSuggestion(suggestActiveIndex); else dd.classList.remove('open'); }
-    else if (e.key==='Escape') dd.classList.remove('open');
+
+document.addEventListener('click', (e) => {
+    const wrapper = document.querySelector('.search-wrapper');
+    if (!wrapper.contains(e.target)) {
+        document.getElementById('suggestDropdown').classList.remove('open');
+    }
 });
-document.addEventListener('click', (e) => { if (!document.querySelector('.search-wrapper').contains(e.target)) document.getElementById('suggestDropdown').classList.remove('open'); });
 
 // ===== 辞書機能 =====
 function createIndexNav() {
-    const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""), kana = "あかさたなはまやらわ".split("");
-    const make = (id, label, items, mode) => `<div class="main-category-root" id="${id}"><button class="btn-root-label" onclick="toggleAccordion('${id}')"><span class="root-name">${label}</span><span class="count-num">${items.length} Keys</span></button><div class="tag-group-container" style="padding:10px;"><div class="index-row">${items.map(c=>`<button class="btn-index" onclick="filterByChar(event,'${c}','${mode}')">${c}</button>`).join('')}</div></div></div>`;
-    document.getElementById('alphaIndex').innerHTML = make('root-alpha-index','Alphabet Index',alpha,'en');
-    document.getElementById('kanaIndex').innerHTML = make('root-kana-index','Hiragana Index',kana,'jp');
+    const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const kana = 'あかさたなはまやらわ'.split('');
+
+    const make = (id, label, items, mode) => `
+        <div class="main-category-root" id="${id}">
+            <button class="btn-root-label" onclick="toggleAccordion('${id}')">
+                <span class="root-name">${label}</span>
+                <span class="count-num">${items.length} Keys</span>
+            </button>
+            <div class="tag-group-container" style="padding:10px;">
+                <div class="index-row">
+                    ${items.map(c => `<button class="btn-index" onclick="filterByChar(event,'${c}','${mode}')">${c}</button>`).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('alphaIndex').innerHTML = make('root-alpha-index', 'Alphabet Index', alpha, 'en');
+    document.getElementById('kanaIndex').innerHTML = make('root-kana-index', 'Hiragana Index', kana, 'jp');
 }
+
 function createTagAccordion() {
-    const container = document.getElementById('tagHierarchicalIndex'); if (!container) return;
-    const sd = {}; masterData.forEach(item => { if (!sd[item.category]) sd[item.category]={}; item.tags.forEach(tag => { if (!tag) return; if (!sd[item.category][tag]) sd[item.category][tag]=[]; sd[item.category][tag].push(item); }); });
-    let html = `<div class="main-category-root" id="root-category-list"><button class="btn-root-label" onclick="toggleAccordion('root-category-list')"><span class="root-name">カテゴリーから探す</span><span class="count-num">${Object.keys(sd).length} Categories</span></button><div class="tag-group-container">`;
-    html += Object.keys(sd).sort().map(cat => { const tags=sd[cat]; const cid=`group-${cat}`.replace(/\s+/g,'-');
-        return `<div class="tag-group" id="${cid}"><button class="tag-group-label" onclick="toggleAccordion('${cid}')"><span class="cat-name">${categoryNames[cat]||cat}</span><span class="count-num">${Object.keys(tags).length} Tags</span></button><div class="tag-sub-container">${Object.keys(tags).sort().map(tn => { const items=tags[tn]; const sid=`sub-${cat}-${tn}`.replace(/\s+/g,'-');
-            return `<div class="tag-sub-group" id="${sid}"><button class="btn-tag-expand" onclick="toggleAccordion('${sid}')"><span class="tag-name">#${tn}</span><span class="count-num">${items.length}</span></button><div class="tag-term-list">${items.map(item=>`<a href="javascript:void(0)" class="term-link" onclick="filterBySingleWord('${item.term_en.replace(/'/g,"\\'")}')">・${item.term_en}</a>`).join('')}</div></div>`; }).join('')}</div></div>`; }).join('');
-    html += `</div></div>`; container.innerHTML = html;
+    const container = document.getElementById('tagHierarchicalIndex');
+    if (!container) return;
+
+    const structured = {};
+
+    masterData.forEach(item => {
+        if (!structured[item.category]) structured[item.category] = {};
+        (item.tags || []).forEach(tag => {
+            if (!tag) return;
+            if (!structured[item.category][tag]) structured[item.category][tag] = [];
+            structured[item.category][tag].push(item);
+        });
+    });
+
+    let html = `
+        <div class="main-category-root" id="root-category-list">
+            <button class="btn-root-label" onclick="toggleAccordion('root-category-list')">
+                <span class="root-name">カテゴリーから探す</span>
+                <span class="count-num">${Object.keys(structured).length} Categories</span>
+            </button>
+            <div class="tag-group-container">
+    `;
+
+    html += Object.keys(structured).sort().map(cat => {
+        const tags = structured[cat];
+        const cid = `group-${cat}`.replace(/\s+/g, '-');
+
+        return `
+            <div class="tag-group" id="${cid}">
+                <button class="tag-group-label" onclick="toggleAccordion('${cid}')">
+                    <span class="cat-name">${categoryNames[cat] || cat}</span>
+                    <span class="count-num">${Object.keys(tags).length} Tags</span>
+                </button>
+                <div class="tag-sub-container">
+                    ${Object.keys(tags).sort().map(tagName => {
+                        const items = tags[tagName];
+                        const sid = `sub-${cat}-${tagName}`.replace(/\s+/g, '-');
+                        return `
+                            <div class="tag-sub-group" id="${sid}">
+                                <button class="btn-tag-expand" onclick="toggleAccordion('${sid}')">
+                                    <span class="tag-name">#${tagName}</span>
+                                    <span class="count-num">${items.length}</span>
+                                </button>
+                                <div class="tag-term-list">
+                                    ${items.map(item => `
+                                        <a href="javascript:void(0)" class="term-link" onclick="filterBySingleWord(${JSON.stringify(item.term_en)})">
+                                            ・${item.term_en}
+                                        </a>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    html += `</div></div>`;
+    container.innerHTML = html;
 }
-function toggleAccordion(id) { const el=document.getElementById(id); if(!el)return; el.classList.toggle('open'); const c=el.querySelector('.tag-group-container,.tag-sub-container,.tag-term-list'); if(c) c.style.display=(c.style.display==='none'||c.style.display==='')?'block':'none'; }
-function filterByChar(event,char,mode) { clearActiveStates(); event?.currentTarget?.classList.add('active'); const f=masterData.filter(item=>{ if(mode==='en') return item.term_en.toUpperCase().startsWith(char.toUpperCase()); const rc=kanaRows[char]||char; const t=item.reading||item.term_jp||""; return rc.includes(toHiragana(t.charAt(0))); }); renderDictionary(f); finalizeFilter(`「${char}」行の結果: ${f.length}件`); toggleAccordion(mode==='en'?'root-alpha-index':'root-kana-index'); }
-function filterBySingleWord(w) { renderDictionary(masterData.filter(i=>i.term_en===w),w); finalizeFilter(`「${w}」の詳細`); const r=document.getElementById('root-category-list'); if(r?.classList.contains('open')) toggleAccordion('root-category-list'); }
-function filterByTag(tag) { renderDictionary(masterData.filter(i=>i.tags.includes(tag)),tag); finalizeFilter(`タグ「#${tag}」: ${masterData.filter(i=>i.tags.includes(tag)).length}件`); }
-function renderDictionary(data, query="") {
-    const list=document.getElementById('dictionaryList');
-    if(data.length===0){list.innerHTML="<div style='text-align:center;padding:40px;opacity:0.6;'>該当なし</div>";return;}
-    list.innerHTML=data.map(item=>`<div class="dic-card" data-cat="${item.category}"><div class="term-en">${highlight(item.term_en,query)}</div><div class="term-jp">${item.term_jp}</div><p class="desc">${highlight(item.description,query)}</p><div class="card-tags">${item.tags.map(t=>`<span class="card-tag" onclick="filterByTag('${t}')">#${t}</span>`).join('')}</div></div>`).join('');
+
+function toggleAccordion(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.classList.toggle('open');
+
+    const content = el.querySelector('.tag-group-container, .tag-sub-container, .tag-term-list');
+    if (content) {
+        const current = getComputedStyle(content).display;
+        content.style.display = (current === 'none') ? 'block' : 'none';
+    }
+}
+
+function filterByChar(event, char, mode) {
+    clearActiveStates();
+    event?.currentTarget?.classList.add('active');
+
+    const filtered = masterData.filter(item => {
+        if (mode === 'en') {
+            return item.term_en.toUpperCase().startsWith(char.toUpperCase());
+        }
+        const rowChars = kanaRows[char] || char;
+        const target = item.reading || item.term_jp || '';
+        return rowChars.includes(toHiragana(target.charAt(0)));
+    });
+
+    renderDictionary(filtered);
+    finalizeFilter(`「${char}」行の結果: ${filtered.length}件`);
+    toggleAccordion(mode === 'en' ? 'root-alpha-index' : 'root-kana-index');
+}
+
+function filterBySingleWord(word) {
+    renderDictionary(masterData.filter(i => i.term_en === word), word);
+    finalizeFilter(`「${word}」の詳細`);
+
+    const root = document.getElementById('root-category-list');
+    if (root && root.classList.contains('open')) {
+        toggleAccordion('root-category-list');
+    }
+}
+
+function filterByTag(tag) {
+    const filtered = masterData.filter(i => (i.tags || []).includes(tag));
+    renderDictionary(filtered, tag);
+    finalizeFilter(`タグ「#${tag}」: ${filtered.length}件`);
+}
+
+function renderDictionary(data, query = '') {
+    const list = document.getElementById('dictionaryList');
+
+    if (data.length === 0) {
+        list.innerHTML = `<div style="text-align:center; padding:40px; opacity:0.6;">該当なし</div>`;
+        return;
+    }
+
+    list.innerHTML = data.map(item => `
+        <div class="dic-card" data-cat="${item.category}">
+            <div class="term-en">${highlight(item.term_en, query)}</div>
+            <div class="term-jp">${item.term_jp}</div>
+            <p class="desc">${highlight(item.description, query)}</p>
+            <div class="card-tags">
+                ${(item.tags || []).map(t => `<span class="card-tag" onclick="filterByTag(${JSON.stringify(t)})">#${t}</span>`).join('')}
+            </div>
+        </div>
+    `).join('');
 }
 
 // ===== 樽図鑑 =====
 function createCaskGroupNav() {
-    const nav=document.getElementById('caskGroupNav'), groups={};
-    caskData.forEach(item=>{ const g=item.sort_group||'other'; groups[g]=(groups[g]||0)+1; });
-    let html=`<button class="cask-group-btn active" onclick="filterCaskGroup(this,'all')">すべて<span class="g-count">${caskData.length}</span></button>`;
-    Object.keys(groups).sort().forEach(g=>{ html+=`<button class="cask-group-btn" onclick="filterCaskGroup(this,'${g}')">${sortGroupNames[g]||g}<span class="g-count">${groups[g]}</span></button>`; });
-    nav.innerHTML=html;
+    const nav = document.getElementById('caskGroupNav');
+    const groups = {};
+
+    caskData.forEach(item => {
+        const g = item.sort_group || 'other';
+        groups[g] = (groups[g] || 0) + 1;
+    });
+
+    let html = `<button class="cask-group-btn active" onclick="filterCaskGroup(this,'all')">すべて<span class="g-count">${caskData.length}</span></button>`;
+
+    Object.keys(groups).sort().forEach(g => {
+        html += `<button class="cask-group-btn" onclick="filterCaskGroup(this,'${g}')">${sortGroupNames[g] || g}<span class="g-count">${groups[g]}</span></button>`;
+    });
+
+    nav.innerHTML = html;
 }
-function filterCaskGroup(btn,group) {
-    document.querySelectorAll('.cask-group-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-    if(group==='all'){renderCaskList(caskData);document.getElementById('caskStatus').classList.remove('show');}
-    else{const f=caskData.filter(i=>i.sort_group===group);renderCaskList(f);showCaskStatus(`${sortGroupNames[group]||group}: ${f.length}件`);}
+
+function filterCaskGroup(btn, group) {
+    document.querySelectorAll('.cask-group-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    if (group === 'all') {
+        renderCaskList(caskData);
+        document.getElementById('caskStatus').classList.remove('show');
+    } else {
+        const filtered = caskData.filter(i => i.sort_group === group);
+        renderCaskList(filtered);
+        showCaskStatus(`${sortGroupNames[group] || group}: ${filtered.length}件`);
+    }
 }
-function renderCaskList(data, query="") {
-    const list=document.getElementById('caskList');
-    if(data.length===0){list.innerHTML="<div style='text-align:center;padding:40px;opacity:0.6;'>該当なし</div>";return;}
-    list.innerHTML=data.map(item=>{
-        const notes=item.typical_notes||[], lv=item.influence_level||'mid', dots=lv==='high'?3:lv==='mid'?2:1;
-        return `<div class="dic-card cask-card"><div class="term-en">${highlight(item.term_en,query)}</div><div class="term-jp">${item.term_jp}</div><p class="desc">${highlight(item.description,query)}</p>${notes.length?`<div class="cask-notes">${notes.map(n=>`<span class="cask-note-chip">${highlight(n,query)}</span>`).join('')}</div>`:''}<div class="cask-meta"><span>${sortGroupNames[item.sort_group]||item.sort_group}</span><span>影響度 <span class="influence-bar">${[1,2,3].map(i=>`<span class="influence-dot${i<=dots?' filled':''}"></span>`).join('')}</span></span></div><div class="card-tags" style="margin-top:8px;">${item.tags.map(t=>`<span class="card-tag" onclick="filterCaskByTag('${t}')">#${t}</span>`).join('')}</div></div>`;
+
+function renderCaskList(data, query = '') {
+    const list = document.getElementById('caskList');
+
+    if (data.length === 0) {
+        list.innerHTML = `<div style="text-align:center; padding:40px; opacity:0.6;">該当なし</div>`;
+        return;
+    }
+
+    list.innerHTML = data.map(item => {
+        const notes = item.typical_notes || [];
+        const lv = item.influence_level || 'mid';
+        const dots = lv === 'high' ? 3 : lv === 'mid' ? 2 : 1;
+
+        return `
+            <div class="dic-card cask-card">
+                <div class="term-en">${highlight(item.term_en, query)}</div>
+                <div class="term-jp">${item.term_jp}</div>
+                <p class="desc">${highlight(item.description, query)}</p>
+
+                ${notes.length ? `
+                    <div class="cask-notes">
+                        ${notes.map(n => `<span class="cask-note-chip">${highlight(n, query)}</span>`).join('')}
+                    </div>
+                ` : ''}
+
+                <div class="cask-meta">
+                    <span>${sortGroupNames[item.sort_group] || item.sort_group || '-'}</span>
+                    <span>
+                        影響度
+                        <span class="influence-bar">
+                            ${[1,2,3].map(i => `<span class="influence-dot${i <= dots ? ' filled' : ''}"></span>`).join('')}
+                        </span>
+                    </span>
+                </div>
+
+                <div class="card-tags" style="margin-top:8px;">
+                    ${(item.tags || []).map(t => `<span class="card-tag" onclick="filterCaskByTag(${JSON.stringify(t)})">#${t}</span>`).join('')}
+                </div>
+            </div>
+        `;
     }).join('');
 }
-function filterCaskByTag(tag) { renderCaskList(caskData.filter(i=>i.tags.includes(tag)),tag); showCaskStatus(`タグ「#${tag}」: ${caskData.filter(i=>i.tags.includes(tag)).length}件`); document.querySelectorAll('.cask-group-btn').forEach(b=>b.classList.remove('active')); }
-function showCaskStatus(msg) { document.getElementById('caskStatus').classList.add('show'); document.getElementById('caskStatusMessage').innerText=msg; }
-function resetCaskFilter() { document.getElementById('caskStatus').classList.remove('show'); renderCaskList(caskData); document.querySelectorAll('.cask-group-btn').forEach(b=>b.classList.remove('active')); document.querySelector('.cask-group-btn')?.classList.add('active'); }
+
+function filterCaskByTag(tag) {
+    const filtered = caskData.filter(i => (i.tags || []).includes(tag));
+    renderCaskList(filtered, tag);
+    showCaskStatus(`タグ「#${tag}」: ${filtered.length}件`);
+    resetCaskGroupButtons();
+}
+
+function showCaskStatus(msg) {
+    document.getElementById('caskStatus').classList.add('show');
+    document.getElementById('caskStatusMessage').innerText = msg;
+}
+
+function resetCaskFilter() {
+    document.getElementById('caskStatus').classList.remove('show');
+    renderCaskList(caskData);
+    resetCaskGroupButtons();
+}
+
+function resetCaskGroupButtons() {
+    document.querySelectorAll('.cask-group-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.cask-group-btn')?.classList.add('active');
+}
 
 // ===== 共通 =====
-function highlight(text,q){if(!q||q.length<1)return text;return text.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi'),`<span class="highlight">$1</span>`);}
-function clearActiveStates(){document.querySelectorAll('.btn-index').forEach(el=>el.classList.remove('active'));}
-function finalizeFilter(msg){document.getElementById('resultStatus').classList.add('show');document.getElementById('statusMessage').innerText=msg;window.scrollTo({top:document.getElementById('resultStatus').offsetTop-20,behavior:'smooth'});}
-function resetSearch(){clearActiveStates();document.getElementById('resultStatus').classList.remove('show');document.getElementById('caskStatus').classList.remove('show');document.getElementById('dicSearch').value="";document.getElementById('suggestDropdown').classList.remove('open');clearBtn.classList.remove('visible');renderDictionary(masterData);renderCaskList(caskData);document.querySelectorAll('.cask-group-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.cask-group-btn')?.classList.add('active');}
-function toHiragana(src){return src.replace(/[\u30a1-\u30f6]/g,m=>String.fromCharCode(m.charCodeAt(0)-0x60));}
-window.onload=init;
+function highlight(text, q) {
+    if (!q || q.length < 1) return String(text);
+    const re = new RegExp(`(${escapeRegExp(q)})`, 'gi');
+    return String(text).replace(re, `<span class="highlight">$1</span>`);
+}
+
+function escapeRegExp(str) {
+    return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function clearActiveStates() {
+    document.querySelectorAll('.btn-index').forEach(el => el.classList.remove('active'));
+}
+
+function finalizeFilter(msg) {
+    document.getElementById('resultStatus').classList.add('show');
+    document.getElementById('statusMessage').innerText = msg;
+    window.scrollTo({
+        top: document.getElementById('resultStatus').offsetTop - 20,
+        behavior: 'smooth'
+    });
+}
+
+function resetSearch() {
+    clearActiveStates();
+    document.getElementById('resultStatus').classList.remove('show');
+    document.getElementById('caskStatus').classList.remove('show');
+    document.getElementById('dicSearch').value = '';
+    document.getElementById('suggestDropdown').classList.remove('open');
+    clearBtn.classList.remove('visible');
+
+    renderDictionary(masterData);
+    renderCaskList(caskData);
+    resetCaskGroupButtons();
+}
+
+function toHiragana(src) {
+    return String(src || '').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60));
+}
+
+window.onload = init;
 </script>
 </body>
 </html>
