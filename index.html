@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amber Palette Dictionary & Cask Library</title>
+    <title>Amber Palette Dictionary & Cask Library & Serve Styles</title>
     <style>
         :root {
             --amber-dark: #1a120b;
@@ -505,6 +505,58 @@
         }
 
         .status-bar.show { display: flex; }
+
+        /* ===== 飲み方カード ===== */
+        .serve-card { border-top-color: #c08552; }
+
+        .serve-badge {
+            display: inline-block;
+            font-size: 0.7em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: rgba(192, 133, 82, 0.2);
+            color: #c08552;
+            border: 1px solid rgba(192, 133, 82, 0.3);
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .serve-section {
+            margin-top: 12px;
+        }
+
+        .serve-section-title {
+            font-size: 0.75em;
+            color: var(--amber-gold);
+            opacity: 0.7;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .serve-section-body {
+            font-size: 0.9em;
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        .serve-group-btn {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(192, 133, 82, 0.4);
+            background: var(--amber-mid);
+            color: var(--amber-bright);
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .serve-group-btn:hover,
+        .serve-group-btn.active {
+            background: #c08552;
+            color: #1a120b;
+            border-color: #c08552;
+        }
     </style>
 </head>
 <body>
@@ -512,7 +564,7 @@
     <h1>Amber Palette Dictionary & Cask Library</h1>
 
     <div class="search-wrapper">
-        <input type="text" id="dicSearch" class="search-box" placeholder="用語・樽・フレーバーから検索..." autocomplete="off">
+        <input type="text" id="dicSearch" class="search-box" placeholder="用語・樽・飲み方・フレーバーから検索..." autocomplete="off">
         <button class="search-clear" id="searchClear" onclick="resetSearch()" title="検索をクリア">×</button>
         <span class="search-icon">🔍</span>
         <div class="suggest-dropdown" id="suggestDropdown"></div>
@@ -522,6 +574,7 @@
     <div class="tab-bar">
         <button class="tab-btn active" id="tabBtnDictionary" onclick="switchTab('dictionary')">📖 用語辞典<span class="tab-count" id="dictCount"></span></button>
         <button class="tab-btn" id="tabBtnCask" onclick="switchTab('cask')">🪵 樽図鑑<span class="tab-count" id="caskCount"></span></button>
+        <button class="tab-btn" id="tabBtnServe" onclick="switchTab('serve')">🥃 飲み方<span class="tab-count" id="serveCount"></span></button>
     </div>
 
     <div class="tab-panel active" id="panel-dictionary">
@@ -549,6 +602,18 @@
 
         <div id="caskList" class="dictionary-grid"></div>
     </div>
+
+    <!-- ===== 飲み方パネル ===== -->
+    <div class="tab-panel" id="panel-serve">
+        <div id="serveGroupNav" class="cask-group-nav"></div>
+
+        <div id="serveStatus" class="status-bar">
+            <span id="serveStatusMessage" style="font-weight: bold;"></span>
+            <button onclick="resetServeFilter()" style="background:var(--serve-accent, var(--amber-gold)); border:none; padding:4px 12px; border-radius:4px; cursor:pointer; font-weight:bold;">解除</button>
+        </div>
+
+        <div id="serveList" class="dictionary-grid"></div>
+    </div>
 </div>
 
 <script>
@@ -556,6 +621,103 @@ let masterData = [];
 let caskData = [];
 let suggestActiveIndex = -1;
 let currentTab = 'dictionary';
+
+// ===== 飲み方データ（Amber Styleより統合） =====
+const serveData = [
+    {
+        id: "serve-01", term_en: "Straight / Neat", term_jp: "ストレート / ニート",
+        badge: "ESSENTIAL",
+        service: "常温の原酒をそのまま。チェイサーを添えて。Served pure at room temperature with a chaser on the side.",
+        characteristic: "香りと余韻が最もダイレクト。数滴の加水で香りが花開く「開花」の瞬間を愉しむ、全ての基本。",
+        category: "basic"
+    },
+    {
+        id: "serve-02", term_en: "Whisky Float", term_jp: "ウイスキー・フロート",
+        badge: "LAYERED",
+        service: "水やソーダの上に原酒を静かに浮かべる。Gently float the whisky on top of water or soda.",
+        characteristic: "美しい二層のグラデーション。最初はストレート、次第に加水が進む、時間による味わいの変化。",
+        category: "basic"
+    },
+    {
+        id: "serve-03", term_en: "On the Rocks", term_jp: "ロック",
+        badge: "CHILLED",
+        service: "大きめの氷と原酒。軽くステアして冷やす。Build over a large ice cube and stir gently to chill.",
+        characteristic: "冷却による刺激の緩和と、氷の溶解による加水。ゆったりとした時間の経過を愉しむバーの定番。",
+        category: "ice"
+    },
+    {
+        id: "serve-04", term_en: "Highball", term_jp: "ハイボール",
+        badge: "SPARKLING",
+        service: "氷＋原酒＋強炭酸。比率は1:3〜1:4。Whisky and strong soda water over ice. Ratio 1:3 to 1:4.",
+        characteristic: "炭酸が香りを弾けさせ、爽快な飲み口に。食中酒としても、最初の一杯としても不動の人気。",
+        category: "soda"
+    },
+    {
+        id: "serve-05", term_en: "Kobe Style Highball", term_jp: "神戸ハイボール",
+        badge: "TRADITIONAL",
+        service: "氷なし。冷やしたグラス・酒・強炭酸のみ。No ice. Chilled glass, chilled whisky, and cold soda only.",
+        characteristic: "氷を入れないことで炭酸が抜けにくく、最後まで味が薄まらない。神戸のバー文化が育んだ濃厚なキレ。",
+        category: "soda"
+    },
+    {
+        id: "serve-06", term_en: "Half Rock", term_jp: "ハーフロック",
+        badge: "BALANCED",
+        service: "原酒1：水1 ＋ 大きめの氷。Equal parts whisky and water (1:1) served over ice.",
+        characteristic: "ロックの「冷たさ」とトワイスアップの「香りの開き」を両立。アルコールの角を和らげたい時に。",
+        category: "water"
+    },
+    {
+        id: "serve-07", term_en: "Whisky and Water", term_jp: "水割り",
+        badge: "SMOOTH",
+        service: "原酒1：水2〜2.5 ＋ 氷。Whisky mixed with mineral water and ice. Ratio 1:2 to 1:2.5.",
+        characteristic: "日本で洗練されたスタイル。和食の繊細な味を邪魔せず、穏やかに伸びる甘みを長く愉しめます。",
+        category: "water"
+    },
+    {
+        id: "serve-08", term_en: "Twice Up", term_jp: "トワイスアップ",
+        badge: "ANALYSIS",
+        service: "原酒1：常温の水1。氷は不使用。Equal parts whisky and room temperature water. No ice.",
+        characteristic: "プロのブレンダーも用いる手法。常温の水がウイスキーの香りの分子を最も効率よく開放させます。",
+        category: "water"
+    },
+    {
+        id: "serve-09", term_en: "Mist", term_jp: "ミスト",
+        badge: "REFRESHING",
+        service: "クラッシュアイスを満たしたグラスに原酒。Whisky served over a glass filled with crushed ice.",
+        characteristic: "グラス表面に霧（ミスト）がつく爽快な演出。キンキンに冷えるため、夏場や軽やかな銘柄に向きます。",
+        category: "ice"
+    },
+    {
+        id: "serve-10", term_en: "Frozen Whisky", term_jp: "フローズン・ウイスキー",
+        badge: "SILKY",
+        service: "ボトルを冷凍庫で保管（とろみがつく）。Store the bottle in the freezer to increase viscosity.",
+        characteristic: "冷却によりアルコールの角が取れ、シルキーな口当たりに。温度上昇と共に香りが膨らみます。",
+        category: "ice"
+    },
+    {
+        id: "serve-11", term_en: "Hot Whisky", term_jp: "ホットウイスキー",
+        badge: "WARMING",
+        service: "温めたグラスに原酒とお湯（1:2〜3）。Mixed with hot water in a pre-warmed glass (Ratio 1:2 to 1:3).",
+        characteristic: "湯気と共に立ち上がる豊かな香り。ハチミツやスパイスでのアレンジが映える冬の愉しみ。",
+        category: "hot"
+    },
+    {
+        id: "serve-12", term_en: "Cocktail", term_jp: "カクテル",
+        badge: "UNLIMITED",
+        service: "銘柄に応じたレシピで他の材料と調和。Follow specific recipes to harmonize with other ingredients.",
+        characteristic: "ウイスキーを「核」とした味の構造物。伝統と創造が交差する、無限のスペクトラム。",
+        category: "cocktail"
+    }
+];
+
+const serveCategoryNames = {
+    'basic': 'そのまま',
+    'ice': '冷やす',
+    'water': '加水',
+    'soda': '炭酸',
+    'hot': '温める',
+    'cocktail': 'カクテル'
+};
 
 const categoryNames = {
     tasting: 'テイスティング表現',
@@ -609,13 +771,16 @@ async function init() {
 
         document.getElementById('dictCount').textContent = `(${masterData.length})`;
         document.getElementById('caskCount').textContent = `(${caskData.length})`;
+        document.getElementById('serveCount').textContent = `(${serveData.length})`;
 
         createIndexNav();
         createTagAccordion();
         createCaskGroupNav();
+        createServeGroupNav();
 
         renderDictionary(masterData);
         renderCaskList(caskData);
+        renderServeList(serveData);
     } catch (err) {
         const msg = `<div style="text-align:center; padding:20px;">データを読み込めません。<br><small>${err.message}</small></div>`;
         document.getElementById('dictionaryList').innerHTML = msg;
@@ -628,8 +793,10 @@ function switchTab(tab) {
 
     document.getElementById('tabBtnDictionary').classList.toggle('active', tab === 'dictionary');
     document.getElementById('tabBtnCask').classList.toggle('active', tab === 'cask');
+    document.getElementById('tabBtnServe').classList.toggle('active', tab === 'serve');
     document.getElementById('panel-dictionary').classList.toggle('active', tab === 'dictionary');
     document.getElementById('panel-cask').classList.toggle('active', tab === 'cask');
+    document.getElementById('panel-serve').classList.toggle('active', tab === 'serve');
 }
 
 // ===== 統合サジェスト =====
@@ -696,8 +863,27 @@ function buildSuggestions(query) {
         }
     });
 
+    // 飲み方データの検索
+    serveData.forEach(item => {
+        if (foundIds.has('s-' + item.id)) return;
+        if (item.term_en.toLowerCase().includes(q) || item.term_jp.includes(query)) {
+            results.push({ item, source: 'serve', type: 'term', priority: 1.8 });
+            foundIds.add('s-' + item.id);
+        }
+    });
+
+    serveData.forEach(item => {
+        if (foundIds.has('s-' + item.id)) return;
+        const svc = (item.service || '').toLowerCase();
+        const chr = (item.characteristic || '').toLowerCase();
+        if (svc.includes(q) || chr.includes(q)) {
+            results.push({ item, source: 'serve', type: 'desc', priority: 3.8 });
+            foundIds.add('s-' + item.id);
+        }
+    });
+
     results.sort((a, b) => a.priority - b.priority);
-    return results.slice(0, 10);
+    return results.slice(0, 12);
 }
 
 function highlightMatch(text, query) {
@@ -721,7 +907,9 @@ function renderSuggestions(query) {
         'dict-desc': '説明',
         'dict-tag': 'タグ',
         'cask-term': '🪵 樽',
-        'cask-notes': '🪵 香味'
+        'cask-notes': '🪵 香味',
+        'serve-term': '🥃 飲み方',
+        'serve-desc': '🥃 飲み方'
     };
 
     let html = '<div class="suggest-section-label">候補</div>';
@@ -729,14 +917,18 @@ function renderSuggestions(query) {
     results.forEach((r, i) => {
         const item = r.item;
         const isCask = r.source === 'cask';
+        const isServe = r.source === 'serve';
         let sub = item.term_jp;
 
-        if (r.type === 'desc') sub = truncateAround(item.description || '', query, 40);
+        if (r.type === 'desc' && r.source === 'serve') sub = truncateAround(item.service || item.characteristic || '', query, 40);
+        else if (r.type === 'desc') sub = truncateAround(item.description || '', query, 40);
         if (r.type === 'notes') sub = (item.typical_notes || []).join(', ');
+
+        const badgeClass = isCask ? ' cask-badge' : (isServe ? ' cask-badge' : '');
 
         html += `
             <div class="suggest-item" data-index="${i}" onmouseenter="setSuggestActive(${i})" onclick="selectSuggestion(${i})">
-                <span class="suggest-badge${isCask ? ' cask-badge' : ''}">${badgeMap[r.source + '-' + r.type] || r.source}</span>
+                <span class="suggest-badge${badgeClass}">${badgeMap[r.source + '-' + r.type] || r.source}</span>
                 <div class="suggest-main">
                     <div class="suggest-term">${highlightMatch(item.term_en, query)}</div>
                     <div class="suggest-sub">${highlightMatch(sub, query)}</div>
@@ -787,6 +979,10 @@ function selectSuggestion(index) {
         switchTab('cask');
         renderCaskList(caskData.filter(d => d.id === item.id), item.term_en);
         showCaskStatus(`「${item.term_en}」の詳細`);
+    } else if (r.source === 'serve') {
+        switchTab('serve');
+        renderServeList(serveData.filter(d => d.id === item.id), item.term_en);
+        showServeStatus(`「${item.term_en}」の詳細`);
     } else {
         switchTab('dictionary');
         renderDictionary(masterData.filter(d => d.id === item.id), item.term_en);
@@ -810,10 +1006,13 @@ searchBox.addEventListener('input', (e) => {
     if (q === '') {
         document.getElementById('resultStatus').classList.remove('show');
         document.getElementById('caskStatus').classList.remove('show');
+        document.getElementById('serveStatus').classList.remove('show');
         document.getElementById('suggestDropdown').classList.remove('open');
         renderDictionary(masterData);
         renderCaskList(caskData);
+        renderServeList(serveData);
         resetCaskGroupButtons();
+        resetServeGroupButtons();
         return;
     }
 
@@ -845,6 +1044,17 @@ searchBox.addEventListener('input', (e) => {
     renderCaskList(caskFiltered, q);
     showCaskStatus(`「${q}」: ${caskFiltered.length}件`);
     resetCaskGroupButtons();
+
+    const serveFiltered = serveData.filter(item =>
+        item.term_en.toLowerCase().includes(ql) ||
+        item.term_jp.includes(q) ||
+        (item.service || '').toLowerCase().includes(ql) ||
+        (item.characteristic || '').toLowerCase().includes(ql)
+    );
+
+    renderServeList(serveFiltered, q);
+    showServeStatus(`「${q}」: ${serveFiltered.length}件`);
+    resetServeGroupButtons();
 });
 
 searchBox.addEventListener('keydown', (e) => {
@@ -1163,17 +1373,96 @@ function resetSearch() {
     clearActiveStates();
     document.getElementById('resultStatus').classList.remove('show');
     document.getElementById('caskStatus').classList.remove('show');
+    document.getElementById('serveStatus').classList.remove('show');
     document.getElementById('dicSearch').value = '';
     document.getElementById('suggestDropdown').classList.remove('open');
     clearBtn.classList.remove('visible');
 
     renderDictionary(masterData);
     renderCaskList(caskData);
+    renderServeList(serveData);
     resetCaskGroupButtons();
+    resetServeGroupButtons();
 }
 
 function toHiragana(src) {
     return String(src || '').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60));
+}
+
+// ===== 飲み方 =====
+function createServeGroupNav() {
+    const nav = document.getElementById('serveGroupNav');
+    const groups = {};
+
+    serveData.forEach(item => {
+        const g = item.category || 'other';
+        groups[g] = (groups[g] || 0) + 1;
+    });
+
+    let html = `<button class="serve-group-btn active" onclick="filterServeGroup(this,'all')">すべて<span class="g-count" style="font-size:0.8em;opacity:0.6;margin-left:4px;">${serveData.length}</span></button>`;
+
+    Object.keys(groups).forEach(g => {
+        html += `<button class="serve-group-btn" onclick="filterServeGroup(this,'${g}')">${serveCategoryNames[g] || g}<span class="g-count" style="font-size:0.8em;opacity:0.6;margin-left:4px;">${groups[g]}</span></button>`;
+    });
+
+    nav.innerHTML = html;
+}
+
+function filterServeGroup(btn, group) {
+    document.querySelectorAll('.serve-group-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    if (group === 'all') {
+        renderServeList(serveData);
+        document.getElementById('serveStatus').classList.remove('show');
+    } else {
+        const filtered = serveData.filter(i => i.category === group);
+        renderServeList(filtered);
+        showServeStatus(`${serveCategoryNames[group] || group}: ${filtered.length}件`);
+    }
+}
+
+function renderServeList(data, query = '') {
+    const list = document.getElementById('serveList');
+
+    if (data.length === 0) {
+        list.innerHTML = `<div style="text-align:center; padding:40px; opacity:0.6;">該当なし</div>`;
+        return;
+    }
+
+    list.innerHTML = data.map(item => `
+        <div class="dic-card serve-card">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <div class="term-en">${highlight(item.term_en, query)}</div>
+                <span class="serve-badge">${item.badge}</span>
+            </div>
+            <div class="term-jp">${item.term_jp}</div>
+            <div class="serve-section">
+                <div class="serve-section-title">SERVICE / 作り方</div>
+                <div class="serve-section-body">${highlight(item.service, query)}</div>
+            </div>
+            <div class="serve-section">
+                <div class="serve-section-title">CHARACTERISTIC</div>
+                <div class="serve-section-body">${highlight(item.characteristic, query)}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showServeStatus(msg) {
+    document.getElementById('serveStatus').classList.add('show');
+    document.getElementById('serveStatusMessage').innerText = msg;
+}
+
+function resetServeFilter() {
+    document.getElementById('serveStatus').classList.remove('show');
+    renderServeList(serveData);
+    resetServeGroupButtons();
+}
+
+function resetServeGroupButtons() {
+    document.querySelectorAll('.serve-group-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.serve-group-btn')?.classList.add('active');
 }
 
 window.onload = init;
